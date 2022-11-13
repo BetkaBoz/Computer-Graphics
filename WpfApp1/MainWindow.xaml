@@ -1,0 +1,111 @@
+﻿<Window x:Class="WpfApp1.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+        xmlns:local="clr-namespace:ComputerGraphics"
+        xmlns:viewModel="clr-namespace:ComputerGraphics.MVVM.ViewModel"
+        xmlns:views="clr-namespace:ComputerGraphics.MVVM.View"
+        mc:Ignorable="d" 
+        Height="600" Width="960" 
+        WindowStyle="None"
+        ResizeMode="NoResize"
+        Background="Transparent"
+        AllowsTransparency="True" >
+
+    <Window.DataContext>
+        <viewModel:MainViewModel/>
+    </Window.DataContext>
+
+    <Border Background="#FFF1F1F1">
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="160"/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="75"/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+
+            <TextBlock Text="Počítačová grafika" 
+                       VerticalAlignment="Center"
+                       HorizontalAlignment="Center"
+                       Foreground="DarkGray"
+                       FontSize="18"/>
+
+            <StackPanel Grid.Row="1" HorizontalAlignment="Left" VerticalAlignment="Top">
+
+                <RadioButton Content="Úvod"
+                             Height="50" Width="160"
+                             FontSize="14"
+                             Style="{StaticResource MenuButtonTheme}" 
+                             Foreground="#FF424242" 
+                             IsChecked="True"
+                             Command="{Binding homeViewCommand}" />
+                <RadioButton Content="IDK"
+                             Height="50" Width="160"
+                             FontSize="14"
+                             Style="{StaticResource MenuButtonTheme}" 
+                             Foreground="#FF424242" 
+                             Command="{Binding lecturesViewCommand}" />
+                <Expander IsExpanded="False" 
+                              Background="Transparent" Header="Lekcie"
+                              Margin="5" 
+                              Foreground="#FF424242" FontSize="14">
+                    <ListView ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+                        <RadioButton Content="Lekcia 1"
+                                         Height="45" Width="160"
+                                         FontSize="14"
+                                         Style="{StaticResource MenuButtonTheme}" 
+                                         Foreground="#FF424242" 
+                                         IsChecked="False"
+                                         Margin="-6"
+                                         Command="{Binding lectureOneViewCommand}"/>
+                        <RadioButton Content="Lekcia 2"
+                                         Height="45" Width="160"
+                                         FontSize="14"
+                                         Style="{StaticResource MenuButtonTheme}" 
+                                         Foreground="#FF424242" 
+                                         IsChecked="False"
+                                         Margin="-6"
+                                         Command="{Binding lectureTwoViewCommand}"/>
+                        <RadioButton Content="Lekcia 3"
+                                         Height="45" Width="160"
+                                         FontSize="14"
+                                         Style="{StaticResource MenuButtonTheme}" 
+                                         Foreground="#FF424242" 
+                                         IsChecked="False"
+                                         Margin="-6"
+                                         Command="{Binding lectureThreeViewCommand}"/>
+                    </ListView>
+                </Expander>
+
+            </StackPanel>           
+
+            <StackPanel Grid.Row="1" HorizontalAlignment="Stretch" VerticalAlignment="Bottom">
+                <Button VerticalAlignment="Bottom" HorizontalAlignment="Stretch"
+                        Background="Transparent" BorderBrush="Transparent"
+                        Height="50"
+                        Foreground="#FF424242" 
+                        Command="{Binding CloseCommand}">
+                    <Image Source="/Images/logout.png" Width="35"/>
+                </Button>
+            </StackPanel>
+
+            <TextBox Width="250"
+                       Height="40"
+                       VerticalAlignment="Center"
+                       HorizontalAlignment="Left"
+                       Margin="5"
+                       Grid.Column="1"
+                       Style="{StaticResource ResourceKey=ModernTextbox}" />
+
+            <ContentControl Grid.Row="1" Grid.Column="1" Margin="10"
+                            Content="{Binding CurrentView}"/>
+
+        </Grid>
+    </Border>
+
+</Window>

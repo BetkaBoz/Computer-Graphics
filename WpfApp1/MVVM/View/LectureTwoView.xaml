@@ -1,0 +1,131 @@
+﻿<UserControl x:Class="ComputerGraphics.MVVM.View.LectureTwoView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
+             xmlns:local="clr-namespace:ComputerGraphics.MVVM.View"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="20"/>
+            <ColumnDefinition Width="auto"/>
+            <ColumnDefinition Width="auto"/>
+            <ColumnDefinition Width="auto"/>
+            <ColumnDefinition Width="50"/>
+            <ColumnDefinition Width="auto"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="20"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="20"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="20"/>
+        </Grid.RowDefinitions>
+        <TextBlock Grid.Column="2" HorizontalAlignment="Left" Grid.Row="2" TextWrapping="Wrap" 
+                   Text="Spracovanie farieb" FontWeight="Bold" FontSize="20" Cursor="None"/>
+
+        <!-- MODEL RGB -->
+        <TextBlock Grid.Row="3" Grid.Column="3" HorizontalAlignment="Center" VerticalAlignment="Top" Text="RGB" FontWeight="Bold"/>
+        <Rectangle x:Name="rgbRect" Grid.Row="3" Grid.Column="3"
+            HorizontalAlignment="Center" Height="100" Margin="20" VerticalAlignment="Center" Width="100" Fill="Black"/>
+
+        <TextBlock Grid.Row="4" Grid.Column="3" HorizontalAlignment="left" VerticalAlignment="Top" Text="R" Margin="3,2,0,0"/>
+        <Slider x:Name="redSlider" Grid.Row="4" Grid.Column="3" Width="100" Maximum="255" Foreground="Red" ValueChanged="RGB_Slider_ValueChanged" Value="0" SmallChange="1" TickFrequency="1" IsSnapToTickEnabled="True">
+            <i:Interaction.Triggers>
+                <i:EventTrigger EventName="ValueChanged">
+                    <i:EventTrigger.Actions>
+                        <i:ChangePropertyAction TargetObject="{Binding ElementName=redNum}" PropertyName="Text" Value="{Binding Value, ElementName=redSlider}"/>
+                    </i:EventTrigger.Actions>
+                </i:EventTrigger>
+            </i:Interaction.Triggers>
+        </Slider>
+        <TextBlock x:Name="redNum" Grid.Row="4" Grid.Column="3" HorizontalAlignment="Right" VerticalAlignment="Top" Text="0" Margin="0,2,0,0"/>
+
+
+        <TextBlock Grid.Row="4" Grid.Column="3" HorizontalAlignment="left" VerticalAlignment="Center" Text="G" Margin="3,-5,0,0"/>
+        <Slider x:Name="greenSlider" Grid.Row="4" Grid.Column="3" Margin="10,35,10,10" Width="100"
+                Minimum="0" Maximum="255" Foreground="Green"  ValueChanged="RGB_Slider_ValueChanged" SmallChange="1" TickFrequency="1" IsSnapToTickEnabled="True">
+            <i:Interaction.Triggers>
+                <i:EventTrigger EventName="ValueChanged">
+                    <i:EventTrigger.Actions>
+                        <i:ChangePropertyAction TargetObject="{Binding ElementName=greenNum}" PropertyName="Text" Value="{Binding Value, ElementName=greenSlider}"/>
+                    </i:EventTrigger.Actions>
+                </i:EventTrigger>
+            </i:Interaction.Triggers>
+        </Slider>
+        <TextBlock x:Name="greenNum" Grid.Row="4" Grid.Column="3" HorizontalAlignment="Right" VerticalAlignment="Center" Text="0" Margin="0,0,0,5"/>
+
+        <TextBlock Grid.Row="4" Grid.Column="3" HorizontalAlignment="left" VerticalAlignment="Bottom" Text="B" Margin="3,0,0,12"/>
+        <Slider x:Name="blueSlider" Grid.Row="4" Grid.Column="3" Margin="10,65,10,10" Width="100"
+                Minimum="0" Maximum="255"  ValueChanged="RGB_Slider_ValueChanged" SmallChange="1" TickFrequency="1" IsSnapToTickEnabled="True">
+            <i:Interaction.Triggers>
+                <i:EventTrigger EventName="ValueChanged">
+                    <i:EventTrigger.Actions>
+                        <i:ChangePropertyAction TargetObject="{Binding ElementName=blueNum}" PropertyName="Text" Value="{Binding Value, ElementName=blueSlider}"/>
+                    </i:EventTrigger.Actions>
+                </i:EventTrigger>
+            </i:Interaction.Triggers>
+        </Slider>
+        <TextBlock x:Name="blueNum" Grid.Row="4" Grid.Column="3" HorizontalAlignment="Right" VerticalAlignment="Bottom" Text="0" Margin="0,0,0,12"/>
+
+         <!--MODEL CMY--> 
+        <TextBlock Grid.Row="3" Grid.Column="5" HorizontalAlignment="Center" VerticalAlignment="Top" Text="CMY" FontWeight="Bold"/>
+        <Rectangle x:Name="cmyRect" Grid.Row="3" Grid.Column="5"
+            HorizontalAlignment="Center" Height="100" Margin="20" VerticalAlignment="Center" Width="100" RenderTransformOrigin="0.504,0.551" Fill="White"/>
+
+        <TextBlock Grid.Row="4" Grid.Column="5" HorizontalAlignment="left" VerticalAlignment="Top" Text="C" Margin="3,2,0,0"/>
+        <Slider x:Name="cyanSlider" Grid.Row="4" Grid.Column="5" Width="100" Minimum="0" Maximum="255" Foreground="Cyan" ValueChanged="CMY_Slider_ValueChanged" SmallChange="1" TickFrequency="1" IsSnapToTickEnabled="True">
+            <i:Interaction.Triggers>
+                <i:EventTrigger EventName="ValueChanged">
+                    <i:EventTrigger.Actions>
+                        <i:ChangePropertyAction TargetObject="{Binding ElementName=cyanNum}" PropertyName="Text" Value="{Binding Value, ElementName=cyanSlider}"/>
+                    </i:EventTrigger.Actions>
+                </i:EventTrigger>
+            </i:Interaction.Triggers>
+        </Slider>
+        <TextBlock x:Name="cyanNum" Grid.Row="4" Grid.Column="5" HorizontalAlignment="Right" VerticalAlignment="Top" Text="0" Margin="0,2,0,0"/>
+
+
+        <TextBlock Grid.Row="4" Grid.Column="5" HorizontalAlignment="left" VerticalAlignment="Center" Text="M" Margin="3,-5,0,0"/>
+        <Slider x:Name="magentaSlider" Grid.Row="4" Grid.Column="5" Margin="10,35,10,10" Width="100" Minimum="0" Maximum="255" Foreground="Magenta" ValueChanged="CMY_Slider_ValueChanged" SmallChange="1" TickFrequency="1" IsSnapToTickEnabled="True">
+            <i:Interaction.Triggers>
+                <i:EventTrigger EventName="ValueChanged">
+                    <i:EventTrigger.Actions>
+                        <i:ChangePropertyAction TargetObject="{Binding ElementName=magentaNum}" PropertyName="Text" Value="{Binding Value, ElementName=magentaSlider}"/>
+                    </i:EventTrigger.Actions>
+                </i:EventTrigger>
+            </i:Interaction.Triggers>
+        </Slider>
+        <TextBlock x:Name="magentaNum" Grid.Row="4" Grid.Column="5" HorizontalAlignment="Right" VerticalAlignment="Center" Text="0" Margin="0,0,0,5"/>
+
+        <TextBlock Grid.Row="4" Grid.Column="5" HorizontalAlignment="left" VerticalAlignment="Bottom" Text="Y" Margin="3,0,0,12"/>
+        <Slider x:Name="yellowSlider" Grid.Row="4" Grid.Column="5" Margin="10,65,10,10" Width="100" Minimum="0" Maximum="255" Foreground="Yellow" ValueChanged="CMY_Slider_ValueChanged" SmallChange="1" TickFrequency="1" IsSnapToTickEnabled="True">
+            <i:Interaction.Triggers>
+                <i:EventTrigger EventName="ValueChanged">
+                    <i:EventTrigger.Actions>
+                        <i:ChangePropertyAction TargetObject="{Binding ElementName=yellowNum}" PropertyName="Text" Value="{Binding Value, ElementName=yellowSlider}"/>
+                    </i:EventTrigger.Actions>
+                </i:EventTrigger>
+            </i:Interaction.Triggers>
+        </Slider>
+        <TextBlock x:Name="yellowNum" Grid.Row="4" Grid.Column="5" HorizontalAlignment="Right" VerticalAlignment="Bottom" Text="0" Margin="0,0,0,12"/>
+
+        <!-- THEORY -->
+        <TextBlock Grid.Row="5" Grid.Column="2" Grid.ColumnSpan="5" 
+                   TextWrapping="Wrap"
+                   Margin="0,20,0,0"
+                   Text="Model RGB je súčtovým modelom, ktorého základom je aditívne skladanie  farieb červenej, zelenej a modrej. Každá farba je na obrazovke reprezentovaná hodnotou intenzity 0 - 255. Celkovo je teda 2563 kombinácií.&#x0a;
+&#x0a;Bielu farbu dostaneme nastavením hodnôt RGB na maximum (R = 255, G = 255, B = 255).
+&#x0a;&#x0a;Čiernu farbu zase nastaveným hodnôt RGB na minimum (R = 0; G = 0, B = 0).
+&#x0a;&#x0a;Ak hodnoty jednotlivých farieb budú rovnaké a intenzitu meníme od 0 po 255, tak dostaneme postupne 256 odtieňov šedej."
+                   FontSize="12"
+                   Cursor="None" Foreground="#FF424242"/>
+    </Grid>
+</UserControl>

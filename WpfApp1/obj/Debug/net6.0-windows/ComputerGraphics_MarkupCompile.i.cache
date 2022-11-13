@@ -1,0 +1,20 @@
+﻿ComputerGraphics
+1.0.0.0
+
+winexe
+C#
+.cs
+D:\VS Projects\WpfApp1\WpfApp1\obj\Debug\net6.0-windows\
+ComputerGraphics
+none
+false
+TRACE;DEBUG;NET;NET6_0;NETCOREAPP
+D:\VS Projects\WpfApp1\WpfApp1\App.xaml
+8796587498
+
+19-840516753
+2052079208608
+MainWindow.xaml;MVVM\View\HomeView.xaml;MVVM\View\LectureOneView.xaml;MVVM\View\LecturesView.xaml;MVVM\View\LectureThreeView.xaml;MVVM\View\LectureTwoView.xaml;Theme\MenuButtonTheme.xaml;Theme\TextboxTheme.xaml;
+
+False
+

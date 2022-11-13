@@ -1,0 +1,91 @@
+﻿<UserControl x:Class="ComputerGraphics.MVVM.View.LectureOneView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:ComputerGraphics.MVVM.View"
+             xmlns:svg="http://sharpvectors.codeplex.com/runtime/"
+             xmlns:svgc="http://sharpvectors.codeplex.com/svgc/"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="20"/>
+            <ColumnDefinition Width="auto"/>
+            <ColumnDefinition Width="auto"/>
+            <ColumnDefinition Width="auto"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="20"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="20"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="20"/>
+        </Grid.RowDefinitions>
+        <TextBlock Grid.Column="2" Grid.Row="1"
+                   HorizontalAlignment="Left"  
+                   Text="Rastrová a vektorová grafika" TextWrapping="Wrap" 
+                   FontWeight="Bold" FontSize="20" Cursor="None"/>
+
+        <Canvas Grid.Row="3" Grid.Column="2"
+                Width="150" Height="150" 
+                HorizontalAlignment="Right"
+                ClipToBounds="True">
+            <Image x:Name="raster"
+                   Source="/Images/pozadie.png">
+                <Image.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform ScaleX="0.5" ScaleY="0.5"/>
+                        <SkewTransform/>
+                        <RotateTransform/>
+                        <TranslateTransform X="0.5" Y="0.5"/>
+                    </TransformGroup>
+                </Image.RenderTransform>
+            </Image>
+        </Canvas>
+
+        <ScrollViewer Grid.Row="3" Grid.Column="4"  
+                      Width="150" Height="150" 
+                      HorizontalAlignment="Left" 
+                      HorizontalScrollBarVisibility="Hidden"
+                      VerticalScrollBarVisibility="Hidden">
+            <Canvas 
+                 ClipToBounds="True">
+                <Image x:Name="vector"
+                   Source="/Images/pozadie.png"
+                   MouseLeftButtonUp="Canvas_MouseLeftButtonUp" MouseLeftButtonDown="Canvas_MouseLeftButtonDown" MouseMove="Canvas_MouseMove">
+                    <Image.RenderTransform>
+                        <TransformGroup>
+                            <ScaleTransform ScaleX="0.5" ScaleY="0.5"/>
+                            <SkewTransform/>
+                            <RotateTransform/>
+                            <!--<TranslateTransform X="0.5" Y="0.5"/>-->
+                        </TransformGroup>
+                    </Image.RenderTransform>
+                </Image>
+            </Canvas>
+        </ScrollViewer>
+        
+
+        <Slider x:Name="slider" 
+                Grid.Column="3" Grid.Row="5" 
+                HorizontalAlignment="Center"
+                Margin="30" 
+                Width="100" ValueChanged="Slider_ValueChanged" />
+        <!--<TextBlock Grid.Column="3" Grid.Row="5" Text="{Binding ElementName=slider, Path=Value, StringFormat={}{0:#}}" />-->
+
+        <TextBlock Grid.Row="6" Grid.Column="2" Grid.ColumnSpan="4" 
+                   TextWrapping="Wrap"
+                   Text="Existujú dve metódy ukladania obrazu. Rastrovej metóde sa obraz rozloží do jednotlivých bodov a informácie o ich individuálnych vlastnostiach &#x0a;
+sa zapíšu do grafického súboru. Skladá sa zo základných obrazových prvkov, čiže pixelov.&#x0a;&#x0a;
+Pri vektorových formátoch nie sú opísané jednotlivé body, ale určité plochy (množiny bodov) so zhodnými vlastnosťami. Každá takáto plocha je ohraničená (ľubovolne vytvarovanou) krivkou. 
+Čiže tomu rozumieme, že ide o uloženie informácií o objektoch prítomných v obraze tak, aby bola zachovaná spojitá reprezentácia obrazu."
+                   FontSize="12"
+                   Cursor="None" Foreground="#FF424242"/>
+    </Grid>
+</UserControl>

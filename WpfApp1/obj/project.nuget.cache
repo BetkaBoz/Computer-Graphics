@@ -1,0 +1,13 @@
+{
+  "version": 2,
+  "dgSpecHash": "6FXmPhhDcUFaNLUqX1rh/4oHXj+yR9VNz8y98pvlMaZhwIWxTa3TdYe+O4yNAIVthjXJZPYns/1opIMGT0WGJA==",
+  "success": true,
+  "projectFilePath": "D:\\VS Projects\\WpfApp1\\WpfApp1\\ComputerGraphics.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\Elly\\.nuget\\packages\\materialdesigncolors\\2.0.9\\materialdesigncolors.2.0.9.nupkg.sha512",
+    "C:\\Users\\Elly\\.nuget\\packages\\materialdesignthemes\\4.6.1\\materialdesignthemes.4.6.1.nupkg.sha512",
+    "C:\\Users\\Elly\\.nuget\\packages\\microsoft.xaml.behaviors.wpf\\1.1.39\\microsoft.xaml.behaviors.wpf.1.1.39.nupkg.sha512",
+    "C:\\Users\\Elly\\.nuget\\packages\\sharpvectors\\1.8.1\\sharpvectors.1.8.1.nupkg.sha512"
+  ],
+  "logs": []
+}
