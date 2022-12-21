@@ -29,7 +29,9 @@
             <RowDefinition Height="20"/>
         </Grid.RowDefinitions>
         <TextBlock Grid.Column="2" HorizontalAlignment="Left" Grid.Row="2" TextWrapping="Wrap" 
-                   Text="Spracovanie farieb" FontWeight="Bold" FontSize="20" Cursor="None"/>
+                   Text="SPRACOVANIE FARIEB" FontWeight="Bold" FontSize="20" 
+                   Margin="0,0,0,0"
+                   Cursor="None"/>
 
         <!-- MODEL RGB -->
         <TextBlock Grid.Row="3" Grid.Column="3" HorizontalAlignment="Center" VerticalAlignment="Top" Text="RGB" FontWeight="Bold"/>

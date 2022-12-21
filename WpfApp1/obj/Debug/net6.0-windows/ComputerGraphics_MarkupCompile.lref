@@ -2,7 +2,12 @@
 FD:\VS Projects\WpfApp1\WpfApp1\App.xaml;;
 FD:\VS Projects\WpfApp1\WpfApp1\MainWindow.xaml;;
 FD:\VS Projects\WpfApp1\WpfApp1\MVVM\View\HomeView.xaml;;
+FD:\VS Projects\WpfApp1\WpfApp1\MVVM\View\LectureEightView.xaml;;
+FD:\VS Projects\WpfApp1\WpfApp1\MVVM\View\LectureFiveView.xaml;;
+FD:\VS Projects\WpfApp1\WpfApp1\MVVM\View\LectureFourView.xaml;;
 FD:\VS Projects\WpfApp1\WpfApp1\MVVM\View\LectureOneView.xaml;;
+FD:\VS Projects\WpfApp1\WpfApp1\MVVM\View\LectureSevenView.xaml;;
+FD:\VS Projects\WpfApp1\WpfApp1\MVVM\View\LectureSixView.xaml;;
 FD:\VS Projects\WpfApp1\WpfApp1\MVVM\View\LecturesView.xaml;;
 FD:\VS Projects\WpfApp1\WpfApp1\MVVM\View\LectureThreeView.xaml;;
 FD:\VS Projects\WpfApp1\WpfApp1\MVVM\View\LectureTwoView.xaml;;

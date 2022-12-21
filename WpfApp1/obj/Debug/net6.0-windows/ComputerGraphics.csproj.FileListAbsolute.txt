@@ -45,3 +45,13 @@ D:\VS Projects\WpfApp1\WpfApp1\bin\Debug\net6.0-windows\SharpVectors.Model.dll
 D:\VS Projects\WpfApp1\WpfApp1\bin\Debug\net6.0-windows\SharpVectors.Rendering.Gdi.dll
 D:\VS Projects\WpfApp1\WpfApp1\bin\Debug\net6.0-windows\SharpVectors.Rendering.Wpf.dll
 D:\VS Projects\WpfApp1\WpfApp1\bin\Debug\net6.0-windows\SharpVectors.Runtime.Wpf.dll
+D:\VS Projects\WpfApp1\WpfApp1\obj\Debug\net6.0-windows\MVVM\View\LectureFourView.g.cs
+D:\VS Projects\WpfApp1\WpfApp1\obj\Debug\net6.0-windows\MVVM\View\LectureEightView.g.cs
+D:\VS Projects\WpfApp1\WpfApp1\obj\Debug\net6.0-windows\MVVM\View\LectureFiveView.g.cs
+D:\VS Projects\WpfApp1\WpfApp1\obj\Debug\net6.0-windows\MVVM\View\LectureSevenView.g.cs
+D:\VS Projects\WpfApp1\WpfApp1\obj\Debug\net6.0-windows\MVVM\View\LectureSixView.g.cs
+D:\VS Projects\WpfApp1\WpfApp1\obj\Debug\net6.0-windows\MVVM\View\LectureEightView.baml
+D:\VS Projects\WpfApp1\WpfApp1\obj\Debug\net6.0-windows\MVVM\View\LectureFiveView.baml
+D:\VS Projects\WpfApp1\WpfApp1\obj\Debug\net6.0-windows\MVVM\View\LectureFourView.baml
+D:\VS Projects\WpfApp1\WpfApp1\obj\Debug\net6.0-windows\MVVM\View\LectureSevenView.baml
+D:\VS Projects\WpfApp1\WpfApp1\obj\Debug\net6.0-windows\MVVM\View\LectureSixView.baml

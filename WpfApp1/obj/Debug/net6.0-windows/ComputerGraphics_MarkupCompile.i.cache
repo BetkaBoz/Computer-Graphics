@@ -10,11 +10,11 @@ none
 false
 TRACE;DEBUG;NET;NET6_0;NETCOREAPP
 D:\VS Projects\WpfApp1\WpfApp1\App.xaml
-8796587498
+13-1206442356
 
-19-840516753
+31-1909589549
 2052079208608
-MainWindow.xaml;MVVM\View\HomeView.xaml;MVVM\View\LectureOneView.xaml;MVVM\View\LecturesView.xaml;MVVM\View\LectureThreeView.xaml;MVVM\View\LectureTwoView.xaml;Theme\MenuButtonTheme.xaml;Theme\TextboxTheme.xaml;
+MainWindow.xaml;MVVM\View\HomeView.xaml;MVVM\View\LectureEightView.xaml;MVVM\View\LectureFiveView.xaml;MVVM\View\LectureFourView.xaml;MVVM\View\LectureOneView.xaml;MVVM\View\LectureSevenView.xaml;MVVM\View\LectureSixView.xaml;MVVM\View\LecturesView.xaml;MVVM\View\LectureThreeView.xaml;MVVM\View\LectureTwoView.xaml;Theme\MenuButtonTheme.xaml;Theme\TextboxTheme.xaml;
 
-False
+True
 

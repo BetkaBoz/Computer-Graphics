@@ -244,24 +244,6 @@
                             Cursor="Arrow"
                             Text="Zrkadlenie je transformácia, ktorá vytvára zrkadlový obraz objektu vzhľadom k osi zrkadlenia. Pre zrkadlenie objektu podľa osi x ako aj y sa použijú transformačné rovnice škálovania.
                                 &#x0a;&#x0a;Táto transformácia mení orientáciu objektu, pretože Zx &lt; 0."/>
-
-                        <Button Content="Výpočet"
-                                x:Name="mirror"
-                                Width="70" Height="25" BorderBrush="Transparent"
-                                VerticalAlignment="Bottom" HorizontalAlignment="Right"
-                                Margin="10"
-                                Foreground="#FF424242"
-                                FontWeight="Normal"
-                                FontSize="10"
-                                Click="Transform">
-                            <Button.Background>
-                                <LinearGradientBrush EndPoint="0.9,1" StartPoint="0.4,0">
-                                    <GradientStop Color="#FF82B2FF"/>
-                                    <GradientStop Color="#FFD48DFF" Offset="1"/>
-                                </LinearGradientBrush>
-                            </Button.Background>
-                        </Button>
-
                     </StackPanel>
                 </Expander>
 
@@ -314,23 +296,21 @@
                Visibility="Hidden"/>
 
         <Canvas Grid.Column="1" Grid.Row="0"  
+                x:Name="canvas"
                 Margin="0,50,0,0"
                 Background="White"
-                x:Name="canvas"
                 Height="320" Width="320" Cursor="Hand" 
                 Visibility="Hidden"
                 MouseDown="AddNode">
             <Line   Grid.Column="1" Grid.Row="1"
-                x:Name="line"
-                HorizontalAlignment="Center" VerticalAlignment="Center"
-                Stroke="DarkGray"
-                X1="300"
-                X2="10"
-                StrokeThickness="2"
-                Margin="0,160,0,0"/>
+                    HorizontalAlignment="Center" VerticalAlignment="Center"
+                    Stroke="DarkGray"
+                    X1="300"
+                    X2="10"
+                    StrokeThickness="2"
+                    Margin="0,160,0,0"/>
 
             <Line   Grid.Column="1" Grid.Row="1"
-                    x:Name="line2"
                     HorizontalAlignment="Center" VerticalAlignment="Center"
                     Stroke="DarkGray"
                     X1="300"
@@ -339,6 +319,16 @@
                     Margin="160,0,0,0"
                     Style="{DynamicResource VerticalSeparatorStyle}"/>
         </Canvas>
+
+        <TextBlock Grid.Column="1" Grid.Row="1"
+                   x:Name="textAddNodes"
+                   Visibility="Hidden"
+                   VerticalAlignment="Center" HorizontalAlignment="Center"
+                   Text="Na canvase vyznačte mnohouholník"
+                   Foreground="#FF424242"
+                   FontWeight="Normal"
+                   Margin="0,270,0,0"
+                   Padding="0,10,0,0"/>
 
         <Button Content="Spoj"
                 x:Name="connect"
@@ -357,8 +347,9 @@
                 </LinearGradientBrush>
             </Button.Background>
         </Button>
-
-        <StackPanel x:Name="vectors"
+        
+        <!-- MOVE CANVAS -->
+        <StackPanel x:Name="moveStackPanel"
                     Grid.Column="1" Grid.Row="1"
                     Visibility="Hidden"
                     VerticalAlignment="Bottom" HorizontalAlignment="Center">
@@ -405,14 +396,132 @@
             </StackPanel>
 
             <Image Source="/Images/next.png" 
-               x:Name="nextStep"
                Grid.Column="1" Grid.Row="1"
                Height="30"
                VerticalAlignment="Bottom" HorizontalAlignment="Center"
                Margin="0,0,0,50"
-               MouseDown="Calculate" />
+               MouseDown="CalculateStep" />
         </StackPanel>
-       
+
+        <!-- ROTATE CANVAS -->
+        <StackPanel x:Name="rotateStackPanel"
+                    Grid.Column="1" Grid.Row="1"
+                    Visibility="Hidden"
+                    VerticalAlignment="Bottom" HorizontalAlignment="Center">
+            <StackPanel Orientation="Horizontal">
+                <TextBlock 
+                   Text="Zadaj uhol rotácie: "
+                   Foreground="#FF424242"
+                   FontWeight="Normal"
+                   Padding="0,10,0,0"/>
+
+                <TextBox x:Name="angle"
+                 Width="20"
+                 Foreground="#FF424242"
+                 FontWeight="Normal"
+                 Margin="0,0,0,20"
+                 Padding="0,8,0,0"
+                 TextAlignment="Center"
+                 PreviewTextInput="PreviewTextInput"/>
+
+                <TextBlock 
+                   Text="°"
+                   Foreground="#FF424242"
+                   FontWeight="Normal"
+                   Padding="0,10,0,0"/>
+
+            </StackPanel>
+
+            <Image Source="/Images/next.png" 
+               Grid.Column="1" Grid.Row="1"
+               Height="30"
+               VerticalAlignment="Bottom" HorizontalAlignment="Center"
+               Margin="0,0,0,50"
+               MouseDown="CalculateRotation" />
+        </StackPanel>
+
+        <!-- SCALE CANVAS -->
+        <StackPanel x:Name="scaleStackPanel"
+                    Grid.Column="1" Grid.Row="1"
+                    Visibility="Hidden"
+                    VerticalAlignment="Bottom" HorizontalAlignment="Center">
+            <StackPanel Orientation="Horizontal">
+                <TextBlock 
+                   Text="Zadaj koeficient škálovania v intervale &lt;0, 1> : "
+                   Foreground="#FF424242"
+                   FontWeight="Normal"
+                   Padding="0,10,0,0"/>
+
+                <TextBox x:Name="coeficient"
+                 Width="20"
+                 Foreground="#FF424242"
+                 FontWeight="Normal"
+                 Margin="0,0,0,20"
+                 Padding="0,8,0,0"
+                 TextAlignment="Center"
+                 PreviewTextInput="PreviewTextInput"/>
+            </StackPanel>
+
+            <Image Source="/Images/next.png" 
+               Grid.Column="1" Grid.Row="1"
+               Height="30"
+               VerticalAlignment="Bottom" HorizontalAlignment="Center"
+               Margin="0,0,0,50"
+               MouseDown="CalculateStep" />
+        </StackPanel>
+
+        <!-- SHEAR CANVAS -->
+        <StackPanel x:Name="shearStackPanel"
+                    Grid.Column="1" Grid.Row="1"
+                    Visibility="Hidden"
+                    VerticalAlignment="Bottom" HorizontalAlignment="Center">
+            <StackPanel Orientation="Horizontal">
+                <TextBlock 
+                   Text="Zadaj smer skosenia v X-ovej osi "
+                   Foreground="#FF424242"
+                   FontWeight="Normal"
+                   Padding="0,10,0,0"/>
+
+                <TextBox x:Name="shearX"
+                 Width="20"
+                 Foreground="#FF424242"
+                 FontWeight="Normal"
+                 Margin="0,0,0,20"
+                 Padding="0,8,0,0"
+                 TextAlignment="Center"
+                 PreviewTextInput="PreviewTextInput"/>
+
+                <TextBlock 
+                   Text=" a Y-ovej osi "
+                   Foreground="#FF424242"
+                   FontWeight="Normal"
+                   Padding="0,10,0,0"/>
+
+                <TextBox x:Name="shearY"
+                 Width="20"
+                 Foreground="#FF424242"
+                 FontWeight="Normal"
+                 Margin="0,0,0,20"
+                 Padding="0,8,0,0"
+                 TextAlignment="Center"
+                 PreviewTextInput="PreviewTextInput">
+                </TextBox>
+
+                <TextBlock 
+                   Text=" )"
+                   Foreground="#FF424242"
+                   FontWeight="Normal"
+                   Padding="0,10,0,0"/>
+
+            </StackPanel>
+
+            <Image Source="/Images/next.png" 
+               Grid.Column="1" Grid.Row="1"
+               Height="30"
+               VerticalAlignment="Bottom" HorizontalAlignment="Center"
+               Margin="0,0,0,50"
+               MouseDown="CalculateStep" />
+        </StackPanel>
 
     </Grid>
 

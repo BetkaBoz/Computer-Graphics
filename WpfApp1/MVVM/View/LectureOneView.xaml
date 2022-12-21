@@ -27,13 +27,15 @@
             <RowDefinition Height="*"/>
             <RowDefinition Height="20"/>
         </Grid.RowDefinitions>
-        <TextBlock Grid.Column="2" Grid.Row="1"
+        <TextBlock Grid.Column="0" Grid.Row="0"
+                   Grid.ColumnSpan="3"
                    HorizontalAlignment="Left"  
-                   Text="Rastrová a vektorová grafika" TextWrapping="Wrap" 
+                   Text="RASTROVÁ A VEKTOROVÁ GRAFIKA" TextWrapping="Wrap" 
                    FontWeight="Bold" FontSize="20" Cursor="None"/>
 
         <Canvas Grid.Row="3" Grid.Column="2"
                 Width="150" Height="150" 
+                Margin="0,30,0,0"
                 HorizontalAlignment="Right"
                 ClipToBounds="True">
             <Image x:Name="raster"
@@ -53,7 +55,8 @@
                       Width="150" Height="150" 
                       HorizontalAlignment="Left" 
                       HorizontalScrollBarVisibility="Hidden"
-                      VerticalScrollBarVisibility="Hidden">
+                      VerticalScrollBarVisibility="Hidden"
+                      Margin="0,30,0,0">
             <Canvas 
                  ClipToBounds="True">
                 <Image x:Name="vector"
@@ -70,7 +73,7 @@
                 </Image>
             </Canvas>
         </ScrollViewer>
-        
+
 
         <Slider x:Name="slider" 
                 Grid.Column="3" Grid.Row="5" 
@@ -79,13 +82,13 @@
                 Width="100" ValueChanged="Slider_ValueChanged" />
         <!--<TextBlock Grid.Column="3" Grid.Row="5" Text="{Binding ElementName=slider, Path=Value, StringFormat={}{0:#}}" />-->
 
-        <TextBlock Grid.Row="6" Grid.Column="2" Grid.ColumnSpan="4" 
+        <TextBlock Grid.Row="6" Grid.ColumnSpan="5" 
                    TextWrapping="Wrap"
                    Text="Existujú dve metódy ukladania obrazu. Rastrovej metóde sa obraz rozloží do jednotlivých bodov a informácie o ich individuálnych vlastnostiach &#x0a;
 sa zapíšu do grafického súboru. Skladá sa zo základných obrazových prvkov, čiže pixelov.&#x0a;&#x0a;
 Pri vektorových formátoch nie sú opísané jednotlivé body, ale určité plochy (množiny bodov) so zhodnými vlastnosťami. Každá takáto plocha je ohraničená (ľubovolne vytvarovanou) krivkou. 
 Čiže tomu rozumieme, že ide o uloženie informácií o objektoch prítomných v obraze tak, aby bola zachovaná spojitá reprezentácia obrazu."
                    FontSize="12"
-                   Cursor="None" Foreground="#FF424242"/>
+                   Cursor="None" Foreground="#FF424242" Margin="112,0,56,0"/>
     </Grid>
 </UserControl>

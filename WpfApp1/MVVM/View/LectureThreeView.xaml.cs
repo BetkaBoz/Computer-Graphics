@@ -1,4 +1,5 @@
-﻿using ComputerGraphics.MVVM.ViewModel;
+﻿using ComputerGraphics.HelperScripts;
+using ComputerGraphics.MVVM.ViewModel;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -22,9 +23,6 @@ using System.Xml.Linq;
 
 namespace ComputerGraphics.MVVM.View
 {
-    /// <summary>
-    /// Interaction logic for LectureThreeView.xaml
-    /// </summary>
     public partial class LectureThreeView : UserControl
     {
         int pointCount = 0;
@@ -37,8 +35,8 @@ namespace ComputerGraphics.MVVM.View
         Point lastPoint;
         List<Point> pointsList = new();
         List<Point> pointsListNew = new();
-        Queue<Point> pointsQueue;
-        
+        Queue<Point> pointsQueue = new();
+
 
         public LectureThreeView()
         {
@@ -50,9 +48,12 @@ namespace ComputerGraphics.MVVM.View
             Button button = sender as Button;
             transformName = button.Name;
 
-            canvas.Visibility = Visibility.Visible;
-
             Refresh();
+
+            canvas.Visibility = Visibility.Visible;
+            textAddNodes.Visibility = Visibility.Visible;
+
+            SwitchName(Visibility.Hidden);
         }
 
         private (Ellipse ellipse, TextBlock text) DrawPoint(Point point)
@@ -79,7 +80,7 @@ namespace ComputerGraphics.MVVM.View
             Canvas.SetLeft(text, point.X);
             Canvas.SetTop(text, point.Y);
 
-            return(ellipse, text);
+            return (ellipse, text);
         }
 
         private void AddNode(object sender, MouseButtonEventArgs e)
@@ -89,7 +90,7 @@ namespace ComputerGraphics.MVVM.View
 
             var draw = DrawPoint(currentPoint);
 
-            //draw dot with text
+            // nakleslenie bodu s textom na canvas
             if (lastPoint != currentPoint && pointCount < 7)
             {
                 canvas.Children.Add(draw.ellipse);
@@ -100,8 +101,13 @@ namespace ComputerGraphics.MVVM.View
                 pointCount++;
             }
 
+            // skrytie/zobrazenie buttonov a textov
             if (pointCount == 1) refresh.Visibility = Visibility.Visible;
-            if (pointCount > 2) connect.Visibility = Visibility.Visible;
+            if (pointCount > 2)
+            {
+                connect.Visibility = Visibility.Visible;
+                textAddNodes.Visibility = Visibility.Hidden;
+            }
         }
 
         private void RefreshCanvas(object sender, MouseButtonEventArgs e)
@@ -116,13 +122,16 @@ namespace ComputerGraphics.MVVM.View
                 var child = canvas.Children[i];
                 if (child is not Line) canvas.Children.RemoveAt(i);
             }
-            
+
             pointsList.Clear();
+            pointsListNew.Clear();
+            pointsQueue.Clear();
             pointCount = 0;
 
             refresh.Visibility = Visibility.Hidden;
             connect.Visibility = Visibility.Hidden;
-            vectors.Visibility = Visibility.Hidden;
+
+            
         }
 
         private void Connection(List<Point> pointsList)
@@ -148,66 +157,86 @@ namespace ComputerGraphics.MVVM.View
 
             connect.Visibility = Visibility.Hidden;
 
+            SwitchName(Visibility.Visible);
+
+            pointsQueue = new(pointsList);
+        }
+
+        private void SwitchName(Visibility visibility)
+        {
+            StackPanel panel = transformName switch
+            {
+                "move" => moveStackPanel,
+                "rotate" => rotateStackPanel,
+                "scale" => scaleStackPanel,
+                "scold" => shearStackPanel,
+                _ => throw new NotImplementedException(),
+            };
+            panel.Visibility = visibility;
+        }
+
+        private void PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            // zabezpecenie ze input bude iba numericky, ak sa bude zadavat text alebo iny neplatny input, e.Handled vrati false
+            Regex regex = new Regex("[^0-9(.+)]+");
+            e.Handled = regex.IsMatch(e.Text);
+        }
+
+        public void CalculateStep(object sender, MouseButtonEventArgs e)
+        {
+            if (pointsQueue.Count == 0) return;
+
+            var point = pointsQueue.Dequeue();
+
             switch (transformName)
             {
                 case "move":
-                    vectors.Visibility = Visibility.Visible;
+                    _valueVectorX = int.Parse(vectorX.Text);
+                    _valueVectorY = int.Parse(vectorY.Text);
+                    Transformations.CalculateMove(ref point, _valueVectorX, _valueVectorY);
                     break;
                 case "rotate":
-                    Debug.WriteLine("transformuj rotovanim");
+                    double rotation = double.Parse(angle.Text);
+                    //Transformations.CalculateRotation(ref point, point.X, point.Y, rotation);
                     break;
                 case "scale":
-                    Debug.WriteLine("transformuj skalovanim");
+                    double _valueScale = double.Parse(coeficient.Text);
+                    Transformations.CalculateScale(ref point, _valueScale);
                     break;
                 case "mirror":
-                    Debug.WriteLine("transformuj zrkadlenim");
+                    Debug.WriteLine("pocitaj zrkadlenie");
                     break;
                 case "scold":
-                    Debug.WriteLine("transformuj skosenim");
+                    double _valueSkewX = double.Parse(shearX.Text);
+                    double _valueSkewY = double.Parse(shearY.Text);
+                    Transformations.CalculateSkew(ref point, _valueSkewX, _valueSkewY);
                     break;
                 default:
                     break;
             }
 
-            pointsQueue = new(pointsList);
+            var draw = DrawPoint(point);
 
-            //SPOJI VSETKY BODY
-            //foreach (Point x in pointsList)
-            //{
-            //    foreach (Point y in pointsList)
-            //    {
-            //        Line line = new()
-            //        {
-            //            X1 = x.X,
-            //            Y1 = x.Y,
-            //            X2 = y.X,
-            //            Y2 = y.Y,
-            //            Stroke = Brushes.Black,
-            //            Visibility = Visibility.Visible,
-            //            StrokeThickness = 1
-            //        };
-            //        canvas.Children.Add(line);
-            //    }
-            //}
-        }
-        private void PreviewTextInput(object sender, TextCompositionEventArgs e)
-        {
-            //zabezpecenie ze input bude iba numericky, ak sa bude zadavat text alebo iny neplatny input, e.Handled vrati false
-            Regex regex = new Regex("[^0-9]+");
-            e.Handled = regex.IsMatch(e.Text);
+            canvas.Children.Add(draw.ellipse);
+            canvas.Children.Add(draw.text);
+            pointsListNew.Add(point);
+
+            if (pointsQueue.Count == 0) Connection(pointsListNew);
         }
 
-        private void Calculate(object sender, MouseButtonEventArgs e)
+        private void CalculateRotation(object sender, MouseButtonEventArgs e)
         {
-            if(pointsQueue.Count == 0) return;
+            if (pointsQueue.Count == 0) return;
 
-            _valueVectorX = int.Parse(vectorX.Text);
-            _valueVectorY = int.Parse(vectorY.Text);
+            double _valueRotation = double.Parse(angle.Text);
 
             var point = pointsQueue.Dequeue();
 
-            point.X += _valueVectorX;
-            point.Y -= _valueVectorY;
+            double x = point.X;
+            double y = point.Y;
+
+            point.X = (x * Math.Cos(_valueRotation)) - (y * Math.Sin(_valueRotation));
+            point.Y = (x * Math.Sin(_valueRotation)) + (y * Math.Cos(_valueRotation));
 
             var draw = DrawPoint(point);
 

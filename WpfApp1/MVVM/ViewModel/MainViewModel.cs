@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using ComputerGraphics.Core;
+using ComputerGraphics.MVVM.View;
 
 namespace ComputerGraphics.MVVM.ViewModel
 {
@@ -21,13 +22,22 @@ namespace ComputerGraphics.MVVM.ViewModel
         public RelayCommand lectureOneViewCommand { get; set; }
         public RelayCommand lectureTwoViewCommand { get; set; }
         public RelayCommand lectureThreeViewCommand { get; set; }
+        public RelayCommand lectureFourViewCommand { get; set; }
+        public RelayCommand lectureFiveViewCommand { get; set; }
+        public RelayCommand lectureSixViewCommand { get; set; }
+        public RelayCommand lectureSevenViewCommand { get; set; }
+        public RelayCommand lectureEightViewCommand { get; set; }
 
         public HomeViewModel homeViewModel { get; set; }
         public LecturesViewModel lecturesViewModel { get; set; }
         public LectureOneViewModel lectureOneViewModel { get; set; }
         public LectureTwoViewModel lectureTwoViewModel { get; set; }
         public LectureThreeViewModel lectureThreeViewModel { get; set; }
-
+        public LectureFourViewModel lectureFourViewModel { get; set; }
+        public LectureFiveViewModel lectureFiveViewModel { get; set; }
+        public LectureSixViewModel lectureSixViewModel { get; set; }
+        public LectureSevenViewModel lectureSevenViewModel { get; set; }
+        public LectureEightViewModel lectureEightViewModel { get; set; }
 
         public object CurrentView
         {
@@ -46,6 +56,11 @@ namespace ComputerGraphics.MVVM.ViewModel
             lectureOneViewModel = new LectureOneViewModel();
             lectureTwoViewModel = new LectureTwoViewModel();
             lectureThreeViewModel = new LectureThreeViewModel();
+            lectureFourViewModel = new LectureFourViewModel();  
+            lectureFiveViewModel = new LectureFiveViewModel();
+            lectureSixViewModel = new LectureSixViewModel();
+            lectureSevenViewModel = new LectureSevenViewModel();
+            lectureEightViewModel = new LectureEightViewModel();
 
             CurrentView = homeViewModel;
 
@@ -58,17 +73,45 @@ namespace ComputerGraphics.MVVM.ViewModel
             {
                 CurrentView = lecturesViewModel;
             });
+
             lectureOneViewCommand = new RelayCommand(o =>
             {
                 CurrentView = lectureOneViewModel;
             });
+
             lectureTwoViewCommand = new RelayCommand(o =>
             {
                 CurrentView = lectureTwoViewModel;
             });
+
             lectureThreeViewCommand = new RelayCommand(o =>
             {
                 CurrentView = lectureThreeViewModel;
+            });
+
+            lectureFourViewCommand = new RelayCommand(o =>
+            {
+                CurrentView= lectureFourViewModel;
+            });
+
+            lectureFiveViewCommand = new RelayCommand(o =>
+            {
+                CurrentView = lectureFiveViewModel;
+            });
+
+            lectureSixViewCommand = new RelayCommand(o =>
+            {
+                CurrentView = lectureSixViewModel;
+            });
+
+            lectureSevenViewCommand = new RelayCommand(o =>
+            {
+                CurrentView = lectureSevenViewModel;
+            });
+
+            lectureEightViewCommand = new RelayCommand(o =>
+            {
+                CurrentView = lectureEightViewModel;
             });
         }
 

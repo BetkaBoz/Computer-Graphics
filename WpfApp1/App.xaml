@@ -36,6 +36,26 @@
                 <view:LectureThreeView/>
             </DataTemplate>
 
+            <DataTemplate DataType="{x:Type viewModel:LectureFourViewModel}">
+                <view:LectureFourView/>
+            </DataTemplate>
+
+            <DataTemplate DataType="{x:Type viewModel:LectureFiveViewModel}">
+                <view:LectureFiveView/>
+            </DataTemplate>
+
+            <DataTemplate DataType="{x:Type viewModel:LectureSixViewModel}">
+                <view:LectureSixView/>
+            </DataTemplate>
+
+            <DataTemplate DataType="{x:Type viewModel:LectureSevenViewModel}">
+                <view:LectureSevenView/>
+            </DataTemplate>
+            
+            <DataTemplate DataType="{x:Type viewModel:LectureEightViewModel}">
+                <view:LectureEightView/>
+            </DataTemplate>
+
         </ResourceDictionary>
     </Application.Resources>
 </Application>
