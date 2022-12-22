@@ -1,12 +1,15 @@
 {
   "version": 2,
-  "dgSpecHash": "6FXmPhhDcUFaNLUqX1rh/4oHXj+yR9VNz8y98pvlMaZhwIWxTa3TdYe+O4yNAIVthjXJZPYns/1opIMGT0WGJA==",
+  "dgSpecHash": "Jjaxb0ZKjnvh25XtB5XdzJh8anVg0h9LxC+DElyhM2MyK4ewPuto0y1LtpfzD05E7BsGubi+v7A5oJFlG80deg==",
   "success": true,
-  "projectFilePath": "D:\\VS Projects\\WpfApp1\\WpfApp1\\ComputerGraphics.csproj",
+  "projectFilePath": "D:\\School Stuffs\\DIPLOMOVKA\\Computer Graphics\\WpfApp1\\ComputerGraphics.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Elly\\.nuget\\packages\\materialdesigncolors\\2.0.9\\materialdesigncolors.2.0.9.nupkg.sha512",
     "C:\\Users\\Elly\\.nuget\\packages\\materialdesignthemes\\4.6.1\\materialdesignthemes.4.6.1.nupkg.sha512",
     "C:\\Users\\Elly\\.nuget\\packages\\microsoft.xaml.behaviors.wpf\\1.1.39\\microsoft.xaml.behaviors.wpf.1.1.39.nupkg.sha512",
+    "C:\\Users\\Elly\\.nuget\\packages\\rulyotano.math\\2.0.0\\rulyotano.math.2.0.0.nupkg.sha512",
+    "C:\\Users\\Elly\\.nuget\\packages\\rulyotano.math.geometry\\2.0.0\\rulyotano.math.geometry.2.0.0.nupkg.sha512",
+    "C:\\Users\\Elly\\.nuget\\packages\\rulyotano.math.interpolation.bezier\\2.0.0\\rulyotano.math.interpolation.bezier.2.0.0.nupkg.sha512",
     "C:\\Users\\Elly\\.nuget\\packages\\sharpvectors\\1.8.1\\sharpvectors.1.8.1.nupkg.sha512"
   ],
   "logs": []

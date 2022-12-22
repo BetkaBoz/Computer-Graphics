@@ -177,36 +177,31 @@ namespace ComputerGraphics.MVVM.View
 
         private void Bezier()
         {
-            
+            PathFigure pthFigure = new PathFigure();
+            pthFigure.StartPoint = pointsList[0];
 
-            for (int i = 0; i < pointsList.Count; i++)
-            {
-                if (i < 1) bezierStartPoint.StartPoint = pointsList[i];
-                else if (i == 1) bezierSegment.Point1 = pointsList[i];
-                else if (i == 2) bezierSegment.Point2 = pointsList[i];
-                else if (i == 3) bezierSegment.Point3 = pointsList[i];
+            QuadraticBezierSegment qbzSeg = new QuadraticBezierSegment();
+            qbzSeg.Point1 = new Point((pointsList[1].X + pointsList[1].Y) / 2, (pointsList[2].X + pointsList[2].Y) / 2);
+            qbzSeg.Point2 = pointsList[3];
 
-            }
-            BezierCurve.Visibility = Visibility.Visible;
-            Debug.WriteLine(BezierCurve.Visibility);
-            Debug.WriteLine($"{bezierSegment.Point1}, {bezierSegment.Point2}, {bezierSegment.Point3}") ;
+            PathSegmentCollection myPathSegmentCollection = new PathSegmentCollection();
+            myPathSegmentCollection.Add(qbzSeg);
+
+            pthFigure.Segments = myPathSegmentCollection;
+
+            PathFigureCollection pthFigureCollection = new PathFigureCollection();
+            pthFigureCollection.Add(pthFigure);
+
+            PathGeometry pthGeometry = new PathGeometry();
+            pthGeometry.Figures = pthFigureCollection;
+
+            Path arcPath = new Path();
+            arcPath.Stroke = new SolidColorBrush(Colors.Aqua);
+            arcPath.StrokeThickness = 1;
+            arcPath.Data = pthGeometry;
+
+            canvas.Children.Add(arcPath);
         }
-
-        //private void DrawBezierPoint(PaintEventArgs e)
-        //{
-        //    // Create pen.
-        //    Pen blackPen = new Pen(Color.Black, 3);
-
-        //    // Create points for curve.
-        //    Point start = new Point(100, 100);
-        //    Point control1 = new Point(200, 10);
-        //    Point control2 = new Point(350, 50);
-        //    Point end = new Point(500, 100);
-
-        //    // Draw arc to screen.
-        //    e.Graphics.DrawBezier(blackPen, start, control1, control2, end);
-        //}
-
         private void Coons()
         {
 

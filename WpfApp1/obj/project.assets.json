@@ -50,6 +50,39 @@
           "Microsoft.WindowsDesktop.App.WPF"
         ]
       },
+      "Rulyotano.Math/2.0.0": {
+        "type": "package",
+        "compile": {
+          "lib/net6.0/Rulyotano.Math.dll": {}
+        },
+        "runtime": {
+          "lib/net6.0/Rulyotano.Math.dll": {}
+        }
+      },
+      "Rulyotano.Math.Geometry/2.0.0": {
+        "type": "package",
+        "dependencies": {
+          "Rulyotano.Math": "2.0.0"
+        },
+        "compile": {
+          "lib/net6.0/Rulyotano.Math.Geometry.dll": {}
+        },
+        "runtime": {
+          "lib/net6.0/Rulyotano.Math.Geometry.dll": {}
+        }
+      },
+      "Rulyotano.Math.Interpolation.Bezier/2.0.0": {
+        "type": "package",
+        "dependencies": {
+          "Rulyotano.Math.Geometry": "2.0.0"
+        },
+        "compile": {
+          "lib/net6.0/Rulyotano.Math.Interpolation.Bezier.dll": {}
+        },
+        "runtime": {
+          "lib/net6.0/Rulyotano.Math.Interpolation.Bezier.dll": {}
+        }
+      },
       "SharpVectors/1.8.1": {
         "type": "package",
         "compile": {
@@ -194,6 +227,48 @@
         "microsoft.xaml.behaviors.wpf.1.1.39.nupkg.sha512",
         "microsoft.xaml.behaviors.wpf.nuspec",
         "tools/Install.ps1"
+      ]
+    },
+    "Rulyotano.Math/2.0.0": {
+      "sha512": "lJkTOlHTI0lZRgoQ7dyGLoXzFN3XAs2jUv/xsh9PCF3XZntEaEaDJFCGUSDhSPdM8ZGHnOI1fnJW9qwYtUWRbQ==",
+      "type": "package",
+      "path": "rulyotano.math/2.0.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "lib/net48/Rulyotano.Math.dll",
+        "lib/net6.0/Rulyotano.Math.dll",
+        "lib/netstandard2.0/Rulyotano.Math.dll",
+        "rulyotano.math.2.0.0.nupkg.sha512",
+        "rulyotano.math.nuspec"
+      ]
+    },
+    "Rulyotano.Math.Geometry/2.0.0": {
+      "sha512": "WJqDTE6sJtY2VSel4eIEhRfwMd/js458rS5ddZXr65RYVvleA7M6RHv0wsNXccXx8wRaP4alArG01F6FVTH0Xw==",
+      "type": "package",
+      "path": "rulyotano.math.geometry/2.0.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "lib/net48/Rulyotano.Math.Geometry.dll",
+        "lib/net6.0/Rulyotano.Math.Geometry.dll",
+        "lib/netstandard2.0/Rulyotano.Math.Geometry.dll",
+        "rulyotano.math.geometry.2.0.0.nupkg.sha512",
+        "rulyotano.math.geometry.nuspec"
+      ]
+    },
+    "Rulyotano.Math.Interpolation.Bezier/2.0.0": {
+      "sha512": "sg7Y946336dIQkke3vytLeQ+CFHefJuwhg++wm9E2Y9HOpC5yjpcc0j3UN5AkvE2xnCvF2mr7Eoaufe0JboHjw==",
+      "type": "package",
+      "path": "rulyotano.math.interpolation.bezier/2.0.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "lib/net48/Rulyotano.Math.Interpolation.Bezier.dll",
+        "lib/net6.0/Rulyotano.Math.Interpolation.Bezier.dll",
+        "lib/netstandard2.0/Rulyotano.Math.Interpolation.Bezier.dll",
+        "rulyotano.math.interpolation.bezier.2.0.0.nupkg.sha512",
+        "rulyotano.math.interpolation.bezier.nuspec"
       ]
     },
     "SharpVectors/1.8.1": {
@@ -344,6 +419,7 @@
       "MaterialDesignColors >= 2.0.9",
       "MaterialDesignThemes >= 4.6.1",
       "Microsoft.Xaml.Behaviors.Wpf >= 1.1.39",
+      "Rulyotano.Math.Interpolation.Bezier >= 2.0.0",
       "SharpVectors >= 1.8.1"
     ]
   },
@@ -354,11 +430,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\VS Projects\\WpfApp1\\WpfApp1\\ComputerGraphics.csproj",
+      "projectUniqueName": "D:\\School Stuffs\\DIPLOMOVKA\\Computer Graphics\\WpfApp1\\ComputerGraphics.csproj",
       "projectName": "ComputerGraphics",
-      "projectPath": "D:\\VS Projects\\WpfApp1\\WpfApp1\\ComputerGraphics.csproj",
+      "projectPath": "D:\\School Stuffs\\DIPLOMOVKA\\Computer Graphics\\WpfApp1\\ComputerGraphics.csproj",
       "packagesPath": "C:\\Users\\Elly\\.nuget\\packages\\",
-      "outputPath": "D:\\VS Projects\\WpfApp1\\WpfApp1\\obj\\",
+      "outputPath": "D:\\School Stuffs\\DIPLOMOVKA\\Computer Graphics\\WpfApp1\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -402,6 +478,10 @@
           "Microsoft.Xaml.Behaviors.Wpf": {
             "target": "Package",
             "version": "[1.1.39, )"
+          },
+          "Rulyotano.Math.Interpolation.Bezier": {
+            "target": "Package",
+            "version": "[2.0.0, )"
           },
           "SharpVectors": {
             "target": "Package",

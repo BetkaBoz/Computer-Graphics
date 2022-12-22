@@ -4,16 +4,16 @@
 winexe
 C#
 .cs
-D:\VS Projects\WpfApp1\WpfApp1\obj\Debug\net6.0-windows\
+D:\School Stuffs\DIPLOMOVKA\Computer Graphics\WpfApp1\obj\Debug\net6.0-windows\
 ComputerGraphics
 none
 false
 TRACE;DEBUG;NET;NET6_0;NETCOREAPP
-D:\VS Projects\WpfApp1\WpfApp1\App.xaml
+D:\School Stuffs\DIPLOMOVKA\Computer Graphics\WpfApp1\App.xaml
 13-1206442356
 
 29-1083232190
-2052079208608
+208-328291115
 MainWindow.xaml;MVVM\View\HomeView.xaml;MVVM\View\LectureEightView.xaml;MVVM\View\LectureFiveView.xaml;MVVM\View\LectureFourView.xaml;MVVM\View\LectureOneView.xaml;MVVM\View\LectureSevenView.xaml;MVVM\View\LectureSixView.xaml;MVVM\View\LecturesView.xaml;MVVM\View\LectureThreeView.xaml;MVVM\View\LectureTwoView.xaml;Theme\MenuButtonTheme.xaml;Theme\TextboxTheme.xaml;
 
 False
