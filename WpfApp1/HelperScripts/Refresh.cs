@@ -18,5 +18,10 @@ namespace ComputerGraphics.HelperScripts
                 if (child is not Line) canvas.Children.RemoveAt(i);
             }
         }
+
+        public void RefreshRaster()
+        {
+
+        }
     }
 }

@@ -32,6 +32,22 @@
                 </Setter.Value>
             </Setter>
         </Style>
+
+        <DrawingBrush x:Key="MyGridBrushResource" Viewport="0,0,10,10" ViewportUnits="Absolute" TileMode="Tile">
+            <DrawingBrush.Drawing>
+                <DrawingGroup>
+                    <DrawingGroup.Children>
+                        <GeometryDrawing Brush="#99FFFFFF">
+                            <GeometryDrawing.Geometry>
+                                <RectangleGeometry Rect="0,0,1,1" />
+                            </GeometryDrawing.Geometry>
+                        </GeometryDrawing>
+                        <GeometryDrawing Geometry="M0,0 L1,0 1,0.1, 0,0.1Z" Brush="#66141414" />
+                        <GeometryDrawing Geometry="M0,0 L0,1 0.1,1, 0.1,0Z" Brush="#66141414" />
+                    </DrawingGroup.Children>
+                </DrawingGroup>
+            </DrawingBrush.Drawing>
+        </DrawingBrush>
     </UserControl.Resources>
 
     <Grid>
@@ -58,7 +74,9 @@
                 <TextBlock HorizontalAlignment="Left" 
                    Grid.Row="0" Grid.Column="0"
                    Margin="10,30,0,0"
-                   Text=""
+                   Text="Výstupné zariadenie musí vykresliť najkratšiu spojnicu medzi dvomi zadanými koncovými bodmi. Rastrový display vytvíra úsečku ako postupnosť bodov ležiacich 
+medzi jej koncovými bodmi. &#x0a;&#x0a;Umiestnenie pixlov sa najprv vypočíta z rovnice priamky, na ktorej úsečka leží a potom sa zobrazia zodpovedajúce body na obrazovke. Súradnice týchto pixlov sú celočíselné hodnoty, takže vykreslené čiary iba približne aproximujú 
+skutočnú úsečku vedenú zadanými koncovými bodmi. Toto zaokrúhľovanie na celočíselné hodnoty vytvára na vykreslených čiarach schodovité efekty, ktoré môžu byť na systémoch s malým rozlíšením dosť výrazné."
                    TextWrapping="Wrap"
                    FontSize="12" Foreground="#FF424242"/>
 
@@ -74,15 +92,46 @@
                             FontWeight="Normal"
                             Foreground="#FF424242"
                             FontSize="12"
-                            Text=""/>
-                        
+                            Text="Priamku, ktorá nie je rovnobežná s osou x, ani s osou y môžeme vyjadriť rovnicou"/>
+                        <TextBlock  TextWrapping="Wrap"
+                            FontWeight="Normal"
+                            FontStyle="Italic"
+                            Foreground="#FF424242"
+                            FontSize="12"
+                            Text="y = mx + b &#x0a; m - smernica, b - posun na osi y  &#x0a;"/>
+                        <TextBlock  TextWrapping="Wrap"
+                            FontWeight="Normal"
+                            Foreground="#FF424242"
+                            FontSize="12"
+                            Text="Ak sú dané koncové body úsečky (x1, y1) , (x2, y2), potom smernica"/>
+                        <TextBlock  TextWrapping="Wrap"
+                            FontWeight="Normal"
+                            FontStyle="Italic"
+                            Foreground="#FF424242"
+                            FontSize="12"
+                            Text="m = y2 - y1 / x2 - x1 = Δy / Δx   &#x0a;"/>
+                        <TextBlock  TextWrapping="Wrap"
+                            FontWeight="Normal"
+                            Foreground="#FF424242"
+                            FontSize="12"
+                            Text="Ak 0 &lt; m &lt; 1, potom sa úsečka vykresľuje tak, že novú súradnicu xi+1 vypočítame 
+xi+1 = xi + 1, a k nej prislúchajúcu súradnicu yi+1 vypočítame z rovnice yi+1 = m.xi+1 + b, 
+a potom vykreslíme bod so súradnicami (round (xi+1), round (yi+1))  &#x0a;"/>
+                        <TextBlock  TextWrapping="Wrap"
+                            FontWeight="Normal"
+                            Foreground="#FF424242"
+                            FontSize="12"
+                            Text="Ak m > 1, potom sa úsečka vykresľuje tak, že novú súradnicu yi+1 vypočítame yi+1 = yi + 1, 
+a k nej prislúchajúcu súradnicu xi+1 vypočítame z rovnice yi+1 = m. xi+1 + b, teda 
+xi+1 = (yi+1 - b)/m a potom vykreslíme bod so súradnicami (round (xi+1), round (yi+1))"/>
                         <Button Content="Výpočet"
                                 Width="70" Height="25" BorderBrush="Transparent"
                                 VerticalAlignment="Bottom" HorizontalAlignment="Right"
                                 Margin="10"
                                 Foreground="#FF424242"
                                 FontWeight="Normal"
-                                FontSize="10">
+                                FontSize="10"
+                                Click="RasterizeLine">
                             <Button.Background>
                                 <LinearGradientBrush EndPoint="0.9,1" StartPoint="0.4,0">
                                     <GradientStop Color="#FF82B2FF"/>
@@ -106,14 +155,57 @@
                             Foreground="#FF424242"
                             FontSize="12"
                             Cursor="Arrow"
-                            Text=""/>
+                            Text="Je to algoritmus na výpočet pozícií pixlov úsečky, založený na postupnom pripočítavaní konštantných prírastkov k obom súradniciam. &#x0a;&#x0a;Ak je 0 ≤ m ≤ 1, budeme meniť súradnicu x o jednotku a nasledujúcu súradnicu y vypočítame takto: "/>
+                        <TextBlock  TextWrapping="Wrap"
+                            FontWeight="Normal"
+                            FontStyle="Italic"
+                            Foreground="#FF424242"
+                            FontSize="12"
+                            Text="xi+1 = xi + 1   &#x0a;m = yi+1 - yi / xi + 1- xi = yi+1 - yi  &#x0a;yi+1 = yi + m  &#x0a;"/>
+                        <TextBlock  TextWrapping="Wrap"
+                            FontWeight="Normal"
+                            Foreground="#FF424242"
+                            FontSize="12"
+                            Cursor="Arrow"
+                            Text="V tomto prípade nazveme os x riadiacou osou. &#x0a;Pretože m nadobúda neceločíselné hodnoty, vypočítané súradnice y musíme zaokrúhľovať na celé čísla.&#x0a;&#x0a;Pre úsečky s kladnou smernicou m > 1 je postup analogický, ale vymenia sa súradnice x a y. To znamená, že o jednotku zvyšujeme súradnicu y a nasledujúcu súradnicu x dostaneme takto:"/>
+                        <TextBlock  TextWrapping="Wrap"
+                            FontWeight="Normal"
+                            FontStyle="Italic"
+                            Foreground="#FF424242"
+                            FontSize="12"
+                            Text="yi+1 = yi + 1   &#x0a;m = yi+1 - yi / xi + 1- xi = 1 / xi+1 - xi  &#x0a;yi+1 = xi + 1 / m  &#x0a;"/>
+                        <TextBlock  TextWrapping="Wrap"
+                            FontWeight="Normal"
+                            Foreground="#FF424242"
+                            FontSize="12"
+                            Cursor="Arrow"
+                            Text="Algoritmus sa dá zapísať pomocou procedúry, vstupnými parametrami ktorej sú súradnice začiatočného a koncového bodu úsečky (x1 , y1) , (x2 , y2)."/>
+                        <TextBlock  TextWrapping="Wrap"
+                            FontWeight="Normal"
+                            FontStyle="Italic"
+                            Foreground="#FF424242"
+                            FontSize="12"
+                            Cursor="Arrow"
+                            Text="deltax = x2 - x1 &#x0a;deltay = y2 - y1 &#x0a;"/>
+                        <TextBlock  TextWrapping="Wrap"
+                            FontWeight="Normal"
+                            Foreground="#FF424242"
+                            FontSize="12"
+                            Cursor="Arrow"
+                            Text="Rozdiel s väčšou absolútnou hodnotou určuje hodnotu premennej kolko_bodov, ktorá určuje počet bodov vypočítaných pri vykresľovaní úsečky.&#x0a;"/>
+                        <TextBlock  TextWrapping="Wrap"
+                            FontWeight="Normal"
+                            Foreground="#FF424242"
+                            FontSize="12"
+                            Cursor="Arrow"
+                            Text="K súradniciam x1, y1 sú postupne pripočítavané konštantné prírastky, a tak sú získané ďalšie body úsečky."/>
                         <Button Content="Výpočet"
                                 Width="70" Height="25" BorderBrush="Transparent"
                                 VerticalAlignment="Bottom" HorizontalAlignment="Right"
                                 Margin="10"
                                 Foreground="#FF424242"
                                 FontWeight="Normal"
-                                FontSize="10">
+                                FontSize="10" Click="RasterizeLine">
                             <Button.Background>
                                 <LinearGradientBrush EndPoint="0.9,1" StartPoint="0.4,0">
                                     <GradientStop Color="#FF82B2FF"/>
@@ -138,15 +230,82 @@
                             Foreground="#FF424242"
                             FontSize="12"
                             Cursor="Arrow"
-                            Text=""/>
-                        
+                            Text="Tento algoritmus nájde body, ktoré ležia najbližšie ku skutočnej úsečke pomocou celočíselnej aritmetiky. &#x0a;&#x0a;Začneme s úsečkou so smernicou 0 &lt; m &lt; 1 a jej súradnica je os x.&#x0a;Pre jednotlivé súradnice x menené o 1 vypočítavame zodpovedajúce súradnice y. &#x0a;Pixel, ktorý vyberieme na vykreslenie, je ten, ktorého y - ová súradnica sa nachádza bližšie ku skutočnej 
+hodnote y na danej úsečke. Predpokladáme, že pixel (xi , yi) už bol vykreslený a teraz máme rozhodnúť o ďalšom pixli. Dva možné pixle sú na pozíciách (xi + 1 , yi) a (xi + 1 , yi +1), kde y je skutočná súradnica na úsečke v bode xi + 1"/>
+                        <TextBlock  TextWrapping="Wrap"
+                            FontWeight="Normal"
+                            FontStyle="Italic"
+                            Foreground="#FF424242"
+                            FontSize="12"
+                            Text="y = m (xi + 1) + b    &#x0a;y = m (xi + 1) + b   &#x0a;y = m (xi + 1) + b &#x0a;"/>
+                        <TextBlock  TextWrapping="Wrap"
+                            FontWeight="Normal"
+                            Foreground="#FF424242"
+                            FontSize="12"
+                            Text="Rozdiel týchto dvoch vzdialeností"/>
+                        <TextBlock  TextWrapping="Wrap"
+                            FontWeight="Normal"
+                            FontStyle="Italic"
+                            Foreground="#FF424242"
+                            FontSize="12"
+                            Text="∆d = d1 - d2 = m (xi + 1) + b - yi - (yi + 1 - m (xi + 1) - b) = &#x0a;= m (xi + 1) + b - yi - yi - 1 + m (xi + 1) + b = 2m(xi + 1) - 2 yi + 2b -1 &#x0a;"/>
+                        <TextBlock  TextWrapping="Wrap"
+                            FontWeight="Normal"
+                            Foreground="#FF424242"
+                            FontSize="12"
+                            Text="Podľa premennej ∆d môžeme ľahko určiť, ktorý z dvoch pixlov leží bližšie ku skutočnej úsečke."/>
+                        <TextBlock  TextWrapping="Wrap"
+                            FontWeight="Normal"
+                            FontStyle="Italic"
+                            Foreground="#FF424242"
+                            FontSize="12"
+                            Text="∆d &lt; 0 , d1 - d2 &lt; 0 , d1 &lt; d2 , teda bližšie leží pixel so súradnicou yi &#x0a;∆d > 0 , d1 - d2 > 0 , d1 > d2 , teda bližšie leží pixel so súradnicou yi + 1 &#x0a;"/>
+                        <TextBlock  TextWrapping="Wrap"
+                            FontWeight="Normal"
+                            Foreground="#FF424242"
+                            FontSize="12"
+                            Text="Teda skutočná hodnota ∆d nie je dôležitá, ale jej znamienko je. Y vplyvom m nie je premenná celočíselná ∆d.  &#x0a;Rovnicu teda môžeme previesť do celočíselnej aritmetiky.  &#x0a;pi - podľa jej znamienka určujeme súradnice nasledujúcich pixlov &#x0a;
+pi &lt; 0 , ∆d &lt; 0 , d1 &lt; d2 , vyberieme bod (xi + 1 , yi) &#x0a;
+pi > 0 , ∆d > 0 , d1 > d2 , vyberieme bod (xi + 1 , yi +1)  &#x0a;
+vypočítame pi+1 z pi tak, že namiesto i dosadíme i+1 &#x0a;
+vypočítame rozdiel pi+1 - pi a z neho vyjadríme pi+1 pomocou pi &#x0a;"/>
+                        <TextBlock  TextWrapping="Wrap"
+                            FontWeight="Normal"
+                            FontStyle="Italic"
+                            Foreground="#FF424242"
+                            FontSize="12"
+                            Text="xi+1 = xi + 1 &#x0a;xi+1 = xi + 1 &#x0a;pi+1 = 2 ∆y xi+1 - 2 ∆x yi+1 + konšt. &#x0a;pi+1 - pi = 2 ∆y xi+1 - 2 ∆x yi+1 + konšt. – (2 ∆y xi - 2 ∆x yi + konšt.) =
+&#x0a;= 2 ∆y (xi +1) - 2 ∆x yi+1 + konšt. – 2 ∆y xi + 2 ∆x yi - konšt. = &#x0a;= 2 ∆y (xi + 1 - xi) - 2 ∆x yi+1 + 2 ∆x yi = 2 ∆y - 2 ∆x (yi+1 - yi) &#x0a;pi+1 - pi = 2 ∆y - 2 ∆x (yi+1 - yi)"/>
+                        <TextBlock  TextWrapping="Wrap"
+                            FontWeight="Normal"
+                            Foreground="#FF424242"
+                            FontSize="12"
+                            Text="Pomocou tejto rovnice môžeme vypočítať každé ďalšie p z predchádzajúcej hodnoty."/>
+                        <TextBlock  TextWrapping="Wrap"
+                            FontWeight="Normal"
+                            FontStyle="Italic"
+                            Foreground="#FF424242"
+                            FontSize="12"
+                            Text="Ak pi &lt; 0 , ∆d &lt; 0 , d1 &lt; d2 , yi+1 = yi , yi+1 - yi = 0 , pi+1 = pi + 2 ∆y  &#x0a;Ak pi > 0 , ∆d > 0 , d1 > d2 , yi+1 = yi + 1 , pi+1 = pi + 2 ∆y - 2 ∆x &#x0a;"/>
+                        <TextBlock  TextWrapping="Wrap"
+                            FontWeight="Normal"
+                            Foreground="#FF424242"
+                            FontSize="12"
+                            Text="Na začiatku musíme vypočítať p1:"/>
+                        <TextBlock  TextWrapping="Wrap"
+                            FontWeight="Normal"
+                            FontStyle="Italic"
+                            Foreground="#FF424242"
+                            FontSize="12"
+                            Text="p1 = 2 ∆y x1 - 2 ∆x y1 + 2 ∆y + ∆x (2 b - 1) = 2 (y2 – y1) x1 - 2 (x2 – x1) y1 + 2 ∆y + 2 b ∆x - ∆x  &#x0a;p1 = 2 ∆y - ∆x &#x0a;"/>
+
                         <Button Content="Výpočet"
                                 Width="70" Height="25" BorderBrush="Transparent"
                                 VerticalAlignment="Bottom" HorizontalAlignment="Right"
                                 Margin="10"
                                 Foreground="#FF424242"
                                 FontWeight="Normal"
-                                FontSize="10">
+                                FontSize="10" Click="RasterizeLine">
                             <Button.Background>
                                 <LinearGradientBrush EndPoint="0.9,1" StartPoint="0.4,0">
                                     <GradientStop Color="#FF82B2FF"/>
@@ -157,57 +316,6 @@
 
                     </StackPanel>
                 </Expander>
-
-                <!-- USECKA -->
-                <Expander IsExpanded="False" 
-                  Grid.Row="0" Grid.Column="0"
-                  Grid.RowSpan="2"
-                  Background="Transparent" Header="ZOBRAZENIE ÚSEČKY V RASTROVEJ GRAFIKE"
-                  Foreground="#FF424242" FontSize="12" FontWeight="Bold"
-                  Cursor="Hand">
-                    <StackPanel>
-                        <TextBlock  TextWrapping="Wrap"
-                            FontWeight="Normal"
-                            Foreground="#FF424242"
-                            FontSize="12"
-                            Cursor="Arrow"
-                            Text=""/>
-                    </StackPanel>
-                </Expander>
-
-                <!-- KRUZNICA -->
-                <Expander IsExpanded="False" 
-                  Grid.Row="0" Grid.Column="0"
-                  Grid.RowSpan="2"
-                  Background="Transparent" Header="ZOBRAZENIE KRUŽNICE V RASTROVEJ GRAFIKE"
-                  Foreground="#FF424242" FontSize="12" FontWeight="Bold"
-                  Cursor="Hand">
-                    <StackPanel>
-                        <TextBlock  TextWrapping="Wrap"
-                            FontWeight="Normal"
-                            Foreground="#FF424242"
-                            FontSize="12"
-                            Cursor="Arrow"
-                            Text=""/>
-
-                        <Button Content="Výpočet"
-                                Width="70" Height="25" BorderBrush="Transparent"
-                                VerticalAlignment="Bottom" HorizontalAlignment="Right"
-                                Margin="10"
-                                Foreground="#FF424242"
-                                FontWeight="Normal"
-                                FontSize="10">
-                            <Button.Background>
-                                <LinearGradientBrush EndPoint="0.9,1" StartPoint="0.4,0">
-                                    <GradientStop Color="#FF82B2FF"/>
-                                    <GradientStop Color="#FFD48DFF" Offset="1"/>
-                                </LinearGradientBrush>
-                            </Button.Background>
-                        </Button>
-
-                    </StackPanel>
-                </Expander>
-
             </StackPanel>
         </ScrollViewer>
 
@@ -218,7 +326,37 @@
                HorizontalAlignment="Right"
                VerticalAlignment="Top"
                Margin="0,0,40,0"
-               Visibility="Hidden"/>
+               Visibility="Visible"/>
+
+
+        <!--<Rectangle Height="280" Width="280" Grid.Column="1" Grid.Row="1"
+                   VerticalAlignment="Top"
+                   Margin="0,50,0,0"
+                   >
+            <Rectangle.Fill>
+                <DrawingBrush Viewport="0,0,20,20" ViewportUnits="Absolute" TileMode="Tile" AlignmentX="Right" Stretch="Fill" ViewboxUnits="RelativeToBoundingBox" Viewbox="0,0,1,1">
+                    <DrawingBrush.Drawing>
+                        <DrawingGroup>
+                            <GeometryDrawing  Brush="White">
+                                <GeometryDrawing.Geometry x:Name="pixel" MouseDown="FillOnMouseDown">
+                                    <RectangleGeometry Rect="0,0,10,10" />
+                                </GeometryDrawing.Geometry>
+                            </GeometryDrawing>
+                            <GeometryDrawing Brush="#FFA1A1A1" Geometry="M0,10 L 0,0 10,0 10,1 1,1 1,10Z">
+                            </GeometryDrawing>
+                        </DrawingGroup>
+                    </DrawingBrush.Drawing>
+                </DrawingBrush>
+            </Rectangle.Fill>
+        </Rectangle>-->
+
+        <Canvas Grid.Column="1" Grid.Row="0"  
+                x:Name="canvas"
+                Margin="0,50,0,0"
+                Background="White"
+                Height="320" Width="320" Cursor="Hand" 
+                Visibility="Visible" MouseDown="FillPixel"/>
+
 
         <TextBlock Grid.Column="1" Grid.Row="1"
                    x:Name="textAddNodes"

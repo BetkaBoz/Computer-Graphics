@@ -130,8 +130,6 @@ namespace ComputerGraphics.MVVM.View
 
             refresh.Visibility = Visibility.Hidden;
             connect.Visibility = Visibility.Hidden;
-
-            
         }
 
         private void Connection(List<Point> pointsList)

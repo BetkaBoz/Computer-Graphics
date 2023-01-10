@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ComputerGraphics.HelperScripts;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
@@ -16,9 +17,6 @@ using System.Windows.Shapes;
 
 namespace ComputerGraphics.MVVM.View
 {
-    /// <summary>
-    /// Interaction logic for LectureEightView.xaml
-    /// </summary>
     public partial class LectureEightView : UserControl
     {
         int pointCount = 0;
@@ -30,6 +28,10 @@ namespace ComputerGraphics.MVVM.View
         List<Point> pointsList = new();
         List<Point> pointsListNew = new();
         Queue<Point> pointsQueue = new();
+
+        protected bool isDragging;
+        Point clickPosition;
+        TranslateTransform originTT;
 
         public LectureEightView()
         {
@@ -101,6 +103,10 @@ namespace ComputerGraphics.MVVM.View
             if (pointCount == 4)
             {
                 connect.Visibility = Visibility.Visible;
+
+                canvas.MouseLeftButtonDown += Canvas_MouseLeftButtonDown;
+                canvas.MouseLeftButtonUp += Canvas_MouseLeftButtonUp;
+                canvas.MouseMove += Canvas_MouseMove;
             }
         }
 
@@ -156,13 +162,13 @@ namespace ComputerGraphics.MVVM.View
             switch (cubicsName)
             {
                 case "ferguson":
-                    Ferguson();
+                    Cubics.Ferguson();
                     break;
                 case "bezier":
-                    Bezier();
+                    Cubics.Bezier(canvas, pointsList);
                     break;
                 case "coons":
-                    Coons();
+                    Cubics.Coons();
                     break;
                 default:
                     break;
@@ -170,42 +176,33 @@ namespace ComputerGraphics.MVVM.View
             pointsQueue = new(pointsList);
         }
 
-        private void Ferguson()
+        public void Canvas_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
-            
+            var draggableControl = sender as Shape;
+            originTT = draggableControl.RenderTransform as TranslateTransform ?? new TranslateTransform();
+            isDragging = true;
+            clickPosition = e.GetPosition(this);
+            draggableControl.CaptureMouse();
         }
 
-        private void Bezier()
+        public void Canvas_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
         {
-            PathFigure pthFigure = new PathFigure();
-            pthFigure.StartPoint = pointsList[0];
-
-            QuadraticBezierSegment qbzSeg = new QuadraticBezierSegment();
-            qbzSeg.Point1 = new Point((pointsList[1].X + pointsList[1].Y) / 2, (pointsList[2].X + pointsList[2].Y) / 2);
-            qbzSeg.Point2 = pointsList[3];
-
-            PathSegmentCollection myPathSegmentCollection = new PathSegmentCollection();
-            myPathSegmentCollection.Add(qbzSeg);
-
-            pthFigure.Segments = myPathSegmentCollection;
-
-            PathFigureCollection pthFigureCollection = new PathFigureCollection();
-            pthFigureCollection.Add(pthFigure);
-
-            PathGeometry pthGeometry = new PathGeometry();
-            pthGeometry.Figures = pthFigureCollection;
-
-            Path arcPath = new Path();
-            arcPath.Stroke = new SolidColorBrush(Colors.Aqua);
-            arcPath.StrokeThickness = 1;
-            arcPath.Data = pthGeometry;
-
-            canvas.Children.Add(arcPath);
-        }
-        private void Coons()
-        {
-
+            isDragging = false;
+            var draggable = sender as Shape;
+            draggable.ReleaseMouseCapture();
         }
 
+        public void Canvas_MouseMove(object sender, MouseEventArgs e)
+        {
+            var draggableControl = sender as Shape;
+            if (isDragging && draggableControl != null)
+            {
+                Point currentPosition = e.GetPosition(this);
+                var transform = draggableControl.RenderTransform as TranslateTransform ?? new TranslateTransform();
+                transform.X = originTT.X + (currentPosition.X - clickPosition.X);
+                transform.Y = originTT.Y + (currentPosition.Y - clickPosition.Y);
+                draggableControl.RenderTransform = new TranslateTransform(transform.X, transform.Y);
+            }
+        }
     }
 }
