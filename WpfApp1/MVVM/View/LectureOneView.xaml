@@ -34,61 +34,48 @@
                    FontWeight="Bold" FontSize="20" Cursor="None"/>
 
         <Canvas Grid.Row="3" Grid.Column="2"
-                Width="150" Height="150" 
+                x:Name="canvasRaster"
+                Width="200" Height="200" 
                 Margin="0,30,0,0"
-                HorizontalAlignment="Right"
-                ClipToBounds="True">
-            <Image x:Name="raster"
-                   Source="/Images/pozadie.png">
-                <Image.RenderTransform>
-                    <TransformGroup>
-                        <ScaleTransform ScaleX="0.5" ScaleY="0.5"/>
-                        <SkewTransform/>
-                        <RotateTransform/>
-                        <TranslateTransform X="0.5" Y="0.5"/>
-                    </TransformGroup>
-                </Image.RenderTransform>
-            </Image>
+                HorizontalAlignment="Right">
+            <Border x:Name="border" ClipToBounds="True"
+                    Width="200" Height="200" >
+                <Image x:Name="raster"
+                   Source="/Images/dog.png"/>
+            </Border>
+
         </Canvas>
 
-        <ScrollViewer Grid.Row="3" Grid.Column="4"  
-                      Width="150" Height="150" 
-                      HorizontalAlignment="Left" 
-                      HorizontalScrollBarVisibility="Hidden"
-                      VerticalScrollBarVisibility="Hidden"
-                      Margin="0,30,0,0">
-            <Canvas 
-                 ClipToBounds="True">
+        <Canvas Grid.Row="3" Grid.Column="3"
+                x:Name="canvasVector"
+                Width="200" Height="200" 
+                Margin="50,30,0,0"
+                HorizontalAlignment="Right">
+            <Border x:Name="borderVector" ClipToBounds="True"
+                    Width="200" Height="200" >
                 <Image x:Name="vector"
-                   Source="/Images/pozadie.png"
-                   MouseLeftButtonUp="Canvas_MouseLeftButtonUp" MouseLeftButtonDown="Canvas_MouseLeftButtonDown" MouseMove="Canvas_MouseMove">
-                    <Image.RenderTransform>
-                        <TransformGroup>
-                            <ScaleTransform ScaleX="0.5" ScaleY="0.5"/>
-                            <SkewTransform/>
-                            <RotateTransform/>
-                            <!--<TranslateTransform X="0.5" Y="0.5"/>-->
-                        </TransformGroup>
-                    </Image.RenderTransform>
-                </Image>
-            </Canvas>
-        </ScrollViewer>
+                       Source="{}"
+                       />
+            </Border>
+
+        </Canvas>
 
 
-        <Slider x:Name="slider" 
+        <!--<Slider x:Name="slider" 
                 Grid.Column="3" Grid.Row="5" 
                 HorizontalAlignment="Center"
                 Margin="30" 
-                Width="100" ValueChanged="Slider_ValueChanged" />
+                Width="100" ValueChanged="Slider_ValueChanged" />-->
         <!--<TextBlock Grid.Column="3" Grid.Row="5" Text="{Binding ElementName=slider, Path=Value, StringFormat={}{0:#}}" />-->
 
         <TextBlock Grid.Row="6" Grid.ColumnSpan="5" 
                    TextWrapping="Wrap"
+                   FontSize="12"
+                   Foreground="#FF424242" 
+                   Margin="20,80,40,0"
                    Text="Existujú dve metódy ukladania obrazu. Rastrovej metóde sa obraz rozloží do jednotlivých bodov a informácie o ich individuálnych vlastnostiach &#x0a;
 sa zapíšu do grafického súboru. Skladá sa zo základných obrazových prvkov, čiže pixelov.&#x0a;&#x0a;
 Pri vektorových formátoch nie sú opísané jednotlivé body, ale určité plochy (množiny bodov) so zhodnými vlastnosťami. Každá takáto plocha je ohraničená (ľubovolne vytvarovanou) krivkou. 
-Čiže tomu rozumieme, že ide o uloženie informácií o objektoch prítomných v obraze tak, aby bola zachovaná spojitá reprezentácia obrazu."
-                   FontSize="12"
-                   Cursor="None" Foreground="#FF424242" Margin="112,0,56,0"/>
+Čiže tomu rozumieme, že ide o uloženie informácií o objektoch prítomných v obraze tak, aby bola zachovaná spojitá reprezentácia obrazu."/>
     </Grid>
 </UserControl>

@@ -5,33 +5,219 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:ComputerGraphics.MVVM.View"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
+             d:DesignHeight="450" d:DesignWidth="800"
+             DataContext="{Binding UpdateSourceTrigger=PropertyChanged}">
+
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="20"/>
-            <ColumnDefinition Width="auto"/>
-            <ColumnDefinition Width="auto"/>
-            <ColumnDefinition Width="auto"/>
-            <ColumnDefinition Width="auto"/>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="20"/>
+            <ColumnDefinition Width="400"/>
+            <ColumnDefinition Width="400"/>
         </Grid.ColumnDefinitions>
+
         <Grid.RowDefinitions>
-            <RowDefinition Height="20"/>
-            <RowDefinition Height="auto"/>
-            <RowDefinition Height="auto"/>
-            <RowDefinition Height="auto"/>
-            <RowDefinition Height="auto"/>
-            <RowDefinition Height="auto"/>
+            <RowDefinition Height="10"/>
             <RowDefinition Height="*"/>
-            <RowDefinition Height="20"/>
         </Grid.RowDefinitions>
 
-        <Button x:Name="lessonOneButton" Content="Lekcia 1" Grid.Column="2" Grid.Row="1" Margin="10"/>
-        <Button x:Name="lessonTwoButton" Content="Lekcia 2" Grid.Column="2" Grid.Row="2" Margin="10"/>
-        <Button x:Name="lessonThreeButton" Content="Lekcia 3" Grid.Column="2" Grid.Row="3" Margin="10"/>
-        <Button x:Name="lessonFourButton" Content="Lekcia 4" Grid.Column="2" Grid.Row="4" Margin="10" />
-        <Button x:Name="lessonFiveButton" Content="Lekcia 5" Grid.Column="2" Grid.Row="5" Margin="10" />
 
+        <ScrollViewer Grid.Row="0" Grid.RowSpan="2"
+                      Margin="0,0,-30,0"
+                      VerticalScrollBarVisibility="Hidden">
+            <StackPanel VerticalAlignment="Top" >
+
+                <!-- Vektorova a Rastrova grafika -->
+                <Expander IsExpanded="False" 
+                  Grid.Row="0" Grid.Column="0"
+                  Grid.RowSpan="2" Grid.ColumnSpan="2" 
+                  Background="Transparent" Header="VEKTOROVÁ A RASTROVÁ GRAFIKA"
+                  Foreground="#FF424242" FontSize="12" FontWeight="Bold"
+                  Cursor="Hand">
+                    <Button Content="LEKCIA 1"
+                                Width="70" Height="25" BorderBrush="Transparent"
+                                VerticalAlignment="Bottom" HorizontalAlignment="Right"
+                                Margin="10"
+                                Foreground="#FF424242"
+                                FontWeight="Normal"
+                                FontSize="10"
+                                Command="{Binding lectureOneViewCommand}">
+                        <Button.Background>
+                            <LinearGradientBrush EndPoint="0.9,1" StartPoint="0.4,0">
+                                <GradientStop Color="#FF82B2FF"/>
+                                <GradientStop Color="#FFD48DFF" Offset="1"/>
+                            </LinearGradientBrush>
+                        </Button.Background>
+                    </Button>
+                </Expander>
+
+                <!-- Spracovanie Farieb -->
+                <Expander IsExpanded="False" 
+                  Grid.Row="0" Grid.Column="0"
+                  Grid.RowSpan="2" Grid.ColumnSpan="2" 
+                  Background="Transparent" Header="SPRACOVANIE FARIEB"
+                  Foreground="#FF424242" FontSize="12" FontWeight="Bold"
+                  Cursor="Hand">
+                    <Button Content="LEKCIA 2"
+                                Width="70" Height="25" BorderBrush="Transparent"
+                                VerticalAlignment="Bottom" HorizontalAlignment="Right"
+                                Margin="10"
+                                Foreground="#FF424242"
+                                FontWeight="Normal"
+                                FontSize="10" 
+                                Command="{Binding lectureTwoViewCommand}">
+                        <Button.Background>
+                            <LinearGradientBrush EndPoint="0.9,1" StartPoint="0.4,0">
+                                <GradientStop Color="#FF82B2FF"/>
+                                <GradientStop Color="#FFD48DFF" Offset="1"/>
+                            </LinearGradientBrush>
+                        </Button.Background>
+                    </Button>
+                </Expander>
+
+                <!-- Dvojrozmerne Transformacie -->
+                <Expander IsExpanded="False" 
+                  Grid.Row="0" Grid.Column="0"
+                  Grid.RowSpan="2" Grid.ColumnSpan="2" 
+                  Background="Transparent" Header="DVOJROZMENRÉ TRANSFORMÁCIE"
+                  Foreground="#FF424242" FontSize="12" FontWeight="Bold"
+                  Cursor="Hand">
+                    <Button Content="LEKCIA 3"
+                                Width="70" Height="25" BorderBrush="Transparent"
+                                VerticalAlignment="Bottom" HorizontalAlignment="Right"
+                                Margin="10"
+                                Foreground="#FF424242"
+                                FontWeight="Normal"
+                                FontSize="10" 
+                                Command="{Binding lectureThreeViewCommand}">
+                        <Button.Background>
+                            <LinearGradientBrush EndPoint="0.9,1" StartPoint="0.4,0">
+                                <GradientStop Color="#FF82B2FF"/>
+                                <GradientStop Color="#FFD48DFF" Offset="1"/>
+                            </LinearGradientBrush>
+                        </Button.Background>
+                    </Button>
+                </Expander>
+
+                <!-- Rasterizacia Usecky -->
+                <Expander IsExpanded="False" 
+                      Grid.Row="0" Grid.Column="0"
+                      Grid.RowSpan="2" Grid.ColumnSpan="2" 
+                      Background="Transparent" Header="RASTERIZÁCIA ÚSEČKY"
+                      Foreground="#FF424242" FontSize="12" FontWeight="Bold"
+                      Cursor="Hand">
+                    <Button Content="LEKCIA 4"
+                                    Width="70" Height="25" BorderBrush="Transparent"
+                                    VerticalAlignment="Bottom" HorizontalAlignment="Right"
+                                    Margin="10"
+                                    Foreground="#FF424242"
+                                    FontWeight="Normal"
+                                    FontSize="10" 
+                            Command="{Binding lectureFourViewCommand}">
+                        <Button.Background>
+                            <LinearGradientBrush EndPoint="0.9,1" StartPoint="0.4,0">
+                                <GradientStop Color="#FF82B2FF"/>
+                                <GradientStop Color="#FFD48DFF" Offset="1"/>
+                            </LinearGradientBrush>
+                        </Button.Background>
+                    </Button>
+                </Expander>
+
+                <!-- Rasterizacia Kruznice -->
+                <Expander IsExpanded="False" 
+                  Grid.Row="0" Grid.Column="0"
+                  Grid.RowSpan="2" Grid.ColumnSpan="2" 
+                  Background="Transparent" Header="RASTERIZÁCIA KRUŽNICE"
+                  Foreground="#FF424242" FontSize="12" FontWeight="Bold"
+                  Cursor="Hand">
+                    <Button Content="LEKCIA 5"
+                                Width="70" Height="25" BorderBrush="Transparent"
+                                VerticalAlignment="Bottom" HorizontalAlignment="Right"
+                                Margin="10"
+                                Foreground="#FF424242"
+                                FontWeight="Normal"
+                                FontSize="10"
+                                Command="{Binding lectureFiveViewCommand}">
+                        <Button.Background>
+                            <LinearGradientBrush EndPoint="0.9,1" StartPoint="0.4,0">
+                                <GradientStop Color="#FF82B2FF"/>
+                                <GradientStop Color="#FFD48DFF" Offset="1"/>
+                            </LinearGradientBrush>
+                        </Button.Background>
+                    </Button>
+                </Expander>
+
+                <!-- Orezavanie usecky a textu -->
+                <Expander IsExpanded="False" 
+                  Grid.Row="0" Grid.Column="0"
+                  Grid.RowSpan="2" Grid.ColumnSpan="2" 
+                  Background="Transparent" Header="OREZÁVANIE ÚSEČKY A TEXTU"
+                  Foreground="#FF424242" FontSize="12" FontWeight="Bold"
+                  Cursor="Hand">
+                    <Button Content="LEKCIA 6"
+                                Width="70" Height="25" BorderBrush="Transparent"
+                                VerticalAlignment="Bottom" HorizontalAlignment="Right"
+                                Margin="10"
+                                Foreground="#FF424242"
+                                FontWeight="Normal"
+                                FontSize="10" 
+                                Command="{Binding lectureSixViewCommand}">
+                        <Button.Background>
+                            <LinearGradientBrush EndPoint="0.9,1" StartPoint="0.4,0">
+                                <GradientStop Color="#FF82B2FF"/>
+                                <GradientStop Color="#FFD48DFF" Offset="1"/>
+                            </LinearGradientBrush>
+                        </Button.Background>
+                    </Button>
+                </Expander>
+
+                <!-- Vyplnanie rovinnych oblasti -->
+                <Expander IsExpanded="False" 
+                  Grid.Row="0" Grid.Column="0"
+                  Grid.RowSpan="2" Grid.ColumnSpan="2" 
+                  Background="Transparent" Header="VYPĹŇANIE ROVINNÝCH OBLASTÍ"
+                  Foreground="#FF424242" FontSize="12" FontWeight="Bold"
+                  Cursor="Hand">
+                    <Button Content="LEKCIA 7"
+                                Width="70" Height="25" BorderBrush="Transparent"
+                                VerticalAlignment="Bottom" HorizontalAlignment="Right"
+                                Margin="10"
+                                Foreground="#FF424242"
+                                FontWeight="Normal"
+                                FontSize="10" 
+                                Command="{Binding lectureSevenViewCommand}">
+                        <Button.Background>
+                            <LinearGradientBrush EndPoint="0.9,1" StartPoint="0.4,0">
+                                <GradientStop Color="#FF82B2FF"/>
+                                <GradientStop Color="#FFD48DFF" Offset="1"/>
+                            </LinearGradientBrush>
+                        </Button.Background>
+                    </Button>
+                </Expander>
+
+                <!-- Modelovanie kriviek a ploch -->
+                <Expander IsExpanded="False" 
+                  Grid.Row="0" Grid.Column="0"
+                  Grid.RowSpan="2" Grid.ColumnSpan="2" 
+                  Background="Transparent" Header="MODELOVANIE KRIVIEK A PLÔCH"
+                  Foreground="#FF424242" FontSize="12" FontWeight="Bold"
+                  Cursor="Hand">
+                    <Button Content="LEKCIA 8"
+                                Width="70" Height="25" BorderBrush="Transparent"
+                                VerticalAlignment="Bottom" HorizontalAlignment="Right"
+                                Margin="10"
+                                Foreground="#FF424242"
+                                FontWeight="Normal"
+                                FontSize="10"
+                                Command="{Binding lectureEightViewCommand}">
+                        <Button.Background>
+                            <LinearGradientBrush EndPoint="0.9,1" StartPoint="0.4,0">
+                                <GradientStop Color="#FF82B2FF"/>
+                                <GradientStop Color="#FFD48DFF" Offset="1"/>
+                            </LinearGradientBrush>
+                        </Button.Background>
+                    </Button>
+                </Expander>
+
+            </StackPanel>
+        </ScrollViewer>
     </Grid>
 </UserControl>

@@ -125,13 +125,14 @@ a potom vykreslíme bod so súradnicami (round (xi+1), round (yi+1))  &#x0a;"/>
 a k nej prislúchajúcu súradnicu xi+1 vypočítame z rovnice yi+1 = m. xi+1 + b, teda 
 xi+1 = (yi+1 - b)/m a potom vykreslíme bod so súradnicami (round (xi+1), round (yi+1))"/>
                         <Button Content="Výpočet"
+                                x:Name="baseline"
                                 Width="70" Height="25" BorderBrush="Transparent"
                                 VerticalAlignment="Bottom" HorizontalAlignment="Right"
                                 Margin="10"
                                 Foreground="#FF424242"
                                 FontWeight="Normal"
                                 FontSize="10"
-                                Click="RasterizeLine">
+                                Click="ShowCanvas">
                             <Button.Background>
                                 <LinearGradientBrush EndPoint="0.9,1" StartPoint="0.4,0">
                                     <GradientStop Color="#FF82B2FF"/>
@@ -200,12 +201,14 @@ xi+1 = (yi+1 - b)/m a potom vykreslíme bod so súradnicami (round (xi+1), round
                             Cursor="Arrow"
                             Text="K súradniciam x1, y1 sú postupne pripočítavané konštantné prírastky, a tak sú získané ďalšie body úsečky."/>
                         <Button Content="Výpočet"
+                                x:Name="dda"
                                 Width="70" Height="25" BorderBrush="Transparent"
                                 VerticalAlignment="Bottom" HorizontalAlignment="Right"
                                 Margin="10"
                                 Foreground="#FF424242"
                                 FontWeight="Normal"
-                                FontSize="10" Click="RasterizeLine">
+                                FontSize="10" 
+                                Click="ShowCanvas">
                             <Button.Background>
                                 <LinearGradientBrush EndPoint="0.9,1" StartPoint="0.4,0">
                                     <GradientStop Color="#FF82B2FF"/>
@@ -300,12 +303,14 @@ vypočítame rozdiel pi+1 - pi a z neho vyjadríme pi+1 pomocou pi &#x0a;"/>
                             Text="p1 = 2 ∆y x1 - 2 ∆x y1 + 2 ∆y + ∆x (2 b - 1) = 2 (y2 – y1) x1 - 2 (x2 – x1) y1 + 2 ∆y + 2 b ∆x - ∆x  &#x0a;p1 = 2 ∆y - ∆x &#x0a;"/>
 
                         <Button Content="Výpočet"
+                                x:Name="bersenham"
                                 Width="70" Height="25" BorderBrush="Transparent"
                                 VerticalAlignment="Bottom" HorizontalAlignment="Right"
                                 Margin="10"
                                 Foreground="#FF424242"
                                 FontWeight="Normal"
-                                FontSize="10" Click="RasterizeLine">
+                                FontSize="10" 
+                                Click="ShowCanvas">
                             <Button.Background>
                                 <LinearGradientBrush EndPoint="0.9,1" StartPoint="0.4,0">
                                     <GradientStop Color="#FF82B2FF"/>
@@ -326,36 +331,16 @@ vypočítame rozdiel pi+1 - pi a z neho vyjadríme pi+1 pomocou pi &#x0a;"/>
                HorizontalAlignment="Right"
                VerticalAlignment="Top"
                Margin="0,0,40,0"
-               Visibility="Visible"/>
-
-
-        <!--<Rectangle Height="280" Width="280" Grid.Column="1" Grid.Row="1"
-                   VerticalAlignment="Top"
-                   Margin="0,50,0,0"
-                   >
-            <Rectangle.Fill>
-                <DrawingBrush Viewport="0,0,20,20" ViewportUnits="Absolute" TileMode="Tile" AlignmentX="Right" Stretch="Fill" ViewboxUnits="RelativeToBoundingBox" Viewbox="0,0,1,1">
-                    <DrawingBrush.Drawing>
-                        <DrawingGroup>
-                            <GeometryDrawing  Brush="White">
-                                <GeometryDrawing.Geometry x:Name="pixel" MouseDown="FillOnMouseDown">
-                                    <RectangleGeometry Rect="0,0,10,10" />
-                                </GeometryDrawing.Geometry>
-                            </GeometryDrawing>
-                            <GeometryDrawing Brush="#FFA1A1A1" Geometry="M0,10 L 0,0 10,0 10,1 1,1 1,10Z">
-                            </GeometryDrawing>
-                        </DrawingGroup>
-                    </DrawingBrush.Drawing>
-                </DrawingBrush>
-            </Rectangle.Fill>
-        </Rectangle>-->
+               Visibility="Visible" 
+               MouseDown="RefreshCanvas"/>
 
         <Canvas Grid.Column="1" Grid.Row="0"  
                 x:Name="canvas"
                 Margin="0,50,0,0"
                 Background="White"
                 Height="320" Width="320" Cursor="Hand" 
-                Visibility="Visible" MouseDown="FillPixel"/>
+                Visibility="Hidden" 
+                MouseDown="FillPixel"/>
 
 
         <TextBlock Grid.Column="1" Grid.Row="1"
@@ -368,14 +353,16 @@ vypočítame rozdiel pi+1 - pi a z neho vyjadríme pi+1 pomocou pi &#x0a;"/>
                    Margin="0,270,0,0"
                    Padding="0,10,0,0"/>
 
-        <Button Content="Spoj"
+        <Button Content="Kresli"
+                x:Name="drawButton"
                 Width="100" Height="35" BorderBrush="Transparent"
                 Grid.Column="1" Grid.Row="1"
                 VerticalAlignment="Bottom"
                 Foreground="#FF424242"
                 FontWeight="Normal"
                 Margin="0,0,0,90" 
-                Visibility="Hidden">
+                Visibility="Hidden"
+                Click="RasterizeLine">
             <Button.Background>
                 <LinearGradientBrush EndPoint="0.9,1" StartPoint="0.4,0">
                     <GradientStop Color="#FF82B2FF"/>

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -12,19 +13,31 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace ComputerGraphics.MVVM.View
 {
     public partial class LectureOneView : UserControl
     {
-        protected bool isDragging;
-        private Point clickPosition;
-        private TranslateTransform originTT = new();
+        private Point origin;  // Original Offset of image
+        private Point startR;   // Original Position of the mouse
+        private Point startV;
 
         public LectureOneView()
         {
             InitializeComponent();
+
+            canvasRaster.MouseWheel += Canvas_MouseWheel;
+            canvasVector.MouseWheel += Canvas_MouseWheel;
+            raster.MouseLeftButtonDown += Raster_MouseLeftButtonDown;
+            raster.MouseLeftButtonUp += image_MouseLeftButtonUp;
+            raster.MouseMove += Raster_MouseMove;
+
+            vector.MouseLeftButtonDown += Vector_MouseLeftButtonDown;
+            vector.MouseLeftButtonUp += image_MouseLeftButtonUp;
+            vector.MouseMove += Vector_MouseMove;
         }
+
         private void Slider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
         {
             TransformGroup transformGroup = (TransformGroup)raster.RenderTransform;
@@ -41,33 +54,83 @@ namespace ComputerGraphics.MVVM.View
             transform2.ScaleY = zoom;
         }
 
-        private void Canvas_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        private void Canvas_MouseWheel(object sender, MouseWheelEventArgs e)
         {
-            var draggableControl = sender as Image;
-            originTT = draggableControl.RenderTransform as TranslateTransform ?? new TranslateTransform();
-            isDragging = true;
-            clickPosition = e.GetPosition(this);
-            draggableControl.CaptureMouse();
-        }
+            Point pR = e.MouseDevice.GetPosition(raster);
+            Point pV = e.MouseDevice.GetPosition(vector);
 
-        private void Canvas_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
-        {
-            isDragging = false;
-            var draggable = sender as Shape;
-            draggable.ReleaseMouseCapture();
-        }
+            Matrix mR = raster.RenderTransform.Value;
+            Matrix mV = vector.RenderTransform.Value;
 
-        private void Canvas_MouseMove(object sender, MouseEventArgs e)
-        {
-            var draggableControl = sender as Shape;
-            if (isDragging && draggableControl != null)
+            if (e.Delta > 0)
             {
-                Point currentPosition = e.GetPosition(this);
-                var transform = draggableControl.RenderTransform as TranslateTransform ?? new TranslateTransform();
-                transform.X = originTT.X + (currentPosition.X - clickPosition.X);
-                transform.Y = originTT.Y + (currentPosition.Y - clickPosition.Y);
-                draggableControl.RenderTransform = new TranslateTransform(transform.X, transform.Y);
+                mR.ScaleAtPrepend(1.1, 1.1, pR.X, pR.Y);
+                mV.ScaleAtPrepend(1.1, 1.1, pV.X, pV.Y);
             }
+               
+            else
+            {
+                mR.ScaleAtPrepend(1 / 1.1, 1 / 1.1, pR.X, pR.Y);
+                mV.ScaleAtPrepend(1 / 1.1, 1 / 1.1, pV.X, pV.Y);
+            }
+                
+            raster.RenderTransform = new MatrixTransform(mR);
+            vector.RenderTransform = new MatrixTransform(mV);
+        }
+
+
+        private void Raster_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            if (raster.IsMouseCaptured) return;
+
+            raster.CaptureMouse();
+
+            startR = e.GetPosition(border);
+            origin.X = raster.RenderTransform.Value.OffsetX;
+            origin.Y = raster.RenderTransform.Value.OffsetY;
+        }
+
+        private void Vector_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            if (vector.IsMouseCaptured) return;
+
+            vector.CaptureMouse();
+
+            startV = e.GetPosition(borderVector);
+            origin.X = vector.RenderTransform.Value.OffsetX;
+            origin.Y = vector.RenderTransform.Value.OffsetY;
+        }
+
+        private void image_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
+        {
+            raster.ReleaseMouseCapture();
+            vector.ReleaseMouseCapture();
+        }
+
+        private void Raster_MouseMove(object sender, MouseEventArgs e)
+        {
+            if (!raster.IsMouseCaptured) return;
+
+            Point pR = e.MouseDevice.GetPosition(border);
+
+            Matrix mR = raster.RenderTransform.Value;
+            mR.OffsetX = origin.X + (pR.X - startR.X);
+            mR.OffsetY = origin.Y + (pR.Y - startR.Y);
+
+            raster.RenderTransform = new MatrixTransform(mR);
+        }
+
+        private void Vector_MouseMove(object sender, MouseEventArgs e)
+        {
+            if (!raster.IsMouseCaptured) return;
+
+            Point pV = e.MouseDevice.GetPosition(borderVector);
+
+            Matrix mV = vector.RenderTransform.Value;
+            mV.OffsetX = origin.X + (pV.X - startV.X);
+            mV.OffsetY = origin.Y + (pV.Y - startV.Y);
+
+            vector.RenderTransform = new MatrixTransform(mV);
         }
     }
 }

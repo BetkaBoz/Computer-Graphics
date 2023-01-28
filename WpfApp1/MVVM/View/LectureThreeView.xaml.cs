@@ -36,7 +36,7 @@ namespace ComputerGraphics.MVVM.View
         List<Point> pointsList = new();
         List<Point> pointsListNew = new();
         Queue<Point> pointsQueue = new();
-
+        StackPanel panel;
 
         public LectureThreeView()
         {
@@ -51,9 +51,7 @@ namespace ComputerGraphics.MVVM.View
             Refresh();
 
             canvas.Visibility = Visibility.Visible;
-            textAddNodes.Visibility = Visibility.Visible;
-
-            SwitchName(Visibility.Hidden);
+            
         }
 
         private (Ellipse ellipse, TextBlock text) DrawPoint(Point point)
@@ -128,8 +126,11 @@ namespace ComputerGraphics.MVVM.View
             pointsQueue.Clear();
             pointCount = 0;
 
+            textAddNodes.Visibility = Visibility.Visible;
             refresh.Visibility = Visibility.Hidden;
             connect.Visibility = Visibility.Hidden;
+
+            SwitchName(Visibility.Hidden);
         }
 
         private void Connection(List<Point> pointsList)
@@ -147,6 +148,7 @@ namespace ComputerGraphics.MVVM.View
             canvas.Children.Add(line);
         }
 
+
         private void ConnectDots(object sender, RoutedEventArgs e)
         {
             if (pointsList.Count == 0) return;
@@ -158,11 +160,13 @@ namespace ComputerGraphics.MVVM.View
             SwitchName(Visibility.Visible);
 
             pointsQueue = new(pointsList);
+
+            pointCount = 0;
         }
 
         private void SwitchName(Visibility visibility)
         {
-            StackPanel panel = transformName switch
+            panel = transformName switch
             {
                 "move" => moveStackPanel,
                 "rotate" => rotateStackPanel,
@@ -218,6 +222,8 @@ namespace ComputerGraphics.MVVM.View
             canvas.Children.Add(draw.ellipse);
             canvas.Children.Add(draw.text);
             pointsListNew.Add(point);
+
+            pointCount++;
 
             if (pointsQueue.Count == 0) Connection(pointsListNew);
         }

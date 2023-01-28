@@ -47,7 +47,7 @@
                              Foreground="#FF424242" 
                              IsChecked="True"
                              Command="{Binding homeViewCommand}" />
-                    <RadioButton Content="IDK"
+                    <RadioButton Content="Prehľad"
                              Height="50" Width="160"
                              FontSize="14"
                              Style="{StaticResource MenuButtonTheme}" 
