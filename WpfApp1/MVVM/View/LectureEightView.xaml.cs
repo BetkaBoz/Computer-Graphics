@@ -48,7 +48,7 @@ namespace ComputerGraphics.MVVM.View
             canvas.Visibility = Visibility.Visible;
             textAddNodes.Visibility = Visibility.Visible;
         }
-        private (Ellipse ellipse, TextBlock text) DrawPoint(Point point)
+        private (Ellipse? ellipse, TextBlock? text) DrawPoint(Point point)
         {
             Ellipse ellipse = new();
 
@@ -71,6 +71,8 @@ namespace ComputerGraphics.MVVM.View
 
             Canvas.SetLeft(text, point.X);
             Canvas.SetTop(text, point.Y);
+
+            if (pointCount == 4) return (null, null);
 
             return (ellipse, text);
         }
@@ -95,7 +97,7 @@ namespace ComputerGraphics.MVVM.View
 
             // skrytie/zobrazenie buttonov a textov
             if (pointCount == 1) refresh.Visibility = Visibility.Visible;
-            if (pointCount > 2)
+            if (pointCount > 3)
             {
                 connect.Visibility = Visibility.Visible;
                 textAddNodes.Visibility = Visibility.Hidden;

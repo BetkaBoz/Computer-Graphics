@@ -30,19 +30,17 @@ namespace ComputerGraphics.HelperScripts
             {
                 x++;
 
-                // E or East is chosen
+                // E teda vychodne (east) je vybrane
                 if (decision < 0) decision +=  pointY;
 
-                // NE or North East is chosen
+                // NE alebo severovychodne (north east) je vybrane
                 else
                 {
                     decision += (pointY - pointX);
                     y++;
                 }
                 Debug.WriteLine($"x {x} and y {y}");
-                // Plot intermediate points
-                // putpixel(x,y) is used to print
-                // pixel of line in graphics
+
                 newPoints.Add(new Point(x, y));
             }
             FindPoint();
@@ -51,27 +49,32 @@ namespace ComputerGraphics.HelperScripts
         public static void DDALine(List<Point> pointsList)
         {
             newPoints.Clear();
-            int step;
+            int step, xf, yf;
 
             int pointX = (int)(pointsList[1].X - pointsList[0].X);
             int pointY = (int)(pointsList[1].Y - pointsList[0].Y);
 
+
             if (Math.Abs(pointX) > Math.Abs(pointY)) step = Math.Abs(pointX);
             else step = Math.Abs(pointY);
 
-            int increaseX = pointX / step;
-            int increaseY = pointY / step;
+            float increaseX = pointX / (float)step;
+            float increaseY = pointY / (float)step;
 
-            int x = (int)pointsList[0].X;
-            int y = (int)pointsList[0].Y;
+            float x = (float)pointsList[0].X;
+            float y = (float)pointsList[0].Y;
 
-            for (int i = 0; i < step; i++)
-            {
-                x += increaseX;
-                y += increaseY;
-                newPoints.Add(new Point(x, y));
-                Debug.WriteLine($"x {x} and y {y}");
-            }
+            
+                for (int i = 0; i < step; i++)
+                {
+                    x += increaseX;
+                    xf = (int)x;
+                    y += increaseY;
+                    yf = (int)y;
+
+                    newPoints.Add(new Point(xf, yf));
+                    Debug.WriteLine($"x {x} and y {y}");
+                }
             FindPoint();
         }
 
@@ -117,12 +120,12 @@ namespace ComputerGraphics.HelperScripts
 
                 foreach (var rec in LectureFourView._rects)
                 {
-                    int indexOfRect = LectureFourView._rects.IndexOf(rec);
+                    int indexOfRect = LectureFourView._rects.LastIndexOf(rec);
 
                      if (rec.Contains(point))
                      {
                         rectangle = LectureFourView._rectangles[indexOfRect];
-                        rectangle.Fill = new SolidColorBrush(Colors.Red);
+                        rectangle.Fill = new SolidColorBrush(Colors.DarkGray);
                      }
                 }
             }

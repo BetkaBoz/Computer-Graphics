@@ -69,7 +69,7 @@ namespace ComputerGraphics.MVVM.View
                     rect = new();
                     rect.Width = 20;
                     rect.Height = 20;
-                    rect.Location = new Point(i, j);
+                    rect.Location = new Point(j, i);
 
                     _rects.Add(rect);
 
@@ -95,13 +95,21 @@ namespace ComputerGraphics.MVVM.View
 
                 foreach(var rec in _rectangles)
                 {
-                    if (rec.Name == pixelName)rec.Fill = new SolidColorBrush(Colors.Blue);
+                    if (rec.Name == pixelName)rec.Fill = new SolidColorBrush(Colors.DarkGray);
                 }
                 pointsList.Add(currentPoint);
             }
 
-            if (pointsList.Count() == 2) drawButton.Visibility = Visibility.Visible;
-            else drawButton.Visibility = Visibility.Hidden;
+            if (pointsList.Count() == 2)
+            {
+                drawButton.Visibility = Visibility.Visible;
+                refresh.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                drawButton.Visibility = Visibility.Hidden;
+                refresh.Visibility = Visibility.Hidden;
+            }
         }
 
 
