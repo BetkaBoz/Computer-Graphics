@@ -264,23 +264,47 @@ zvyšok.&#x0a;Začneme s x = 0, konštantné prírastky budeme pridávať v smer
                    Margin="0,270,0,0"
                    Padding="0,10,0,0"/>
 
-        <Button Content="Kresli"
+        <StackPanel x:Name="stackPanel"
+                    Grid.Column="1" Grid.Row="1"
+                    Visibility="Hidden"
+                    VerticalAlignment="Bottom" HorizontalAlignment="Center">
+            <StackPanel Orientation="Horizontal">
+                <TextBlock 
+                   Text="Zadaj polomer kružnice: "
+                   Foreground="#FF424242"
+                   FontWeight="Normal"
+                   Padding="0,10,0,0"/>
+
+                <TextBox x:Name="radius"
+                 Width="20"
+                 Foreground="#FF424242"
+                 FontWeight="Normal"
+                 Margin="0,0,0,20"
+                 Padding="0,8,0,0"
+                 TextAlignment="Center"
+                 PreviewTextInput="PreviewTextInput"/>
+            </StackPanel>
+            <Button Content="Kresli"
                 x:Name="drawButton"
                 Width="100" Height="35" BorderBrush="Transparent"
                 Grid.Column="1" Grid.Row="1"
                 VerticalAlignment="Bottom"
                 Foreground="#FF424242"
                 FontWeight="Normal"
-                Margin="0,0,0,90" 
-                Visibility="Hidden"
-                Click="RasterizeLine">
-            <Button.Background>
-                <LinearGradientBrush EndPoint="0.9,1" StartPoint="0.4,0">
-                    <GradientStop Color="#FF82B2FF"/>
-                    <GradientStop Color="#FFD48DFF" Offset="1"/>
-                </LinearGradientBrush>
-            </Button.Background>
-        </Button>
+                Margin="0,0,0,50" 
+                Visibility="Visible"
+                Click="RasterizeCircle">
+                <Button.Background>
+                    <LinearGradientBrush EndPoint="0.9,1" StartPoint="0.4,0">
+                        <GradientStop Color="#FF82B2FF"/>
+                        <GradientStop Color="#FFD48DFF" Offset="1"/>
+                    </LinearGradientBrush>
+                </Button.Background>
+            </Button>
+        </StackPanel>
+
+        
+
     </Grid>
 
 </UserControl>

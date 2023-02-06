@@ -16,9 +16,6 @@ using System.Windows.Shapes;
 
 namespace ComputerGraphics.MVVM.View
 {
-    /// <summary>
-    /// Interaction logic for IntroView.xaml
-    /// </summary>
     public partial class IntroView : UserControl
     {
         public IntroView()

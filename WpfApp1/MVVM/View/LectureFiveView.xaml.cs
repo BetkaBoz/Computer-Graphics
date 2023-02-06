@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -41,6 +42,7 @@ namespace ComputerGraphics.MVVM.View
             algorithmName = button.Name;
 
             canvas.Visibility = Visibility.Visible;
+            textAddNodes.Visibility = Visibility.Visible;
 
             Refresh();
         }
@@ -90,19 +92,25 @@ namespace ComputerGraphics.MVVM.View
 
             if (mouseWasDownOn != null && pointsList.Count() < 2)
             {
-                string pixelName = mouseWasDownOn.Name;
-
-                foreach (var rec in _rectangles)
+                if (pointsList.Count() < 1)
                 {
-                    if (rec.Name == pixelName) rec.Fill = new SolidColorBrush(Colors.DarkGray);
+                    string pixelName = mouseWasDownOn.Name;
+
+                    foreach (var rec in _rectangles)
+                    {
+                        if (rec.Name == pixelName) rec.Fill = new SolidColorBrush(Colors.DarkGray);
+                    }
                 }
                 pointsList.Add(currentPoint);
             }
 
-            if (pointsList.Count() == 2) drawButton.Visibility = Visibility.Visible;
-            else drawButton.Visibility = Visibility.Hidden;
+            if (pointsList.Count() == 1)
+            {
+                textAddNodes.Visibility = Visibility.Hidden;
+                stackPanel.Visibility = Visibility.Visible;
+            }
+            else stackPanel.Visibility = Visibility.Hidden;
         }
-
 
         private void RefreshCanvas(object sender, MouseButtonEventArgs e)
         {
@@ -117,23 +125,36 @@ namespace ComputerGraphics.MVVM.View
             pointsList.Clear();
             _rectangles.Clear();
             _rects.Clear();
-            LineRasterization.newPoints.Clear();
+            CircleRasterization.pointsList.Clear();
 
             DrawPixelsOnCanvas();
         }
 
-        private void RasterizeLine(object sender, RoutedEventArgs e)
+        private void PreviewTextInput(object sender, TextCompositionEventArgs e)
         {
+            Regex regex = new Regex("[^0-9(.+)]+");
+            e.Handled = regex.IsMatch(e.Text);
+        }
+
+        private void RasterizeCircle(object sender, RoutedEventArgs e)
+        {
+            //var a = pointsList[1].X - pointsList[1].Y;
+            //var b = pointsList[0].X - pointsList[0].Y;
+
+            //var c = Math.Sqrt(a * a + b * b);
+
+            int _radius = int.Parse(radius.Text);
+
             switch (algorithmName)
             {
                 case "kartezian":
-                    
+                    CircleRasterization.KartezianCoordinates(currentPoint, _radius);
                     break;
                 case "polar":
-                    
+                    CircleRasterization.PolarCoordinates(currentPoint, _radius);
                     break;
                 case "bersenham":
-                    
+                    CircleRasterization.BersenhamCircle(currentPoint, _radius);
                     break;
                 default:
                     break;

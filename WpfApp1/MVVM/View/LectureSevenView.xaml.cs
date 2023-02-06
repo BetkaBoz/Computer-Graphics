@@ -24,5 +24,30 @@ namespace ComputerGraphics.MVVM.View
         {
             InitializeComponent();
         }
+
+        private void ShowCanvas(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void ShowScanner(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void FillPixel(object sender, MouseButtonEventArgs e)
+        {
+
+        }
+
+        private void RefreshCanvas(object sender, MouseButtonEventArgs e)
+        {
+
+        }
+
+        private void ScannerCalculation(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

@@ -1,6 +1,7 @@
 ﻿using ComputerGraphics.MVVM.View;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,46 +13,107 @@ namespace ComputerGraphics.HelperScripts
 {
     public static class CircleRasterization
     {
-        public static List<Point> newPoints = new();
+        public static List<Point> pointsList = new();
 
-        public static void KartezianCoordinates(List<Point> pointsList)
+        public static void KartezianCoordinates(Point center, int radius)
         {
-            newPoints.Clear();
-
-            FindPoint();
+            for (int x = 0; x < radius; x++)
+            {
+                double y = Math.Round(Math.Sqrt(Math.Sqrt(radius) - Math.Sqrt(center.X)));
+                FindPoint(center.X, center.Y, (double)x, y);
+            }
         }
 
-        public static void PolarCoordinates(List<Point> pointsList)
+        public static void PolarCoordinates(Point center, int radius)
         {
-            newPoints.Clear();
+            int step, counter = 0;
+            double x, y;
 
-            FindPoint();
+            step = 1 / radius;
+            do
+            {
+                x = Math.Round(radius * Math.Cos(counter));
+                y = Math.Round(radius * Math.Sin(counter));
+
+                FindPoint(center.X, center.Y, x, y);
+
+                counter += step;
+            }
+            while (x == y);
+
+            Debug.WriteLine($"{center.X}, {center.Y}, {x} , {y}");
         }
 
-        public static void BersenhamCircle(List<Point> pointsList, int pointX, int pointY, int decide)
+        public static void BersenhamCircle(Point center, int radius)
         {
-            newPoints.Clear();
+            var x = 0;
+            var y = radius;
+            var deltaX = 3;
+            var deltaY = 2 * radius - 2;
+            int p = 1 - radius;
 
-            FindPoint();
+            do
+            {
+                FindPoint(center.X, center.Y, x, y);
+
+                if (p >= 0)
+                {
+                    p -= deltaY;
+                    deltaY -= 2;
+                    y -= 1;
+                }
+                p += deltaX;
+                deltaX += 2;
+                x += 1;
+            }
+            while (x > y);
+
+            Debug.WriteLine($"{center.X}, {center.Y}, {x} , {y}"); 
         }
 
-        public static void FindPoint()
+        public static void FindPoint(double xCenter, double yCenter, double x, double y)
         {
             Point point;
             Rectangle rectangle;
 
-            for (int i = 0; i < newPoints.Count; i++)
-            {
-                point = newPoints[i];
+            pointsList.Clear();
 
-                foreach (var rec in LectureFourView._rects)
+            point = new(xCenter + x, yCenter + y);
+            pointsList.Add(point);
+
+            point = new(xCenter - x, yCenter + y);
+            pointsList.Add(point);
+
+            point = new(xCenter + x, yCenter - y);
+            pointsList.Add(point);
+
+            point = new(xCenter - x, yCenter - y);
+            pointsList.Add(point);
+
+            point = new(xCenter + y, yCenter + x);
+            pointsList.Add(point);
+
+            point = new(xCenter - y, yCenter + x);
+            pointsList.Add(point);
+
+            point = new(xCenter + y, yCenter - x);
+            pointsList.Add(point);
+
+            point = new(xCenter - y, yCenter + x);
+            pointsList.Add(point);
+
+            for (int i = 0; i < pointsList.Count; i++)
+            {
+                point = pointsList[i];
+
+                foreach (var rec in LectureFiveView._rects)
                 {
-                    int indexOfRect = LectureFourView._rects.IndexOf(rec);
+                    int indexOfRect = LectureFiveView._rects.IndexOf(rec);
 
                     if (rec.Contains(point))
                     {
-                        rectangle = LectureFourView._rectangles[indexOfRect];
-                        rectangle.Fill = new SolidColorBrush(Colors.Red);
+                        rectangle = LectureFiveView._rectangles[indexOfRect];
+                        rectangle.Fill = new SolidColorBrush(Colors.DarkGray);
                     }
                 }
             }

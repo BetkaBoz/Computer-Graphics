@@ -12,7 +12,7 @@ namespace ComputerGraphics.HelperScripts
 {
     public static class Cubics
     {
-        public static void Ferguson()
+        public static void Ferguson(PaintEventArgs e)
         {
 
         }

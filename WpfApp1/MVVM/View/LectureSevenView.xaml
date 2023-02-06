@@ -6,7 +6,351 @@
              xmlns:local="clr-namespace:ComputerGraphics.MVVM.View"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
+    <UserControl.Resources>
+        <SolidColorBrush x:Key="mouseOverColor" Color="#FF797979" />
+        <Style TargetType="TextBlock" x:Key="mouseOverStyle">
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Foreground" Value="{StaticResource mouseOverColor}"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+
+        <Style x:Key="VerticalSeparatorStyle" 
+               TargetType="{x:Type Line}">
+            <Setter Property="Margin" Value="6,0,6,0"/>
+            <Setter Property="LayoutTransform">
+                <Setter.Value>
+                    <TransformGroup>
+                        <TransformGroup.Children>
+                            <TransformCollection>
+                                <RotateTransform Angle="90"/>
+                            </TransformCollection>
+                        </TransformGroup.Children>
+                    </TransformGroup>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <DrawingBrush x:Key="MyGridBrushResource" Viewport="0,0,10,10" ViewportUnits="Absolute" TileMode="Tile">
+            <DrawingBrush.Drawing>
+                <DrawingGroup>
+                    <DrawingGroup.Children>
+                        <GeometryDrawing Brush="#99FFFFFF">
+                            <GeometryDrawing.Geometry>
+                                <RectangleGeometry Rect="0,0,1,1" />
+                            </GeometryDrawing.Geometry>
+                        </GeometryDrawing>
+                        <GeometryDrawing Geometry="M0,0 L1,0 1,0.1, 0,0.1Z" Brush="#66141414" />
+                        <GeometryDrawing Geometry="M0,0 L0,1 0.1,1, 0.1,0Z" Brush="#66141414" />
+                    </DrawingGroup.Children>
+                </DrawingGroup>
+            </DrawingBrush.Drawing>
+        </DrawingBrush>
+    </UserControl.Resources>
+
     <Grid>
-            
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="400"/>
+            <ColumnDefinition Width="400"/>
+        </Grid.ColumnDefinitions>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="10"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+
+        <ScrollViewer Grid.Row="0" Grid.RowSpan="2"
+                      Margin="0,0,-30,0"
+                      VerticalScrollBarVisibility="Hidden">
+            <StackPanel 
+                    VerticalAlignment="Top" >
+
+                <TextBlock HorizontalAlignment="Left" Grid.Row="0" Grid.Column="0"
+                   Text="VYPĹŇANIE ROVINNÝCH OBLASTÍ" FontWeight="Bold" FontSize="20" Foreground="#FF424242"/>
+
+                <TextBlock HorizontalAlignment="Left" 
+                   Grid.Row="0" Grid.Column="0"
+                   Margin="10,30,0,0"
+                   Text="Oblasťou rozumieme množinu bodov, ktoré sú navzájom susedné. &#x0a;&#x0a;Oblasť zadaná svojimi vnútornými bodmi sa nazýva vnútorne definovaná. Všetky body 
+oblasti majú v tomto prípade zadanú hodnotu. Algoritmy, ktoré pracujú s takýmito oblasťami, 
+sa nazývajú vnútorne vypĺňajúce algoritmy. 
+&#x0a; &#x0a;Oblasť zadaná hranicou sa nazýva hranične definovaná. Body, ktoré vytvárajú hranicu, majú 
+predpísanú hodnotu. Algoritmy, ktoré pracujú s takýmito oblasťami, sa nazývajú hranične 
+vypĺňajúce algoritmy."
+                   TextWrapping="Wrap"
+                   FontSize="12" Foreground="#FF424242"/>
+
+                <!-- FLOOD FILL -->
+                <Expander IsExpanded="False" 
+                  Grid.Row="0" Grid.Column="0"
+                  Grid.RowSpan="2"
+                  Background="Transparent" Header="FLOOD FILL"
+                  Foreground="#FF424242" FontSize="12" FontWeight="Bold"
+                  Cursor="Hand">
+                    <StackPanel>
+                        <TextBlock  TextWrapping="Wrap"
+                            FontWeight="Normal"
+                            Foreground="#FF424242"
+                            FontSize="12"
+                            Text="Ide o rekurzívny algoritmus a pracuje tak , že priradí bodom 4 - súvislej vnútorne definovanej oblasti hodnotu new value.
+&#x0a;&#x0a;Vstup: old_value, new_value, súradnice (x, y) vnútorného bodu oblasti, od ktorého sa má 
+začať vypĺňať. 
+&#x0a;&#x0a;Postup: Pre vnútorný bod so súradnicami (x, y) zistíme, či sme ho ešte nevyšetrovali (preto 
+musí mať hodnotu old_value). Ak je to tak, hodnota sa zmení, a potom sa vyšetria jeho ďalšie 
+4 - susedné body. 
+&#x0a;Dá sa modifikovať aj pre 8 - súvislé oblasti (budeme v rekurzii vyšetrovať 8 - susedov). 
+&#x0a;&#x0a;Algoritmus sa dá použiť napr. na vykreslenie oblasti inou farbou."/>
+                        
+                        <Button Content="Výpočet"
+                                x:Name="baseline"
+                                Width="70" Height="25" BorderBrush="Transparent"
+                                VerticalAlignment="Bottom" HorizontalAlignment="Right"
+                                Margin="10"
+                                Foreground="#FF424242"
+                                FontWeight="Normal"
+                                FontSize="10"
+                                Click="ShowCanvas">
+                            <Button.Background>
+                                <LinearGradientBrush EndPoint="0.9,1" StartPoint="0.4,0">
+                                    <GradientStop Color="#FF82B2FF"/>
+                                    <GradientStop Color="#FFD48DFF" Offset="1"/>
+                                </LinearGradientBrush>
+                            </Button.Background>
+                        </Button>
+                    </StackPanel>
+                </Expander>
+
+                <!-- SEED FILL -->
+                <Expander IsExpanded="False" 
+                  Grid.Row="0" Grid.Column="0"
+                  Grid.RowSpan="2"
+                  Background="Transparent" Header="SEED FILL"
+                  Foreground="#FF424242" FontSize="12" FontWeight="Bold"
+                  Cursor="Hand">
+                    <StackPanel>
+                        <TextBlock  TextWrapping="Wrap"
+                            FontWeight="Normal"
+                            Foreground="#FF424242"
+                            FontSize="12"
+                            Cursor="Arrow"
+                            Text="Tento algoritmus vyplňuje rekurzívnym spôsobom. Bod, od ktorého sa začína vyplňovať, sa 
+volá semienko. Ak semienko neleží na hranici a nebolo doteraz zafarbené, potom je zafarbené 
+a vyšetrujú sa ďalej jeho 4 - susedia. 
+&#x0a;&#x0a;Je to rekurzívne riešenie – neefektívne. Každý vnútorný pixel je testovaný niekoľkokrát 
+potom, ako už bol zafarbený. Pomer počtu rekurzívnych volaní k počtu skutočných zafarbení 
+je 4:1. Každé vyvolanie procedúry je spojené s operáciou čítania z obrazovej pamäti. 
+&#x0a;&#x0a;Vstup: vypln_farba, hran_farba, súradnice (x, y) vnútorného bodu oblasti, od ktorého sa má 
+začať vypĺňať. 
+&#x0a;&#x0a;Postup: Začína sa s bodom (x, y) a pre susedné body sa zisťuje, či majú farbu hranice. Ak nie, 
+potom sú zafarbené farbou výplne. Takto sa spracujú všetky body oblasti až po hranicu. 
+"/>
+                        <Button Content="Výpočet"
+                                x:Name="dda"
+                                Width="70" Height="25" BorderBrush="Transparent"
+                                VerticalAlignment="Bottom" HorizontalAlignment="Right"
+                                Margin="10"
+                                Foreground="#FF424242"
+                                FontWeight="Normal"
+                                FontSize="10" 
+                                Click="ShowCanvas">
+                            <Button.Background>
+                                <LinearGradientBrush EndPoint="0.9,1" StartPoint="0.4,0">
+                                    <GradientStop Color="#FF82B2FF"/>
+                                    <GradientStop Color="#FFD48DFF" Offset="1"/>
+                                </LinearGradientBrush>
+                            </Button.Background>
+                        </Button>
+
+                    </StackPanel>
+                </Expander>
+
+                <!-- SEED LINE FILL -->
+                <Expander IsExpanded="False" 
+                  Grid.Row="0" Grid.Column="0"
+                  Grid.RowSpan="2"
+                  Background="Transparent" Header="SEED LINE FILL"
+                  Foreground="#FF424242" FontSize="12" FontWeight="Bold"
+                  Cursor="Hand">
+                    <StackPanel>
+                        <TextBlock  TextWrapping="Wrap"
+                            FontWeight="Normal"
+                            Foreground="#FF424242"
+                            FontSize="12"
+                            Cursor="Arrow"
+                            Text="Metóda, ktorá znižuje počet prístupov do obrazovej pamäti, sa volá riadkové semienkové 
+vypĺňanie - SEED_LINE_FILL. Namiesto rekurzie sa použije malý zásobník, do ktorého sa 
+uloží niekoľko súradníc vnútorných bodov vyplňovanej oblasti.
+&#x0a;&#x0a;Metóda sa dá urýchliť tak, že do zásobníka ukladáme namiesto jednotlivých bodov informácie 
+o voľných úsekoch nájdených v krokoch 2d a 2e algoritmu. Voľné úseky však musíme hľadať
+nielen v intervale (XLeft – XRight), ale nad a pod nakreslenou úsečkou smerom doľava 
+a doprava až k hranici oblasti. Potom je možné vynechať v algoritme krok 2b a zmenšiť počet 
+čítaní z obrazovej pamäti. "/>
+                       <Button Content="Výpočet"
+                                x:Name="bersenham"
+                                Width="70" Height="25" BorderBrush="Transparent"
+                                VerticalAlignment="Bottom" HorizontalAlignment="Right"
+                                Margin="10"
+                                Foreground="#FF424242"
+                                FontWeight="Normal"
+                                FontSize="10" 
+                                Click="ShowCanvas">
+                            <Button.Background>
+                                <LinearGradientBrush EndPoint="0.9,1" StartPoint="0.4,0">
+                                    <GradientStop Color="#FF82B2FF"/>
+                                    <GradientStop Color="#FFD48DFF" Offset="1"/>
+                                </LinearGradientBrush>
+                            </Button.Background>
+                        </Button>
+
+                    </StackPanel>
+                </Expander>
+
+                <Expander IsExpanded="False" 
+                  Grid.Row="0" Grid.Column="0"
+                  Grid.RowSpan="2"
+                  Background="Transparent" Header="SKENOVACÍ ALGORITMUS"
+                  Foreground="#FF424242" FontSize="12" FontWeight="Bold"
+                  Cursor="Hand">
+                    <StackPanel>
+                        <TextBlock  TextWrapping="Wrap"
+                            FontWeight="Normal"
+                            Foreground="#FF424242"
+                            FontSize="12"
+                            Cursor="Arrow"
+                            Text="Algoritmus rozkladu odstraňuje mnohú ťažkosti doterajších postupov.
+&#x0a;&#x0a;Máme zobrazený mnohouholník s jedným skenovacím riadkom. Potrebujeme určiť, ktoré obrazové body sa nachádzajú vo vnútri mnohouholníka pre tento skenovací riadok a definovať im
+príslušnú hodnotu vnútra oblasti. Tento proces opakujeme pre každý skenovací riadok prechádzajúci daným mnohouholníkom. Takýmto postupom dostaneme úplný rastrový rozklad mnohouholníka.
+&#x0a;&#x0a;Algoritmus:
+&#x0a;1. Nájdeme všetky priesečníky skenovacej priamky so všetkými stranami mnohouholníka. 
+&#x0a;2. Usporiadame priesečníky podľa x - ovej súradnice. 
+&#x0a;3. Zafarbíme všetky body, ktoré sa nachádzajú vždy medzi dvojicami za sebou 
+usporiadaných priesečníkov."/>
+                        <Button Content="Ukážka"
+                                x:Name="scanner"
+                                Width="70" Height="25" BorderBrush="Transparent"
+                                VerticalAlignment="Bottom" HorizontalAlignment="Right"
+                                Margin="10"
+                                Foreground="#FF424242"
+                                FontWeight="Normal"
+                                FontSize="10" 
+                                Click="ShowScanner">
+                            <Button.Background>
+                                <LinearGradientBrush EndPoint="0.9,1" StartPoint="0.4,0">
+                                    <GradientStop Color="#FF82B2FF"/>
+                                    <GradientStop Color="#FFD48DFF" Offset="1"/>
+                                </LinearGradientBrush>
+                            </Button.Background>
+                        </Button>
+
+                    </StackPanel>
+                </Expander>
+
+                <Expander IsExpanded="False" 
+                  Grid.Row="0" Grid.Column="0"
+                  Grid.RowSpan="2"
+                  Background="Transparent" Header="KOHERENTNOSŤ STRÁN A SKENOVACÍ ALGORITMUS"
+                  Foreground="#FF424242" FontSize="12" FontWeight="Bold"
+                  Cursor="Hand">
+                    <StackPanel>
+                        <TextBlock  TextWrapping="Wrap"
+                            FontWeight="Normal"
+                            Foreground="#FF424242"
+                            FontSize="12"
+                            Cursor="Arrow"
+                            Text="V predchádzajúcom algoritme sa najprv nájdu priesečníky skenovacej priamky so všetkými 
+stranami mnohouholníka. Tento výpočet je pomalý, pretože treba každú stranu porovnať so 
+skenovacou priamkou. 
+&#x0a;&#x0a;Pri hľadaní priesečníkov so skenovacou priamkou však nemusíme s ňou porovnávať všetky 
+strany. Ak strana pretína i - ty skenovací riadok, potom obvykle pretína aj (i + 1) - vý 
+skenovací riadok. Pri prechode od jedného riadku k druhému môžeme vypočítať novú x - ovú 
+súradnicu priesečníka so skenovacím riadkom takto: &#x0a;"/>
+                        <TextBlock  TextWrapping="Wrap"
+                            FontWeight="Normal"
+                            FontStyle="Italic"
+                            Foreground="#FF424242"
+                            FontSize="12"
+                            Text="x ( i + 1) = x ( i ) + 1 / m,"/>
+                        <TextBlock  TextWrapping="Wrap"
+                            FontWeight="Normal"
+                            Foreground="#FF424242"
+                            FontSize="12"
+                            Text="kde m je tangens uhla strany s osou x – smernica priamky, na 
+ktorej úsečka leží&#x0a;"/>
+                        <TextBlock  TextWrapping="Wrap"
+                            FontWeight="Normal"
+                            FontStyle="Italic"
+                            Foreground="#FF424242"
+                            FontSize="12"
+                            Text="m = dy / dx, dy = 1, m = 1 / dx, potom dx = 1 / m&#x0a;"/>
+                        <Button Content="Ukážka"
+                                x:Name="coherent"
+                                Width="70" Height="25" BorderBrush="Transparent"
+                                VerticalAlignment="Bottom" HorizontalAlignment="Right"
+                                Margin="10"
+                                Foreground="#FF424242"
+                                FontWeight="Normal"
+                                FontSize="10" 
+                                Click="ShowScanner">
+                            <Button.Background>
+                                <LinearGradientBrush EndPoint="0.9,1" StartPoint="0.4,0">
+                                    <GradientStop Color="#FF82B2FF"/>
+                                    <GradientStop Color="#FFD48DFF" Offset="1"/>
+                                </LinearGradientBrush>
+                            </Button.Background>
+                        </Button>
+
+                    </StackPanel>
+                </Expander>
+            </StackPanel>
+        </ScrollViewer>
+
+        <Image Source="/Images/return.png" 
+               x:Name="refresh"
+               Height="30"
+               Grid.Column="1" Grid.Row="1"
+               HorizontalAlignment="Right"
+               VerticalAlignment="Top"
+               Margin="0,0,40,0"
+               Visibility="Hidden" 
+               MouseDown="RefreshCanvas"/>
+
+        <Canvas Grid.Column="1" Grid.Row="0"  
+                x:Name="canvas"
+                Margin="0,50,0,0"
+                Background="White"
+                Height="320" Width="320" Cursor="Hand" 
+                Visibility="Hidden" 
+                MouseDown="FillPixel"/>
+
+
+        <TextBlock Grid.Column="1" Grid.Row="1"
+                   x:Name="textAddNodes"
+                   Visibility="Hidden"
+                   VerticalAlignment="Center" HorizontalAlignment="Center"
+                   Text="Na canvase vyznačte mnohouholník"
+                   Foreground="#FF424242"
+                   FontWeight="Normal"
+                   Margin="0,270,0,0"
+                   Padding="0,10,0,0"/>
+
+        <Button Content="Kresli"
+                x:Name="drawButton"
+                Width="100" Height="35" BorderBrush="Transparent"
+                Grid.Column="1" Grid.Row="1"
+                VerticalAlignment="Bottom"
+                Foreground="#FF424242"
+                FontWeight="Normal"
+                Margin="0,0,0,90" 
+                Visibility="Hidden"
+                Click="ScannerCalculation">
+            <Button.Background>
+                <LinearGradientBrush EndPoint="0.9,1" StartPoint="0.4,0">
+                    <GradientStop Color="#FF82B2FF"/>
+                    <GradientStop Color="#FFD48DFF" Offset="1"/>
+                </LinearGradientBrush>
+            </Button.Background>
+        </Button>
     </Grid>
 </UserControl>

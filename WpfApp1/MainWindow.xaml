@@ -35,8 +35,9 @@
                        Foreground="DarkGray"
                        FontSize="18"/>
 
-            <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Hidden" Height="470"
-                          VerticalAlignment="Top" HorizontalAlignment="Left">
+            <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Visible" Height="470"
+                          VerticalAlignment="Top" HorizontalAlignment="Left"
+                          >
 
                 <StackPanel >
 
@@ -132,20 +133,32 @@
             <StackPanel Grid.Row="1" HorizontalAlignment="Stretch" VerticalAlignment="Bottom">
                 <Button VerticalAlignment="Bottom" HorizontalAlignment="Stretch"
                         Background="Transparent" BorderBrush="Transparent"
-                        Height="50"
+                        Height="60"
+                        Margin="0,0,0,0"
                         Foreground="#FF424242" 
                         Command="{Binding CloseCommand}">
-                    <Image Source="/Images/logout.png" Width="35"/>
+                    <Image Source="/Images/switch.png" Width="35"/>
                 </Button>
             </StackPanel>
 
-            <TextBox Width="250"
+            <!--<TextBox Width="250"
                        Height="40"
                        VerticalAlignment="Center"
                        HorizontalAlignment="Left"
                        Margin="5"
                        Grid.Column="1"
-                       Style="{StaticResource ResourceKey=ModernTextbox}" />
+                       Style="{StaticResource ResourceKey=ModernTextbox}" />-->
+
+            <Button VerticalAlignment="Center"
+                        HorizontalAlignment="Right"
+                        Grid.Column="1"
+                        Background="Transparent" BorderBrush="Transparent"
+                        Foreground="#FF424242" 
+                        Width="110" Height="100"
+                        Margin="0,0,0,0"
+                        Content="Prihlásiť sa"
+                        Command="{Binding CloseCommand}">
+            </Button>
 
             <ContentControl Grid.Row="1" Grid.Column="1" Margin="10"
                             Content="{Binding CurrentView}"/>
