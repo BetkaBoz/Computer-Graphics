@@ -35,27 +35,34 @@
 
         <Canvas Grid.Row="3" Grid.Column="2"
                 x:Name="canvasRaster"
-                Width="200" Height="200" 
+                Width="250" Height="250" 
                 Margin="0,30,0,0"
                 HorizontalAlignment="Right">
-            <Border x:Name="border" ClipToBounds="True"
-                    Width="200" Height="200" >
-                <Image x:Name="raster"
-                   Source="/Images/dog.png"/>
+            <Border x:Name="borderRaster" ClipToBounds="True"
+                    Width="250" Height="250" Background="White" BorderBrush="DarkGray" BorderThickness="1">
+                <Image x:Name="raster" >
+                    <Image.Source>
+                        <BitmapImage DecodePixelWidth="250" 
+                                     UriSource="/Images/dog.png"/>
+                    </Image.Source>
+                </Image>
             </Border>
 
         </Canvas>
 
         <Canvas Grid.Row="3" Grid.Column="3"
                 x:Name="canvasVector"
-                Width="200" Height="200" 
+                Width="250" Height="250" 
                 Margin="50,30,0,0"
                 HorizontalAlignment="Right">
             <Border x:Name="borderVector" ClipToBounds="True"
-                    Width="200" Height="200" >
-                <Image x:Name="vector"
-                       Source="{}"
-                       />
+                    Width="250" Height="250" Background="White" BorderBrush="DarkGray" BorderThickness="1">
+                <Image x:Name="vector" >
+                    <Image.Source>
+                        <BitmapImage DecodePixelWidth="250" 
+                                     UriSource="/Images/dog.png"/>
+                    </Image.Source>
+                </Image>
             </Border>
 
         </Canvas>
@@ -72,10 +79,8 @@
                    TextWrapping="Wrap"
                    FontSize="12"
                    Foreground="#FF424242" 
-                   Margin="20,80,40,0"
-                   Text="Existujú dve metódy ukladania obrazu. Rastrovej metóde sa obraz rozloží do jednotlivých bodov a informácie o ich individuálnych vlastnostiach &#x0a;
-sa zapíšu do grafického súboru. Skladá sa zo základných obrazových prvkov, čiže pixelov.&#x0a;&#x0a;
-Pri vektorových formátoch nie sú opísané jednotlivé body, ale určité plochy (množiny bodov) so zhodnými vlastnosťami. Každá takáto plocha je ohraničená (ľubovolne vytvarovanou) krivkou. 
+                   Margin="20,20,40,0"
+                   Text="Existujú dve metódy ukladania obrazu. Rastrovej metóde sa obraz rozloží do jednotlivých bodov a informácie o ich individuálnych vlastnostiach sa zapíšu do grafického súboru. Skladá sa zo základných obrazových prvkov, čiže pixelov.&#x0a;Pri vektorových formátoch nie sú opísané jednotlivé body, ale určité plochy (množiny bodov) so zhodnými vlastnosťami. Každá takáto plocha je ohraničená (ľubovolne vytvarovanou) krivkou. 
 Čiže tomu rozumieme, že ide o uloženie informácií o objektoch prítomných v obraze tak, aby bola zachovaná spojitá reprezentácia obrazu."/>
     </Grid>
 </UserControl>

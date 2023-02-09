@@ -164,7 +164,7 @@ namespace ComputerGraphics.MVVM.View
             switch (cubicsName)
             {
                 case "ferguson":
-                    Cubics.Ferguson();
+                    Cubics.Ferguson(canvas, pointsList);
                     break;
                 case "bezier":
                     Cubics.Bezier(canvas, pointsList);

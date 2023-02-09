@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Reflection;
 using System.Text;
@@ -31,7 +32,7 @@ namespace ComputerGraphics.MVVM.View
             canvasVector.MouseWheel += Canvas_MouseWheel;
             raster.MouseLeftButtonDown += Raster_MouseLeftButtonDown;
             raster.MouseLeftButtonUp += image_MouseLeftButtonUp;
-            raster.MouseMove += Raster_MouseMove;
+            raster.MouseMove += Canvas_MouseMove;
 
             vector.MouseLeftButtonDown += Vector_MouseLeftButtonDown;
             vector.MouseLeftButtonUp += image_MouseLeftButtonUp;
@@ -40,44 +41,46 @@ namespace ComputerGraphics.MVVM.View
 
         private void Slider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
         {
-            TransformGroup transformGroup = (TransformGroup)raster.RenderTransform;
-            ScaleTransform transform = (ScaleTransform)transformGroup.Children[0];
+            TransformGroup transformRasterGroup = (TransformGroup)raster.RenderTransform;
+            ScaleTransform transformRaster = (ScaleTransform)transformRasterGroup.Children[0];
 
-            TransformGroup transformGroup2 = (TransformGroup)vector.RenderTransform;
-            ScaleTransform transform2 = (ScaleTransform)transformGroup2.Children[0];
+            TransformGroup transformVectorGroup = (TransformGroup)vector.RenderTransform;
+            ScaleTransform transformVector = (ScaleTransform)transformVectorGroup.Children[0];
 
-            double zoom = e.NewValue + 0.5;
-            transform.ScaleX = zoom;
-            transform.ScaleY = zoom;
+            double zoom = e.NewValue + 1;
 
-            transform2.ScaleX = zoom;
-            transform2.ScaleY = zoom;
+            transformRaster.ScaleX = zoom;
+            transformRaster.ScaleY = zoom;
+
+            
+
+            transformVector.ScaleX = zoom;
+            transformVector.ScaleY = zoom;
         }
 
         private void Canvas_MouseWheel(object sender, MouseWheelEventArgs e)
         {
-            Point pR = e.MouseDevice.GetPosition(raster);
-            Point pV = e.MouseDevice.GetPosition(vector);
-
             Matrix mR = raster.RenderTransform.Value;
             Matrix mV = vector.RenderTransform.Value;
+            Point canvasPoint;
+
+            if (sender.Equals(canvasRaster)) canvasPoint = e.MouseDevice.GetPosition(canvasRaster);
+            if (sender.Equals(canvasVector)) canvasPoint = e.MouseDevice.GetPosition(canvasVector);
 
             if (e.Delta > 0)
             {
-                mR.ScaleAtPrepend(1.1, 1.1, pR.X, pR.Y);
-                mV.ScaleAtPrepend(1.1, 1.1, pV.X, pV.Y);
+                mR.ScaleAtPrepend(1.1, 1.1, canvasPoint.X, canvasPoint.Y);
+                mV.ScaleAtPrepend(1.1, 1.1, canvasPoint.X, canvasPoint.Y);
             }
-               
-            else
+            else 
             {
-                mR.ScaleAtPrepend(1 / 1.1, 1 / 1.1, pR.X, pR.Y);
-                mV.ScaleAtPrepend(1 / 1.1, 1 / 1.1, pV.X, pV.Y);
+                mR.ScaleAtPrepend(1 / 1.1, 1 / 1.1, canvasPoint.X, canvasPoint.Y);
+                mV.ScaleAtPrepend(1 / 1.1, 1 / 1.1, canvasPoint.X, canvasPoint.Y);
             }
-                
+
             raster.RenderTransform = new MatrixTransform(mR);
             vector.RenderTransform = new MatrixTransform(mV);
         }
-
 
         private void Raster_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
@@ -85,7 +88,7 @@ namespace ComputerGraphics.MVVM.View
 
             raster.CaptureMouse();
 
-            startR = e.GetPosition(border);
+            startR = e.GetPosition(canvasRaster);
             origin.X = raster.RenderTransform.Value.OffsetX;
             origin.Y = raster.RenderTransform.Value.OffsetY;
         }
@@ -96,7 +99,7 @@ namespace ComputerGraphics.MVVM.View
 
             vector.CaptureMouse();
 
-            startV = e.GetPosition(borderVector);
+            startV = e.GetPosition(canvasVector);
             origin.X = vector.RenderTransform.Value.OffsetX;
             origin.Y = vector.RenderTransform.Value.OffsetY;
         }
@@ -107,29 +110,41 @@ namespace ComputerGraphics.MVVM.View
             vector.ReleaseMouseCapture();
         }
 
-        private void Raster_MouseMove(object sender, MouseEventArgs e)
+        private void Canvas_MouseMove(object sender, MouseEventArgs e)
         {
-            if (!raster.IsMouseCaptured) return;
-
-            Point pR = e.MouseDevice.GetPosition(border);
-
+            Point canvasPoint = e.MouseDevice.GetPosition(canvasRaster);
             Matrix mR = raster.RenderTransform.Value;
-            mR.OffsetX = origin.X + (pR.X - startR.X);
-            mR.OffsetY = origin.Y + (pR.Y - startR.Y);
+            Matrix mV = vector.RenderTransform.Value;
 
+            if (!raster.IsMouseCaptured && !vector.IsMouseCaptured) return;
+
+            //if (sender.Equals(canvasRaster)) canvasPoint = e.MouseDevice.GetPosition(canvasRaster);
+            //if (sender.Equals(canvasVector)) canvasPoint = e.MouseDevice.GetPosition(canvasVector);
+
+            mR.OffsetX = origin.X + (canvasPoint.X - startR.X);
+            mR.OffsetY = origin.Y + (canvasPoint.Y - startR.Y);
             raster.RenderTransform = new MatrixTransform(mR);
+
+            mV.OffsetX = origin.X + (canvasPoint.X - startR.X);
+            mV.OffsetY = origin.Y + (canvasPoint.Y - startR.Y);
+            vector.RenderTransform = new MatrixTransform(mV);
         }
 
         private void Vector_MouseMove(object sender, MouseEventArgs e)
         {
-            if (!raster.IsMouseCaptured) return;
-
-            Point pV = e.MouseDevice.GetPosition(borderVector);
-
+            Matrix mR = raster.RenderTransform.Value;
             Matrix mV = vector.RenderTransform.Value;
-            mV.OffsetX = origin.X + (pV.X - startV.X);
-            mV.OffsetY = origin.Y + (pV.Y - startV.Y);
 
+            if (!vector.IsMouseCaptured) return;
+
+            Point canvasPoint = e.MouseDevice.GetPosition(canvasVector);
+
+            mR.OffsetX = origin.X + (canvasPoint.X - startV.X);
+            mR.OffsetY = origin.Y + (canvasPoint.Y - startV.Y);
+            raster.RenderTransform = new MatrixTransform(mR);
+
+            mV.OffsetX = origin.X + (canvasPoint.X - startV.X);
+            mV.OffsetY = origin.Y + (canvasPoint.Y - startV.Y);
             vector.RenderTransform = new MatrixTransform(mV);
         }
     }
