@@ -115,4 +115,3 @@ D:\School Stuffs\DIPLOMOVKA\Computer Graphics\WpfApp1\obj\Debug\net6.0-windows\r
 D:\School Stuffs\DIPLOMOVKA\Computer Graphics\WpfApp1\obj\Debug\net6.0-windows\ComputerGraphics.pdb
 D:\School Stuffs\DIPLOMOVKA\Computer Graphics\WpfApp1\obj\Debug\net6.0-windows\ComputerGraphics.genruntimeconfig.cache
 D:\School Stuffs\DIPLOMOVKA\Computer Graphics\WpfApp1\obj\Debug\net6.0-windows\ref\ComputerGraphics.dll
-D:\School Stuffs\DIPLOMOVKA\Computer Graphics\WpfApp1\obj\Debug\net6.0-windows\Images\dog.baml

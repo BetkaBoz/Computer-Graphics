@@ -60,9 +60,31 @@ namespace ComputerGraphics.HelperScripts
             canvas.Children.Add(arcPath);
         }
 
-        public static void Coons()
+        public static void Coons(Canvas canvas, List<Point> pointsList)
         {
+            pathFigure.StartPoint = pointsList[0];
 
+            QuadraticBezierSegment qbzSeg = new();
+            qbzSeg.Point1 = new Point((pointsList[1].X + pointsList[1].Y) / 2, (pointsList[2].X + pointsList[2].Y) / 2);
+            qbzSeg.Point2 = pointsList[3];
+
+            PathSegmentCollection myPathSegmentCollection = new();
+            myPathSegmentCollection.Add(qbzSeg);
+
+            pathFigure.Segments = myPathSegmentCollection;
+
+            PathFigureCollection pthFigureCollection = new();
+            pthFigureCollection.Add(pathFigure);
+
+            PathGeometry pthGeometry = new PathGeometry();
+            pthGeometry.Figures = pthFigureCollection;
+
+            Path arcPath = new();
+            arcPath.Stroke = Brushes.Purple;
+            arcPath.StrokeThickness = 1;
+            arcPath.Data = pthGeometry;
+
+            canvas.Children.Add(arcPath);
         }
     }
 }

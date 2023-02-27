@@ -156,8 +156,8 @@ namespace ComputerGraphics.MVVM.View
             Connection(pointsList);
 
             connect.Visibility = Visibility.Hidden;
-            textAddNodes.Visibility = Visibility.Visible;
-            textAddNodes.Text = "Na canvase môžete presúvať jednotlivé body";
+            //textAddNodes.Visibility = Visibility.Visible;
+            //textAddNodes.Text = "Na canvase môžete presúvať jednotlivé body";
 
             Debug.WriteLine(cubicsName);
 
@@ -170,7 +170,7 @@ namespace ComputerGraphics.MVVM.View
                     Cubics.Bezier(canvas, pointsList);
                     break;
                 case "coons":
-                    Cubics.Coons();
+                    Cubics.Coons(canvas, pointsList);
                     break;
                 default:
                     break;

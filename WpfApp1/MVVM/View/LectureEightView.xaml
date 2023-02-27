@@ -259,24 +259,6 @@ teda prechádza koncovými bodmi. "/>
                 Visibility="Hidden"
                 MouseDown="AddNode">
 
-            <Path Stroke="BlueViolet" StrokeThickness="1" x:Name="BezierCurve" Visibility="Hidden">
-                <Path.Data>
-                    <PathGeometry>
-                        <PathGeometry.Figures>
-                            <PathFigureCollection>
-                                <PathFigure x:Name="bezierStartPoint" IsFilled="False">
-                                    <PathFigure.Segments>
-                                        <PathSegmentCollection>
-                                            <BezierSegment x:Name="bezierSegment" Point1="100,250" Point2="300,100" Point3="300, 100" />
-                                        </PathSegmentCollection>
-                                    </PathFigure.Segments>
-                                </PathFigure>
-                            </PathFigureCollection>
-                        </PathGeometry.Figures>
-                    </PathGeometry>
-                </Path.Data>
-            </Path>
-
         </Canvas>
         
         <TextBlock Grid.Column="1" Grid.Row="1"
