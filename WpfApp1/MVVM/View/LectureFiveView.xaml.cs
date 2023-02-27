@@ -42,6 +42,7 @@ namespace ComputerGraphics.MVVM.View
             algorithmName = button.Name;
 
             canvas.Visibility = Visibility.Visible;
+            //canvasBitmap.Visibility = Visibility.Visible;
             textAddNodes.Visibility = Visibility.Visible;
 
             Refresh();
@@ -138,23 +139,18 @@ namespace ComputerGraphics.MVVM.View
 
         private void RasterizeCircle(object sender, RoutedEventArgs e)
         {
-            //var a = pointsList[1].X - pointsList[1].Y;
-            //var b = pointsList[0].X - pointsList[0].Y;
-
-            //var c = Math.Sqrt(a * a + b * b);
-
-            int _radius = int.Parse(radius.Text);
+            int _radius = int.Parse(radius.Text);   //convert text to int
 
             switch (algorithmName)
             {
                 case "kartezian":
-                    CircleRasterization.KartezianCoordinates(currentPoint, _radius);
+                    CircleRasterization.KartezianCoordinates(currentPoint, canvas, _radius);
                     break;
                 case "polar":
-                    CircleRasterization.PolarCoordinates(currentPoint, _radius);
+                    CircleRasterization.PolarCoordinates(currentPoint, canvas, _radius);
                     break;
                 case "bersenham":
-                    CircleRasterization.BersenhamCircle(currentPoint, _radius);
+                    CircleRasterization.BersenhamCircle(currentPoint, canvas, _radius);
                     break;
                 default:
                     break;

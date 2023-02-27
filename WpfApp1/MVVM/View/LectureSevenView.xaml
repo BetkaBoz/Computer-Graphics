@@ -324,12 +324,6 @@ ktorej úsečka leží&#x0a;"/>
                 Visibility="Hidden" 
                 MouseDown="FillPixel"/>
 
-        <Image Grid.Column="1" Grid.Row="1" Width="300">
-            <Image.Source>
-                <BitmapImage DecodePixelWidth="200" DecodePixelHeight="200"
-                             UriSource="/Images/fillImage.png"/>
-            </Image.Source>
-        </Image>
 
 
         <TextBlock Grid.Column="1" Grid.Row="1"

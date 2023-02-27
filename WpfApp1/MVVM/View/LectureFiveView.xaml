@@ -254,6 +254,18 @@ zvyšok.&#x0a;Začneme s x = 0, konštantné prírastky budeme pridávať v smer
                 Visibility="Hidden" 
                 MouseDown="FillPixel"/>
 
+        <Image Grid.Column="1" Grid.Row="0"
+               x:Name="canvasBitmap"
+               Margin="0,50,0,0"
+               Height="300" Width="300"
+               Visibility="Hidden" 
+               MouseDown="FillPixel">
+            <Image.Source>
+                <BitmapImage DecodePixelWidth="300"  
+                    UriSource="D:\School Stuffs\DIPLOMOVKA\Computer Graphics\WpfApp1\Images\bitmap_canvas.png" />
+            </Image.Source>
+        </Image>
+
         <TextBlock Grid.Column="1" Grid.Row="1"
                    x:Name="textAddNodes"
                    Visibility="Hidden"
@@ -270,7 +282,7 @@ zvyšok.&#x0a;Začneme s x = 0, konštantné prírastky budeme pridávať v smer
                     VerticalAlignment="Bottom" HorizontalAlignment="Center">
             <StackPanel Orientation="Horizontal">
                 <TextBlock 
-                   Text="Zadaj polomer kružnice: "
+                   Text="Zadaj polomer kružnice (viac ako 50): "
                    Foreground="#FF424242"
                    FontWeight="Normal"
                    Padding="0,10,0,0"/>

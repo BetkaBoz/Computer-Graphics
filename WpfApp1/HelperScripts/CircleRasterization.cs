@@ -2,12 +2,14 @@
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Drawing;
 using System.Windows;
+using System.Windows.Controls;
 using System.Windows.Media;
+using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using Point = System.Windows.Point;
+using Rectangle = System.Windows.Shapes.Rectangle;
 
 namespace ComputerGraphics.HelperScripts
 {
@@ -15,92 +17,83 @@ namespace ComputerGraphics.HelperScripts
     {
         public static List<Point> pointsList = new();
 
-        public static void KartezianCoordinates(Point center, int radius)
+        public static void KartezianCoordinates(Point center, Canvas canvas, int radius)
         {
-            for (int x = 0; x < radius; x++)
+            for (int x = (int)center.X - radius; x <= center.X + radius; x++)
             {
-                double y = Math.Round(Math.Sqrt(Math.Sqrt(radius) - Math.Sqrt(center.X)));
-                FindPoint(center.X, center.Y, (double)x, y);
+                int y = (int)center.Y + (int)Math.Round(Math.Sqrt(radius * radius - (x - center.X) * (x - center.X)));
+                SetPoint(x, y);
+                SetPixel(canvas, x, (int)y);
+
+                y = (int)center.Y - (int)Math.Round(Math.Sqrt(radius * radius - (x - center.X) * (x - center.X)));
+                SetPoint(x, y);
+                SetPixel(canvas, x, y);
+                Debug.WriteLine($"{x} , {y}");
+            }
+            for (int y = (int)center.Y - radius; y <= center.Y + radius; y++)
+            {
+                int x = (int)center.X + (int)Math.Round(Math.Sqrt(radius * radius - (y - center.Y) * (y - center.Y)));
+                SetPoint(x, y);
+                SetPixel(canvas, x, y);
+
+                x = (int)center.X - (int)Math.Round(Math.Sqrt(radius * radius - (y - center.Y) * (y - center.Y)));
+                SetPoint(x, y);
+                SetPixel(canvas, x, y);
+                Debug.WriteLine($"{x} , {y}");
             }
         }
 
-        public static void PolarCoordinates(Point center, int radius)
+        public static void PolarCoordinates(Point center, Canvas canvas, int radius)
         {
-            int step, counter = 0;
-            double x, y;
-
-            step = 1 / radius;
-            do
+            for (int i = 0; i < 360; i++)
             {
-                x = Math.Round(radius * Math.Cos(counter));
-                y = Math.Round(radius * Math.Sin(counter));
+                double radians = i * Math.PI / 180.0;
+                var x = center.X + (radius * Math.Cos(radians));
+                var y = center.Y + (radius * Math.Sin(radians));
 
-                FindPoint(center.X, center.Y, x, y);
+                Debug.WriteLine($"{x} , {y}");
 
-                counter += step;
+                SetPoint(x, y);
+
+                SetPixel(canvas, (int)x, (int)y);
             }
-            while (x == y);
-
-            Debug.WriteLine($"{center.X}, {center.Y}, {x} , {y}");
         }
 
-        public static void BersenhamCircle(Point center, int radius)
+        public static void BersenhamCircle(Point center, Canvas canvas, int radius)
         {
             var x = 0;
             var y = radius;
-            var deltaX = 3;
-            var deltaY = 2 * radius - 2;
-            int p = 1 - radius;
+            int d = 3 - 2 * radius;
 
-            do
+            while (x <= y)
             {
-                FindPoint(center.X, center.Y, x, y);
+                SetPoint(x + center.X, y + center.Y);
+                SetPoint(y + center.X, x + center.Y);
+                SetPoint(-x + center.X, y + center.Y);
+                SetPoint(-y + center.X, x + center.Y);
+                SetPoint(-x + center.X, -y + center.Y);
+                SetPoint(-y + center.X, -x + center.Y);
+                SetPoint(x + center.X, -y + center.Y);
+                SetPoint(y + center.X, -x + center.Y);
 
-                if (p >= 0)
+                SetPixel(canvas, x, y);
+
+                Debug.WriteLine($"{center.X}, {center.Y}, {x} , {y}");
+
+                if (d < 0)  d = d + 4 * x + 6;
+                else
                 {
-                    p -= deltaY;
-                    deltaY -= 2;
-                    y -= 1;
+                    d = d + 4 * (x - y) + 10;
+                    y--;
                 }
-                p += deltaX;
-                deltaX += 2;
-                x += 1;
+                x++;
             }
-            while (x > y);
-
-            Debug.WriteLine($"{center.X}, {center.Y}, {x} , {y}"); 
         }
 
-        public static void FindPoint(double xCenter, double yCenter, double x, double y)
+        private static void SetPixel(Canvas canvas, int x, int y)
         {
             Point point;
             Rectangle rectangle;
-
-            pointsList.Clear();
-
-            point = new(xCenter + x, yCenter + y);
-            pointsList.Add(point);
-
-            point = new(xCenter - x, yCenter + y);
-            pointsList.Add(point);
-
-            point = new(xCenter + x, yCenter - y);
-            pointsList.Add(point);
-
-            point = new(xCenter - x, yCenter - y);
-            pointsList.Add(point);
-
-            point = new(xCenter + y, yCenter + x);
-            pointsList.Add(point);
-
-            point = new(xCenter - y, yCenter + x);
-            pointsList.Add(point);
-
-            point = new(xCenter + y, yCenter - x);
-            pointsList.Add(point);
-
-            point = new(xCenter - y, yCenter + x);
-            pointsList.Add(point);
 
             for (int i = 0; i < pointsList.Count; i++)
             {
@@ -110,13 +103,21 @@ namespace ComputerGraphics.HelperScripts
                 {
                     int indexOfRect = LectureFiveView._rects.IndexOf(rec);
 
-                    if (rec.Contains(point))
+                    if (rec.Contains(point) && x >= 0 && x < canvas.Width && y >= 0 && y < canvas.Height)
                     {
                         rectangle = LectureFiveView._rectangles[indexOfRect];
                         rectangle.Fill = new SolidColorBrush(Colors.DarkGray);
                     }
                 }
             }
+        }
+
+        public static void SetPoint(double pixelX, double pixelY)
+        {
+            Point point;
+
+            point = new(pixelX, pixelY);
+            pointsList.Add(point);
         }
     }
 }

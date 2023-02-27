@@ -1,0 +1,8 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<Project ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ImportGroup Condition=" '$(ExcludeRestorePackageImports)' != 'true' ">
+    <Import Project="$(NuGetPackageRoot)materialdesignthemes\4.6.1\build\MaterialDesignThemes.targets" Condition="Exists('$(NuGetPackageRoot)materialdesignthemes\4.6.1\build\MaterialDesignThemes.targets')" />
+    <Import Project="$(NuGetPackageRoot)c1.xaml.wpf.dx\4.6.20223.780\buildTransitive\netcoreapp3.0\C1.Xaml.WPF.DX.targets" Condition="Exists('$(NuGetPackageRoot)c1.xaml.wpf.dx\4.6.20223.780\buildTransitive\netcoreapp3.0\C1.Xaml.WPF.DX.targets')" />
+    <Import Project="$(NuGetPackageRoot)c1.xaml.wpf.bitmap\4.6.20223.780\buildTransitive\netcoreapp3.0\C1.Xaml.WPF.Bitmap.targets" Condition="Exists('$(NuGetPackageRoot)c1.xaml.wpf.bitmap\4.6.20223.780\buildTransitive\netcoreapp3.0\C1.Xaml.WPF.Bitmap.targets')" />
+  </ImportGroup>
+</Project>

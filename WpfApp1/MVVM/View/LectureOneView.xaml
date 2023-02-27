@@ -42,7 +42,7 @@
                     Width="250" Height="250" Background="White" BorderBrush="DarkGray" BorderThickness="1">
                 <Image x:Name="raster" >
                     <Image.Source>
-                        <BitmapImage DecodePixelWidth="250" 
+                        <BitmapImage DecodePixelWidth="200" 
                                      UriSource="/Images/dog.png"/>
                     </Image.Source>
                 </Image>
@@ -59,7 +59,7 @@
                     Width="250" Height="250" Background="White" BorderBrush="DarkGray" BorderThickness="1">
                 <Image x:Name="vector" >
                     <Image.Source>
-                        <BitmapImage DecodePixelWidth="250" 
+                        <BitmapImage DecodePixelWidth="500" 
                                      UriSource="/Images/dog.png"
 />
                     </Image.Source>
