@@ -62,42 +62,6 @@
             "fileVersion": "2.0.0.0"
           }
         }
-      },
-      "SharpVectors/1.8.1": {
-        "runtime": {
-          "lib/net6.0-windows7.0/SharpVectors.Converters.Wpf.dll": {
-            "assemblyVersion": "1.8.1.0",
-            "fileVersion": "1.8.1.0"
-          },
-          "lib/net6.0-windows7.0/SharpVectors.Core.dll": {
-            "assemblyVersion": "1.8.1.0",
-            "fileVersion": "1.8.1.0"
-          },
-          "lib/net6.0-windows7.0/SharpVectors.Css.dll": {
-            "assemblyVersion": "1.8.1.0",
-            "fileVersion": "1.8.1.0"
-          },
-          "lib/net6.0-windows7.0/SharpVectors.Dom.dll": {
-            "assemblyVersion": "1.8.1.0",
-            "fileVersion": "1.8.1.0"
-          },
-          "lib/net6.0-windows7.0/SharpVectors.Model.dll": {
-            "assemblyVersion": "1.8.1.0",
-            "fileVersion": "1.8.1.0"
-          },
-          "lib/net6.0-windows7.0/SharpVectors.Rendering.Gdi.dll": {
-            "assemblyVersion": "1.8.1.0",
-            "fileVersion": "1.8.1.0"
-          },
-          "lib/net6.0-windows7.0/SharpVectors.Rendering.Wpf.dll": {
-            "assemblyVersion": "1.8.1.0",
-            "fileVersion": "1.8.1.0"
-          },
-          "lib/net6.0-windows7.0/SharpVectors.Runtime.Wpf.dll": {
-            "assemblyVersion": "1.8.1.0",
-            "fileVersion": "1.8.1.0"
-          }
-        }
       }
     }
   },
@@ -143,13 +107,6 @@
       "sha512": "sha512-sg7Y946336dIQkke3vytLeQ+CFHefJuwhg++wm9E2Y9HOpC5yjpcc0j3UN5AkvE2xnCvF2mr7Eoaufe0JboHjw==",
       "path": "rulyotano.math.interpolation.bezier/2.0.0",
       "hashPath": "rulyotano.math.interpolation.bezier.2.0.0.nupkg.sha512"
-    },
-    "SharpVectors/1.8.1": {
-      "type": "package",
-      "serviceable": true,
-      "sha512": "sha512-U3zzMm53bcFfqLIFgo9zpCDjqAE2iYtPxzyb4xquJXMYs/ogmvz3//PDahrze6iyQ23fZ4AYLF0yZ9zw9uXkXg==",
-      "path": "sharpvectors/1.8.1",
-      "hashPath": "sharpvectors.1.8.1.nupkg.sha512"
     }
   }
 }

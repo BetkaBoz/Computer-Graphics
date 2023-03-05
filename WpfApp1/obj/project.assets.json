@@ -82,64 +82,6 @@
         "runtime": {
           "lib/net6.0/Rulyotano.Math.Interpolation.Bezier.dll": {}
         }
-      },
-      "SharpVectors/1.8.1": {
-        "type": "package",
-        "compile": {
-          "lib/net6.0-windows7.0/SharpVectors.Converters.Wpf.dll": {
-            "related": ".xml"
-          },
-          "lib/net6.0-windows7.0/SharpVectors.Core.dll": {
-            "related": ".xml"
-          },
-          "lib/net6.0-windows7.0/SharpVectors.Css.dll": {
-            "related": ".xml"
-          },
-          "lib/net6.0-windows7.0/SharpVectors.Dom.dll": {
-            "related": ".xml"
-          },
-          "lib/net6.0-windows7.0/SharpVectors.Model.dll": {
-            "related": ".xml"
-          },
-          "lib/net6.0-windows7.0/SharpVectors.Rendering.Gdi.dll": {
-            "related": ".xml"
-          },
-          "lib/net6.0-windows7.0/SharpVectors.Rendering.Wpf.dll": {
-            "related": ".xml"
-          },
-          "lib/net6.0-windows7.0/SharpVectors.Runtime.Wpf.dll": {
-            "related": ".xml"
-          }
-        },
-        "runtime": {
-          "lib/net6.0-windows7.0/SharpVectors.Converters.Wpf.dll": {
-            "related": ".xml"
-          },
-          "lib/net6.0-windows7.0/SharpVectors.Core.dll": {
-            "related": ".xml"
-          },
-          "lib/net6.0-windows7.0/SharpVectors.Css.dll": {
-            "related": ".xml"
-          },
-          "lib/net6.0-windows7.0/SharpVectors.Dom.dll": {
-            "related": ".xml"
-          },
-          "lib/net6.0-windows7.0/SharpVectors.Model.dll": {
-            "related": ".xml"
-          },
-          "lib/net6.0-windows7.0/SharpVectors.Rendering.Gdi.dll": {
-            "related": ".xml"
-          },
-          "lib/net6.0-windows7.0/SharpVectors.Rendering.Wpf.dll": {
-            "related": ".xml"
-          },
-          "lib/net6.0-windows7.0/SharpVectors.Runtime.Wpf.dll": {
-            "related": ".xml"
-          }
-        },
-        "frameworkReferences": [
-          "Microsoft.WindowsDesktop.App.WPF"
-        ]
       }
     }
   },
@@ -270,148 +212,6 @@
         "rulyotano.math.interpolation.bezier.2.0.0.nupkg.sha512",
         "rulyotano.math.interpolation.bezier.nuspec"
       ]
-    },
-    "SharpVectors/1.8.1": {
-      "sha512": "U3zzMm53bcFfqLIFgo9zpCDjqAE2iYtPxzyb4xquJXMYs/ogmvz3//PDahrze6iyQ23fZ4AYLF0yZ9zw9uXkXg==",
-      "type": "package",
-      "path": "sharpvectors/1.8.1",
-      "files": [
-        ".nupkg.metadata",
-        ".signature.p7s",
-        "docs/SharpVectors.md",
-        "images/SharpVectors64.png",
-        "lib/License.txt",
-        "lib/net40/SharpVectors.Converters.Wpf.dll",
-        "lib/net40/SharpVectors.Converters.Wpf.xml",
-        "lib/net40/SharpVectors.Core.dll",
-        "lib/net40/SharpVectors.Core.xml",
-        "lib/net40/SharpVectors.Css.dll",
-        "lib/net40/SharpVectors.Css.xml",
-        "lib/net40/SharpVectors.Dom.dll",
-        "lib/net40/SharpVectors.Dom.xml",
-        "lib/net40/SharpVectors.Model.dll",
-        "lib/net40/SharpVectors.Model.xml",
-        "lib/net40/SharpVectors.Rendering.Gdi.dll",
-        "lib/net40/SharpVectors.Rendering.Gdi.xml",
-        "lib/net40/SharpVectors.Rendering.Wpf.dll",
-        "lib/net40/SharpVectors.Rendering.Wpf.xml",
-        "lib/net40/SharpVectors.Runtime.Wpf.dll",
-        "lib/net40/SharpVectors.Runtime.Wpf.xml",
-        "lib/net45/SharpVectors.Converters.Wpf.dll",
-        "lib/net45/SharpVectors.Converters.Wpf.xml",
-        "lib/net45/SharpVectors.Core.dll",
-        "lib/net45/SharpVectors.Core.xml",
-        "lib/net45/SharpVectors.Css.dll",
-        "lib/net45/SharpVectors.Css.xml",
-        "lib/net45/SharpVectors.Dom.dll",
-        "lib/net45/SharpVectors.Dom.xml",
-        "lib/net45/SharpVectors.Model.dll",
-        "lib/net45/SharpVectors.Model.xml",
-        "lib/net45/SharpVectors.Rendering.Gdi.dll",
-        "lib/net45/SharpVectors.Rendering.Gdi.xml",
-        "lib/net45/SharpVectors.Rendering.Wpf.dll",
-        "lib/net45/SharpVectors.Rendering.Wpf.xml",
-        "lib/net45/SharpVectors.Runtime.Wpf.dll",
-        "lib/net45/SharpVectors.Runtime.Wpf.xml",
-        "lib/net46/SharpVectors.Converters.Wpf.dll",
-        "lib/net46/SharpVectors.Converters.Wpf.xml",
-        "lib/net46/SharpVectors.Core.dll",
-        "lib/net46/SharpVectors.Core.xml",
-        "lib/net46/SharpVectors.Css.dll",
-        "lib/net46/SharpVectors.Css.xml",
-        "lib/net46/SharpVectors.Dom.dll",
-        "lib/net46/SharpVectors.Dom.xml",
-        "lib/net46/SharpVectors.Model.dll",
-        "lib/net46/SharpVectors.Model.xml",
-        "lib/net46/SharpVectors.Rendering.Gdi.dll",
-        "lib/net46/SharpVectors.Rendering.Gdi.xml",
-        "lib/net46/SharpVectors.Rendering.Wpf.dll",
-        "lib/net46/SharpVectors.Rendering.Wpf.xml",
-        "lib/net46/SharpVectors.Runtime.Wpf.dll",
-        "lib/net46/SharpVectors.Runtime.Wpf.xml",
-        "lib/net47/SharpVectors.Converters.Wpf.dll",
-        "lib/net47/SharpVectors.Converters.Wpf.xml",
-        "lib/net47/SharpVectors.Core.dll",
-        "lib/net47/SharpVectors.Core.xml",
-        "lib/net47/SharpVectors.Css.dll",
-        "lib/net47/SharpVectors.Css.xml",
-        "lib/net47/SharpVectors.Dom.dll",
-        "lib/net47/SharpVectors.Dom.xml",
-        "lib/net47/SharpVectors.Model.dll",
-        "lib/net47/SharpVectors.Model.xml",
-        "lib/net47/SharpVectors.Rendering.Gdi.dll",
-        "lib/net47/SharpVectors.Rendering.Gdi.xml",
-        "lib/net47/SharpVectors.Rendering.Wpf.dll",
-        "lib/net47/SharpVectors.Rendering.Wpf.xml",
-        "lib/net47/SharpVectors.Runtime.Wpf.dll",
-        "lib/net47/SharpVectors.Runtime.Wpf.xml",
-        "lib/net48/SharpVectors.Converters.Wpf.dll",
-        "lib/net48/SharpVectors.Converters.Wpf.xml",
-        "lib/net48/SharpVectors.Core.dll",
-        "lib/net48/SharpVectors.Core.xml",
-        "lib/net48/SharpVectors.Css.dll",
-        "lib/net48/SharpVectors.Css.xml",
-        "lib/net48/SharpVectors.Dom.dll",
-        "lib/net48/SharpVectors.Dom.xml",
-        "lib/net48/SharpVectors.Model.dll",
-        "lib/net48/SharpVectors.Model.xml",
-        "lib/net48/SharpVectors.Rendering.Gdi.dll",
-        "lib/net48/SharpVectors.Rendering.Gdi.xml",
-        "lib/net48/SharpVectors.Rendering.Wpf.dll",
-        "lib/net48/SharpVectors.Rendering.Wpf.xml",
-        "lib/net48/SharpVectors.Runtime.Wpf.dll",
-        "lib/net48/SharpVectors.Runtime.Wpf.xml",
-        "lib/net5.0-windows7.0/SharpVectors.Converters.Wpf.dll",
-        "lib/net5.0-windows7.0/SharpVectors.Converters.Wpf.xml",
-        "lib/net5.0-windows7.0/SharpVectors.Core.dll",
-        "lib/net5.0-windows7.0/SharpVectors.Core.xml",
-        "lib/net5.0-windows7.0/SharpVectors.Css.dll",
-        "lib/net5.0-windows7.0/SharpVectors.Css.xml",
-        "lib/net5.0-windows7.0/SharpVectors.Dom.dll",
-        "lib/net5.0-windows7.0/SharpVectors.Dom.xml",
-        "lib/net5.0-windows7.0/SharpVectors.Model.dll",
-        "lib/net5.0-windows7.0/SharpVectors.Model.xml",
-        "lib/net5.0-windows7.0/SharpVectors.Rendering.Gdi.dll",
-        "lib/net5.0-windows7.0/SharpVectors.Rendering.Gdi.xml",
-        "lib/net5.0-windows7.0/SharpVectors.Rendering.Wpf.dll",
-        "lib/net5.0-windows7.0/SharpVectors.Rendering.Wpf.xml",
-        "lib/net5.0-windows7.0/SharpVectors.Runtime.Wpf.dll",
-        "lib/net5.0-windows7.0/SharpVectors.Runtime.Wpf.xml",
-        "lib/net6.0-windows7.0/SharpVectors.Converters.Wpf.dll",
-        "lib/net6.0-windows7.0/SharpVectors.Converters.Wpf.xml",
-        "lib/net6.0-windows7.0/SharpVectors.Core.dll",
-        "lib/net6.0-windows7.0/SharpVectors.Core.xml",
-        "lib/net6.0-windows7.0/SharpVectors.Css.dll",
-        "lib/net6.0-windows7.0/SharpVectors.Css.xml",
-        "lib/net6.0-windows7.0/SharpVectors.Dom.dll",
-        "lib/net6.0-windows7.0/SharpVectors.Dom.xml",
-        "lib/net6.0-windows7.0/SharpVectors.Model.dll",
-        "lib/net6.0-windows7.0/SharpVectors.Model.xml",
-        "lib/net6.0-windows7.0/SharpVectors.Rendering.Gdi.dll",
-        "lib/net6.0-windows7.0/SharpVectors.Rendering.Gdi.xml",
-        "lib/net6.0-windows7.0/SharpVectors.Rendering.Wpf.dll",
-        "lib/net6.0-windows7.0/SharpVectors.Rendering.Wpf.xml",
-        "lib/net6.0-windows7.0/SharpVectors.Runtime.Wpf.dll",
-        "lib/net6.0-windows7.0/SharpVectors.Runtime.Wpf.xml",
-        "lib/netcoreapp3.1/SharpVectors.Converters.Wpf.dll",
-        "lib/netcoreapp3.1/SharpVectors.Converters.Wpf.xml",
-        "lib/netcoreapp3.1/SharpVectors.Core.dll",
-        "lib/netcoreapp3.1/SharpVectors.Core.xml",
-        "lib/netcoreapp3.1/SharpVectors.Css.dll",
-        "lib/netcoreapp3.1/SharpVectors.Css.xml",
-        "lib/netcoreapp3.1/SharpVectors.Dom.dll",
-        "lib/netcoreapp3.1/SharpVectors.Dom.xml",
-        "lib/netcoreapp3.1/SharpVectors.Model.dll",
-        "lib/netcoreapp3.1/SharpVectors.Model.xml",
-        "lib/netcoreapp3.1/SharpVectors.Rendering.Gdi.dll",
-        "lib/netcoreapp3.1/SharpVectors.Rendering.Gdi.xml",
-        "lib/netcoreapp3.1/SharpVectors.Rendering.Wpf.dll",
-        "lib/netcoreapp3.1/SharpVectors.Rendering.Wpf.xml",
-        "lib/netcoreapp3.1/SharpVectors.Runtime.Wpf.dll",
-        "lib/netcoreapp3.1/SharpVectors.Runtime.Wpf.xml",
-        "sharpvectors.1.8.1.nupkg.sha512",
-        "sharpvectors.nuspec"
-      ]
     }
   },
   "projectFileDependencyGroups": {
@@ -419,8 +219,7 @@
       "MaterialDesignColors >= 2.0.9",
       "MaterialDesignThemes >= 4.6.1",
       "Microsoft.Xaml.Behaviors.Wpf >= 1.1.39",
-      "Rulyotano.Math.Interpolation.Bezier >= 2.0.0",
-      "SharpVectors >= 1.8.1"
+      "Rulyotano.Math.Interpolation.Bezier >= 2.0.0"
     ]
   },
   "packageFolders": {
@@ -482,10 +281,6 @@
           "Rulyotano.Math.Interpolation.Bezier": {
             "target": "Package",
             "version": "[2.0.0, )"
-          },
-          "SharpVectors": {
-            "target": "Package",
-            "version": "[1.8.1, )"
           }
         },
         "imports": [

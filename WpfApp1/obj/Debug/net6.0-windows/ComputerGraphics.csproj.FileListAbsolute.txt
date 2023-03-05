@@ -66,14 +66,6 @@ D:\School Stuffs\DIPLOMOVKA\Computer Graphics\WpfApp1\bin\Debug\net6.0-windows\M
 D:\School Stuffs\DIPLOMOVKA\Computer Graphics\WpfApp1\bin\Debug\net6.0-windows\Rulyotano.Math.dll
 D:\School Stuffs\DIPLOMOVKA\Computer Graphics\WpfApp1\bin\Debug\net6.0-windows\Rulyotano.Math.Geometry.dll
 D:\School Stuffs\DIPLOMOVKA\Computer Graphics\WpfApp1\bin\Debug\net6.0-windows\Rulyotano.Math.Interpolation.Bezier.dll
-D:\School Stuffs\DIPLOMOVKA\Computer Graphics\WpfApp1\bin\Debug\net6.0-windows\SharpVectors.Converters.Wpf.dll
-D:\School Stuffs\DIPLOMOVKA\Computer Graphics\WpfApp1\bin\Debug\net6.0-windows\SharpVectors.Core.dll
-D:\School Stuffs\DIPLOMOVKA\Computer Graphics\WpfApp1\bin\Debug\net6.0-windows\SharpVectors.Css.dll
-D:\School Stuffs\DIPLOMOVKA\Computer Graphics\WpfApp1\bin\Debug\net6.0-windows\SharpVectors.Dom.dll
-D:\School Stuffs\DIPLOMOVKA\Computer Graphics\WpfApp1\bin\Debug\net6.0-windows\SharpVectors.Model.dll
-D:\School Stuffs\DIPLOMOVKA\Computer Graphics\WpfApp1\bin\Debug\net6.0-windows\SharpVectors.Rendering.Gdi.dll
-D:\School Stuffs\DIPLOMOVKA\Computer Graphics\WpfApp1\bin\Debug\net6.0-windows\SharpVectors.Rendering.Wpf.dll
-D:\School Stuffs\DIPLOMOVKA\Computer Graphics\WpfApp1\bin\Debug\net6.0-windows\SharpVectors.Runtime.Wpf.dll
 D:\School Stuffs\DIPLOMOVKA\Computer Graphics\WpfApp1\obj\Debug\net6.0-windows\ComputerGraphics.csproj.AssemblyReference.cache
 D:\School Stuffs\DIPLOMOVKA\Computer Graphics\WpfApp1\obj\Debug\net6.0-windows\Theme\MenuButtonTheme.baml
 D:\School Stuffs\DIPLOMOVKA\Computer Graphics\WpfApp1\obj\Debug\net6.0-windows\Theme\TextboxTheme.baml

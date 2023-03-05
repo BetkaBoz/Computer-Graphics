@@ -137,17 +137,21 @@
                         Margin="0,0,0,0"
                         Foreground="#FF424242" 
                         Command="{Binding CloseCommand}">
-                    <Image Source="/Images/switch.png" Width="35"/>
+                    <Image Width="35">
+                        <Image.Source>
+                            <BitmapImage DecodePixelWidth="50" UriSource="/Images/switch.png"/>
+                        </Image.Source>
+                    </Image>
                 </Button>
             </StackPanel>
 
-            <!--<TextBox Width="250"
+            <TextBox Width="250"
                        Height="40"
                        VerticalAlignment="Center"
                        HorizontalAlignment="Left"
                        Margin="5"
                        Grid.Column="1"
-                       Style="{StaticResource ResourceKey=ModernTextbox}" />-->
+                       Style="{StaticResource ResourceKey=ModernTextbox}" />
 
             <Button VerticalAlignment="Center"
                         HorizontalAlignment="Right"

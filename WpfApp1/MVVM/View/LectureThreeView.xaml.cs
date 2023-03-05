@@ -31,6 +31,8 @@ namespace ComputerGraphics.MVVM.View
 
         string? transformName;
 
+        bool allowAddNodes;
+
         Point currentPoint;
         Point lastPoint;
         List<Point> pointsList = new();
@@ -83,29 +85,33 @@ namespace ComputerGraphics.MVVM.View
 
         private void AddNode(object sender, MouseButtonEventArgs e)
         {
-            currentPoint = new Point();
-            if (e.ButtonState == MouseButtonState.Pressed) currentPoint = e.GetPosition(canvas);
-
-            var draw = DrawPoint(currentPoint);
-
-            // nakleslenie bodu s textom na canvas
-            if (lastPoint != currentPoint && pointCount < 7)
+            if (allowAddNodes)
             {
-                canvas.Children.Add(draw.ellipse);
-                canvas.Children.Add(draw.text);
+                currentPoint = new Point();
+                if (e.ButtonState == MouseButtonState.Pressed) currentPoint = e.GetPosition(canvas);
 
-                pointsList.Add(currentPoint);
+                var draw = DrawPoint(currentPoint);
 
-                pointCount++;
+                // nakleslenie bodu s textom na canvas
+                if (lastPoint != currentPoint && pointCount < 7)
+                {
+                    canvas.Children.Add(draw.ellipse);
+                    canvas.Children.Add(draw.text);
+
+                    pointsList.Add(currentPoint);
+
+                    pointCount++;
+                }
+
+                // skrytie/zobrazenie buttonov a textov
+                if (pointCount == 1) refresh.Visibility = Visibility.Visible;
+                if (pointCount > 2)
+                {
+                    connect.Visibility = Visibility.Visible;
+                    textAddNodes.Visibility = Visibility.Hidden;
+                }
             }
-
-            // skrytie/zobrazenie buttonov a textov
-            if (pointCount == 1) refresh.Visibility = Visibility.Visible;
-            if (pointCount > 2)
-            {
-                connect.Visibility = Visibility.Visible;
-                textAddNodes.Visibility = Visibility.Hidden;
-            }
+            else return;
         }
 
         private void RefreshCanvas(object sender, MouseButtonEventArgs e)
@@ -131,6 +137,8 @@ namespace ComputerGraphics.MVVM.View
             connect.Visibility = Visibility.Hidden;
 
             SwitchName(Visibility.Hidden);
+
+            allowAddNodes = true;
         }
 
         private void Connection(List<Point> pointsList)
@@ -162,6 +170,8 @@ namespace ComputerGraphics.MVVM.View
             pointsQueue = new(pointsList);
 
             pointCount = 0;
+
+            allowAddNodes = false;
         }
 
         private void SwitchName(Visibility visibility)

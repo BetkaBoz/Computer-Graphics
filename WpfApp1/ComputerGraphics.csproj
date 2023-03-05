@@ -12,7 +12,6 @@
     <None Remove="Images\bitmap_canvas.png" />
     <None Remove="Images\cohenalg.png" />
     <None Remove="Images\dog.png" />
-    <None Remove="Images\dog.svg" />
     <None Remove="Images\logout.png" />
     <None Remove="Images\next.png" />
     <None Remove="Images\pozadie.png" />
@@ -21,24 +20,22 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Page Remove="Images\dogSVG.xaml" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Resource Include="Images\arrow.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
-    <Resource Include="Images\bitmap_canvas.png" />
     <Resource Include="Images\cohenalg.png" />
     <Resource Include="Images\dog.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
-    <Resource Include="Images\dog.svg">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Resource>
+    <Resource Include="Images\dogSVG.xaml" />
     <Resource Include="Images\logout.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
     <Resource Include="Images\next.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Resource>
-    <Resource Include="Images\pozadie.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
     <Resource Include="Images\return.png">
@@ -54,7 +51,6 @@
     <PackageReference Include="MaterialDesignThemes" Version="4.6.1" />
     <PackageReference Include="Microsoft.Xaml.Behaviors.Wpf" Version="1.1.39" />
     <PackageReference Include="Rulyotano.Math.Interpolation.Bezier" Version="2.0.0" />
-    <PackageReference Include="SharpVectors" Version="1.8.1" />
   </ItemGroup>
 
   <ItemGroup>

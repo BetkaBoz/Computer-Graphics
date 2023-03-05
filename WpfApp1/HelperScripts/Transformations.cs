@@ -26,6 +26,8 @@ namespace ComputerGraphics.HelperScripts
 
             point.X = (x * Math.Cos(rotation)) - (y * Math.Sin(rotation));
             point.Y = (x * Math.Sin(rotation)) + (y * Math.Cos(rotation));
+
+            Debug.WriteLine("it rotated");
         }
 
         public static void CalculateScale(ref Point point, double scale)

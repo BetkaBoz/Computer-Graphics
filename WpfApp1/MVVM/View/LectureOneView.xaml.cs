@@ -39,24 +39,24 @@ namespace ComputerGraphics.MVVM.View
             vector.MouseMove += Vector_MouseMove;
         }
 
-        private void Slider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
-        {
-            TransformGroup transformRasterGroup = (TransformGroup)raster.RenderTransform;
-            ScaleTransform transformRaster = (ScaleTransform)transformRasterGroup.Children[0];
+        //private void Slider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
+        //{
+        //    TransformGroup transformRasterGroup = (TransformGroup)raster.RenderTransform;
+        //    ScaleTransform transformRaster = (ScaleTransform)transformRasterGroup.Children[0];
 
-            TransformGroup transformVectorGroup = (TransformGroup)vector.RenderTransform;
-            ScaleTransform transformVector = (ScaleTransform)transformVectorGroup.Children[0];
+        //    TransformGroup transformVectorGroup = (TransformGroup)vector.RenderTransform;
+        //    ScaleTransform transformVector = (ScaleTransform)transformVectorGroup.Children[0];
 
-            double zoom = e.NewValue + 1;
+        //    double zoom = e.NewValue + 1;
 
-            transformRaster.ScaleX = zoom;
-            transformRaster.ScaleY = zoom;
+        //    transformRaster.ScaleX = zoom;
+        //    transformRaster.ScaleY = zoom;
 
             
 
-            transformVector.ScaleX = zoom;
-            transformVector.ScaleY = zoom;
-        }
+        //    transformVector.ScaleX = zoom;
+        //    transformVector.ScaleY = zoom;
+        //}
 
         private void Canvas_MouseWheel(object sender, MouseWheelEventArgs e)
         {
@@ -104,12 +104,6 @@ namespace ComputerGraphics.MVVM.View
             origin.Y = vector.RenderTransform.Value.OffsetY;
         }
 
-        private void image_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
-        {
-            raster.ReleaseMouseCapture();
-            vector.ReleaseMouseCapture();
-        }
-
         private void Canvas_MouseMove(object sender, MouseEventArgs e)
         {
             Point canvasPoint = e.MouseDevice.GetPosition(canvasRaster);
@@ -146,6 +140,12 @@ namespace ComputerGraphics.MVVM.View
             mV.OffsetX = origin.X + (canvasPoint.X - startV.X);
             mV.OffsetY = origin.Y + (canvasPoint.Y - startV.Y);
             vector.RenderTransform = new MatrixTransform(mV);
+        }
+
+        private void image_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
+        {
+            raster.ReleaseMouseCapture();
+            vector.ReleaseMouseCapture();
         }
     }
 }
