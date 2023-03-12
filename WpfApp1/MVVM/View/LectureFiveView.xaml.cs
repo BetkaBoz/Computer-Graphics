@@ -56,7 +56,7 @@ namespace ComputerGraphics.MVVM.View
                 {
                     //create Rectangle
                     rectangle = new();
-                    rectangle.StrokeThickness = 1;
+                    rectangle.StrokeThickness = 1f;
                     rectangle.Stroke = new SolidColorBrush(Colors.LightGray);
                     rectangle.Fill = new SolidColorBrush(Colors.White);
                     rectangle.Width = 20;
@@ -109,6 +109,7 @@ namespace ComputerGraphics.MVVM.View
             {
                 textAddNodes.Visibility = Visibility.Hidden;
                 stackPanel.Visibility = Visibility.Visible;
+                refresh.Visibility = Visibility.Visible;
             }
             else stackPanel.Visibility = Visibility.Hidden;
         }
@@ -127,6 +128,8 @@ namespace ComputerGraphics.MVVM.View
             _rectangles.Clear();
             _rects.Clear();
             CircleRasterization.pointsList.Clear();
+
+            refresh.Visibility = Visibility.Hidden;
 
             DrawPixelsOnCanvas();
         }

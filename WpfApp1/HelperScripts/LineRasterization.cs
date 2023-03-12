@@ -56,14 +56,14 @@ namespace ComputerGraphics.HelperScripts
 
             for (int x = x1 + 1; x <= x2; x++)
             {
-                // E > east is chosen
+                // E -> east is chosen
                 if (decison > 0)
                 {
                     y++;
                     newPoints.Add(new Point(x, y));
                     decison += 2 * (pointY - pointX);
                 }
-                // NE > north east is chosen
+                // NE -> north east is chosen
                 else
                 {
                     newPoints.Add(new Point(x, y));
@@ -85,12 +85,12 @@ namespace ComputerGraphics.HelperScripts
             double steps = Math.Max(Math.Abs(pointX), Math.Abs(pointY));
 
             // calculate the increment values for x and y
-            double xIncrement = pointX / steps;
-            double yIncrement = pointY / steps;
+            int xIncrement = (int)(pointX / steps);
+            int yIncrement = (int)(pointY / steps);
 
-            // Sst the starting coordinates
-            double x = pointsList[0].X;
-            double y = pointsList[0].Y;
+            // set the starting coordinates
+            int x = (int)pointsList[0].X;
+            int y = (int)pointsList[0].Y;
 
             // draw the points line
             for (int i = 0; i < steps; i++)
@@ -112,6 +112,7 @@ namespace ComputerGraphics.HelperScripts
             int y1 = (int)pointsList[0].Y;
             int y2 = (int)pointsList[1].Y;
 
+            // delta
             int dx = Math.Abs(x2 - x1);
             int dy = Math.Abs(y2 - y1);
 

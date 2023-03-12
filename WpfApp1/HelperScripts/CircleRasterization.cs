@@ -19,28 +19,24 @@ namespace ComputerGraphics.HelperScripts
 
         public static void KartezianCoordinates(Point center, Canvas canvas, int radius)
         {
-            for (int x = (int)center.X - radius; x <= center.X + radius; x++)
+            int x, y;
+            for (x = (int)center.X - radius; x <= center.X + radius; x++)
             {
-                int y = (int)center.Y + (int)Math.Round(Math.Sqrt(radius * radius - (x - center.X) * (x - center.X)));
-                SetPoint(x, y);
-                SetPixel(canvas, x, (int)y);
+                int _y = (int)center.Y + (int)Math.Round(Math.Sqrt(radius * radius - (x - center.X) * (x - center.X)));
+                SetPoint(x, _y);
 
-                y = (int)center.Y - (int)Math.Round(Math.Sqrt(radius * radius - (x - center.X) * (x - center.X)));
-                SetPoint(x, y);
-                SetPixel(canvas, x, y);
-                Debug.WriteLine($"{x} , {y}");
+                _y = (int)center.Y - (int)Math.Round(Math.Sqrt(radius * radius - (x - center.X) * (x - center.X)));
+                SetPoint(x, _y);
             }
-            for (int y = (int)center.Y - radius; y <= center.Y + radius; y++)
+            for (y = (int)center.Y - radius; y <= center.Y + radius; y++)
             {
-                int x = (int)center.X + (int)Math.Round(Math.Sqrt(radius * radius - (y - center.Y) * (y - center.Y)));
-                SetPoint(x, y);
-                SetPixel(canvas, x, y);
+                int _x = (int)center.X + (int)Math.Round(Math.Sqrt(radius * radius - (y - center.Y) * (y - center.Y)));
+                SetPoint(_x, y);
 
-                x = (int)center.X - (int)Math.Round(Math.Sqrt(radius * radius - (y - center.Y) * (y - center.Y)));
+                _x = (int)center.X - (int)Math.Round(Math.Sqrt(radius * radius - (y - center.Y) * (y - center.Y)));
                 SetPoint(x, y);
-                SetPixel(canvas, x, y);
-                Debug.WriteLine($"{x} , {y}");
             }
+            SetPixel(canvas);
         }
 
         public static void PolarCoordinates(Point center, Canvas canvas, int radius)
@@ -48,15 +44,14 @@ namespace ComputerGraphics.HelperScripts
             for (int i = 0; i < 360; i++)
             {
                 double radians = i * Math.PI / 180.0;
-                var x = center.X + (radius * Math.Cos(radians));
-                var y = center.Y + (radius * Math.Sin(radians));
+                int x = (int)(center.X + (radius * Math.Cos(radians)));
+                int y = (int)(center.Y + (radius * Math.Sin(radians)));
 
-                Debug.WriteLine($"{x} , {y}");
+                Debug.WriteLine($"x: {x} , y: {y}");
 
                 SetPoint(x, y);
-
-                SetPixel(canvas, (int)x, (int)y);
             }
+            SetPixel(canvas);
         }
 
         public static void BersenhamCircle(Point center, Canvas canvas, int radius)
@@ -76,21 +71,21 @@ namespace ComputerGraphics.HelperScripts
                 SetPoint(x + center.X, -y + center.Y);
                 SetPoint(y + center.X, -x + center.Y);
 
-                SetPixel(canvas, x, y);
+                Debug.WriteLine($"stredový bod: {center.X}, {center.Y}, x: {x} , y: {y}");
 
-                Debug.WriteLine($"{center.X}, {center.Y}, {x} , {y}");
-
-                if (d < 0)  d = d + 4 * x + 6;
+                if (d < 0) d = d + 4 * (x - y) + 6;
                 else
                 {
                     d = d + 4 * (x - y) + 10;
                     y--;
+                    
                 }
                 x++;
             }
+            SetPixel(canvas);
         }
 
-        private static void SetPixel(Canvas canvas, int x, int y)
+        private static void SetPixel(Canvas canvas)
         {
             Point point;
             Rectangle rectangle;
@@ -103,7 +98,7 @@ namespace ComputerGraphics.HelperScripts
                 {
                     int indexOfRect = LectureFiveView._rects.IndexOf(rec);
 
-                    if (rec.Contains(point) && x >= 0 && x < canvas.Width && y >= 0 && y < canvas.Height)
+                    if (rec.Contains(point) && point.X >= 0 && point.X <= canvas.Width && point.Y >= 0 && point.Y <= canvas.Height)
                     {
                         rectangle = LectureFiveView._rectangles[indexOfRect];
                         rectangle.Fill = new SolidColorBrush(Colors.DarkGray);
@@ -114,9 +109,7 @@ namespace ComputerGraphics.HelperScripts
 
         public static void SetPoint(double pixelX, double pixelY)
         {
-            Point point;
-
-            point = new(pixelX, pixelY);
+            Point point = new(pixelX, pixelY);
             pointsList.Add(point);
         }
     }
