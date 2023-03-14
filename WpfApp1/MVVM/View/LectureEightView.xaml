@@ -56,7 +56,7 @@
                 <TextBlock HorizontalAlignment="Left" 
                    Grid.Row="0" Grid.Column="0"
                    Margin="10,30,0,0"
-                   Text="S krivkami sa stretávame pri modelovaní v trojrozmernom alebo dvojrozmernom priestore, pri definíciifontov, pri určovaní dráhy pohybujúcich sa objektov v počítačovej animácii a pod. Na
+                   Text="S krivkami sa stretávame pri modelovaní v trojrozmernom alebo dvojrozmernom priestore, pri definícii fontov, pri určovaní dráhy pohybujúcich sa objektov v počítačovej animácii a pod. Na
 rôzne účely sa používa rôzne vyjadrenie kriviek: explicitné, implicitné a parametrické. Parametrické vyjadrenie sa v počítačovej grafike používa najčastejšie."
                    TextWrapping="Wrap"
                    FontSize="12" Foreground="#FF424242"/>
@@ -74,7 +74,7 @@ rôzne účely sa používa rôzne vyjadrenie kriviek: explicitné, implicitné 
                             Foreground="#FF424242"
                             FontSize="12"
                             Cursor="Arrow"
-                            Text="koncové body sú významné pre položenie krivky
+                            Text="Koncové body sú významné pre položenie krivky
 (krivka nimi prechádza). Vektory potom určujú mieru vyklenutia krivky. Čím je veľkosť
 vektora väčšia, tým viac sa k nemu krivka priťahuje. Krivka je zadaná bodmi P0, P1
 a vektormi 0 1 P′, P′ . Rovnica výslednej krivky má tvar: 
@@ -85,7 +85,7 @@ a vektormi 0 1 P′, P′ . Rovnica výslednej krivky má tvar:
                             FontSize="12"
                             FontStyle="Italic"
                             Cursor="Arrow"
-                            Text="P(t) = O0F1(t) + P1F2(t) + P'0F3(t) + P'1F4(t)"/>
+                            Text="P(t) = P0F1(t) + P1F2(t) + P'0F3(t) + P'1F4(t)"/>
                         <TextBlock  TextWrapping="Wrap"
                             FontWeight="Normal"
                             Foreground="#FF424242"
@@ -155,7 +155,7 @@ teda prechádza koncovými bodmi. "/>
                             Foreground="#FF424242"
                             FontSize="12"
                             Cursor="Arrow"
-                            Text="&#x0a;kde t JE 〈0,1〉 a B0, B1, B2, B3 sú kubické polynómy tvaru: "/>
+                            Text="&#x0a;kde t je 〈0,1〉 a B0, B1, B2, B3 sú kubické polynómy tvaru: "/>
                         <TextBlock  TextWrapping="Wrap"
                             FontWeight="Normal"
                             Foreground="#FF424242"
@@ -203,13 +203,13 @@ teda prechádza koncovými bodmi. "/>
                             FontSize="12"
                             FontStyle="Italic"
                             Cursor="Arrow"
-                            Text="P(t) = 1/3[P1C(t) + P2C2(t) + P3C3(t) + P4C4(t)]"/>
+                            Text="P(t) = 1/3[P1C(t) + P2C2(t) + P3C3(t) + P4C4(t)"/>
                         <TextBlock  TextWrapping="Wrap"
                             FontWeight="Normal"
                             Foreground="#FF424242"
                             FontSize="12"
                             Cursor="Arrow"
-                            Text="&#x0a;kde t JE 〈0,1〉 a C1, C2, C3, C4 sú kubické polynómy tvaru: "/>
+                            Text="&#x0a;kde t je 〈0,1〉 a C1, C2, C3, C4 sú kubické polynómy tvaru: "/>
                         <TextBlock  TextWrapping="Wrap"
                             FontWeight="Normal"
                             Foreground="#FF424242"

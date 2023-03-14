@@ -41,17 +41,17 @@ namespace ComputerGraphics.MVVM.View
 
         private void DrawPixelsOnCanvas()
         {
-            for(int i = 0; i < 320; i += 20)
+            for(int i = 0; i < 320; i += 10)
             {
-                for (int j = 0; j < 320; j += 20)
+                for (int j = 0; j < 320; j += 10)
                 {
                     //create Rectangle
                     rectangle = new(); 
                     rectangle.StrokeThickness = 1;  
                     rectangle.Stroke = new SolidColorBrush(Colors.LightGray); 
                     rectangle.Fill = new SolidColorBrush(Colors.White);
-                    rectangle.Width = 20;
-                    rectangle.Height = 20;
+                    rectangle.Width = 10;
+                    rectangle.Height = 10;
 
                     rectangle.Name = $"pixel{pixelYCount}{pixelXCount}";
                     pixelXCount++;
@@ -60,8 +60,8 @@ namespace ComputerGraphics.MVVM.View
 
                     //create Rect
                     rect = new();
-                    rect.Width = 20;
-                    rect.Height = 20;
+                    rect.Width = 10;
+                    rect.Height = 10;
                     rect.Location = new Point(j, i);
 
                     _rects.Add(rect);

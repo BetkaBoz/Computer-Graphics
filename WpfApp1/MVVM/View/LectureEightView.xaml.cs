@@ -29,10 +29,6 @@ namespace ComputerGraphics.MVVM.View
         List<Point> pointsListNew = new();
         Queue<Point> pointsQueue = new();
 
-        protected bool isDragging;
-        Point clickPosition;
-        TranslateTransform originTT;
-
         public LectureEightView()
         {
             InitializeComponent();
@@ -139,8 +135,6 @@ namespace ComputerGraphics.MVVM.View
             Polyline line = new();
             PointCollection collection = new(pointsList);
 
-           // collection.Add(pointsList[0]);  //prida sa prvy body znovu do listu aby sa všetky body spojili
-
             line.Points = collection;
             line.Stroke = Brushes.Black;
             line.Visibility = Visibility.Visible;
@@ -156,8 +150,6 @@ namespace ComputerGraphics.MVVM.View
             Connection(pointsList);
 
             connect.Visibility = Visibility.Hidden;
-            //textAddNodes.Visibility = Visibility.Visible;
-            //textAddNodes.Text = "Na canvase môžete presúvať jednotlivé body";
 
             Debug.WriteLine(cubicsName);
 

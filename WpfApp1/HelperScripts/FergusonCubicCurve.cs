@@ -36,8 +36,6 @@ namespace ComputerGraphics.HelperScripts
                 double x = a1 * p1.X + a2 * p2.X + a3 * p3.X + a4 * p4.X;
                 double y = a1 * p1.Y + a2 * p2.Y + a3 * p3.Y + a4 * p4.Y;
 
-                //outputPoints[i] = new Point(x, y);
-
                 Point outputPointsList = new(x, y);
                 _outputPoints.Add(outputPointsList);
             }

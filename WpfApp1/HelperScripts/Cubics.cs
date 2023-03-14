@@ -19,60 +19,39 @@ namespace ComputerGraphics.HelperScripts
         public static PathFigureCollection pthFigureCollection = new();
 
         public static void Ferguson(Canvas canvas, List<Point> pointsList)
-        {   
-            path.Stroke = Brushes.Black;
+        {
+            path.Stroke = Brushes.Purple;
             path.StrokeThickness = 2;
 
             FergusonCubicCurve fergusonCubic = new(pointsList);
 
-            pathFigure.StartPoint = new Point(fergusonCubic._outputPoints[0], fergusonCubic.outputPoints[0, 1]);
+            pathFigure.StartPoint = new Point(fergusonCubic._outputPoints[0].X, fergusonCubic._outputPoints[0].Y);
 
             BezierSegment bezierSegment = new BezierSegment();
-            bezierSegment.Point1 = new Point(fergusonCubic.outputPoints[1], fergusonCubic.outputPoints[1, 1]);
-            bezierSegment.Point2 = new Point(fergusonCubic.outputPoints[2], fergusonCubic.outputPoints[2, 1]);
-            bezierSegment.Point3 = new Point(fergusonCubic.outputPoints[3], fergusonCubic.outputPoints[3, 1]);
+            bezierSegment.Point1 = new Point(fergusonCubic._outputPoints[1].X, fergusonCubic._outputPoints[1].Y);
+            bezierSegment.Point2 = new Point(fergusonCubic._outputPoints[2].X, fergusonCubic._outputPoints[2].Y);
+            bezierSegment.Point3 = new Point(fergusonCubic._outputPoints[3].X, fergusonCubic._outputPoints[3].Y);
 
             pathFigure.Segments.Add(bezierSegment);
             pathGeometry.Figures.Add(pathFigure);
             path.Data = pathGeometry;
 
             canvas.Children.Add(path);
-
-            //BezierSegment curve = new BezierSegment(pointsList[1], pointsList[3], pointsList[2], true);
-
-            //// Set up the Path to insert the segments
-            //PathGeometry path = new(); 
-
-            //pathFigure.StartPoint = pointsList[0];
-            //pathFigure.IsClosed = false;
-            //pathFigure.Segments.Add(curve);
-            //path.Figures.Add(pathFigure);
-
-            //Path arcPath = new();
-            //arcPath.Stroke = Brushes.Purple;
-            //arcPath.StrokeThickness = 1;
-            //arcPath.Data = path;
-
-            //canvas.Children.Add(arcPath);
         }
 
         public static void Bezier(Canvas canvas, List<Point> pointsList)
         {
+            path.Stroke = Brushes.Purple;
+            path.StrokeThickness = 2;
+
             pathFigure.StartPoint = pointsList[0];
 
-            QuadraticBezierSegment qbzSeg = new();
-            qbzSeg.Point1 = new Point((pointsList[1].X + pointsList[1].Y) / 2, (pointsList[2].X + pointsList[2].Y) / 2);
-            qbzSeg.Point2 = pointsList[3];
+            QuadraticBezierSegment qbezierSegment = new();
+            qbezierSegment.Point1 = new Point((pointsList[1].X + pointsList[1].Y) / 2, (pointsList[2].X + pointsList[2].Y) / 2);
+            qbezierSegment.Point2 = pointsList[3];
 
-            myPathSegmentCollection.Add(qbzSeg);
-
-            pathFigure.Segments = myPathSegmentCollection;
-            pthFigureCollection.Add(pathFigure);
-
-            pathGeometry.Figures = pthFigureCollection;
-
-            path.Stroke = Brushes.Purple;
-            path.StrokeThickness = 1;
+            pathFigure.Segments.Add(qbezierSegment);
+            pathGeometry.Figures.Add(pathFigure);
             path.Data = pathGeometry;
 
             canvas.Children.Add(path);
@@ -80,29 +59,42 @@ namespace ComputerGraphics.HelperScripts
 
         public static void Coons(Canvas canvas, List<Point> pointsList)
         {
+            path.Stroke = Brushes.Purple;
+            path.StrokeThickness = 2;
+
             pathFigure.StartPoint = pointsList[0];
 
-            QuadraticBezierSegment qbzSeg = new();
-            qbzSeg.Point1 = new Point((pointsList[1].X + pointsList[1].Y) / 2, (pointsList[2].X + pointsList[2].Y) / 2);
-            qbzSeg.Point2 = pointsList[3];
+            // loop through each pair of adjacent control points, except for the first and last
+            for (int i = 0; i < pointsList.Count - 1; i++)
+            {
+                // calculate the intermediate control points
+                Point p0 = pointsList[i];
+                Point p3 = pointsList[i + 1];
 
-            PathSegmentCollection myPathSegmentCollection = new();
-            myPathSegmentCollection.Add(qbzSeg);
+                Point p1, p2;
 
-            pathFigure.Segments = myPathSegmentCollection;
-
-            PathFigureCollection pthFigureCollection = new();
-            pthFigureCollection.Add(pathFigure);
-
-            PathGeometry pthGeometry = new PathGeometry();
-            pthGeometry.Figures = pthFigureCollection;
-
-            Path arcPath = new();
-            arcPath.Stroke = Brushes.Purple;
-            arcPath.StrokeThickness = 1;
-            arcPath.Data = pthGeometry;
-
-            canvas.Children.Add(arcPath);
+                // calculate p1 for the first curve
+                if (i == 0) p1 = new Point(p0.X + (p3.X - p0.X) / 3, p0.Y + (p3.Y - p0.Y) / 3);
+                // calculate p1 for the middle curves
+                else
+                {
+                    Point p0prev = pointsList[i - 1];
+                    p1 = new Point(p0.X + (p3.X - p0prev.X) / 3, p0.Y + (p3.Y - p0prev.Y) / 3);
+                }
+                // calculate p2 for the last curve
+                if (i == pointsList.Count - 2) p2 = new Point(p3.X - (p3.X - p0.X) / 3, p3.Y - (p3.Y - p0.Y) / 3);
+                // calculate p2 for the middle curves
+                else
+                {
+                    Point p3next = pointsList[i + 2];
+                    p2 = new Point(p3.X - (p3next.X - p0.X) / 3, p3.Y - (p3next.Y - p0.Y) / 3);
+                }
+                BezierSegment bezierSegment = new BezierSegment(p1, p2, p3, true);
+                pathFigure.Segments.Add(bezierSegment);
+            }
+            pathGeometry.Figures.Add(pathFigure);
+            path.Data = pathGeometry;
+            canvas.Children.Add(path);
         }
     }
 }
