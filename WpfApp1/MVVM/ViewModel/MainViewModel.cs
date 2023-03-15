@@ -27,6 +27,7 @@ namespace ComputerGraphics.MVVM.ViewModel
         public RelayCommand lectureSixViewCommand { get; set; }
         public RelayCommand lectureSevenViewCommand { get; set; }
         public RelayCommand lectureEightViewCommand { get; set; }
+        public RelayCommand loginViewCommand { get; set; }
 
         public HomeViewModel homeViewModel { get; set; }
         public LecturesViewModel lecturesViewModel { get; set; }
@@ -38,6 +39,7 @@ namespace ComputerGraphics.MVVM.ViewModel
         public LectureSixViewModel lectureSixViewModel { get; set; }
         public LectureSevenViewModel lectureSevenViewModel { get; set; }
         public LectureEightViewModel lectureEightViewModel { get; set; }
+        public LoginViewModel loginViewModel { get; set; }
 
         public object CurrentView
         {
@@ -61,6 +63,7 @@ namespace ComputerGraphics.MVVM.ViewModel
             lectureSixViewModel = new LectureSixViewModel();
             lectureSevenViewModel = new LectureSevenViewModel();
             lectureEightViewModel = new LectureEightViewModel();
+            loginViewModel = new LoginViewModel();
 
             CurrentView = homeViewModel;
 
@@ -113,7 +116,13 @@ namespace ComputerGraphics.MVVM.ViewModel
             {
                 CurrentView = lectureEightViewModel;
             });
+
+            loginViewCommand = new RelayCommand(o =>
+            {
+                CurrentView = loginViewModel;
+            });
         }
+
 
         private void CloseWindow(object obj)
         {

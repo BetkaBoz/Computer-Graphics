@@ -161,7 +161,7 @@
                         Width="110" Height="100"
                         Margin="0,0,0,0"
                         Content="Prihlásiť sa"
-                        Command="{Binding CloseCommand}">
+                        Command="{Binding loginViewCommand}">
             </Button>
 
             <ContentControl Grid.Row="1" Grid.Column="1" Margin="10"

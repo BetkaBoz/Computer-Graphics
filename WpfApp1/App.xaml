@@ -56,6 +56,10 @@
                 <view:LectureEightView/>
             </DataTemplate>
 
+            <DataTemplate DataType="{x:Type viewModel:LoginViewModel}">
+                <view:LoginView/>
+            </DataTemplate>
+
         </ResourceDictionary>
     </Application.Resources>
 </Application>

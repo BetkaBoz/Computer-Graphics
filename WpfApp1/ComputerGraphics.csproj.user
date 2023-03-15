@@ -75,6 +75,9 @@
     <Page Update="MVVM\View\LectureTwoView.xaml">
       <SubType>Designer</SubType>
     </Page>
+    <Page Update="MVVM\View\LoginView.xaml">
+      <SubType>Designer</SubType>
+    </Page>
     <Page Update="Theme\MenuButtonTheme.xaml">
       <SubType>Designer</SubType>
     </Page>
