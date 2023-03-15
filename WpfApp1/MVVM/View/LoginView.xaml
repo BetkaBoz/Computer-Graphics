@@ -53,7 +53,7 @@
                                FontWeight="Medium"                           
                                Margin="0,35,0,0"/>
             <TextBox x:Name="txtUser"
-                     Text="{Binding Username, UpdateSourceTrigger=PropertyChanged}"
+                     Text="{Binding UserName, UpdateSourceTrigger=PropertyChanged}"
                              FontSize="13"
                              FontWeight="Medium"                          
                              Foreground="#FF424242"
@@ -63,16 +63,17 @@
                              Height="28"
                              VerticalContentAlignment="Center"
                              Margin="0,5,0,0"
-                             Padding="20,0,0,0">
-            </TextBox>
+                             Padding="20,0,0,0" />
+            
             <TextBlock Text="Heslo"
                                Foreground="#FF424242"
                                FontSize="12"
                                FontWeight="Medium"                          
                                Margin="0,15,0,0"/>
 
-            <customcontrols:BindsablePasswordBox>
-            </customcontrols:BindsablePasswordBox>
+            <customcontrols:BindsablePasswordBox Password="{Binding Password, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                                 Height="28"                            
+                                                 Margin="0,5,0,0" />
 
             <Button x:Name="btnLogin"    
                     Width="100" Height="35" 

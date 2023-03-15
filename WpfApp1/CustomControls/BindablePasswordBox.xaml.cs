@@ -18,14 +18,13 @@ namespace ComputerGraphics.CustomControls
 {
     public partial class BindsablePasswordBox : UserControl
     {
-        public static readonly DependencyProperty PasswordProperty = DependencyProperty.Register("Password", typeof(SecureString), typeof(BindsablePasswordBox));
+        public static readonly DependencyProperty PasswordProperty = DependencyProperty.Register("Password", typeof(string), typeof(BindsablePasswordBox));
 
-        public SecureString PasswordBox 
+        public string Password
         {
-            get { return (SecureString)GetValue(PasswordProperty); }
+            get { return (string)GetValue(PasswordProperty); }
             set { SetValue(PasswordProperty, value); }
         }
-
 
         public BindsablePasswordBox()
         {
@@ -35,7 +34,7 @@ namespace ComputerGraphics.CustomControls
 
         private void OnPasswordChanged(object sender, RoutedEventArgs e)
         {
-            PasswordBox = txtPassword.SecurePassword;
+            Password = txtPassword.Password;
         }
     }
 }

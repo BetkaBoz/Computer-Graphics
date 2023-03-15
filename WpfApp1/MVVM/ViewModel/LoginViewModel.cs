@@ -15,7 +15,7 @@ namespace ComputerGraphics.MVVM.ViewModel
     public class LoginViewModel : ObservableObject
     {
         string _userName;
-        SecureString _password;
+        string _password;
         string _errorMessage;
         bool _isViewVisible = true;
 
@@ -30,7 +30,7 @@ namespace ComputerGraphics.MVVM.ViewModel
             }
         }
 
-        public SecureString Password { 
+        public string Password { 
             get => _password;
             set
             {
