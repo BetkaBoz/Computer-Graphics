@@ -104,7 +104,7 @@ musí mať hodnotu old_value). Ak je to tak, hodnota sa zmení, a potom sa vyše
 &#x0a;&#x0a;Algoritmus sa dá použiť napr. na vykreslenie oblasti inou farbou."/>
                         
                         <Button Content="Výpočet"
-                                x:Name="baseline"
+                                x:Name="floodFill"
                                 Width="70" Height="25" BorderBrush="Transparent"
                                 VerticalAlignment="Bottom" HorizontalAlignment="Right"
                                 Margin="10"
@@ -147,7 +147,7 @@ začať vypĺňať.
 potom sú zafarbené farbou výplne. Takto sa spracujú všetky body oblasti až po hranicu. 
 "/>
                         <Button Content="Výpočet"
-                                x:Name="dda"
+                                x:Name="seedFill"
                                 Width="70" Height="25" BorderBrush="Transparent"
                                 VerticalAlignment="Bottom" HorizontalAlignment="Right"
                                 Margin="10"
@@ -188,7 +188,7 @@ nielen v intervale (XLeft – XRight), ale nad a pod nakreslenou úsečkou smero
 a doprava až k hranici oblasti. Potom je možné vynechať v algoritme krok 2b a zmenšiť počet 
 čítaní z obrazovej pamäti. "/>
                        <Button Content="Výpočet"
-                                x:Name="bersenham"
+                                x:Name="seedLineFill"
                                 Width="70" Height="25" BorderBrush="Transparent"
                                 VerticalAlignment="Bottom" HorizontalAlignment="Right"
                                 Margin="10"
@@ -235,7 +235,7 @@ usporiadaných priesečníkov."/>
                                 Foreground="#FF424242"
                                 FontWeight="Normal"
                                 FontSize="10" 
-                                Click="ShowScanner">
+                                Click="ShowCanvas">
                             <Button.Background>
                                 <LinearGradientBrush EndPoint="0.9,1" StartPoint="0.4,0">
                                     <GradientStop Color="#FF82B2FF"/>
@@ -292,7 +292,7 @@ ktorej úsečka leží&#x0a;"/>
                                 Foreground="#FF424242"
                                 FontWeight="Normal"
                                 FontSize="10" 
-                                Click="ShowScanner">
+                                Click="ShowCanvas">
                             <Button.Background>
                                 <LinearGradientBrush EndPoint="0.9,1" StartPoint="0.4,0">
                                     <GradientStop Color="#FF82B2FF"/>
@@ -321,29 +321,27 @@ ktorej úsečka leží&#x0a;"/>
                 Margin="0,50,0,0"
                 Background="White"
                 Height="320" Width="320" Cursor="Hand" 
-                Visibility="Hidden" 
+                Visibility="Hidden"
                 MouseDown="FillPixel"/>
 
-
-
         <TextBlock Grid.Column="1" Grid.Row="1"
-                   x:Name="textAddNodes"
+                   x:Name="textAddPixel"
                    Visibility="Hidden"
                    VerticalAlignment="Center" HorizontalAlignment="Center"
-                   Text="Na canvase vyznačte mnohouholník"
+                   Text="Spustite vzpĺňanie tlačidlom"
                    Foreground="#FF424242"
                    FontWeight="Normal"
                    Margin="0,270,0,0"
                    Padding="0,10,0,0"/>
 
-        <Button Content="Kresli"
-                x:Name="drawButton"
+        <Button Content="Vyplniť"
+                x:Name="fillButton"
                 Width="100" Height="35" BorderBrush="Transparent"
                 Grid.Column="1" Grid.Row="1"
                 VerticalAlignment="Bottom"
                 Foreground="#FF424242"
                 FontWeight="Normal"
-                Margin="0,0,0,90" 
+                Margin="0,0,0,20" 
                 Visibility="Hidden"
                 Click="ScannerCalculation">
             <Button.Background>

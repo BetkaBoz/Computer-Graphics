@@ -1,4 +1,5 @@
 ﻿using ComputerGraphics.HelperScripts;
+using ComputerGraphics.MVVM.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -47,7 +48,7 @@ namespace ComputerGraphics.MVVM.View
 
         private void Register(object sender, RoutedEventArgs e)
         {
-
+             
         }
 
         private void Login(object sender, RoutedEventArgs e)

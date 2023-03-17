@@ -1,15 +1,24 @@
 {
   "version": 2,
-  "dgSpecHash": "p5aFk6QqMF7Y3Hv8ZpPhOo2bYHWnUvGLXALOtf9Pah4GkS1sKEXucGlxn8KvI253RRwPmYxFYbG6u9DA2ebxwQ==",
+  "dgSpecHash": "JVQXbppFXSt8TPFttK/t7qo6GN1NIumyvdvlvPXblQFY9C27h5LbuoV60k+F3AfAMYRBg1D8RVJlVnXYnuL9Kg==",
   "success": true,
   "projectFilePath": "D:\\School Stuffs\\DIPLOMOVKA\\Computer Graphics\\WpfApp1\\ComputerGraphics.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Elly\\.nuget\\packages\\materialdesigncolors\\2.0.9\\materialdesigncolors.2.0.9.nupkg.sha512",
     "C:\\Users\\Elly\\.nuget\\packages\\materialdesignthemes\\4.6.1\\materialdesignthemes.4.6.1.nupkg.sha512",
+    "C:\\Users\\Elly\\.nuget\\packages\\microsoft.netcore.platforms\\3.1.0\\microsoft.netcore.platforms.3.1.0.nupkg.sha512",
+    "C:\\Users\\Elly\\.nuget\\packages\\microsoft.win32.registry\\4.7.0\\microsoft.win32.registry.4.7.0.nupkg.sha512",
     "C:\\Users\\Elly\\.nuget\\packages\\microsoft.xaml.behaviors.wpf\\1.1.39\\microsoft.xaml.behaviors.wpf.1.1.39.nupkg.sha512",
     "C:\\Users\\Elly\\.nuget\\packages\\rulyotano.math\\2.0.0\\rulyotano.math.2.0.0.nupkg.sha512",
     "C:\\Users\\Elly\\.nuget\\packages\\rulyotano.math.geometry\\2.0.0\\rulyotano.math.geometry.2.0.0.nupkg.sha512",
-    "C:\\Users\\Elly\\.nuget\\packages\\rulyotano.math.interpolation.bezier\\2.0.0\\rulyotano.math.interpolation.bezier.2.0.0.nupkg.sha512"
+    "C:\\Users\\Elly\\.nuget\\packages\\rulyotano.math.interpolation.bezier\\2.0.0\\rulyotano.math.interpolation.bezier.2.0.0.nupkg.sha512",
+    "C:\\Users\\Elly\\.nuget\\packages\\runtime.native.system.data.sqlclient.sni\\4.7.0\\runtime.native.system.data.sqlclient.sni.4.7.0.nupkg.sha512",
+    "C:\\Users\\Elly\\.nuget\\packages\\runtime.win-arm64.runtime.native.system.data.sqlclient.sni\\4.4.0\\runtime.win-arm64.runtime.native.system.data.sqlclient.sni.4.4.0.nupkg.sha512",
+    "C:\\Users\\Elly\\.nuget\\packages\\runtime.win-x64.runtime.native.system.data.sqlclient.sni\\4.4.0\\runtime.win-x64.runtime.native.system.data.sqlclient.sni.4.4.0.nupkg.sha512",
+    "C:\\Users\\Elly\\.nuget\\packages\\runtime.win-x86.runtime.native.system.data.sqlclient.sni\\4.4.0\\runtime.win-x86.runtime.native.system.data.sqlclient.sni.4.4.0.nupkg.sha512",
+    "C:\\Users\\Elly\\.nuget\\packages\\system.data.sqlclient\\4.8.5\\system.data.sqlclient.4.8.5.nupkg.sha512",
+    "C:\\Users\\Elly\\.nuget\\packages\\system.security.accesscontrol\\4.7.0\\system.security.accesscontrol.4.7.0.nupkg.sha512",
+    "C:\\Users\\Elly\\.nuget\\packages\\system.security.principal.windows\\4.7.0\\system.security.principal.windows.4.7.0.nupkg.sha512"
   ],
   "logs": []
 }

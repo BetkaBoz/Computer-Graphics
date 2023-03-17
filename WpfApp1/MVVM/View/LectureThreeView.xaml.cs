@@ -249,8 +249,8 @@ namespace ComputerGraphics.MVVM.View
             double x = point.X;
             double y = point.Y;
 
-            point.X = (x * Math.Cos(_valueRotation)) - (y * Math.Sin(_valueRotation));
-            point.Y = (x * Math.Sin(_valueRotation)) + (y * Math.Cos(_valueRotation));
+            point.X = (x * Math.Cos(_valueRotation)) - (y * Math.Sin(_valueRotation)) + 200;
+            point.Y = (x * Math.Sin(_valueRotation)) + (y * Math.Cos(_valueRotation)) - 20;
 
             var draw = DrawPoint(point);
 

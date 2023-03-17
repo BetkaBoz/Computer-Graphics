@@ -9,10 +9,6 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
 
-    <UserControl.Resources>
-
-    </UserControl.Resources>
-
     <UserControl.DataContext>
         <viewModel:LoginViewModel />
     </UserControl.DataContext>
@@ -27,6 +23,8 @@
             <RowDefinition Height="10"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
+
+        <Frame Name="LoginFrame" NavigationUIVisibility="Hidden" />
 
         <!-- LOGIN -->
         <StackPanel x:Name="loginUser"
@@ -66,32 +64,41 @@
                              Padding="20,0,0,0" />
             
             <TextBlock Text="Heslo"
-                               Foreground="#FF424242"
-                               FontSize="12"
-                               FontWeight="Medium"                          
-                               Margin="0,15,0,0"/>
+                       Foreground="#FF424242"
+                       FontSize="12"
+                       FontWeight="Medium"                          
+                       Margin="0,15,0,0"/>
 
             <customcontrols:BindsablePasswordBox Password="{Binding Password, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                                                  Height="28"                            
                                                  Margin="0,5,0,0" />
 
+            <TextBlock Text="{Binding ErrorMessage}"
+                       Foreground="#FF424242"
+                       FontSize="12"
+                       FontWeight="Medium"                          
+                       Margin="0,10,0,0"
+                       TextWrapping="Wrap"/>
+
             <Button x:Name="btnLogin"    
+                    Command="{Binding LoginCommand}"
                     Width="100" Height="35" 
-                            BorderThickness="0"
-                            Content="PRIHLÁSIŤ"
-                            Foreground="#FF424242"
-                            FontSize="12"
-                            Cursor="Hand"                           
-                            Margin="0,50,0,0"
-                            Click="Login">
+                    BorderThickness="0"
+                    Content="PRIHLÁSIŤ"
+                    Foreground="#FF424242"
+                    FontSize="12"
+                    Cursor="Hand"                           
+                    Margin="0,30,0,0">
+
                 <Button.Background>
                     <LinearGradientBrush EndPoint="0.9,1" StartPoint="0.4,0">
                         <GradientStop Color="#FF82B2FF"/>
                         <GradientStop Color="#FFD48DFF" Offset="1"/>
                     </LinearGradientBrush>
                 </Button.Background>
-            </Button>
 
+            </Button>
+            
             <StackPanel Orientation="Horizontal"
                                 HorizontalAlignment="Center"
                                 Margin="0,15,0,0">

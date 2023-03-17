@@ -1,6 +1,10 @@
 ﻿using ComputerGraphics.Core;
+using ComputerGraphics.MVVM.Model;
+using ComputerGraphics.MVVM.View;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Net;
 using System.Security;
@@ -9,17 +13,20 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using System.Windows.Navigation;
+using WpfApp1;
 
 namespace ComputerGraphics.MVVM.ViewModel
 {
     public class LoginViewModel : ObservableObject
     {
         string _userName;
+        string _email;
         string _password;
         string _errorMessage;
-        bool _isViewVisible = true;
+        bool _isSignedIn = false;
 
-        //IUserRepository userRepository;
+        IUserRepository userRepository;
 
         public string UserName 
         { 
@@ -27,6 +34,16 @@ namespace ComputerGraphics.MVVM.ViewModel
             set {
                 _userName = value;
                 OnPropertyChanged(nameof(UserName));
+            }
+        }
+
+        public string Email
+        {
+            get => _email;
+            set
+            {
+                _email = value;
+                OnPropertyChanged(nameof(Email));
             }
         }
 
@@ -49,12 +66,13 @@ namespace ComputerGraphics.MVVM.ViewModel
             
         }
 
-        public bool IsViewVisible { 
-            get => _isViewVisible;
+        public bool IsSignedIn
+        {
+            get => _isSignedIn;
             set
             {
-                _isViewVisible = value;
-                OnPropertyChanged(nameof(IsViewVisible));
+                _isSignedIn = value;
+                OnPropertyChanged(nameof(IsSignedIn));
             }
         }
 
@@ -77,7 +95,7 @@ namespace ComputerGraphics.MVVM.ViewModel
         private bool CanExecuteLoginCommand(object obj)
         {
             bool validData;
-            if (string.IsNullOrWhiteSpace(UserName) || UserName.Length < 3 ||
+            if (string.IsNullOrWhiteSpace(Email) || Email.Length < 3 ||
                 Password == null || Password.Length < 3)
                 validData = false;
             else
@@ -87,19 +105,17 @@ namespace ComputerGraphics.MVVM.ViewModel
 
         private void ExecuteLoginCommand(object obj)
         {
-            //var isValidUser = userRepository.AuthenticateUser(new NetworkCredential(UserName, Password));
-            //if (isValidUser)
-            //{
-            //    Thread.CurrentPrincipal = new GenericPrincipal(
-            //        new GenericIdentity(UserName), null);
-            //    IsViewVisible = false;
-            //}
-            //else
-            //{
-            //    ErrorMessage = "* Nesprávne meno alebo heslo";
-            //}
+            var isValidUser = userRepository.AuthenticateUser(new NetworkCredential(UserName, Password));
+            if (isValidUser)
+            {
+                Thread.CurrentPrincipal = new GenericPrincipal(new GenericIdentity(UserName), null);
+                IsSignedIn = true;
+                //LoginFrame.NavigationService.Navigate(new HomeView());
+            }
+            else
+            {
+                ErrorMessage = "* Nesprávny email alebo heslo";
+            }
         }
-
-
     }
 }
