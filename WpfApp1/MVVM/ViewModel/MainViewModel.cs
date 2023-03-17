@@ -2,18 +2,32 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using ComputerGraphics.Core;
+using ComputerGraphics.MVVM.Model;
 using ComputerGraphics.MVVM.View;
+using ComputerGraphics.Repositories;
 
 namespace ComputerGraphics.MVVM.ViewModel
 {
-    class MainViewModel : ObservableObject, ICloseWindows
+    class MainViewModel : ObservableObject, ICloseWindow
     {
-        private object _currentView;
-        private DelegateCommand _closeCommand;
+        object _currentView;
+        DelegateCommand _closeCommand;
+        UserAccountModel _currentUserAccount;
+        IUserRepository userRepository;
 
+        public UserAccountModel CurrentUserAccount
+        {
+            get => _currentUserAccount;
+            set
+            {
+                _currentUserAccount = value;
+                OnPropertyChanged(nameof(CurrentUserAccount));
+            }
+        }
         public DelegateCommand CloseCommand => _closeCommand ?? (_closeCommand = new DelegateCommand(CloseWindow));
         public Action Close { get; set; }
 
@@ -50,9 +64,13 @@ namespace ComputerGraphics.MVVM.ViewModel
                 OnPropertyChanged();
             } 
         }
-        
+
         public MainViewModel()
         {
+            userRepository = new UserRepository();
+            CurrentUserAccount = new UserAccountModel();
+            LoadCurrentUserData();
+
             homeViewModel = new HomeViewModel();
             lecturesViewModel = new LecturesViewModel();
             lectureOneViewModel = new LectureOneViewModel();
@@ -122,16 +140,23 @@ namespace ComputerGraphics.MVVM.ViewModel
                 CurrentView = loginViewModel;
             });
         }
-
-
+        private void LoadCurrentUserData()
+        {
+            //var user = userRepository.GetByUserName(Thread.CurrentPrincipal.Identity.Name);
+            //if (user != null)
+            //{
+            //    CurrentUserAccount.Username = user.UserName;
+            //    CurrentUserAccount.DisplayName = $"Welcome {user.Name};)";
+            //}
+            //else
+            //{
+            //    CurrentUserAccount.DisplayName = "Invalid user, not logged in";
+            //    //Hide child views.
+            //}
+        }
         private void CloseWindow(object obj)
         {
             Close?.Invoke();
         }
-    }
-
-    interface ICloseWindows
-    {
-        Action Close { get; set; }
     }
 }

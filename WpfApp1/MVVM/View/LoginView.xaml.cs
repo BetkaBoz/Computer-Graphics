@@ -1,4 +1,5 @@
-﻿using ComputerGraphics.HelperScripts;
+﻿using ComputerGraphics.Core;
+using ComputerGraphics.HelperScripts;
 using ComputerGraphics.MVVM.ViewModel;
 using System;
 using System.Collections.Generic;
@@ -18,9 +19,10 @@ using System.Windows.Shapes;
 
 namespace ComputerGraphics.MVVM.View
 {
-    public partial class LoginView : UserControl
+    public partial class LoginView
     {
         string? stackName;
+
         public LoginView()
         {
             InitializeComponent();
@@ -44,6 +46,16 @@ namespace ComputerGraphics.MVVM.View
                 default:
                     break;
             }
+        }
+
+        private void Window_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            if (e.LeftButton == MouseButtonState.Pressed) DragMove();
+        }
+
+        private void btnClose_Click(object sender, RoutedEventArgs e)
+        {
+            Application.Current.Shutdown();
         }
 
         private void Register(object sender, RoutedEventArgs e)

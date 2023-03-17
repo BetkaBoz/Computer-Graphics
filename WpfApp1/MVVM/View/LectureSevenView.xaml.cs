@@ -16,14 +16,12 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace ComputerGraphics.MVVM.View
-{
-    /// <summary>
-    /// Interaction logic for LectureSevenView.xaml
-    /// </summary>
+{   
     public partial class LectureSevenView : UserControl
     {
         string? algorithmName;
         int x, y;
+        int xx, yy;
 
         Rectangle rectangle;
         Rect rect;
@@ -50,9 +48,24 @@ namespace ComputerGraphics.MVVM.View
             refresh.Visibility = Visibility.Visible;
 
             // draw pixel shape on canvas
-            if (algorithmName.Equals("floodFill") || algorithmName.Equals("seedFill")) FillRecurzivePixels();
-            else if (algorithmName.Equals("seedLineFill")) FillNonRecurzivePixels();
-            else if (algorithmName.Equals("scanner") || algorithmName.Equals("cohren")) ShowScanner();
+            switch(algorithmName)
+            {
+                case "floodFill":
+                    FillFlooDFillPixels();
+                    break;
+                case "seedFill":
+                    FillSeedFillPixels();
+                    break;
+                case "seedLineFill":
+                    FillNonRecurzivePixels();
+                    break;
+                case "scanner":
+                    ShowScanner();
+                    break;
+                case "cohren":
+                    ShowScanner();
+                    break;
+            }
         }
 
         private void DrawPixelsOnCanvas()
@@ -72,7 +85,9 @@ namespace ComputerGraphics.MVVM.View
                     rectangle.Width = 20;
                     rectangle.Height = 20;
 
-                    rectangle.Name = $"pixel{x}{y}";
+                    if (y == 1 && x == 14) rectangle.Name = $"p{y}{x}";
+                    else if (y == 1 && x == 13) rectangle.Name = $"p{y}{x}";
+                    else rectangle.Name = $"pixel{y}{x}";
 
                     _rectangles.Add(rectangle);
 
@@ -91,28 +106,46 @@ namespace ComputerGraphics.MVVM.View
 
                     x++;
                 }
+                x = 1;
                 y++;
             }
         }
+
         private void FillPixel(object sender, MouseButtonEventArgs e)
         {
             var mouseWasDownOn = e.Source as FrameworkElement;
             string pixelName = mouseWasDownOn.Name;
-            Debug.WriteLine(pixelName);
+            Debug.WriteLine($"{pixelName} and rect {rect.Location}");
         }
 
-        private void FillRecurzivePixels()
+        private void FillFlooDFillPixels()
         {
             // start filling from pixel16010
             foreach (var pixel in _rectangles)
             {
-                
-                if (pixel.Name.Equals("pixel554") || pixel.Name.Equals("pixel725") || pixel.Name.Equals("pixel896") || pixel.Name.Equals("pixel1067") || pixel.Name.Equals("pixel1238") || pixel.Name.Equals("pixel1409") || pixel.Name.Equals("pixel15710") || pixel.Name.Equals("pixel17411")
-                    || pixel.Name.Equals("pixel19112") || pixel.Name.Equals("pixel20813") || pixel.Name.Equals("pixel22514") || pixel.Name.Equals("pixel22614") || pixel.Name.Equals("pixel22714") || pixel.Name.Equals("pixel22814") || pixel.Name.Equals("pixel22914") || pixel.Name.Equals("pixel23014")
-                    || pixel.Name.Equals("pixel23114") || pixel.Name.Equals("pixel23214") || pixel.Name.Equals("pixel23314") || pixel.Name.Equals("pixel23414") || pixel.Name.Equals("pixel20112") || pixel.Name.Equals("pixel18411") || pixel.Name.Equals("pixel18411") || pixel.Name.Equals("pixel20112")
-                    || pixel.Name.Equals("pixel16710") || pixel.Name.Equals("pixel1509") || pixel.Name.Equals("pixel20813") || pixel.Name.Equals("pixel21813") || pixel.Name.Equals("pixel574") || pixel.Name.Equals("pixel23514") || pixel.Name.Equals("pixel16710")
-                    || pixel.Name.Equals("pixel564") || pixel.Name.Equals("pixel584") || pixel.Name.Equals("pixel755") || pixel.Name.Equals("pixel926") || pixel.Name.Equals("pixel936") || pixel.Name.Equals("pixel946") || pixel.Name.Equals("pixel956")
-                    || pixel.Name.Equals("pixel1127") || pixel.Name.Equals("pixel1298") || pixel.Name.Equals("pixel1469") || pixel.Name.Equals("pixel1479") || pixel.Name.Equals("pixel1489") || pixel.Name.Equals("pixel1499") || pixel.Name.Equals("pixel1509") )
+
+                if (pixel.Name.Equals("pixel44") || pixel.Name.Equals("pixel54") || pixel.Name.Equals("pixel64") || pixel.Name.Equals("pixel74") || pixel.Name.Equals("pixel84") || pixel.Name.Equals("pixel94") || pixel.Name.Equals("pixel104") || pixel.Name.Equals("pixel46")
+                    || pixel.Name.Equals("pixel124") || pixel.Name.Equals("pixel134") || pixel.Name.Equals("pixel144") || pixel.Name.Equals("pixel145") || pixel.Name.Equals("pixel146") || pixel.Name.Equals("pixel147") || pixel.Name.Equals("pixel148") || pixel.Name.Equals("pixel149")
+                    || pixel.Name.Equals("pixel1410") || pixel.Name.Equals("pixel1411") || pixel.Name.Equals("pixel1412") || pixel.Name.Equals("pixel1413") || pixel.Name.Equals("pixel1414") || pixel.Name.Equals("pixel1314") || pixel.Name.Equals("pixel1214") || pixel.Name.Equals("pixel1114")
+                    || pixel.Name.Equals("pixel1113") || pixel.Name.Equals("pixel1112") || pixel.Name.Equals("pixel1111") || pixel.Name.Equals("pixel1011") || pixel.Name.Equals("pixel911") || pixel.Name.Equals("pixel811") || pixel.Name.Equals("pixel810") || pixel.Name.Equals("pixel57")
+                    || pixel.Name.Equals("pixel810") || pixel.Name.Equals("pixel89") || pixel.Name.Equals("pixel88") || pixel.Name.Equals("pixel87") || pixel.Name.Equals("pixel77") || pixel.Name.Equals("pixel67") || pixel.Name.Equals("pixel47") || pixel.Name.Equals("pixel45") || pixel.Name.Equals("pixel114") )
+                {
+                    pixel.Fill = new SolidColorBrush(Colors.DarkGray);
+                }
+            }
+        }
+
+        private void FillSeedFillPixels()
+        {
+            // start filling from pixel16010
+            foreach (var pixel in _rectangles)
+            {
+
+                if (pixel.Name.Equals("pixel44") || pixel.Name.Equals("pixel54") || pixel.Name.Equals("pixel64") || pixel.Name.Equals("pixel74") || pixel.Name.Equals("pixel84") || pixel.Name.Equals("pixel94") || pixel.Name.Equals("pixel104") || pixel.Name.Equals("pixel46")
+                    || pixel.Name.Equals("pixel124") || pixel.Name.Equals("pixel134") || pixel.Name.Equals("pixel144") || pixel.Name.Equals("pixel145") || pixel.Name.Equals("pixel146") || pixel.Name.Equals("pixel147") || pixel.Name.Equals("pixel148") || pixel.Name.Equals("pixel149")
+                    || pixel.Name.Equals("pixel1410") || pixel.Name.Equals("pixel1411") || pixel.Name.Equals("pixel1412") || pixel.Name.Equals("pixel1413") || pixel.Name.Equals("pixel1414") || pixel.Name.Equals("pixel1314") || pixel.Name.Equals("pixel1214") || pixel.Name.Equals("pixel1114")
+                    || pixel.Name.Equals("pixel1113") || pixel.Name.Equals("pixel1112") || pixel.Name.Equals("pixel1111") || pixel.Name.Equals("pixel1011") || pixel.Name.Equals("pixel911") || pixel.Name.Equals("pixel811") || pixel.Name.Equals("pixel810") || pixel.Name.Equals("pixel57")
+                    || pixel.Name.Equals("pixel810") || pixel.Name.Equals("pixel89") || pixel.Name.Equals("pixel88") || pixel.Name.Equals("pixel87") || pixel.Name.Equals("pixel77") || pixel.Name.Equals("pixel67") || pixel.Name.Equals("pixel47") || pixel.Name.Equals("pixel45") || pixel.Name.Equals("pixel114"))
                 {
                     pixel.Fill = new SolidColorBrush(Colors.DarkGray);
                 }
@@ -124,18 +157,24 @@ namespace ComputerGraphics.MVVM.View
             // start filling from pixel16010
             foreach (var pixel in _rectangles)
             {
-                if (pixel.Name.Equals("pixel373") || pixel.Name.Equals("pixel544") || pixel.Name.Equals("pixel715") || pixel.Name.Equals("pixel886") || pixel.Name.Equals("pixel1057") || pixel.Name.Equals("pixel1057") || pixel.Name.Equals("pixel1228") || pixel.Name.Equals("pixel1399")
-                    || pixel.Name.Equals("pixel15610") || pixel.Name.Equals("pixel17311") || pixel.Name.Equals("pixel19012") || pixel.Name.Equals("pixel20713") || pixel.Name.Equals("pixel22414") || pixel.Name.Equals("pixel24115") || pixel.Name.Equals("pixel383") || pixel.Name.Equals("pixel393")
-                    || pixel.Name.Equals("pixel403") || pixel.Name.Equals("pixel574") || pixel.Name.Equals("pixel745") || pixel.Name.Equals("pixel916") || pixel.Name.Equals("pixel926") || pixel.Name.Equals("pixel1097") || pixel.Name.Equals("pixel1107") || pixel.Name.Equals("pixel1117")
-                    || pixel.Name.Equals("pixel1127") || pixel.Name.Equals("pixel956") || pixel.Name.Equals("pixel966") || pixel.Name.Equals("pixel795") || pixel.Name.Equals("pixel624") || pixel.Name.Equals("pixel453") || pixel.Name.Equals("pixel463") || pixel.Name.Equals("pixel473")
-                    || pixel.Name.Equals("pixel483") || pixel.Name.Equals("pixel493") || pixel.Name.Equals("pixel664") || pixel.Name.Equals("pixel835") || pixel.Name.Equals("pixel1006") || pixel.Name.Equals("pixel1177") || pixel.Name.Equals("pixel1348") || pixel.Name.Equals("pixel1519")
-                    || pixel.Name.Equals("pixel16810") || pixel.Name.Equals("pixel18511") || pixel.Name.Equals("pixel20212") || pixel.Name.Equals("pixel20112") || pixel.Name.Equals("pixel20012") || pixel.Name.Equals("pixel21713") || pixel.Name.Equals("pixel23414") || pixel.Name.Equals("pixel24415")
-                    || pixel.Name.Equals("pixel25115") || pixel.Name.Equals("pixel25015") || pixel.Name.Equals("pixel24915") || pixel.Name.Equals("pixel24815") || pixel.Name.Equals("pixel24715") || pixel.Name.Equals("pixel24615") || pixel.Name.Equals("pixel24515") || pixel.Name.Equals("pixel24315") || pixel.Name.Equals("pixel24215") )
+                if (pixel.Name.Equals("pixel33") || pixel.Name.Equals("pixel43") || pixel.Name.Equals("pixel53") || pixel.Name.Equals("pixel63") || pixel.Name.Equals("pixel73") || pixel.Name.Equals("pixel83") || pixel.Name.Equals("pixel93") || pixel.Name.Equals("pixel103") || pixel.Name.Equals("pixel1314")
+                    || pixel.Name.Equals("pixel113") || pixel.Name.Equals("pixel123") || pixel.Name.Equals("pixel133") || pixel.Name.Equals("pixel143") || pixel.Name.Equals("pixel153") || pixel.Name.Equals("pixel154") || pixel.Name.Equals("pixel155") || pixel.Name.Equals("pixel156")
+                    || pixel.Name.Equals("pixel157") || pixel.Name.Equals("pixel157") || pixel.Name.Equals("pixel158") || pixel.Name.Equals("pixel159") || pixel.Name.Equals("pixel1510") || pixel.Name.Equals("pixel1511") || pixel.Name.Equals("pixel1512") || pixel.Name.Equals("pixel1513")
+                    || pixel.Name.Equals("pixel1413") || pixel.Name.Equals("pixel1313") || pixel.Name.Equals("pixel1315") || pixel.Name.Equals("pixel1215") || pixel.Name.Equals("pixel1115") || pixel.Name.Equals("pixel1015") || pixel.Name.Equals("pixel915") || pixel.Name.Equals("pixel815")
+                    || pixel.Name.Equals("pixel715") || pixel.Name.Equals("pixel615") || pixel.Name.Equals("pixel515") || pixel.Name.Equals("pixel415") || pixel.Name.Equals("pixel315") || pixel.Name.Equals("pixel314") || pixel.Name.Equals("pixel313") || pixel.Name.Equals("pixel312")
+                    || pixel.Name.Equals("pixel412") || pixel.Name.Equals("pixel512") || pixel.Name.Equals("pixel612") || pixel.Name.Equals("pixel611") || pixel.Name.Equals("pixel711") || pixel.Name.Equals("pixel710") || pixel.Name.Equals("pixel79") || pixel.Name.Equals("pixel78")
+                    || pixel.Name.Equals("pixel68") || pixel.Name.Equals("pixel67") || pixel.Name.Equals("pixel57") || pixel.Name.Equals("pixel47") || pixel.Name.Equals("pixel37") || pixel.Name.Equals("pixel36") || pixel.Name.Equals("pixel35") || pixel.Name.Equals("pixel34") || pixel.Name.Equals("pixel1313"))
                 {
                     pixel.Fill = new SolidColorBrush(Colors.DarkGray);
                 }
+
+                else if (pixel.Name.Equals("pixel107"))
+                {
+                    pixel.Fill = new SolidColorBrush(Colors.BlueViolet);
+                }
             }
         }
+
         private void ShowScanner()
         {
 
@@ -160,13 +199,23 @@ namespace ComputerGraphics.MVVM.View
 
         private void ScannerCalculation(object sender, RoutedEventArgs e)
         {
+            // set starting pixel from which will algorithms fill
+            int index = _rectangles.FindIndex(rect => rect.Name == "pixel117");
+            Rect rectStart = _rects[index];
+
+            xx = (int)Math.Floor(rectStart.Location.X / rectStart.Width);
+            yy = (int)Math.Floor(rectStart.Location.Y / rectStart.Height);
+
             switch (algorithmName)
             {
                 case "floodFill":
+                    //FillAlgorithms.FloodFill();
                     break;
                 case "seedFill":
+                    FillAlgorithms.SeedFill(_rectangles, xx, yy, canvas);
                     break;
                 case "seedLineFill":
+                    //FillAlgorithms.SeedLineFill();
                     break;
                 default:
                     break;

@@ -1,6 +1,7 @@
 ﻿using ComputerGraphics.Core;
 using ComputerGraphics.MVVM.Model;
 using ComputerGraphics.MVVM.View;
+using ComputerGraphics.Repositories;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -25,7 +26,7 @@ namespace ComputerGraphics.MVVM.ViewModel
         string _password;
         string _errorMessage;
         bool _isSignedIn = false;
-
+        bool _isViewVisible = true;
         IUserRepository userRepository;
 
         public string UserName 
@@ -76,6 +77,16 @@ namespace ComputerGraphics.MVVM.ViewModel
             }
         }
 
+        public bool IsViewVisible
+        {
+            get => _isViewVisible;
+            set
+            {
+                _isViewVisible = value;
+                OnPropertyChanged(nameof(IsViewVisible));
+            }
+        }
+
         public ICommand LoginCommand { get; }
         public ICommand RecoverPasswordCommand { get; }
         public ICommand ShowPasswordCommand { get; }
@@ -83,6 +94,7 @@ namespace ComputerGraphics.MVVM.ViewModel
 
         public LoginViewModel()
         {
+            userRepository = new UserRepository();
             LoginCommand = new DelegateCommand(ExecuteLoginCommand, CanExecuteLoginCommand);
             RecoverPasswordCommand = new DelegateCommand(p => ExecuteRecoverPassCommand("", ""));
         }
@@ -95,27 +107,23 @@ namespace ComputerGraphics.MVVM.ViewModel
         private bool CanExecuteLoginCommand(object obj)
         {
             bool validData;
-            if (string.IsNullOrWhiteSpace(Email) || Email.Length < 3 ||
-                Password == null || Password.Length < 3)
-                validData = false;
-            else
-                validData = true;
+
+            if (string.IsNullOrWhiteSpace(UserName) || UserName.Length < 3 || Password == null || Password.Length < 3) validData = false;
+            else validData = true;
+
             return validData;
         }
 
         private void ExecuteLoginCommand(object obj)
         {
             var isValidUser = userRepository.AuthenticateUser(new NetworkCredential(UserName, Password));
+
             if (isValidUser)
             {
                 Thread.CurrentPrincipal = new GenericPrincipal(new GenericIdentity(UserName), null);
-                IsSignedIn = true;
-                //LoginFrame.NavigationService.Navigate(new HomeView());
+                IsViewVisible = false;
             }
-            else
-            {
-                ErrorMessage = "* Nesprávny email alebo heslo";
-            }
+            else ErrorMessage = "* Nesprávny email alebo heslo";
         }
     }
 }

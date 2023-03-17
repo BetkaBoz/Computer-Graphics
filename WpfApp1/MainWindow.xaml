@@ -3,7 +3,6 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-        xmlns:local="clr-namespace:ComputerGraphics"
         xmlns:viewModel="clr-namespace:ComputerGraphics.MVVM.ViewModel"
         xmlns:views="clr-namespace:ComputerGraphics.MVVM.View"
         mc:Ignorable="d" 
@@ -11,7 +10,8 @@
         WindowStyle="None"
         ResizeMode="NoResize"
         Background="Transparent"
-        AllowsTransparency="True" >
+        AllowsTransparency="True" 
+        WindowStartupLocation="CenterScreen">
 
     <Window.DataContext>
         <viewModel:MainViewModel/>
@@ -145,15 +145,15 @@
                 </Button>
             </StackPanel>
 
-            <TextBox Width="250"
+            <!--<TextBox Width="250"
                        Height="40"
                        VerticalAlignment="Center"
                        HorizontalAlignment="Left"
                        Margin="5"
                        Grid.Column="1"
-                       Style="{StaticResource ResourceKey=ModernTextbox}" />
+                       Style="{StaticResource ResourceKey=ModernTextbox}" />-->
 
-            <Button VerticalAlignment="Center"
+            <!--<Button VerticalAlignment="Center"
                         HorizontalAlignment="Right"
                         Grid.Column="1"
                         Background="Transparent" BorderBrush="Transparent"
@@ -162,7 +162,14 @@
                         Margin="0,0,0,0"
                         Content="Prihlásiť sa"
                         Command="{Binding loginViewCommand}">
-            </Button>
+            </Button>-->
+
+            <TextBlock Grid.Column="1"
+                   Text="{Binding CurrentUserAccount.DisplayName}"
+                   Foreground="DarkGray"
+                   FontSize="16"
+                   Margin="0,0,15,0"
+                   VerticalAlignment="Center" HorizontalAlignment="Right"/>
 
             <ContentControl Grid.Row="1" Grid.Column="1" Margin="10"
                             Content="{Binding CurrentView}"/>

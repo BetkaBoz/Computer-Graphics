@@ -1,56 +1,101 @@
-﻿<UserControl x:Class="ComputerGraphics.MVVM.View.LoginView"
-             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-             xmlns:viewModel="clr-namespace:ComputerGraphics.MVVM.ViewModel"
-             xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
-             xmlns:local="clr-namespace:ComputerGraphics.MVVM.View" xmlns:customcontrols="clr-namespace:ComputerGraphics.CustomControls"
-             mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
+﻿<Window x:Class="ComputerGraphics.MVVM.View.LoginView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:viewModel="clr-namespace:ComputerGraphics.MVVM.ViewModel"
+        xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
+        xmlns:local="clr-namespace:ComputerGraphics.MVVM.View" 
+        xmlns:customcontrols="clr-namespace:ComputerGraphics.CustomControls"
+        mc:Ignorable="d" 
+        Height="600" Width="450"
+        WindowStyle="None"
+        ResizeMode="NoResize"
+        WindowStartupLocation="CenterScreen"
+        Background="Transparent"
+        AllowsTransparency="True">
 
-    <UserControl.DataContext>
+    <Window.DataContext>
         <viewModel:LoginViewModel />
-    </UserControl.DataContext>
+    </Window.DataContext>
 
-    <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="400"/>
-            <ColumnDefinition Width="400"/>
-        </Grid.ColumnDefinitions>
+    <Window.Resources>
+        <BooleanToVisibilityConverter x:Key="BooleanToVisibility"/>
+    </Window.Resources>
 
-        <Grid.RowDefinitions>
-            <RowDefinition Height="10"/>
-            <RowDefinition Height="*"/>
-        </Grid.RowDefinitions>
+    <Window.Visibility>
+        <Binding Path="IsViewVisible" Mode="TwoWay" Converter="{StaticResource BooleanToVisibility}"/>
+    </Window.Visibility>
 
-        <Frame Name="LoginFrame" NavigationUIVisibility="Hidden" />
+    <Border CornerRadius="7"                    
+            BorderThickness="2"
+            Opacity="0.95">
 
-        <!-- LOGIN -->
-        <StackPanel x:Name="loginUser"
+        <Border.BorderBrush>
+            <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                <GradientStop Color="#462AD8" Offset="0"/>
+                <GradientStop Color="#DA34AE" Offset="0.75"/>
+                <GradientStop Color="#8A16C1" Offset="1"/>
+            </LinearGradientBrush>
+        </Border.BorderBrush>
+
+        <Border.Background>
+            <LinearGradientBrush StartPoint="0,1" EndPoint="1,0">
+                <GradientStop Color="#FFF1F1F1" Offset="0"/>
+                <GradientStop Color="#FFD8D6FC" Offset="1"/>
+            </LinearGradientBrush>
+        </Border.Background>
+
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="25"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="30"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <Frame Name="LoginFrame" NavigationUIVisibility="Hidden" />
+
+            <Button Grid.Row="1" Grid.Column="1" VerticalAlignment="Bottom" HorizontalAlignment="Right"
+                        Background="Transparent" BorderBrush="Transparent"
+                        Height="60"
+                        Foreground="#FF424242" 
+                        Click="btnClose_Click">
+                <Image Width="30">
+                    <Image.Source>
+                        <BitmapImage DecodePixelWidth="50" UriSource="/Images/switch.png"/>
+                    </Image.Source>
+                </Image>
+            </Button>
+
+            <!-- LOGIN -->
+            <StackPanel x:Name="loginUser"
                     Width="220"
                     Grid.Row="1" Grid.ColumnSpan="2"
                     Orientation="Vertical"
                     Margin="0,35,0,0"
                     Visibility="Visible">
-            <TextBlock Text="PRIHLÁSENIE"
+                <TextBlock Text="PRIHLÁSENIE"
                                Foreground="#FF424242"
                                FontSize="25"
                                FontWeight="Medium"
                                HorizontalAlignment="Center"/>
-            <TextBlock Text="Prihláste sa pre zobrazenie lekcii k predmetu."
+                <TextBlock Text="Prihláste sa pre vstup do systému zameraný na výučbu predmetu Počítačová grafika"
                                Foreground="#FF424242"
                                FontSize="12"
                                FontWeight="Medium"
                                TextWrapping="Wrap"
                                TextAlignment="Center"
                                Margin="0,5,0,0"/>
-            <TextBlock Text="Email"
+                <TextBlock Text="Email"
                                Foreground="#FF424242"
                                FontSize="12"
                                FontWeight="Medium"                           
                                Margin="0,35,0,0"/>
-            <TextBox x:Name="txtUser"
+                <TextBox x:Name="txtUser"
                      Text="{Binding UserName, UpdateSourceTrigger=PropertyChanged}"
                              FontSize="13"
                              FontWeight="Medium"                          
@@ -62,25 +107,25 @@
                              VerticalContentAlignment="Center"
                              Margin="0,5,0,0"
                              Padding="20,0,0,0" />
-            
-            <TextBlock Text="Heslo"
+
+                <TextBlock Text="Heslo"
                        Foreground="#FF424242"
                        FontSize="12"
                        FontWeight="Medium"                          
                        Margin="0,15,0,0"/>
 
-            <customcontrols:BindsablePasswordBox Password="{Binding Password, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                <customcontrols:BindsablePasswordBox Password="{Binding Password, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                                                  Height="28"                            
                                                  Margin="0,5,0,0" />
 
-            <TextBlock Text="{Binding ErrorMessage}"
+                <TextBlock Text="{Binding ErrorMessage}"
                        Foreground="#FF424242"
                        FontSize="12"
                        FontWeight="Medium"                          
                        Margin="0,10,0,0"
                        TextWrapping="Wrap"/>
 
-            <Button x:Name="btnLogin"    
+                <Button x:Name="btnLogin"    
                     Command="{Binding LoginCommand}"
                     Width="100" Height="35" 
                     BorderThickness="0"
@@ -90,23 +135,23 @@
                     Cursor="Hand"                           
                     Margin="0,30,0,0">
 
-                <Button.Background>
-                    <LinearGradientBrush EndPoint="0.9,1" StartPoint="0.4,0">
-                        <GradientStop Color="#FF82B2FF"/>
-                        <GradientStop Color="#FFD48DFF" Offset="1"/>
-                    </LinearGradientBrush>
-                </Button.Background>
+                    <Button.Background>
+                        <LinearGradientBrush EndPoint="0.9,1" StartPoint="0.4,0">
+                            <GradientStop Color="#FF82B2FF"/>
+                            <GradientStop Color="#FFD48DFF" Offset="1"/>
+                        </LinearGradientBrush>
+                    </Button.Background>
 
-            </Button>
-            
-            <StackPanel Orientation="Horizontal"
+                </Button>
+
+                <StackPanel Orientation="Horizontal"
                                 HorizontalAlignment="Center"
                                 Margin="0,15,0,0">
-                <TextBlock Text="Nemáte účet?"
+                    <TextBlock Text="Nemáte účet?"
                                Foreground="#FF424242"
                                FontSize="12"
                                FontWeight="Medium"/>
-                <TextBlock  x:Name="registerText"
+                    <TextBlock  x:Name="registerText"
                             Text="Zaregistrujete sa"
                                Foreground="Black"
                                FontSize="12"
@@ -114,27 +159,27 @@
                                Cursor="Hand"
                                Margin="8,0,0,0" 
                                MouseDown="SwitchStackPanel"/>
+                </StackPanel>
             </StackPanel>
-        </StackPanel>
 
-        <!-- REGISTER -->
-        <StackPanel x:Name="registerUser"
+            <!-- REGISTER -->
+            <StackPanel x:Name="registerUser"
                         Width="220"
                         Grid.Row="1" Grid.ColumnSpan="2"
                         Orientation="Vertical"
                         Margin="0,35,0,0"
                     Visibility="Hidden">
-            <TextBlock Text="REGISTRÁCIA"
+                <TextBlock Text="REGISTRÁCIA"
                                Foreground="#FF424242"
                                FontSize="25"
                                FontWeight="Medium"
                                HorizontalAlignment="Center"/>
-            <TextBlock Text="Meno"
+                <TextBlock Text="Meno"
                                Foreground="#FF424242"
                                FontSize="12"
                                FontWeight="Medium"                           
                                Margin="0,35,0,0"/>
-            <TextBox x:Name="txtName"
+                <TextBox x:Name="txtName"
                              FontSize="13"
                              FontWeight="Medium"                          
                              Foreground="#FF424242"
@@ -145,13 +190,13 @@
                              VerticalContentAlignment="Center"
                              Margin="0,5,0,0"
                              Padding="20,0,0,0">
-            </TextBox>
-            <TextBlock Text="Email"
+                </TextBox>
+                <TextBlock Text="Email"
                                Foreground="#FF424242"
                                FontSize="12"
                                FontWeight="Medium"                           
                                Margin="0,15,0,0"/>
-            <TextBox x:Name="txtEmail"
+                <TextBox x:Name="txtEmail"
                              FontSize="13"
                              FontWeight="Medium"                          
                              Foreground="#FF424242"
@@ -162,13 +207,13 @@
                              VerticalContentAlignment="Center"
                              Margin="0,5,0,0"
                              Padding="20,0,0,0">
-            </TextBox>
-            <TextBlock Text="Heslo"
+                </TextBox>
+                <TextBlock Text="Heslo"
                                Foreground="#FF424242"
                                FontSize="12"
                                FontWeight="Medium"                          
                                Margin="0,15,0,0"/>
-            <PasswordBox x:Name="txtPassword"
+                <PasswordBox x:Name="txtPassword"
                              FontSize="13"
                              FontWeight="Medium"                          
                              Foreground="#FF424242"
@@ -179,8 +224,8 @@
                              VerticalContentAlignment="Center"
                              Margin="0,5,0,0"
                              Padding="20,0,0,0">
-            </PasswordBox>
-            <Button x:Name="btnRegister"    
+                </PasswordBox>
+                <Button x:Name="btnRegister"    
                     Width="150" Height="35" 
                             BorderThickness="0"
                             Content="REGISTROVAŤ"
@@ -189,22 +234,22 @@
                             Cursor="Hand"                           
                             Margin="0,50,0,0"
                             Click="Register">
-                <Button.Background>
-                    <LinearGradientBrush EndPoint="0.9,1" StartPoint="0.4,0">
-                        <GradientStop Color="#FF82B2FF"/>
-                        <GradientStop Color="#FFD48DFF" Offset="1"/>
-                    </LinearGradientBrush>
-                </Button.Background>
-            </Button>
+                    <Button.Background>
+                        <LinearGradientBrush EndPoint="0.9,1" StartPoint="0.4,0">
+                            <GradientStop Color="#FF82B2FF"/>
+                            <GradientStop Color="#FFD48DFF" Offset="1"/>
+                        </LinearGradientBrush>
+                    </Button.Background>
+                </Button>
 
-            <StackPanel Orientation="Horizontal"
+                <StackPanel Orientation="Horizontal"
                                 HorizontalAlignment="Center"
                                 Margin="0,15,0,0">
-                <TextBlock Text="Už máte účet?"
+                    <TextBlock Text="Už máte účet?"
                                Foreground="#FF424242"
                                FontSize="12"
                                FontWeight="Medium"/>
-                <TextBlock  x:Name="loginText"
+                    <TextBlock  x:Name="loginText"
                             Text="Prihláste sa"
                                Foreground="Black"
                                FontSize="12"
@@ -212,10 +257,12 @@
                                Cursor="Hand"
                                Margin="8,0,0,0"
                                MouseDown="SwitchStackPanel"/>
+                </StackPanel>
+
             </StackPanel>
 
-        </StackPanel>
+        </Grid>
 
-    </Grid>
+    </Border>
 
-</UserControl>
+</Window>

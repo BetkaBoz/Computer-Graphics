@@ -15,9 +15,6 @@ using System.Windows.Shapes;
 
 namespace ComputerGraphics.MVVM.View
 {
-    /// <summary>
-    /// Interaction logic for LectureTwoView.xaml
-    /// </summary>
     public partial class LectureTwoView : UserControl
     {
         public LectureTwoView()

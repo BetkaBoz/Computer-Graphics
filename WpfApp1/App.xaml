@@ -4,7 +4,8 @@
              xmlns:local="clr-namespace:WpfApp1"
              xmlns:viewModel="clr-namespace:ComputerGraphics.MVVM.ViewModel"
              xmlns:view="clr-namespace:ComputerGraphics.MVVM.View"
-             StartupUri="MainWindow.xaml">
+             Startup="ApplicationStart">
+    
     <Application.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
@@ -56,9 +57,9 @@
                 <view:LectureEightView/>
             </DataTemplate>
 
-            <DataTemplate DataType="{x:Type viewModel:LoginViewModel}">
+            <!--<DataTemplate DataType="{x:Type viewModel:LoginViewModel}">
                 <view:LoginView/>
-            </DataTemplate>
+            </DataTemplate>-->
 
         </ResourceDictionary>
     </Application.Resources>

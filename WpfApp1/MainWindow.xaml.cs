@@ -1,4 +1,5 @@
-﻿using ComputerGraphics.MVVM.ViewModel;
+﻿using ComputerGraphics.Core;
+using ComputerGraphics.MVVM.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -29,13 +30,18 @@ namespace WpfApp1
 
         private void MainWindow_Loaded(object sender, RoutedEventArgs e)
         {
-            if (DataContext is ICloseWindows vm)
+            if (DataContext is ICloseWindow vm)
             {
                 vm.Close += () =>
                 {
                     this.Close();
                 };
             }
+        }
+
+        private void Window_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            if (e.LeftButton == MouseButtonState.Pressed) DragMove();
         }
     }
 }

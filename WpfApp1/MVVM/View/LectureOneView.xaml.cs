@@ -39,25 +39,6 @@ namespace ComputerGraphics.MVVM.View
             vector.MouseMove += Vector_MouseMove;
         }
 
-        //private void Slider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
-        //{
-        //    TransformGroup transformRasterGroup = (TransformGroup)raster.RenderTransform;
-        //    ScaleTransform transformRaster = (ScaleTransform)transformRasterGroup.Children[0];
-
-        //    TransformGroup transformVectorGroup = (TransformGroup)vector.RenderTransform;
-        //    ScaleTransform transformVector = (ScaleTransform)transformVectorGroup.Children[0];
-
-        //    double zoom = e.NewValue + 1;
-
-        //    transformRaster.ScaleX = zoom;
-        //    transformRaster.ScaleY = zoom;
-
-            
-
-        //    transformVector.ScaleX = zoom;
-        //    transformVector.ScaleY = zoom;
-        //}
-
         private void Canvas_MouseWheel(object sender, MouseWheelEventArgs e)
         {
             Matrix mR = raster.RenderTransform.Value;
@@ -111,9 +92,6 @@ namespace ComputerGraphics.MVVM.View
             Matrix mV = vector.RenderTransform.Value;
 
             if (!raster.IsMouseCaptured && !vector.IsMouseCaptured) return;
-
-            //if (sender.Equals(canvasRaster)) canvasPoint = e.MouseDevice.GetPosition(canvasRaster);
-            //if (sender.Equals(canvasVector)) canvasPoint = e.MouseDevice.GetPosition(canvasVector);
 
             mR.OffsetX = origin.X + (canvasPoint.X - startR.X);
             mR.OffsetY = origin.Y + (canvasPoint.Y - startR.Y);

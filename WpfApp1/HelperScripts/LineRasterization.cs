@@ -20,30 +20,6 @@ namespace ComputerGraphics.HelperScripts
         {
             newPoints.Clear();
 
-            //int pointX = (int)(pointsList[1].X - pointsList[0].X);
-            //int pointY = (int)(pointsList[1].Y - pointsList[0].Y);
-
-            //int decision = pointY - (pointX / 2);
-
-            //int x = (int)pointsList[0].X;
-            //int y = (int)pointsList[0].Y;
-
-            //while (x < (int)pointsList[1].X)
-            //{
-            //    x++;
-            //    // E > east is chosen
-            //    if (decision < 0) decision += pointY;
-
-            //    // NE > north east is chosen
-            //    else
-            //    {
-            //        decision += (pointY - pointX);
-            //        y++;
-            //    }
-
-            //    newPoints.Add(new Point(x, y));
-            //}
-
             int x1 = (int)pointsList[0].X;
             int x2 = (int)pointsList[1].X;
             int y1 = (int)pointsList[0].Y;
@@ -154,7 +130,7 @@ namespace ComputerGraphics.HelperScripts
 
                 foreach (var rec in LectureFourView._rects)
                 {
-                    int indexOfRect = LectureFourView._rects.LastIndexOf(rec);
+                    int indexOfRect = LectureFourView._rects.IndexOf(rec);
 
                      if (rec.Contains(point))
                      {
