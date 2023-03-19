@@ -23,9 +23,8 @@ namespace WpfApp1
                 if (loginView.IsVisible == false && loginView.IsLoaded)
                 {
                     var mainWindow = new MainWindow();
+                    loginView.Close();
                     mainWindow.Show();
-                    loginView.Visibility = Visibility.Hidden;
-                    //loginView.Close();
                 }
             };
         }

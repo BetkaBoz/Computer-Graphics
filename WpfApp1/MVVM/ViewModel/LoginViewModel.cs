@@ -1,21 +1,14 @@
 ﻿using ComputerGraphics.Core;
 using ComputerGraphics.MVVM.Model;
-using ComputerGraphics.MVVM.View;
 using ComputerGraphics.Repositories;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
 using System.Net;
-using System.Security;
 using System.Security.Principal;
-using System.Text;
 using System.Threading;
-using System.Threading.Tasks;
 using System.Windows.Input;
-using System.Windows.Navigation;
-using WpfApp1;
+using ComputerGraphics.HelperScripts;
+using System.Diagnostics;
+using System;
+using System.Data.SqlClient;
 
 namespace ComputerGraphics.MVVM.ViewModel
 {
@@ -25,8 +18,8 @@ namespace ComputerGraphics.MVVM.ViewModel
         string _email;
         string _password;
         string _errorMessage;
-        bool _isSignedIn = false;
         bool _isViewVisible = true;
+
         IUserRepository userRepository;
 
         public string UserName 
@@ -67,16 +60,6 @@ namespace ComputerGraphics.MVVM.ViewModel
             
         }
 
-        public bool IsSignedIn
-        {
-            get => _isSignedIn;
-            set
-            {
-                _isSignedIn = value;
-                OnPropertyChanged(nameof(IsSignedIn));
-            }
-        }
-
         public bool IsViewVisible
         {
             get => _isViewVisible;
@@ -89,34 +72,44 @@ namespace ComputerGraphics.MVVM.ViewModel
 
         public ICommand LoginCommand { get; }
         public ICommand RecoverPasswordCommand { get; }
-        public ICommand ShowPasswordCommand { get; }
-        public ICommand RememberPasswordCommand { get; }
+        public ICommand RegisterCommand { get; }
 
         public LoginViewModel()
         {
             userRepository = new UserRepository();
-            LoginCommand = new DelegateCommand(ExecuteLoginCommand, CanExecuteLoginCommand);
-            RecoverPasswordCommand = new DelegateCommand(p => ExecuteRecoverPassCommand("", ""));
+            LoginCommand = new DelegateCommand(ExecuteLoginCommand);
+            RegisterCommand = new DelegateCommand(ExecuteRegisterCommand);
         }
 
-        private void ExecuteRecoverPassCommand(string v1, string v2)
+        private void ExecuteRegisterCommand(object obj)
         {
-            throw new NotImplementedException();
-        }
+            Debug.WriteLine("Prebieha registrácia");
+            //userRepository.Add(new UserModel());
 
-        private bool CanExecuteLoginCommand(object obj)
-        {
-            bool validData;
+            using (SqlConnection connection = new SqlConnection("Server=(local)\\SQLExpress; Database=CGDatabase; Integrated Security=true"))
+            {
+                connection.Open();
+                SqlCommand command = new SqlCommand("INSERT INTO [User] (UserName, Email, Password) VALUES (@UserName, @Email, @Password)", connection);
+                command.Parameters.AddWithValue("@UserName", UserName);
+                command.Parameters.AddWithValue("@Email", Email);
+                command.Parameters.AddWithValue("@Password", Password);
 
-            if (string.IsNullOrWhiteSpace(UserName) || UserName.Length < 3 || Password == null || Password.Length < 3) validData = false;
-            else validData = true;
+                int rowsAffected = command.ExecuteNonQuery();
 
-            return validData;
+                if (rowsAffected > 0)
+                {
+                    Debug.WriteLine("User registration successful.");
+                    ExecuteLoginCommand(command);
+                }
+                else Debug.WriteLine("User registration failed.");
+            }
         }
 
         private void ExecuteLoginCommand(object obj)
         {
-            var isValidUser = userRepository.AuthenticateUser(new NetworkCredential(UserName, Password));
+            Debug.WriteLine("Prebieha prihlasovanie");
+
+            var isValidUser = userRepository.AuthenticateUser(new System.Net.NetworkCredential(UserName, Password));
 
             if (isValidUser)
             {

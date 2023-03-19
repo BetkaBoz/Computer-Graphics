@@ -96,7 +96,7 @@
                                FontWeight="Medium"                           
                                Margin="0,35,0,0"/>
                 <TextBox x:Name="txtUser"
-                     Text="{Binding UserName, UpdateSourceTrigger=PropertyChanged}"
+                         Text="{Binding UserName, UpdateSourceTrigger=PropertyChanged}"
                              FontSize="13"
                              FontWeight="Medium"                          
                              Foreground="#FF424242"
@@ -126,14 +126,14 @@
                        TextWrapping="Wrap"/>
 
                 <Button x:Name="btnLogin"    
-                    Command="{Binding LoginCommand}"
                     Width="100" Height="35" 
                     BorderThickness="0"
                     Content="PRIHLÁSIŤ"
-                    Foreground="#FF424242"
+                    Foreground="#FF222222"
                     FontSize="12"
                     Cursor="Hand"                           
-                    Margin="0,30,0,0">
+                    Margin="0,30,0,0"
+                    Command="{Binding LoginCommand}">
 
                     <Button.Background>
                         <LinearGradientBrush EndPoint="0.9,1" StartPoint="0.4,0">
@@ -180,6 +180,7 @@
                                FontWeight="Medium"                           
                                Margin="0,35,0,0"/>
                 <TextBox x:Name="txtName"
+                         Text="{Binding UserName, UpdateSourceTrigger=PropertyChanged}"
                              FontSize="13"
                              FontWeight="Medium"                          
                              Foreground="#FF424242"
@@ -197,6 +198,7 @@
                                FontWeight="Medium"                           
                                Margin="0,15,0,0"/>
                 <TextBox x:Name="txtEmail"
+                         Text="{Binding Email, UpdateSourceTrigger=PropertyChanged}"
                              FontSize="13"
                              FontWeight="Medium"                          
                              Foreground="#FF424242"
@@ -213,18 +215,10 @@
                                FontSize="12"
                                FontWeight="Medium"                          
                                Margin="0,15,0,0"/>
-                <PasswordBox x:Name="txtPassword"
-                             FontSize="13"
-                             FontWeight="Medium"                          
-                             Foreground="#FF424242"
-                             CaretBrush="#FF424242"
-                             BorderBrush="#FF424242"
-                             BorderThickness="0,0,0,2"
-                             Height="28"
-                             VerticalContentAlignment="Center"
-                             Margin="0,5,0,0"
-                             Padding="20,0,0,0">
-                </PasswordBox>
+                <customcontrols:BindsablePasswordBox Password="{Binding Password, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                                 Height="28"                            
+                                                 Margin="0,5,0,0" />
+
                 <Button x:Name="btnRegister"    
                     Width="150" Height="35" 
                             BorderThickness="0"
@@ -233,7 +227,7 @@
                             FontSize="12"
                             Cursor="Hand"                           
                             Margin="0,50,0,0"
-                            Click="Register">
+                            Command="{Binding RegisterCommand}">
                     <Button.Background>
                         <LinearGradientBrush EndPoint="0.9,1" StartPoint="0.4,0">
                             <GradientStop Color="#FF82B2FF"/>

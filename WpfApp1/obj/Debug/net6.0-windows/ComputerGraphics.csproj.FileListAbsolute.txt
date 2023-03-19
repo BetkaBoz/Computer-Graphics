@@ -117,3 +117,4 @@ D:\School Stuffs\DIPLOMOVKA\Computer Graphics\WpfApp1\bin\Debug\net6.0-windows\r
 D:\School Stuffs\DIPLOMOVKA\Computer Graphics\WpfApp1\bin\Debug\net6.0-windows\runtimes\win-x86\native\sni.dll
 D:\School Stuffs\DIPLOMOVKA\Computer Graphics\WpfApp1\bin\Debug\net6.0-windows\runtimes\unix\lib\netcoreapp2.1\System.Data.SqlClient.dll
 D:\School Stuffs\DIPLOMOVKA\Computer Graphics\WpfApp1\bin\Debug\net6.0-windows\runtimes\win\lib\netcoreapp2.1\System.Data.SqlClient.dll
+D:\School Stuffs\DIPLOMOVKA\Computer Graphics\WpfApp1\bin\Debug\net6.0-windows\ComputerGraphics.dll.config

@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using System.Xml.Serialization;
 using ComputerGraphics.Core;
 using ComputerGraphics.MVVM.Model;
 using ComputerGraphics.MVVM.View;
@@ -140,20 +142,16 @@ namespace ComputerGraphics.MVVM.ViewModel
                 CurrentView = loginViewModel;
             });
         }
-        private void LoadCurrentUserData()
+        public void LoadCurrentUserData()
         {
-            //var user = userRepository.GetByUserName(Thread.CurrentPrincipal.Identity.Name);
-            //if (user != null)
-            //{
-            //    CurrentUserAccount.Username = user.UserName;
-            //    CurrentUserAccount.DisplayName = $"Welcome {user.Name};)";
-            //}
-            //else
-            //{
-            //    CurrentUserAccount.DisplayName = "Invalid user, not logged in";
-            //    //Hide child views.
-            //}
+            var user = userRepository.GetByUserName(Thread.CurrentPrincipal.Identity.Name);
+            if (user != null)
+            {
+                CurrentUserAccount.UserName = $"{user.UserName}";
+                CurrentUserAccount.Lecture = user.Lecture;
+            }
         }
+
         private void CloseWindow(object obj)
         {
             Close?.Invoke();

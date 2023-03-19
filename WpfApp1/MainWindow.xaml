@@ -129,7 +129,7 @@
                 </StackPanel>
 
             </ScrollViewer>
-            
+
             <StackPanel Grid.Row="1" HorizontalAlignment="Stretch" VerticalAlignment="Bottom">
                 <Button VerticalAlignment="Bottom" HorizontalAlignment="Stretch"
                         Background="Transparent" BorderBrush="Transparent"
@@ -165,11 +165,11 @@
             </Button>-->
 
             <TextBlock Grid.Column="1"
-                   Text="{Binding CurrentUserAccount.DisplayName}"
+                   Text="{Binding CurrentUserAccount.UserName}"
                    Foreground="DarkGray"
                    FontSize="16"
-                   Margin="0,0,15,0"
-                   VerticalAlignment="Center" HorizontalAlignment="Right"/>
+                   Margin="785,27,0,0"
+                   VerticalAlignment="Top" HorizontalAlignment="Left"/>
 
             <ContentControl Grid.Row="1" Grid.Column="1" Margin="10"
                             Content="{Binding CurrentView}"/>

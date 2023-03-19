@@ -22,9 +22,18 @@ namespace WpfApp1
     /// </summary>
     public partial class MainWindow : Window
     {
+        MainViewModel viewModel = new();
+
         public MainWindow()
         {
             InitializeComponent();
+
+            DataContext = viewModel;
+
+            viewModel.LoadCurrentUserData();
+
+            string lectureNum = viewModel.CurrentUserAccount.Lecture;
+
             Loaded += MainWindow_Loaded;
         }
 

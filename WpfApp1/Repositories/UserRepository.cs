@@ -3,10 +3,12 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
+using System.Diagnostics;
 using System.Linq;
 using System.Net;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace ComputerGraphics.Repositories
 {
@@ -14,7 +16,19 @@ namespace ComputerGraphics.Repositories
     {
         public void Add(UserModel userModel)
         {
-            throw new NotImplementedException();
+            using (SqlConnection connection = GetConnection())
+            {
+                connection.Open();
+                SqlCommand command = new SqlCommand("INSERT INTO [User] (UserName, Email, Password) VALUES (@UserName, @Email, @Password)", connection);
+                command.Parameters.AddWithValue("@UserName", userModel.UserName);
+                command.Parameters.AddWithValue("@Email", userModel.Email);
+                command.Parameters.AddWithValue("@Password", userModel.Password);
+
+                int rowsAffected = command.ExecuteNonQuery();
+
+                if (rowsAffected > 0) Debug.WriteLine("User registration successful.");
+                else Debug.WriteLine("User registration failed.");
+            }
         }
 
         public bool AuthenticateUser(NetworkCredential credential)
@@ -25,20 +39,13 @@ namespace ComputerGraphics.Repositories
             {
                 connection.Open();
                 command.Connection = connection;
-                command.CommandText = "SELECT * FROM [User] WHERE username=@username AND email=@email AND [password]=@password";
-                command.Parameters.Add("@username", System.Data.SqlDbType.NVarChar).Value = credential.UserName;
-                //command.Parameters.Add("@email", System.Data.SqlDbType.NVarChar).Value = credential.Email;
-                command.Parameters.Add("@password", System.Data.SqlDbType.NVarChar).Value = credential.Password;
+                command.CommandText = "SELECT * FROM [User] WHERE UserName=@UserName AND [Password]=@Password";
+                command.Parameters.Add("@UserName", SqlDbType.NVarChar).Value = credential.UserName;
+                command.Parameters.Add("@Password", SqlDbType.NVarChar).Value = credential.Password;
                 validUser = command.ExecuteScalar() == null ? false : true;
             }
             return validUser;
         }
-
-        public void Edit(UserModel userModel)
-        {
-            throw new NotImplementedException();
-        }
-
         public IEnumerable<UserModel> GetByAll()
         {
             throw new NotImplementedException();
@@ -57,8 +64,8 @@ namespace ComputerGraphics.Repositories
             {
                 connection.Open();
                 command.Connection = connection;
-                command.CommandText = "SELECT * FROM [User] WHERE username=@username";
-                command.Parameters.Add("@username", SqlDbType.NVarChar).Value = username;
+                command.CommandText = "SELECT * FROM [User] WHERE UserName=@UserName";
+                command.Parameters.Add("@UserName", SqlDbType.NVarChar).Value = username;
                 using (var reader = command.ExecuteReader())
                 {
                     if (reader.Read())
@@ -67,19 +74,14 @@ namespace ComputerGraphics.Repositories
                         {
                             Id = reader[0].ToString(),
                             UserName = reader[1].ToString(),
+                            Email = reader[2].ToString(),
                             Password = string.Empty,
-                            Name = reader[3].ToString(),
-                            Email = reader[4].ToString(),
+                            Lecture = reader[2].ToString(),
                         };
                     }
                 }
             }
             return user;
-        }
-
-        public void Remove(int id)
-        {
-            throw new NotImplementedException();
         }
     }
 }
