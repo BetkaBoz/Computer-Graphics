@@ -32,9 +32,61 @@ namespace WpfApp1
 
             viewModel.LoadCurrentUserData();
 
-            string lectureNum = viewModel.CurrentUserAccount.Lecture;
+            SetUpLectures();
 
             Loaded += MainWindow_Loaded;
+        }
+        private void SetUpLectures()
+        {
+            string lectureNum = viewModel.CurrentUserAccount.Lecture;
+
+            switch (lectureNum)
+            {
+                case "1":
+                    break;
+                case "2":
+                    lecture2.Visibility = Visibility.Visible;
+                    break;
+                case "3":
+                    lecture2.Visibility = Visibility.Visible;
+                    lecture3.Visibility = Visibility.Visible;
+                    break;
+                case "4":
+                    lecture2.Visibility = Visibility.Visible;
+                    lecture3.Visibility = Visibility.Visible;
+                    lecture4.Visibility = Visibility.Visible;
+                    break;
+                case "5":
+                    lecture2.Visibility = Visibility.Visible;
+                    lecture3.Visibility = Visibility.Visible;
+                    lecture4.Visibility = Visibility.Visible;
+                    lecture5.Visibility = Visibility.Visible;
+                    break;
+                case "6":
+                    lecture2.Visibility = Visibility.Visible;
+                    lecture3.Visibility = Visibility.Visible;
+                    lecture4.Visibility = Visibility.Visible;
+                    lecture5.Visibility = Visibility.Visible;
+                    lecture6.Visibility = Visibility.Visible;
+                    break;
+                case "7":
+                    lecture2.Visibility = Visibility.Visible;
+                    lecture3.Visibility = Visibility.Visible;
+                    lecture4.Visibility = Visibility.Visible;
+                    lecture5.Visibility = Visibility.Visible;
+                    lecture6.Visibility = Visibility.Visible;
+                    lecture7.Visibility = Visibility.Visible;
+                    break;
+                case "8":
+                    lecture2.Visibility = Visibility.Visible;
+                    lecture3.Visibility = Visibility.Visible;
+                    lecture4.Visibility = Visibility.Visible;
+                    lecture5.Visibility = Visibility.Visible;
+                    lecture6.Visibility = Visibility.Visible;
+                    lecture7.Visibility = Visibility.Visible;
+                    lecture8.Visibility = Visibility.Visible;
+                    break;
+            }
         }
 
         private void MainWindow_Loaded(object sender, RoutedEventArgs e)

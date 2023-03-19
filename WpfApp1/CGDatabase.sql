@@ -10,12 +10,12 @@ CREATE TABLE [User]
     [UserName] NCHAR(50) NOT NULL, 
     [Email] NCHAR(50) NOT NULL, 
     [Password] NCHAR(20) NOT NULL,
-	[Lecture] NCHAR(1) NOT NULL
+	[Lecture] INT NOT NULL
 )
 
 GO
-INSERT INTO [User] VALUES (NEWID(), 'admin', 'admin@admin.com', 'admin', '1')
-INSERT INTO [User] VALUES (NEWID(), 'Betka Bozanova', 'betka@gmail.com', '1234', '7')
+INSERT INTO [User] VALUES (NEWID(), 'admin', 'admin@admin.com', 'admin', 1)
+INSERT INTO [User] VALUES (NEWID(), 'Betka Bozanova', 'betka@gmail.com', '1234', 7)
 GO
 
 SELECT * FROM [User]

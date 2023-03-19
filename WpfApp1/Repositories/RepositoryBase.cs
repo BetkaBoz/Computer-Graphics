@@ -12,7 +12,7 @@ namespace ComputerGraphics.Repositories
         readonly string _connectionString;
         public RepositoryBase()
         {
-            _connectionString = "Server=(local)\\SQLExpress; Database=CGDatabase; Integrated Security=true";
+            _connectionString = "Server=laptop-7ukrdo46\\SQLExpress01; Database=CGDatabase; Integrated Security=true";
         }
         protected SqlConnection GetConnection()
         {

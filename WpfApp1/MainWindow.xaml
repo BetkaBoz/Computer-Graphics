@@ -60,6 +60,7 @@
                               Foreground="#FF424242" FontSize="14">
                         <ListView ScrollViewer.HorizontalScrollBarVisibility="Disabled">
                             <RadioButton Content="Lekcia 1"
+                                         x:Name="lecture1"
                                          Height="45" Width="160"
                                          FontSize="14"
                                          Style="{StaticResource MenuButtonTheme}" 
@@ -68,6 +69,8 @@
                                          Margin="-6"
                                          Command="{Binding lectureOneViewCommand}"/>
                             <RadioButton Content="Lekcia 2"
+                                         x:Name="lecture2"
+                                         Visibility="Hidden"
                                          Height="45" Width="160"
                                          FontSize="14"
                                          Style="{StaticResource MenuButtonTheme}" 
@@ -76,6 +79,8 @@
                                          Margin="-6"
                                          Command="{Binding lectureTwoViewCommand}"/>
                             <RadioButton Content="Lekcia 3"
+                                         x:Name="lecture3"
+                                         Visibility="Hidden"
                                          Height="45" Width="160"
                                          FontSize="14"
                                          Style="{StaticResource MenuButtonTheme}" 
@@ -84,6 +89,8 @@
                                          Margin="-6"
                                          Command="{Binding lectureThreeViewCommand}"/>
                             <RadioButton Content="Lekcia 4"
+                                         x:Name="lecture4"
+                                         Visibility="Hidden"
                                          Height="45" Width="160"
                                          FontSize="14"
                                          Style="{StaticResource MenuButtonTheme}" 
@@ -92,6 +99,8 @@
                                          Margin="-6"
                                          Command="{Binding lectureFourViewCommand}"/>
                             <RadioButton Content="Lekcia 5"
+                                         x:Name="lecture5"
+                                         Visibility="Hidden"
                                          Height="45" Width="160"
                                          FontSize="14"
                                          Style="{StaticResource MenuButtonTheme}" 
@@ -100,6 +109,8 @@
                                          Margin="-6"
                                          Command="{Binding lectureFiveViewCommand}"/>
                             <RadioButton Content="Lekcia 6"
+                                         x:Name="lecture6"
+                                         Visibility="Hidden"
                                          Height="45" Width="160"
                                          FontSize="14"
                                          Style="{StaticResource MenuButtonTheme}" 
@@ -108,6 +119,8 @@
                                          Margin="-6"
                                          Command="{Binding lectureSixViewCommand}"/>
                             <RadioButton Content="Lekcia 7"
+                                         x:Name="lecture7"
+                                         Visibility="Hidden"
                                          Height="45" Width="160"
                                          FontSize="14"
                                          Style="{StaticResource MenuButtonTheme}" 
@@ -116,6 +129,8 @@
                                          Margin="-6"
                                          Command="{Binding lectureSevenViewCommand}"/>
                             <RadioButton Content="Lekcia 8"
+                                         x:Name="lecture8"
+                                         Visibility="Hidden"
                                          Height="45" Width="160"
                                          FontSize="14"
                                          Style="{StaticResource MenuButtonTheme}" 
@@ -168,8 +183,9 @@
                    Text="{Binding CurrentUserAccount.UserName}"
                    Foreground="DarkGray"
                    FontSize="16"
-                   Margin="785,27,0,0"
-                   VerticalAlignment="Top" HorizontalAlignment="Left"/>
+                   TextWrapping="Wrap"
+                   Margin="0,0,-185,0"
+                   VerticalAlignment="Center" HorizontalAlignment="Right"/>
 
             <ContentControl Grid.Row="1" Grid.Column="1" Margin="10"
                             Content="{Binding CurrentView}"/>

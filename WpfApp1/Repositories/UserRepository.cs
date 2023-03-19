@@ -76,7 +76,7 @@ namespace ComputerGraphics.Repositories
                             UserName = reader[1].ToString(),
                             Email = reader[2].ToString(),
                             Password = string.Empty,
-                            Lecture = reader[2].ToString(),
+                            Lecture = reader[4].ToString(),
                         };
                     }
                 }
