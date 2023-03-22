@@ -1,4 +1,6 @@
-﻿using System;
+﻿using ComputerGraphics.HelperScripts;
+using ComputerGraphics.MVVM.ViewModel;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -15,14 +17,16 @@ using System.Windows.Shapes;
 
 namespace ComputerGraphics.MVVM.View
 {
-    /// <summary>
-    /// Interaction logic for LectureSixView.xaml
-    /// </summary>
     public partial class LectureSixView : UserControl
     {
+        bool check;
+
         public LectureSixView()
         {
             InitializeComponent();
+
+            check = true;
+            ProgressWatch.IsProgress(check, 7);
         }
     }
 }

@@ -31,6 +31,21 @@ namespace ComputerGraphics.Repositories
             }
         }
 
+        public void Edit(UserModel userModel)
+        {
+            using (SqlConnection connection = GetConnection())
+            {
+                connection.Open();
+                SqlCommand command = new SqlCommand("UPDATE [User] SET Lecture=@Lecture WHERE UserName=@UserName", connection);
+                command.Parameters.AddWithValue("@Lecture", userModel.Lecture);
+
+                int rowsAffected = command.ExecuteNonQuery();
+
+                if (rowsAffected > 0) Debug.WriteLine("User edit successful.");
+                else Debug.WriteLine("User edit failed.");
+            }
+        }
+
         public bool AuthenticateUser(NetworkCredential credential)
         {
             bool validUser;

@@ -1,4 +1,5 @@
 ﻿using ComputerGraphics.HelperScripts;
+using ComputerGraphics.MVVM.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,7 +14,7 @@ namespace ComputerGraphics.MVVM.View
     public partial class LectureFourView : UserControl
     {
         string? algorithmName;
-
+        bool check;
         int pixelXCount, pixelYCount;
 
         Rectangle rectangle;
@@ -37,6 +38,9 @@ namespace ComputerGraphics.MVVM.View
             canvas.Visibility = Visibility.Visible;
 
             Refresh();
+
+            check = true;
+            ProgressWatch.IsProgress(check, 5);
         }
 
         private void DrawPixelsOnCanvas()
@@ -144,6 +148,6 @@ namespace ComputerGraphics.MVVM.View
                 default:
                     break;
             }
-        }        
+        }
     }
 }

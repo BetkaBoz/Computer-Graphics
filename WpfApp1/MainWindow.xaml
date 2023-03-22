@@ -58,9 +58,11 @@
                               Background="Transparent" Header="Lekcie"
                               Margin="5" 
                               Foreground="#FF424242" FontSize="14">
-                        <ListView ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+                        <ListView ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+                                  x:Name="lecturesLV">
                             <RadioButton Content="Lekcia 1"
                                          x:Name="lecture1"
+                                         Visibility="Visible"
                                          Height="45" Width="160"
                                          FontSize="14"
                                          Style="{StaticResource MenuButtonTheme}" 
@@ -77,7 +79,7 @@
                                          Foreground="#FF424242" 
                                          IsChecked="False"
                                          Margin="-6"
-                                         Command="{Binding lectureTwoViewCommand}"/>
+                                         Command="{Binding lectureTwoViewCommand, UpdateSourceTrigger=PropertyChanged}"/>
                             <RadioButton Content="Lekcia 3"
                                          x:Name="lecture3"
                                          Visibility="Hidden"
@@ -87,7 +89,7 @@
                                          Foreground="#FF424242" 
                                          IsChecked="False"
                                          Margin="-6"
-                                         Command="{Binding lectureThreeViewCommand}"/>
+                                         Command="{Binding lectureThreeViewCommand, UpdateSourceTrigger=PropertyChanged}"/>
                             <RadioButton Content="Lekcia 4"
                                          x:Name="lecture4"
                                          Visibility="Hidden"
@@ -97,7 +99,7 @@
                                          Foreground="#FF424242" 
                                          IsChecked="False"
                                          Margin="-6"
-                                         Command="{Binding lectureFourViewCommand}"/>
+                                         Command="{Binding lectureFourViewCommand, UpdateSourceTrigger=PropertyChanged}"/>
                             <RadioButton Content="Lekcia 5"
                                          x:Name="lecture5"
                                          Visibility="Hidden"
@@ -107,7 +109,7 @@
                                          Foreground="#FF424242" 
                                          IsChecked="False"
                                          Margin="-6"
-                                         Command="{Binding lectureFiveViewCommand}"/>
+                                         Command="{Binding lectureFiveViewCommand, UpdateSourceTrigger=PropertyChanged}"/>
                             <RadioButton Content="Lekcia 6"
                                          x:Name="lecture6"
                                          Visibility="Hidden"
@@ -117,7 +119,7 @@
                                          Foreground="#FF424242" 
                                          IsChecked="False"
                                          Margin="-6"
-                                         Command="{Binding lectureSixViewCommand}"/>
+                                         Command="{Binding lectureSixViewCommand, UpdateSourceTrigger=PropertyChanged}"/>
                             <RadioButton Content="Lekcia 7"
                                          x:Name="lecture7"
                                          Visibility="Hidden"
@@ -127,7 +129,7 @@
                                          Foreground="#FF424242" 
                                          IsChecked="False"
                                          Margin="-6"
-                                         Command="{Binding lectureSevenViewCommand}"/>
+                                         Command="{Binding lectureSevenViewCommand, UpdateSourceTrigger=PropertyChanged}"/>
                             <RadioButton Content="Lekcia 8"
                                          x:Name="lecture8"
                                          Visibility="Hidden"
@@ -137,7 +139,7 @@
                                          Foreground="#FF424242" 
                                          IsChecked="False"
                                          Margin="-6"
-                                         Command="{Binding lectureEightViewCommand}"/>
+                                         Command="{Binding lectureEightViewCommand, UpdateSourceTrigger=PropertyChanged}"/>
                         </ListView>
                     </Expander>
 
@@ -184,8 +186,15 @@
                    Foreground="DarkGray"
                    FontSize="16"
                    TextWrapping="Wrap"
-                   Margin="0,0,-185,0"
                    VerticalAlignment="Center" HorizontalAlignment="Right"/>
+
+            <Image Width="35" 
+                   Grid.Column="1"
+                   VerticalAlignment="Center" HorizontalAlignment="Right">
+                <Image.Source>
+                    <BitmapImage DecodePixelWidth="50" UriSource="/Images/login.png"/>
+                </Image.Source>
+            </Image>
 
             <ContentControl Grid.Row="1" Grid.Column="1" Margin="10"
                             Content="{Binding CurrentView}"/>

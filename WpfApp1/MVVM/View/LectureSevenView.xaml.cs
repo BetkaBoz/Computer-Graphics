@@ -1,4 +1,5 @@
 ﻿using ComputerGraphics.HelperScripts;
+using ComputerGraphics.MVVM.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -22,6 +23,7 @@ namespace ComputerGraphics.MVVM.View
         string? algorithmName;
         int x, y;
         int xx, yy;
+        bool check;
 
         Rectangle rectangle;
         Rect rect;
@@ -66,6 +68,9 @@ namespace ComputerGraphics.MVVM.View
                     ShowScanner();
                     break;
             }
+
+            check = true;
+            ProgressWatch.IsProgress(check, 8);
         }
 
         private void DrawPixelsOnCanvas()
@@ -212,7 +217,7 @@ namespace ComputerGraphics.MVVM.View
                     //FillAlgorithms.FloodFill();
                     break;
                 case "seedFill":
-                    FillAlgorithms.SeedFill(_rectangles, xx, yy, canvas);
+                    FillAlgorithms.SeedFill(_rectangles, xx, yy, canvas); 
                     break;
                 case "seedLineFill":
                     //FillAlgorithms.SeedLineFill();

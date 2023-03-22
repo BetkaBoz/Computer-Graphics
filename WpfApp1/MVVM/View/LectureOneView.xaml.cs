@@ -1,4 +1,6 @@
-﻿using System;
+﻿using ComputerGraphics.HelperScripts;
+using ComputerGraphics.MVVM.ViewModel;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
@@ -20,9 +22,11 @@ namespace ComputerGraphics.MVVM.View
 {
     public partial class LectureOneView : UserControl
     {
-        private Point origin;  // Original Offset of image
-        private Point startR;   // Original Position of the mouse
-        private Point startV;
+        bool check;
+        
+        Point origin;  // Original Offset of image
+        Point startR;   // Original Position of the mouse
+        Point startV;
 
         public LectureOneView()
         {
@@ -61,6 +65,9 @@ namespace ComputerGraphics.MVVM.View
 
             raster.RenderTransform = new MatrixTransform(mR);
             vector.RenderTransform = new MatrixTransform(mV);
+
+            check = true;
+            ProgressWatch.IsProgress(check, 2);
         }
 
         private void Raster_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
@@ -72,6 +79,9 @@ namespace ComputerGraphics.MVVM.View
             startR = e.GetPosition(canvasRaster);
             origin.X = raster.RenderTransform.Value.OffsetX;
             origin.Y = raster.RenderTransform.Value.OffsetY;
+
+            check = true;
+            ProgressWatch.IsProgress(check, 2);
         }
 
         private void Vector_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
@@ -83,6 +93,9 @@ namespace ComputerGraphics.MVVM.View
             startV = e.GetPosition(canvasVector);
             origin.X = vector.RenderTransform.Value.OffsetX;
             origin.Y = vector.RenderTransform.Value.OffsetY;
+
+            check = true;
+            ProgressWatch.IsProgress(check, 2);
         }
 
         private void Canvas_MouseMove(object sender, MouseEventArgs e)
@@ -100,6 +113,9 @@ namespace ComputerGraphics.MVVM.View
             mV.OffsetX = origin.X + (canvasPoint.X - startR.X);
             mV.OffsetY = origin.Y + (canvasPoint.Y - startR.Y);
             vector.RenderTransform = new MatrixTransform(mV);
+
+            check = true;
+            ProgressWatch.IsProgress(check, 2);
         }
 
         private void Vector_MouseMove(object sender, MouseEventArgs e)
@@ -118,6 +134,9 @@ namespace ComputerGraphics.MVVM.View
             mV.OffsetX = origin.X + (canvasPoint.X - startV.X);
             mV.OffsetY = origin.Y + (canvasPoint.Y - startV.Y);
             vector.RenderTransform = new MatrixTransform(mV);
+
+            check = true;
+            ProgressWatch.IsProgress(check, 2);
         }
 
         private void image_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)

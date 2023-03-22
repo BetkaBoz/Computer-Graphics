@@ -28,9 +28,8 @@ namespace ComputerGraphics.MVVM.View
         int pointCount = 0;
         int _valueVectorX;
         int _valueVectorY;
-
+        bool check;
         string? transformName;
-
         bool allowAddNodes;
 
         Point currentPoint;
@@ -53,7 +52,9 @@ namespace ComputerGraphics.MVVM.View
             Refresh();
 
             canvas.Visibility = Visibility.Visible;
-            
+
+            check = true;
+            ProgressWatch.IsProgress(check, 4);
         }
 
         private (Ellipse ellipse, TextBlock text) DrawPoint(Point point)
@@ -156,7 +157,6 @@ namespace ComputerGraphics.MVVM.View
             canvas.Children.Add(line);
         }
 
-
         private void ConnectDots(object sender, RoutedEventArgs e)
         {
             if (pointsList.Count == 0) return;
@@ -189,7 +189,7 @@ namespace ComputerGraphics.MVVM.View
 
         private void PreviewTextInput(object sender, TextCompositionEventArgs e)
         {
-            // zabezpecenie ze input bude iba numericky, ak sa bude zadavat text alebo iny neplatny input, e.Handled vrati false
+            // input is only numerical so if there is string or other non allowed input, e.Handler will return false
             Regex regex = new Regex("[^0-9(.+)]+");
             e.Handled = regex.IsMatch(e.Text);
         }
@@ -209,7 +209,6 @@ namespace ComputerGraphics.MVVM.View
                     break;
                 case "rotate":
                     double rotation = double.Parse(angle.Text);
-                    //Transformations.CalculateRotation(ref point, point.X, point.Y, rotation);
                     break;
                 case "scale":
                     double _valueScale = double.Parse(coeficient.Text);

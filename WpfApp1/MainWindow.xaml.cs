@@ -2,7 +2,9 @@
 using ComputerGraphics.MVVM.ViewModel;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -20,10 +22,9 @@ namespace WpfApp1
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class MainWindow : Window, INotifyPropertyChanged
     {
         MainViewModel viewModel = new();
-
         public MainWindow()
         {
             InitializeComponent();
@@ -32,13 +33,23 @@ namespace WpfApp1
 
             viewModel.LoadCurrentUserData();
 
+            
+
             SetUpLectures();
 
             Loaded += MainWindow_Loaded;
         }
-        private void SetUpLectures()
+
+        public event PropertyChangedEventHandler? PropertyChanged;
+
+        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
-            string lectureNum = viewModel.CurrentUserAccount.Lecture;
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
+
+        public void SetUpLectures()
+        {
+            string lectureNum = viewModel.Lectures;
 
             switch (lectureNum)
             {
@@ -86,7 +97,17 @@ namespace WpfApp1
                     lecture7.Visibility = Visibility.Visible;
                     lecture8.Visibility = Visibility.Visible;
                     break;
+                case "9":
+                    lecture2.Visibility = Visibility.Visible;
+                    lecture3.Visibility = Visibility.Visible;
+                    lecture4.Visibility = Visibility.Visible;
+                    lecture5.Visibility = Visibility.Visible;
+                    lecture6.Visibility = Visibility.Visible;
+                    lecture7.Visibility = Visibility.Visible;
+                    lecture8.Visibility = Visibility.Visible;
+                    break;
             }
+            lecturesLV.Items.Refresh();
         }
 
         private void MainWindow_Loaded(object sender, RoutedEventArgs e)

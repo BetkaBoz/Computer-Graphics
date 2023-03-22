@@ -10,8 +10,11 @@
   <ItemGroup>
     <None Remove="Images\arrow.png" />
     <None Remove="Images\bitmap_canvas.png" />
+    <None Remove="Images\check-black.png" />
+    <None Remove="Images\check.png" />
     <None Remove="Images\cohenalg.png" />
     <None Remove="Images\dog.png" />
+    <None Remove="Images\login.png" />
     <None Remove="Images\logout.png" />
     <None Remove="Images\next.png" />
     <None Remove="Images\pozadie.png" />
@@ -27,11 +30,16 @@
     <Resource Include="Images\arrow.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
+    <Resource Include="Images\check-black.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\check.png" />
     <Resource Include="Images\cohenalg.png" />
     <Resource Include="Images\dog.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
     <Resource Include="Images\dogSVG.xaml" />
+    <Resource Include="Images\login.png" />
     <Resource Include="Images\logout.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>

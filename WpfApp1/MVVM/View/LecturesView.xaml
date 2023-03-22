@@ -8,8 +8,8 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
 
-    <UserControl.DataContext> 
-      <viewModel:LecturesViewModel/> 
+    <UserControl.DataContext>
+        <viewModel:LecturesViewModel/>
     </UserControl.DataContext>
 
     <Grid>
@@ -27,16 +27,22 @@
         <ScrollViewer Grid.Row="0" Grid.RowSpan="2"
                       Margin="0,0,-30,0"
                       VerticalScrollBarVisibility="Hidden">
-            <StackPanel VerticalAlignment="Top" >
 
-                <!-- Vektorova a Rastrova grafika -->
-                <Expander IsExpanded="False" 
+            <StackPanel Orientation="Horizontal"
+                  Grid.Row="0" Grid.Column="0"
+                  Grid.RowSpan="2" Grid.ColumnSpan="2" Width="800">
+
+
+                <StackPanel VerticalAlignment="Top" HorizontalAlignment="Left">
+
+                    <!-- Vektorova a Rastrova grafika -->
+                    <Expander IsExpanded="False" 
                   Grid.Row="0" Grid.Column="0"
                   Grid.RowSpan="2" Grid.ColumnSpan="2" 
                   Background="Transparent" Header="VEKTOROVÁ A RASTROVÁ GRAFIKA"
                   Foreground="#FF424242" FontSize="12" FontWeight="Bold"
                   Cursor="Hand">
-                    <!--<Button Content="LEKCIA 1"
+                        <!--<Button Content="LEKCIA 1"
                                 Width="70" Height="25" BorderBrush="Transparent"
                                 VerticalAlignment="Bottom" HorizontalAlignment="Right"
                                 Margin="10"
@@ -51,16 +57,16 @@
                             </LinearGradientBrush>
                         </Button.Background>
                     </Button>-->
-                </Expander>
+                    </Expander>
 
-                <!-- Spracovanie Farieb -->
-                <Expander IsExpanded="False" 
+                    <!-- Spracovanie Farieb -->
+                    <Expander IsExpanded="False" 
                   Grid.Row="0" Grid.Column="0"
                   Grid.RowSpan="2" Grid.ColumnSpan="2" 
                   Background="Transparent" Header="SPRACOVANIE FARIEB"
                   Foreground="#FF424242" FontSize="12" FontWeight="Bold"
                   Cursor="Hand">
-                    <!--<Button Content="LEKCIA 2"
+                        <!--<Button Content="LEKCIA 2"
                                 Width="70" Height="25" BorderBrush="Transparent"
                                 VerticalAlignment="Bottom" HorizontalAlignment="Right"
                                 Margin="10"
@@ -75,16 +81,16 @@
                             </LinearGradientBrush>
                         </Button.Background>
                     </Button>-->
-                </Expander>
+                    </Expander>
 
-                <!-- Dvojrozmerne Transformacie -->
-                <Expander IsExpanded="False" 
+                    <!-- Dvojrozmerne Transformacie -->
+                    <Expander IsExpanded="False" 
                   Grid.Row="0" Grid.Column="0"
                   Grid.RowSpan="2" Grid.ColumnSpan="2" 
                   Background="Transparent" Header="DVOJROZMENRÉ TRANSFORMÁCIE"
                   Foreground="#FF424242" FontSize="12" FontWeight="Bold"
                   Cursor="Hand">
-                    <!--<Button Content="LEKCIA 3"
+                        <!--<Button Content="LEKCIA 3"
                                 Width="70" Height="25" BorderBrush="Transparent"
                                 VerticalAlignment="Bottom" HorizontalAlignment="Right"
                                 Margin="10"
@@ -99,16 +105,16 @@
                             </LinearGradientBrush>
                         </Button.Background>
                     </Button>-->
-                </Expander>
+                    </Expander>
 
-                <!-- Rasterizacia Usecky -->
-                <Expander IsExpanded="False" 
+                    <!-- Rasterizacia Usecky -->
+                    <Expander IsExpanded="False" 
                       Grid.Row="0" Grid.Column="0"
                       Grid.RowSpan="2" Grid.ColumnSpan="2" 
                       Background="Transparent" Header="RASTERIZÁCIA ÚSEČKY"
                       Foreground="#FF424242" FontSize="12" FontWeight="Bold"
                       Cursor="Hand">
-                    <!--<Button Content="LEKCIA 4"
+                        <!--<Button Content="LEKCIA 4"
                                     Width="70" Height="25" BorderBrush="Transparent"
                                     VerticalAlignment="Bottom" HorizontalAlignment="Right"
                                     Margin="10"
@@ -123,16 +129,16 @@
                             </LinearGradientBrush>
                         </Button.Background>
                     </Button>-->
-                </Expander>
+                    </Expander>
 
-                <!-- Rasterizacia Kruznice -->
-                <Expander IsExpanded="False" 
+                    <!-- Rasterizacia Kruznice -->
+                    <Expander IsExpanded="False" 
                   Grid.Row="0" Grid.Column="0"
                   Grid.RowSpan="2" Grid.ColumnSpan="2" 
                   Background="Transparent" Header="RASTERIZÁCIA KRUŽNICE"
                   Foreground="#FF424242" FontSize="12" FontWeight="Bold"
                   Cursor="Hand">
-                    <!--<Button Content="LEKCIA 5"
+                        <!--<Button Content="LEKCIA 5"
                                 Width="70" Height="25" BorderBrush="Transparent"
                                 VerticalAlignment="Bottom" HorizontalAlignment="Right"
                                 Margin="10"
@@ -147,16 +153,16 @@
                             </LinearGradientBrush>
                         </Button.Background>
                     </Button>-->
-                </Expander>
+                    </Expander>
 
-                <!-- Orezavanie usecky a textu -->
-                <Expander IsExpanded="False" 
+                    <!-- Orezavanie usecky a textu -->
+                    <Expander IsExpanded="False" 
                   Grid.Row="0" Grid.Column="0"
                   Grid.RowSpan="2" Grid.ColumnSpan="2" 
                   Background="Transparent" Header="OREZÁVANIE ÚSEČKY A TEXTU"
                   Foreground="#FF424242" FontSize="12" FontWeight="Bold"
                   Cursor="Hand">
-                    <!--<Button Content="LEKCIA 6"
+                        <!--<Button Content="LEKCIA 6"
                                 Width="70" Height="25" BorderBrush="Transparent"
                                 VerticalAlignment="Bottom" HorizontalAlignment="Right"
                                 Margin="10"
@@ -171,16 +177,16 @@
                             </LinearGradientBrush>
                         </Button.Background>
                     </Button>-->
-                </Expander>
+                    </Expander>
 
-                <!-- Vyplnanie rovinnych oblasti -->
-                <Expander IsExpanded="False" 
+                    <!-- Vyplnanie rovinnych oblasti -->
+                    <Expander IsExpanded="False" 
                   Grid.Row="0" Grid.Column="0"
                   Grid.RowSpan="2" Grid.ColumnSpan="2" 
                   Background="Transparent" Header="VYPĹŇANIE ROVINNÝCH OBLASTÍ"
                   Foreground="#FF424242" FontSize="12" FontWeight="Bold"
                   Cursor="Hand">
-                    <!--<Button Content="LEKCIA 7"
+                        <!--<Button Content="LEKCIA 7"
                                 Width="70" Height="25" BorderBrush="Transparent"
                                 VerticalAlignment="Bottom" HorizontalAlignment="Right"
                                 Margin="10"
@@ -195,16 +201,16 @@
                             </LinearGradientBrush>
                         </Button.Background>
                     </Button>-->
-                </Expander>
+                    </Expander>
 
-                <!-- Modelovanie kriviek a ploch -->
-                <Expander IsExpanded="False" 
+                    <!-- Modelovanie kriviek a ploch -->
+                    <Expander IsExpanded="False" 
                   Grid.Row="0" Grid.Column="0"
                   Grid.RowSpan="2" Grid.ColumnSpan="2" 
                   Background="Transparent" Header="MODELOVANIE KRIVIEK A PLÔCH"
                   Foreground="#FF424242" FontSize="12" FontWeight="Bold"
                   Cursor="Hand">
-                    <!--<Button Content="LEKCIA 8"
+                        <!--<Button Content="LEKCIA 8"
                                 Width="70" Height="25" BorderBrush="Transparent"
                                 VerticalAlignment="Bottom" HorizontalAlignment="Right"
                                 Margin="10"
@@ -219,9 +225,88 @@
                             </LinearGradientBrush>
                         </Button.Background>
                     </Button>-->
-                </Expander>
+                    </Expander>
+                </StackPanel>
+
+                <StackPanel>
+                    <Image x:Name="check_1"
+                       Grid.Column="1" Grid.Row="0"
+                       Width="30" Margin="0,10,0,0" Visibility="Hidden">
+                        <Image.Source>
+                            <BitmapImage DecodePixelWidth="300" 
+                                     UriSource="/Images/check.png"/>
+                        </Image.Source>
+                    </Image>
+
+                    <Image x:Name="check_2"
+                       Grid.Column="1" Grid.Row="0"
+                       Width="30" Margin="0,20,0,0" Visibility="Hidden">
+                        <Image.Source>
+                            <BitmapImage DecodePixelWidth="300" 
+                                     UriSource="/Images/check.png"/>
+                        </Image.Source>
+                    </Image>
+
+                    <Image x:Name="check_3" 
+                       Grid.Column="1" Grid.Row="0"
+                           Width="30" Margin="0,20,0,0" Visibility="Hidden">
+                        <Image.Source>
+                            <BitmapImage DecodePixelWidth="300" 
+                                     UriSource="/Images/check.png"/>
+                        </Image.Source>
+                    </Image>
+
+                    <Image x:Name="check_4"
+                       Grid.Column="1" Grid.Row="0"
+                       Width="30" Margin="0,15,0,0" Visibility="Hidden">
+                        <Image.Source>
+                            <BitmapImage DecodePixelWidth="300" 
+                                     UriSource="/Images/check.png"/>
+                        </Image.Source>
+                    </Image>
+
+                    <Image x:Name="check_5"
+                       Grid.Column="1" Grid.Row="0"
+                       Width="30" Margin="0,20,0,0" Visibility="Hidden">
+                        <Image.Source>
+                            <BitmapImage DecodePixelWidth="300" 
+                                     UriSource="/Images/check.png"/>
+                        </Image.Source>
+                    </Image>
+
+                    <Image x:Name="check_6"
+                       Grid.Column="1" Grid.Row="0"
+                       Width="30" Margin="0,15,0,0" Visibility="Hidden">
+                        <Image.Source>
+                            <BitmapImage DecodePixelWidth="300" 
+                                     UriSource="/Images/check.png"/>
+                        </Image.Source>
+                    </Image>
+
+                    <Image x:Name="check_7"
+                       Grid.Column="1" Grid.Row="0"
+                       Width="30" Margin="0,15,0,0" Visibility="Hidden">
+                        <Image.Source>
+                            <BitmapImage DecodePixelWidth="300" 
+                                     UriSource="/Images/check.png"/>
+                        </Image.Source>
+                    </Image>
+
+                    <Image x:Name="check_8"
+                       Grid.Column="1" Grid.Row="0"
+                       Width="30" Margin="0,15,0,0" Visibility="Hidden">
+                        <Image.Source>
+                            <BitmapImage DecodePixelWidth="300" 
+                                     UriSource="/Images/check.png"/>
+                        </Image.Source>
+                    </Image>
+                </StackPanel>
 
             </StackPanel>
+
+
         </ScrollViewer>
+
+
     </Grid>
 </UserControl>

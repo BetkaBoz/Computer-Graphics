@@ -1,6 +1,8 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -10,20 +12,30 @@ using System.Windows.Media;
 using System.Windows.Media.Media3D;
 using System.Windows.Shapes;
 using System.Windows.Threading;
+using Rectangle = System.Windows.Shapes.Rectangle;
 
 namespace ComputerGraphics.HelperScripts
 {
     public static class FillAlgorithms
     {
-        public static Color targetsColor = Color.FromRgb(255, 255, 255);
-        public static Color replaceColor = Color.FromRgb(212, 178, 255);
-
-        public static SolidColorBrush fillColor = new SolidColorBrush(Colors.LightCyan);
-        public static SolidColorBrush baseColor = new SolidColorBrush(Colors.White);
-        public static SolidColorBrush borderColor = new SolidColorBrush(Colors.DarkGray);
+        static SolidColorBrush fillColor = new SolidColorBrush(Colors.LightCyan);
+        static SolidColorBrush baseColor = new SolidColorBrush(Colors.White);
+         static SolidColorBrush borderColor = new SolidColorBrush(Colors.DarkGray);
         
-        public static void FloodFill(Rectangle startRectangle)
+        public static void FloodFill(Rectangle startRectangle, List<Rectangle> rectangles)
         {
+
+
+            var n = rectangles.Last();
+            var m = rectangles[0];
+            var oldColor = startRectangle.Fill;
+
+            if (oldColor == fillColor) return;
+
+            Queue queue = new();
+            //queue.Dequeue(());
+
+
             //Stack<Point> pixels = new Stack<Point>();
             //targetColor = bmp.GetPixel(point.X, point.Y);
             //pixels.Push(point);

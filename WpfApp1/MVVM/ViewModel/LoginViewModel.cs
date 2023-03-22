@@ -86,13 +86,14 @@ namespace ComputerGraphics.MVVM.ViewModel
             Debug.WriteLine("Prebieha registrácia");
             //userRepository.Add(new UserModel());
 
-            using (SqlConnection connection = new SqlConnection("Server=(local)\\SQLExpress; Database=CGDatabase; Integrated Security=true"))
+            using (SqlConnection connection = new SqlConnection("Server=laptop-7ukrdo46\\SQLExpress01; Database=CGDatabase; Integrated Security=true"))
             {
                 connection.Open();
-                SqlCommand command = new SqlCommand("INSERT INTO [User] (UserName, Email, Password) VALUES (@UserName, @Email, @Password)", connection);
+                SqlCommand command = new SqlCommand("INSERT INTO [User] (UserName, Email, Password, Lecture) VALUES (@UserName, @Email, @Password, @Lecture)", connection);
                 command.Parameters.AddWithValue("@UserName", UserName);
                 command.Parameters.AddWithValue("@Email", Email);
                 command.Parameters.AddWithValue("@Password", Password);
+                command.Parameters.AddWithValue("@Lecture", "1");
 
                 int rowsAffected = command.ExecuteNonQuery();
 

@@ -1,4 +1,6 @@
-﻿using System;
+﻿using ComputerGraphics.HelperScripts;
+using ComputerGraphics.MVVM.ViewModel;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -17,9 +19,14 @@ namespace ComputerGraphics.MVVM.View
 {
     public partial class LectureTwoView : UserControl
     {
+        bool check;
+
         public LectureTwoView()
         {
             InitializeComponent();
+
+            check = true;
+            ProgressWatch.IsProgress(check, 3);
         }
         private void RGB_Slider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
         {

@@ -1,25 +1,79 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using System.Windows.Controls;
+using System.Windows;
 using System.Windows.Input;
 using System.Xml.Serialization;
 using ComputerGraphics.Core;
 using ComputerGraphics.MVVM.Model;
 using ComputerGraphics.MVVM.View;
 using ComputerGraphics.Repositories;
+using MaterialDesignThemes.Wpf;
+using WpfApp1;
 
 namespace ComputerGraphics.MVVM.ViewModel
 {
     class MainViewModel : ObservableObject, ICloseWindow
     {
+        string _lectures;
+        ListViewItem _lecturesLV;
+        string _userName;
+        Visibility _buttonVisibility;
         object _currentView;
         DelegateCommand _closeCommand;
         UserAccountModel _currentUserAccount;
         IUserRepository userRepository;
+
+        public string Lectures
+        {
+            get => _lectures;
+            set
+            {
+                _lectures = value;
+                OnPropertyChanged(nameof(Lectures));
+            }
+        }
+
+        public ListViewItem LecturesLV
+        {
+            get => _lecturesLV;
+            set
+            {
+                _lecturesLV = value;
+                OnPropertyChanged(nameof(Lectures));
+            }
+        }
+
+        public string UserName
+        {
+            get => _lectures;
+            set
+            {
+                _lectures = value;
+                OnPropertyChanged(nameof(UserName));
+            }
+        }
+        
+        public Visibility ButtonVisibility
+        {
+            get
+            {
+                return _buttonVisibility;
+            }
+            set
+            {
+                _buttonVisibility = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public ICommand VisibleCommand { get; }
 
         public UserAccountModel CurrentUserAccount
         {
@@ -30,7 +84,9 @@ namespace ComputerGraphics.MVVM.ViewModel
                 OnPropertyChanged(nameof(CurrentUserAccount));
             }
         }
+
         public DelegateCommand CloseCommand => _closeCommand ?? (_closeCommand = new DelegateCommand(CloseWindow));
+
         public Action Close { get; set; }
 
         public RelayCommand homeViewCommand { get; set; }
@@ -142,6 +198,7 @@ namespace ComputerGraphics.MVVM.ViewModel
                 CurrentView = loginViewModel;
             });
         }
+
         public void LoadCurrentUserData()
         {
             var user = userRepository.GetByUserName(Thread.CurrentPrincipal.Identity.Name);
@@ -149,7 +206,48 @@ namespace ComputerGraphics.MVVM.ViewModel
             {
                 CurrentUserAccount.UserName = $"{user.UserName}";
                 CurrentUserAccount.Lecture = user.Lecture;
+                Lectures = user.Lecture;
             }
+        }
+
+        public void SetLectures(string lectures)
+        {
+            var user = userRepository.GetByUserName(Thread.CurrentPrincipal.Identity.Name);
+            Lectures = lectures;
+
+            if (user != null)
+            {
+                using (SqlConnection connection = new SqlConnection("Server=laptop-7ukrdo46\\SQLExpress01; Database=CGDatabase; Integrated Security=true"))
+                {
+                    connection.Open();
+                    SqlCommand command = new SqlCommand("UPDATE [User] SET Lecture=@Lecture WHERE UserName=@UserName", connection);
+                    command.Parameters.AddWithValue("@Lecture", Lectures);
+                    command.Parameters.AddWithValue("@UserName", user.UserName); ;
+
+                    int rowsAffected = command.ExecuteNonQuery();
+
+                    if (rowsAffected > 0) Debug.WriteLine("User edit successful.");
+                    else Debug.WriteLine("User edit failed.");
+                }
+            }
+
+            MainWindow main = new();
+            main.SetUpLectures();
+            //LecturesLV.Item.Refresh();
+            ListViewItem itemContainer = main.lecturesLV.ItemContainerGenerator.ContainerFromIndex(Int32.Parse(lectures)) as ListViewItem;
+            if (itemContainer != null)
+            {
+                itemContainer.Visibility = Visibility.Visible;
+                main.lecturesLV.Items.Refresh();
+            }
+
+            main.lecture2.Visibility = Visibility.Hidden;
+            main.lecture3.Visibility = Visibility.Hidden;
+            main.lecture4.Visibility = Visibility.Hidden;
+            main.lecture5.Visibility = Visibility.Hidden;
+            main.lecture6.Visibility = Visibility.Hidden;
+            main.lecture7.Visibility = Visibility.Hidden;
+            main.lecture8.Visibility = Visibility.Hidden;
         }
 
         private void CloseWindow(object obj)

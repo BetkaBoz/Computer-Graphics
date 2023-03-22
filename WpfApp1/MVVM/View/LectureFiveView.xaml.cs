@@ -1,4 +1,5 @@
 ﻿using ComputerGraphics.HelperScripts;
+using ComputerGraphics.MVVM.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,7 +21,7 @@ namespace ComputerGraphics.MVVM.View
     public partial class LectureFiveView : UserControl
     {
         string? algorithmName;
-
+        bool check;
         int pixelXCount, pixelYCount;
 
         Rectangle rectangle;
@@ -42,10 +43,12 @@ namespace ComputerGraphics.MVVM.View
             algorithmName = button.Name;
 
             canvas.Visibility = Visibility.Visible;
-            //canvasBitmap.Visibility = Visibility.Visible;
             textAddNodes.Visibility = Visibility.Visible;
 
             Refresh();
+
+            check = true;
+            ProgressWatch.IsProgress(check, 6);
         }
 
         private void DrawPixelsOnCanvas()

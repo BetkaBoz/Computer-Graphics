@@ -11,6 +11,7 @@ namespace ComputerGraphics.MVVM.Model
     {
         bool AuthenticateUser(NetworkCredential credential);
         void Add(UserModel userModel);
+        void Edit(UserModel userModel);
         UserModel GetById(int id);
         UserModel GetByUserName(string username);
         IEnumerable<UserModel> GetByAll();
