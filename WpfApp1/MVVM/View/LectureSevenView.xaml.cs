@@ -22,12 +22,12 @@ namespace ComputerGraphics.MVVM.View
     {
         string? algorithmName;
         int x, y;
-        int xx, yy;
         bool check;
 
         Rectangle rectangle;
         Rect rect;
         List<Point> pointsList = new();
+        List<Rectangle> fillRectangle = new();
 
         public static List<Rectangle> _rectangles = new();
         public static List<Rect> _rects = new();
@@ -50,24 +50,26 @@ namespace ComputerGraphics.MVVM.View
             refresh.Visibility = Visibility.Visible;
 
             // draw pixel shape on canvas
-            switch(algorithmName)
-            {
-                case "floodFill":
-                    FillFlooDFillPixels();
-                    break;
-                case "seedFill":
-                    FillSeedFillPixels();
-                    break;
-                case "seedLineFill":
-                    FillNonRecurzivePixels();
-                    break;
-                case "scanner":
-                    ShowScanner();
-                    break;
-                case "cohren":
-                    ShowScanner();
-                    break;
-            }
+            //switch(algorithmName)
+            //{
+            //    case "floodFill":
+            //        FillResursivePixels();
+            //        break;
+            //    case "seedFill":
+            //        FillResursivePixels();
+            //        break;
+            //    case "seedLineFill":
+            //        FillNonRecurzivePixels();
+            //        break;
+            //    case "scanner":
+            //        ShowScanner();
+            //        break;
+            //    case "cohren":
+            //        ShowScanner();
+            //        break;
+            //}
+
+            
 
             check = true;
             ProgressWatch.IsProgress(check, 8);
@@ -75,84 +77,79 @@ namespace ComputerGraphics.MVVM.View
 
         private void DrawPixelsOnCanvas()
         {
-            x = 1;
-            y = 1;
-
-            for (int i = 0; i <= 320; i += 20)
+            for (int i = 0; i <= 16; i++)
             {
-                for (int j = 0; j <= 320; j += 20)
+                RowDefinition rowDef = new RowDefinition();
+                ColumnDefinition colDef = new ColumnDefinition();
+                grid.RowDefinitions.Add(rowDef);
+                grid.ColumnDefinitions.Add(colDef);
+            }
+
+            for (int i = 0; i < 16; i++)
+            {
+                for (int j = 0; j < 16; j++)
                 {
-                    //create Rectangle
-                    rectangle = new();
-                    rectangle.StrokeThickness = 1;
-                    rectangle.Stroke = new SolidColorBrush(Colors.LightGray);
-                    rectangle.Fill = new SolidColorBrush(Colors.White);
-                    rectangle.Width = 20;
-                    rectangle.Height = 20;
-
-                    if (y == 1 && x == 14) rectangle.Name = $"p{y}{x}";
-                    else if (y == 1 && x == 13) rectangle.Name = $"p{y}{x}";
-                    else rectangle.Name = $"pixel{y}{x}";
-
-                    _rectangles.Add(rectangle);
-
-                    //create Rect
-                    rect = new();
+                    Rectangle rect = new Rectangle();
+                    rect.StrokeThickness = 1;
+                    rect.Stroke = new SolidColorBrush(Colors.LightGray);
+                    rect.Fill = new SolidColorBrush(Colors.White);
                     rect.Width = 20;
                     rect.Height = 20;
-                    rect.Location = new Point(j, i);
 
-                    _rects.Add(rect);
-
-                    //draw Rectangles on canvas
-                    Canvas.SetTop(rectangle, i);
-                    Canvas.SetLeft(rectangle, j);
-                    canvas.Children.Add(rectangle);
-
-                    x++;
-                }
-                x = 1;
-                y++;
-            }
-        }
-
-        private void FillPixel(object sender, MouseButtonEventArgs e)
-        {
-            var mouseWasDownOn = e.Source as FrameworkElement;
-            string pixelName = mouseWasDownOn.Name;
-            Debug.WriteLine($"{pixelName} and rect {rect.Location}");
-        }
-
-        private void FillFlooDFillPixels()
-        {
-            // start filling from pixel16010
-            foreach (var pixel in _rectangles)
-            {
-
-                if (pixel.Name.Equals("pixel44") || pixel.Name.Equals("pixel54") || pixel.Name.Equals("pixel64") || pixel.Name.Equals("pixel74") || pixel.Name.Equals("pixel84") || pixel.Name.Equals("pixel94") || pixel.Name.Equals("pixel104") || pixel.Name.Equals("pixel46")
-                    || pixel.Name.Equals("pixel124") || pixel.Name.Equals("pixel134") || pixel.Name.Equals("pixel144") || pixel.Name.Equals("pixel145") || pixel.Name.Equals("pixel146") || pixel.Name.Equals("pixel147") || pixel.Name.Equals("pixel148") || pixel.Name.Equals("pixel149")
-                    || pixel.Name.Equals("pixel1410") || pixel.Name.Equals("pixel1411") || pixel.Name.Equals("pixel1412") || pixel.Name.Equals("pixel1413") || pixel.Name.Equals("pixel1414") || pixel.Name.Equals("pixel1314") || pixel.Name.Equals("pixel1214") || pixel.Name.Equals("pixel1114")
-                    || pixel.Name.Equals("pixel1113") || pixel.Name.Equals("pixel1112") || pixel.Name.Equals("pixel1111") || pixel.Name.Equals("pixel1011") || pixel.Name.Equals("pixel911") || pixel.Name.Equals("pixel811") || pixel.Name.Equals("pixel810") || pixel.Name.Equals("pixel57")
-                    || pixel.Name.Equals("pixel810") || pixel.Name.Equals("pixel89") || pixel.Name.Equals("pixel88") || pixel.Name.Equals("pixel87") || pixel.Name.Equals("pixel77") || pixel.Name.Equals("pixel67") || pixel.Name.Equals("pixel47") || pixel.Name.Equals("pixel45") || pixel.Name.Equals("pixel114") )
-                {
-                    pixel.Fill = new SolidColorBrush(Colors.DarkGray);
+                    Grid.SetColumn(rect, i);
+                    Grid.SetRow(rect, j);
+                    grid.Children.Add(rect);
+                    _rectangles.Add(rect);
                 }
             }
         }
 
-        private void FillSeedFillPixels()
+        private void FillResursivePixels()
         {
-            // start filling from pixel16010
-            foreach (var pixel in _rectangles)
-            {
+            fillRectangle.Add(_rectangles.FirstOrDefault(r => Grid.GetColumn(r) == 3 && Grid.GetRow(r) == 3));
+            fillRectangle.Add(_rectangles.FirstOrDefault(r => Grid.GetColumn(r) == 3 && Grid.GetRow(r) == 3));
+            fillRectangle.Add(_rectangles.FirstOrDefault(r => Grid.GetColumn(r) == 3 && Grid.GetRow(r) == 4));
+            fillRectangle.Add(_rectangles.FirstOrDefault(r => Grid.GetColumn(r) == 3 && Grid.GetRow(r) == 5));
+            fillRectangle.Add(_rectangles.FirstOrDefault(r => Grid.GetColumn(r) == 3 && Grid.GetRow(r) == 6));
+            fillRectangle.Add(_rectangles.FirstOrDefault(r => Grid.GetColumn(r) == 3 && Grid.GetRow(r) == 7));
+            fillRectangle.Add(_rectangles.FirstOrDefault(r => Grid.GetColumn(r) == 3 && Grid.GetRow(r) == 8));
+            fillRectangle.Add(_rectangles.FirstOrDefault(r => Grid.GetColumn(r) == 3 && Grid.GetRow(r) == 9));
+            fillRectangle.Add(_rectangles.FirstOrDefault(r => Grid.GetColumn(r) == 3 && Grid.GetRow(r) == 10));
+            fillRectangle.Add(_rectangles.FirstOrDefault(r => Grid.GetColumn(r) == 3 && Grid.GetRow(r) == 11));
+            fillRectangle.Add(_rectangles.FirstOrDefault(r => Grid.GetColumn(r) == 3 && Grid.GetRow(r) == 12));
+            fillRectangle.Add(_rectangles.FirstOrDefault(r => Grid.GetColumn(r) == 4 && Grid.GetRow(r) == 3));
+            fillRectangle.Add(_rectangles.FirstOrDefault(r => Grid.GetColumn(r) == 4 && Grid.GetRow(r) == 12));
+            fillRectangle.Add(_rectangles.FirstOrDefault(r => Grid.GetColumn(r) == 5 && Grid.GetRow(r) == 3));
+            fillRectangle.Add(_rectangles.FirstOrDefault(r => Grid.GetColumn(r) == 5 && Grid.GetRow(r) == 12));
+            fillRectangle.Add(_rectangles.FirstOrDefault(r => Grid.GetColumn(r) == 6 && Grid.GetRow(r) == 3));
+            fillRectangle.Add(_rectangles.FirstOrDefault(r => Grid.GetColumn(r) == 6 && Grid.GetRow(r) == 4));
+            fillRectangle.Add(_rectangles.FirstOrDefault(r => Grid.GetColumn(r) == 6 && Grid.GetRow(r) == 5));
+            fillRectangle.Add(_rectangles.FirstOrDefault(r => Grid.GetColumn(r) == 6 && Grid.GetRow(r) == 6));
+            fillRectangle.Add(_rectangles.FirstOrDefault(r => Grid.GetColumn(r) == 6 && Grid.GetRow(r) == 12));
+            fillRectangle.Add(_rectangles.FirstOrDefault(r => Grid.GetColumn(r) == 7 && Grid.GetRow(r) == 6));
+            fillRectangle.Add(_rectangles.FirstOrDefault(r => Grid.GetColumn(r) == 7 && Grid.GetRow(r) == 12));
+            fillRectangle.Add(_rectangles.FirstOrDefault(r => Grid.GetColumn(r) == 8 && Grid.GetRow(r) == 6));
+            fillRectangle.Add(_rectangles.FirstOrDefault(r => Grid.GetColumn(r) == 8 && Grid.GetRow(r) == 12));
+            fillRectangle.Add(_rectangles.FirstOrDefault(r => Grid.GetColumn(r) == 9 && Grid.GetRow(r) == 6));
+            fillRectangle.Add(_rectangles.FirstOrDefault(r => Grid.GetColumn(r) == 9 && Grid.GetRow(r) == 12));
+            fillRectangle.Add(_rectangles.FirstOrDefault(r => Grid.GetColumn(r) == 10 && Grid.GetRow(r) == 6));
+            fillRectangle.Add(_rectangles.FirstOrDefault(r => Grid.GetColumn(r) == 10 && Grid.GetRow(r) == 7));
+            fillRectangle.Add(_rectangles.FirstOrDefault(r => Grid.GetColumn(r) == 10 && Grid.GetRow(r) == 8));
+            fillRectangle.Add(_rectangles.FirstOrDefault(r => Grid.GetColumn(r) == 10 && Grid.GetRow(r) == 9));
+            fillRectangle.Add(_rectangles.FirstOrDefault(r => Grid.GetColumn(r) == 10 && Grid.GetRow(r) == 12));
+            fillRectangle.Add(_rectangles.FirstOrDefault(r => Grid.GetColumn(r) == 11 && Grid.GetRow(r) == 9));
+            fillRectangle.Add(_rectangles.FirstOrDefault(r => Grid.GetColumn(r) == 11 && Grid.GetRow(r) == 12));
+            fillRectangle.Add(_rectangles.FirstOrDefault(r => Grid.GetColumn(r) == 12 && Grid.GetRow(r) == 9));
+            fillRectangle.Add(_rectangles.FirstOrDefault(r => Grid.GetColumn(r) == 12 && Grid.GetRow(r) == 10));
+            fillRectangle.Add(_rectangles.FirstOrDefault(r => Grid.GetColumn(r) == 12 && Grid.GetRow(r) == 11));
+            fillRectangle.Add(_rectangles.FirstOrDefault(r => Grid.GetColumn(r) == 12 && Grid.GetRow(r) == 12));
 
-                if (pixel.Name.Equals("pixel44") || pixel.Name.Equals("pixel54") || pixel.Name.Equals("pixel64") || pixel.Name.Equals("pixel74") || pixel.Name.Equals("pixel84") || pixel.Name.Equals("pixel94") || pixel.Name.Equals("pixel104") || pixel.Name.Equals("pixel46")
-                    || pixel.Name.Equals("pixel124") || pixel.Name.Equals("pixel134") || pixel.Name.Equals("pixel144") || pixel.Name.Equals("pixel145") || pixel.Name.Equals("pixel146") || pixel.Name.Equals("pixel147") || pixel.Name.Equals("pixel148") || pixel.Name.Equals("pixel149")
-                    || pixel.Name.Equals("pixel1410") || pixel.Name.Equals("pixel1411") || pixel.Name.Equals("pixel1412") || pixel.Name.Equals("pixel1413") || pixel.Name.Equals("pixel1414") || pixel.Name.Equals("pixel1314") || pixel.Name.Equals("pixel1214") || pixel.Name.Equals("pixel1114")
-                    || pixel.Name.Equals("pixel1113") || pixel.Name.Equals("pixel1112") || pixel.Name.Equals("pixel1111") || pixel.Name.Equals("pixel1011") || pixel.Name.Equals("pixel911") || pixel.Name.Equals("pixel811") || pixel.Name.Equals("pixel810") || pixel.Name.Equals("pixel57")
-                    || pixel.Name.Equals("pixel810") || pixel.Name.Equals("pixel89") || pixel.Name.Equals("pixel88") || pixel.Name.Equals("pixel87") || pixel.Name.Equals("pixel77") || pixel.Name.Equals("pixel67") || pixel.Name.Equals("pixel47") || pixel.Name.Equals("pixel45") || pixel.Name.Equals("pixel114"))
+            foreach (var r in fillRectangle)
+            {
+                for (int i = 1; i <= fillRectangle.Count; i++)
                 {
-                    pixel.Fill = new SolidColorBrush(Colors.DarkGray);
+                    r.Name = $"rect{i}";
+                    r.Fill = new SolidColorBrush(Colors.LightGray);
                 }
             }
         }
@@ -190,11 +187,15 @@ namespace ComputerGraphics.MVVM.View
             pointsList.Clear();
             _rectangles.Clear();
             _rects.Clear();
-            //CircleRasterization.pointsList.Clear();
+            fillRectangle.Clear();
 
             refresh.Visibility = Visibility.Hidden;
 
             DrawPixelsOnCanvas();
+
+            if (algorithmName == "floodFill" || algorithmName == "seedFill") FillResursivePixels();
+            else if (algorithmName == "seedLineFill") FillNonRecurzivePixels();
+            else if (algorithmName == "scanner" || algorithmName == "cohren") ShowScanner();
         }
 
         private void RefreshCanvas(object sender, MouseButtonEventArgs e)
@@ -204,20 +205,14 @@ namespace ComputerGraphics.MVVM.View
 
         private void ScannerCalculation(object sender, RoutedEventArgs e)
         {
-            // set starting pixel from which will algorithms fill
-            int index = _rectangles.FindIndex(rect => rect.Name == "pixel117");
-            Rect rectStart = _rects[index];
-
-            xx = (int)Math.Floor(rectStart.Location.X / rectStart.Width);
-            yy = (int)Math.Floor(rectStart.Location.Y / rectStart.Height);
-
             switch (algorithmName)
             {
                 case "floodFill":
-                    //FillAlgorithms.FloodFill();
+                    FillAlgorithms.FloodFill(_rectangles, 6, 10, new SolidColorBrush(Colors.LightSkyBlue), new SolidColorBrush(Colors.White));
                     break;
                 case "seedFill":
-                    FillAlgorithms.SeedFill(_rectangles, xx, yy, canvas); 
+                    Rectangle rect = _rectangles.FirstOrDefault(r => Grid.GetColumn(r) == 6 && Grid.GetRow(r) == 10);
+                    FillAlgorithms.SeedFill(_rectangles, rect, new SolidColorBrush(Colors.LightSkyBlue), new SolidColorBrush(Colors.White)); 
                     break;
                 case "seedLineFill":
                     //FillAlgorithms.SeedLineFill();

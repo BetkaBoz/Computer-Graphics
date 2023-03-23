@@ -207,6 +207,7 @@ a doprava až k hranici oblasti. Potom je možné vynechať v algoritme krok 2b 
                     </StackPanel>
                 </Expander>
 
+                <!-- SCANNING ALG -->
                 <Expander IsExpanded="False" 
                   Grid.Row="0" Grid.Column="0"
                   Grid.RowSpan="2"
@@ -247,6 +248,7 @@ usporiadaných priesečníkov."/>
                     </StackPanel>
                 </Expander>
 
+                <!-- COHERENT OF IDK -->
                 <Expander IsExpanded="False" 
                   Grid.Row="0" Grid.Column="0"
                   Grid.RowSpan="2"
@@ -321,8 +323,9 @@ ktorej úsečka leží&#x0a;"/>
                 Margin="0,50,0,0"
                 Background="White"
                 Height="320" Width="320" Cursor="Hand" 
-                Visibility="Hidden"
-                MouseDown="FillPixel"/>
+                Visibility="Hidden">
+            <Grid x:Name="grid"/>
+        </Canvas>
 
         <TextBlock Grid.Column="1" Grid.Row="1"
                    x:Name="textAddPixel"

@@ -11,7 +11,6 @@
 
         <Button Content="Začíname"
                 Width="150" Height="45" BorderBrush="#FF82B2FF"
-                Command="{Binding ChangeViewModel}"
                 CommandParameter="Lectures" Foreground="#FF424242">
             <Button.Background>
                 <LinearGradientBrush EndPoint="0.9,1" StartPoint="0.4,0">
