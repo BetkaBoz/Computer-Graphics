@@ -100,7 +100,7 @@
                             <Button.Background>
                                 <LinearGradientBrush EndPoint="0.9,1" StartPoint="0.4,0">
                                     <GradientStop Color="#FF82B2FF"/>
-                                    <GradientStop Color="#FFD48DFF" Offset="1"/>
+                                    <GradientStop Color="#FF887DDA" Offset="1"/>
                                 </LinearGradientBrush>
                             </Button.Background>
                         </Button>
@@ -163,7 +163,7 @@
                             <Button.Background>
                                 <LinearGradientBrush EndPoint="0.9,1" StartPoint="0.4,0">
                                     <GradientStop Color="#FF82B2FF"/>
-                                    <GradientStop Color="#FFD48DFF" Offset="1"/>
+                                    <GradientStop Color="#FF887DDA" Offset="1"/>
                                 </LinearGradientBrush>
                             </Button.Background>
                         </Button>
@@ -221,7 +221,7 @@
                             <Button.Background>
                                 <LinearGradientBrush EndPoint="0.9,1" StartPoint="0.4,0">
                                     <GradientStop Color="#FF82B2FF"/>
-                                    <GradientStop Color="#FFD48DFF" Offset="1"/>
+                                    <GradientStop Color="#FF887DDA" Offset="1"/>
                                 </LinearGradientBrush>
                             </Button.Background>
                         </Button>
@@ -256,7 +256,7 @@
                             <Button.Background>
                                 <LinearGradientBrush EndPoint="0.9,1" StartPoint="0.4,0">
                                     <GradientStop Color="#FF82B2FF"/>
-                                    <GradientStop Color="#FFD48DFF" Offset="1"/>
+                                    <GradientStop Color="#FF887DDA" Offset="1"/>
                                 </LinearGradientBrush>
                             </Button.Background>
                         </Button>
@@ -291,7 +291,7 @@
                             <Button.Background>
                                 <LinearGradientBrush EndPoint="0.9,1" StartPoint="0.4,0">
                                     <GradientStop Color="#FF82B2FF"/>
-                                    <GradientStop Color="#FFD48DFF" Offset="1"/>
+                                    <GradientStop Color="#FF887DDA" Offset="1"/>
                                 </LinearGradientBrush>
                             </Button.Background>
                         </Button>
@@ -526,7 +526,7 @@
                Margin="0,0,0,50"
                MouseDown="CalculateStep" />
         </StackPanel>
-        
+
         <!-- SHEAR CANVAS -->
         <StackPanel x:Name="shearStackPanel"
                     Grid.Column="1" Grid.Row="1"
@@ -565,7 +565,7 @@
                 </TextBox>
 
                 <TextBlock 
-                   Text=" )"
+                   Text=" ) v intervale &lt;0, 1>"
                    Foreground="#FF424242"
                    FontWeight="Normal"
                    Padding="0,10,0,0"/>

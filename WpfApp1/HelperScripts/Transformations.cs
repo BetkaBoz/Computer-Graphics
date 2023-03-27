@@ -1,11 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Printing;
-using System.Reflection.Metadata;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 
@@ -27,8 +20,6 @@ namespace ComputerGraphics.HelperScripts
 
             point.X = (x * Math.Cos(rotation)) - (y * Math.Sin(rotation));
             point.Y = (x * Math.Sin(rotation)) + (y * Math.Cos(rotation));
-
-            Debug.WriteLine("it rotated");
         }
 
         public static void CalculateScale(ref Point point, double scale)
@@ -39,7 +30,7 @@ namespace ComputerGraphics.HelperScripts
 
         public static void CalculateMirror(ref Point point, int axis, Canvas canvas)
         {
-            switch(axis)
+            switch (axis)
             {
                 case 0:
                     if (point.X > 0 && point.X <= canvas.Width)
@@ -57,8 +48,7 @@ namespace ComputerGraphics.HelperScripts
                     }
                     else return;
                     break;
-                default:
-                    break;
+                default: break;
             }
         }
 

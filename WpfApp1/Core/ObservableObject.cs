@@ -9,9 +9,6 @@ namespace ComputerGraphics.Core
         public event PropertyChangedEventHandler? PropertyChanged;
 
         //protected void OnPropertyChanged([CallerMemberName] string name = null)
-        //{
-        //    PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
-        //} 
         public void OnPropertyChanged(string propertyName = null)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));

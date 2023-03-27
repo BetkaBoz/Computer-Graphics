@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ComputerGraphics.MVVM.View;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -17,14 +18,17 @@ using System.Windows.Threading;
 using static System.Net.Mime.MediaTypeNames;
 using Application = System.Windows.Application;
 using Color = System.Windows.Media.Color;
+using Point = System.Windows.Point;
 using Rectangle = System.Windows.Shapes.Rectangle;
 
 namespace ComputerGraphics.HelperScripts
 {
     public static class FillAlgorithms
     {
-        static SolidColorBrush borderColor = new SolidColorBrush(Colors.DarkGray); 
+        static SolidColorBrush borderColor = new SolidColorBrush(Colors.LightGray);
         static TaskScheduler uiScheduler = TaskScheduler.FromCurrentSynchronizationContext();
+        static CancellationTokenSource tokenSource = new();
+        static CancellationToken token = tokenSource.Token;
 
         public static void FloodFill(List<Rectangle> rectangles, int x, int y, SolidColorBrush replacementColor, SolidColorBrush targetColor)
         {
@@ -36,6 +40,7 @@ namespace ComputerGraphics.HelperScripts
                 SolidColorBrush rectColor = (SolidColorBrush)rect.Fill;
 
                 if (rect == null || rectColor.Color == replacementColor.Color) return;
+
                 if (rectColor.Color == targetColor.Color)
                 {
                     rect.Fill = replacementColor;
@@ -43,11 +48,6 @@ namespace ComputerGraphics.HelperScripts
                     Application.Current.Dispatcher.Invoke(() => { }, DispatcherPriority.Background);
 
                     // recursively call FloodFill on the neighboring rectangles
-                    //if (rectColor.Color != borderColor.Color) FloodFill(rectangles, x, y - 1, replacementColor, targetColor);
-                    //else if (rectColor.Color != borderColor.Color) FloodFill(rectangles, x + 1, y, replacementColor, targetColor);
-                    //else if (rectColor.Color != borderColor.Color) FloodFill(rectangles, x, y + 1, replacementColor, targetColor);
-                    //else if (rectColor.Color != borderColor.Color) FloodFill(rectangles, x - 1, y, replacementColor, targetColor);
-
                     FloodFill(rectangles, x - 1, y, replacementColor, targetColor);
                     FloodFill(rectangles, x, y + 1, replacementColor, targetColor);
                     FloodFill(rectangles, x + 1, y, replacementColor, targetColor);
@@ -84,11 +84,59 @@ namespace ComputerGraphics.HelperScripts
                     }
                 }
             }, CancellationToken.None, TaskCreationOptions.None, uiScheduler);
+            
         }
 
-        public static void SeedLineFill(Rectangle startRectangle)
+        public static async void SeedLineFill(List<Rectangle> rectangles, int x, int y, SolidColorBrush replacementColor, SolidColorBrush targetColor)
         {
+            Queue<int> yQueue = new();
+            yQueue.Enqueue(y);
+            while (yQueue.Count > 0)
+            {
+                y = yQueue.Dequeue();
 
+                Application.Current.Dispatcher.Invoke(() => { }, DispatcherPriority.Background);
+
+                await FillRow(rectangles, x, y, replacementColor, targetColor);
+
+                var color = GetPixelColor(rectangles, x, y + 1);
+                if (color != replacementColor.Color && color != borderColor.Color)
+                {
+                    yQueue.Enqueue(y + 1);
+                }
+                if (GetPixelColor(rectangles, x, y - 1) != replacementColor.Color && GetPixelColor(rectangles, x, y - 1) != borderColor.Color)
+                {
+                    yQueue.Enqueue(y - 1);
+                }
+            }
+        }
+
+        private static Color GetPixelColor(List<Rectangle> rectangles, int x, int y)
+        {
+            Rectangle rect = rectangles.FirstOrDefault(r => Grid.GetColumn(r) == x && Grid.GetRow(r) == y);
+
+            SolidColorBrush rectColor = (SolidColorBrush)rect.Fill;
+
+            return rectColor.Color;
+        }
+
+        private static async Task FillRow(List<Rectangle> rectangles, int x, int y, SolidColorBrush replacementColor, SolidColorBrush targetColor)
+        {
+            await Task.Delay(50);
+
+            Rectangle rect = rectangles.FirstOrDefault(r => Grid.GetColumn(r) == x && Grid.GetRow(r) == y);
+            SolidColorBrush rectColor = (SolidColorBrush)rect.Fill;
+
+            if (rect == null || rectColor.Color == replacementColor.Color) return;
+
+            if (rectColor.Color == targetColor.Color)
+            {
+                rect.Fill = replacementColor;
+
+                Application.Current.Dispatcher.Invoke(() => { }, DispatcherPriority.Background);
+
+                await FillRow(rectangles, x + 1, y, replacementColor, targetColor);
+            }
         }
     }
 }

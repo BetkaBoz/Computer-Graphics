@@ -214,6 +214,7 @@ namespace ComputerGraphics.MVVM.ViewModel
         {
             var user = userRepository.GetByUserName(Thread.CurrentPrincipal.Identity.Name);
             Lectures = lectures;
+            MainWindow mainWindow = new();
 
             if (user != null)
             {
@@ -233,21 +234,17 @@ namespace ComputerGraphics.MVVM.ViewModel
 
             MainWindow main = new();
             main.SetUpLectures();
-            //LecturesLV.Item.Refresh();
-            ListViewItem itemContainer = main.lecturesLV.ItemContainerGenerator.ContainerFromIndex(Int32.Parse(lectures)) as ListViewItem;
-            if (itemContainer != null)
-            {
-                itemContainer.Visibility = Visibility.Visible;
-                main.lecturesLV.Items.Refresh();
-            }
 
-            main.lecture2.Visibility = Visibility.Hidden;
-            main.lecture3.Visibility = Visibility.Hidden;
-            main.lecture4.Visibility = Visibility.Hidden;
-            main.lecture5.Visibility = Visibility.Hidden;
-            main.lecture6.Visibility = Visibility.Hidden;
-            main.lecture7.Visibility = Visibility.Hidden;
-            main.lecture8.Visibility = Visibility.Hidden;
+            main.UpdateLayout();
+
+            //ListViewItem itemContainer = main.lecturesLV.ItemContainerGenerator.ContainerFromIndex(Int32.Parse(lectures)) as ListViewItem;
+            //if (itemContainer != null)
+            //{
+            //    itemContainer.Visibility = Visibility.Visible;
+            //    main.lecturesLV.Items.Refresh();
+            //}
+
+            
         }
 
         private void CloseWindow(object obj)

@@ -11,6 +11,7 @@ namespace ComputerGraphics.HelperScripts
     public static class ProgressWatch
     {
         static MainViewModel viewModel = new();
+        static MainWindow mainWindow = new();
 
         public static bool IsProgress(bool check, int progressNumb)
         {
@@ -20,6 +21,7 @@ namespace ComputerGraphics.HelperScripts
             {
                 string lectures = $"{progressNumb}";
                 viewModel.SetLectures(lectures);
+                
                 return true;
             }
             else return false;

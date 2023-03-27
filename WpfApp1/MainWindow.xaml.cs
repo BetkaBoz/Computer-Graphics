@@ -33,7 +33,13 @@ namespace WpfApp1
 
             viewModel.LoadCurrentUserData();
 
-            
+            lecture2.Visibility = Visibility.Hidden;
+            lecture3.Visibility = Visibility.Hidden;
+            lecture4.Visibility = Visibility.Hidden;
+            lecture5.Visibility = Visibility.Hidden;
+            lecture6.Visibility = Visibility.Hidden;
+            lecture7.Visibility = Visibility.Hidden;
+            lecture8.Visibility = Visibility.Hidden;
 
             SetUpLectures();
 
@@ -108,6 +114,8 @@ namespace WpfApp1
                     break;
             }
             lecturesLV.Items.Refresh();
+            //((MainWindow)System.Windows.Application.Current.MainWindow).UpdateLayout();
+            this.UpdateLayout();
         }
 
         private void MainWindow_Loaded(object sender, RoutedEventArgs e)
