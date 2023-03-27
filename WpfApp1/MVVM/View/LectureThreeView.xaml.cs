@@ -181,6 +181,7 @@ namespace ComputerGraphics.MVVM.View
                 "move" => moveStackPanel,
                 "rotate" => rotateStackPanel,
                 "scale" => scaleStackPanel,
+                "mirror" => mirrorStackPanel,
                 "scold" => shearStackPanel,
                 _ => throw new NotImplementedException(),
             };
@@ -205,6 +206,7 @@ namespace ComputerGraphics.MVVM.View
                 case "move":
                     _valueVectorX = int.Parse(vectorX.Text);
                     _valueVectorY = int.Parse(vectorY.Text);
+
                     Transformations.CalculateMove(ref point, _valueVectorX, _valueVectorY);
                     break;
                 case "rotate":
@@ -215,7 +217,8 @@ namespace ComputerGraphics.MVVM.View
                     Transformations.CalculateScale(ref point, _valueScale);
                     break;
                 case "mirror":
-                    Debug.WriteLine("pocitaj zrkadlenie");
+                    int _valueMirror = int.Parse(axis.Text);
+                    Transformations.CalculateMirror(ref point, _valueMirror, canvas);
                     break;
                 case "scold":
                     double _valueSkewX = double.Parse(shearX.Text);

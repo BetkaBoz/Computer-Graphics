@@ -7,6 +7,7 @@ using System.Reflection.Metadata;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Controls;
 
 namespace ComputerGraphics.HelperScripts
 {
@@ -34,6 +35,31 @@ namespace ComputerGraphics.HelperScripts
         {
             point.X *= scale;
             point.Y *= scale;
+        }
+
+        public static void CalculateMirror(ref Point point, int axis, Canvas canvas)
+        {
+            switch(axis)
+            {
+                case 0:
+                    if (point.X > 0 && point.X <= canvas.Width)
+                    {
+                        if (point.X < canvas.Width / 2) point.X += 150;
+                        else point.X -= 150;
+                    }
+                    else return;
+                    break;
+                case 1:
+                    if (point.Y >= 0 && point.Y <= canvas.Height)
+                    {
+                        if (point.Y < canvas.Height / 2) point.Y += 150;
+                        else point.Y -= 150;
+                    }
+                    else return;
+                    break;
+                default:
+                    break;
+            }
         }
 
         public static void CalculateSkew(ref Point point, double skewX, double skewY)
