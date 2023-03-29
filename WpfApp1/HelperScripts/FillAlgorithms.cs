@@ -25,7 +25,8 @@ namespace ComputerGraphics.HelperScripts
 {
     public static class FillAlgorithms
     {
-        static SolidColorBrush borderColor = new SolidColorBrush(Colors.LightGray);
+        static SolidColorBrush borderColor = new(Colors.LightGray);
+        static SolidColorBrush targetColor = new(Colors.White);
         static TaskScheduler uiScheduler = TaskScheduler.FromCurrentSynchronizationContext();
         static CancellationTokenSource tokenSource = new();
         static CancellationToken token = tokenSource.Token;
@@ -84,7 +85,7 @@ namespace ComputerGraphics.HelperScripts
                     }
                 }
             }, CancellationToken.None, TaskCreationOptions.None, uiScheduler);
-            
+
         }
 
         public static async void SeedLineFill(List<Rectangle> rectangles, int x, int y, SolidColorBrush replacementColor, SolidColorBrush targetColor)
@@ -135,7 +136,10 @@ namespace ComputerGraphics.HelperScripts
 
                 Application.Current.Dispatcher.Invoke(() => { }, DispatcherPriority.Background);
 
+                
                 await FillRow(rectangles, x + 1, y, replacementColor, targetColor);
+                await FillRow(rectangles, 11 - 1, y, replacementColor, targetColor);
+                await FillRow(rectangles, 12 - 1, y, replacementColor, targetColor);
             }
         }
     }

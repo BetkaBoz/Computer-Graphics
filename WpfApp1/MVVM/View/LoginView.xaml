@@ -136,7 +136,7 @@
                     Cursor="Hand"                           
                     Margin="0,30,0,0"
                     Command="{Binding LoginCommand}"
-                    Click="btnLogin_Click">
+                    >
 
                     <Button.Background>
                         <LinearGradientBrush EndPoint="0.9,1" StartPoint="0.4,0">
@@ -231,7 +231,8 @@
                             FontSize="13"
                             Cursor="Hand"                           
                             Margin="0,50,0,0"
-                            Command="{Binding RegisterCommand}">
+                            Command="{Binding RegisterCommand}"
+                            Click="btnLogin_Click">
                     <Button.Background>
                         <LinearGradientBrush EndPoint="0.9,1" StartPoint="0.4,0">
                             <GradientStop Color="#FF82B2FF"/>
