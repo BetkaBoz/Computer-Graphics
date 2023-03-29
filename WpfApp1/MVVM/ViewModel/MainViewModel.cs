@@ -16,14 +16,17 @@ using ComputerGraphics.MVVM.View;
 using ComputerGraphics.Repositories;
 using MaterialDesignThemes.Wpf;
 using WpfApp1;
+using System.Collections.ObjectModel;
+using System.Windows.Media;
 
 namespace ComputerGraphics.MVVM.ViewModel
 {
     class MainViewModel : ObservableObject, ICloseWindow
     {
         string _lectures;
-        ListViewItem _lecturesLV;
         string _userName;
+        string _email;
+        ObservableCollection<ObservableObject> _dataItems = new();
         Visibility _buttonVisibility;
         object _currentView;
         DelegateCommand _closeCommand;
@@ -40,36 +43,43 @@ namespace ComputerGraphics.MVVM.ViewModel
             }
         }
 
-        public ListViewItem LecturesLV
-        {
-            get => _lecturesLV;
-            set
-            {
-                _lecturesLV = value;
-                OnPropertyChanged(nameof(Lectures));
-            }
-        }
-
         public string UserName
         {
-            get => _lectures;
+            get => _userName;
             set
             {
-                _lectures = value;
+                _userName = value;
                 OnPropertyChanged(nameof(UserName));
             }
         }
-        
+
+        public string Email
+        {
+            get => _email;
+            set
+            {
+                _email = value;
+                OnPropertyChanged(nameof(Email));
+            }
+        }
+
         public Visibility ButtonVisibility
         {
-            get
-            {
-                return _buttonVisibility;
-            }
+            get => _buttonVisibility;
             set
             {
                 _buttonVisibility = value;
                 OnPropertyChanged();
+            }
+        }
+
+        public ObservableCollection<ObservableObject> DataItems
+        {
+            get { return _dataItems; }
+            set
+            {
+                _dataItems = value;
+                OnPropertyChanged(nameof(DataItems));
             }
         }
 
@@ -127,6 +137,7 @@ namespace ComputerGraphics.MVVM.ViewModel
         {
             userRepository = new UserRepository();
             CurrentUserAccount = new UserAccountModel();
+
             LoadCurrentUserData();
 
             homeViewModel = new HomeViewModel();
@@ -204,7 +215,7 @@ namespace ComputerGraphics.MVVM.ViewModel
             var user = userRepository.GetByUserName(Thread.CurrentPrincipal.Identity.Name);
             if (user != null)
             {
-                CurrentUserAccount.UserName = $"{user.UserName}";
+                CurrentUserAccount.Email = $"{user.Email}";
                 CurrentUserAccount.Lecture = user.Lecture;
                 Lectures = user.Lecture;
             }
@@ -214,7 +225,6 @@ namespace ComputerGraphics.MVVM.ViewModel
         {
             var user = userRepository.GetByUserName(Thread.CurrentPrincipal.Identity.Name);
             Lectures = lectures;
-            MainWindow mainWindow = new();
 
             if (user != null)
             {
@@ -231,20 +241,21 @@ namespace ComputerGraphics.MVVM.ViewModel
                     else Debug.WriteLine("User edit failed.");
                 }
             }
-
-            MainWindow main = new();
-            main.SetUpLectures();
-
-            main.UpdateLayout();
-
-            //ListViewItem itemContainer = main.lecturesLV.ItemContainerGenerator.ContainerFromIndex(Int32.Parse(lectures)) as ListViewItem;
-            //if (itemContainer != null)
-            //{
-            //    itemContainer.Visibility = Visibility.Visible;
-            //    main.lecturesLV.Items.Refresh();
-            //}
-
-            
+            Application.Current.Dispatcher.Invoke(() =>
+            {
+                MainWindow main = new();
+                for (int i = 1; i <= Int32.Parse(Lectures); i++)
+                {
+                    foreach (var child in main.lectureButtons)
+                    {
+                        if (child.Name == $"lecture{i}")
+                        {
+                            Debug.WriteLine("is the name");
+                            child.IsEnabled = true;
+                        }
+                    }
+                }
+            });
         }
 
         private void CloseWindow(object obj)

@@ -35,16 +35,14 @@ namespace ComputerGraphics.HelperScripts
                 case 0:
                     if (point.X > 0 && point.X <= canvas.Width)
                     {
-                        if (point.X < canvas.Width / 2) point.X += 150;
-                        else point.X -= 150;
+                        point.X = -point.X + canvas.Width;
                     }
                     else return;
                     break;
                 case 1:
                     if (point.Y >= 0 && point.Y <= canvas.Height)
                     {
-                        if (point.Y < canvas.Height / 2) point.Y += 150;
-                        else point.Y -= 150;
+                        point.Y=  -point.Y + canvas.Height;
                     }
                     else return;
                     break;

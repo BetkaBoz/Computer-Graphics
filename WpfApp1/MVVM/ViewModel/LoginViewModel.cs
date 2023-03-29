@@ -71,7 +71,6 @@ namespace ComputerGraphics.MVVM.ViewModel
         }
 
         public ICommand LoginCommand { get; }
-        public ICommand RecoverPasswordCommand { get; }
         public ICommand RegisterCommand { get; }
 
         public LoginViewModel()
@@ -84,7 +83,6 @@ namespace ComputerGraphics.MVVM.ViewModel
         private void ExecuteRegisterCommand(object obj)
         {
             Debug.WriteLine("Prebieha registrácia");
-            //userRepository.Add(new UserModel());
 
             using (SqlConnection connection = new SqlConnection("Server=laptop-7ukrdo46\\SQLExpress01; Database=CGDatabase; Integrated Security=true"))
             {

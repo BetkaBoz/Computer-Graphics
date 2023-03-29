@@ -26,12 +26,16 @@ namespace ComputerGraphics.Core
             _canExecute = canExecute;
         }
 
+
+        public event EventHandler CanExecuteChange
+        {
+            add { CommandManager.RequerySuggested += value; }
+            remove { CommandManager.RequerySuggested -= value; }
+        }
+
         public bool CanExecute(object parameter)
         {
-            if (_canExecute == null)
-            {
-                return true;
-            }
+            if (_canExecute == null) return true;
 
             return _canExecute(parameter);
         }
@@ -43,10 +47,7 @@ namespace ComputerGraphics.Core
 
         public void RaiseCanExecuteChanged()
         {
-            if (CanExecuteChanged != null)
-            {
-                CanExecuteChanged(this, EventArgs.Empty);
-            }
+            if (CanExecuteChanged != null) CanExecuteChanged(this, EventArgs.Empty);
         }
     }
 }

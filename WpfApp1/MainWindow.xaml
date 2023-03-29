@@ -4,7 +4,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
         xmlns:viewModel="clr-namespace:ComputerGraphics.MVVM.ViewModel"
-        xmlns:views="clr-namespace:ComputerGraphics.MVVM.View"
+        xmlns:views="clr-namespace:ComputerGraphics.MVVM.View" 
         mc:Ignorable="d" 
         Height="600" Width="960" 
         WindowStyle="None"
@@ -59,7 +59,7 @@
                               Margin="5" 
                               Foreground="#FF424242" FontSize="14">
                         <ListView ScrollViewer.HorizontalScrollBarVisibility="Disabled"
-                                  x:Name="lecturesLV">
+                                  x:Name="listItems">
                             <RadioButton Content="Lekcia 1"
                                          x:Name="lecture1"
                                          Visibility="Visible"
@@ -69,77 +69,78 @@
                                          Foreground="#FF424242" 
                                          IsChecked="False"
                                          Margin="-6"
-                                         Command="{Binding lectureOneViewCommand}"/>
+                                         IsEnabled="true"
+                                         Command="{Binding lectureOneViewCommand}" Click="lecture_Click"/>
                             <RadioButton Content="Lekcia 2"
                                          x:Name="lecture2"
-                                         Visibility="Hidden"
                                          Height="45" Width="160"
                                          FontSize="14"
                                          Style="{StaticResource MenuButtonTheme}" 
                                          Foreground="#FF424242" 
                                          IsChecked="False"
                                          Margin="-6"
-                                         Command="{Binding lectureTwoViewCommand, UpdateSourceTrigger=PropertyChanged}"/>
+                                         IsEnabled="{Binding IsEnabled, UpdateSourceTrigger=PropertyChanged}"
+                                         Command="{Binding lectureTwoViewCommand, UpdateSourceTrigger=PropertyChanged}" Click="lecture_Click"/>
                             <RadioButton Content="Lekcia 3"
                                          x:Name="lecture3"
-                                         Visibility="Hidden"
                                          Height="45" Width="160"
                                          FontSize="14"
                                          Style="{StaticResource MenuButtonTheme}" 
                                          Foreground="#FF424242" 
                                          IsChecked="False"
                                          Margin="-6"
-                                         Command="{Binding lectureThreeViewCommand, UpdateSourceTrigger=PropertyChanged}"/>
+                                         IsEnabled="{Binding IsEnabled, UpdateSourceTrigger=PropertyChanged}"
+                                         Command="{Binding lectureThreeViewCommand, UpdateSourceTrigger=PropertyChanged}" Click="lecture_Click"/>
                             <RadioButton Content="Lekcia 4"
                                          x:Name="lecture4"
-                                         Visibility="Hidden"
                                          Height="45" Width="160"
                                          FontSize="14"
                                          Style="{StaticResource MenuButtonTheme}" 
                                          Foreground="#FF424242" 
                                          IsChecked="False"
                                          Margin="-6"
-                                         Command="{Binding lectureFourViewCommand, UpdateSourceTrigger=PropertyChanged}"/>
+                                         IsEnabled="{Binding IsEnabled, UpdateSourceTrigger=PropertyChanged}"
+                                         Command="{Binding lectureFourViewCommand, UpdateSourceTrigger=PropertyChanged}" Click="lecture_Click"/>
                             <RadioButton Content="Lekcia 5"
                                          x:Name="lecture5"
-                                         Visibility="Hidden"
                                          Height="45" Width="160"
                                          FontSize="14"
                                          Style="{StaticResource MenuButtonTheme}" 
                                          Foreground="#FF424242" 
                                          IsChecked="False"
                                          Margin="-6"
-                                         Command="{Binding lectureFiveViewCommand, UpdateSourceTrigger=PropertyChanged}"/>
+                                         IsEnabled="{Binding IsEnabled, UpdateSourceTrigger=PropertyChanged}"
+                                         Command="{Binding lectureFiveViewCommand, UpdateSourceTrigger=PropertyChanged}" Click="lecture_Click"/>
                             <RadioButton Content="Lekcia 6"
                                          x:Name="lecture6"
-                                         Visibility="Hidden"
                                          Height="45" Width="160"
                                          FontSize="14"
                                          Style="{StaticResource MenuButtonTheme}" 
                                          Foreground="#FF424242" 
                                          IsChecked="False"
                                          Margin="-6"
-                                         Command="{Binding lectureSixViewCommand, UpdateSourceTrigger=PropertyChanged}"/>
+                                         IsEnabled="{Binding IsEnabled, UpdateSourceTrigger=PropertyChanged}"
+                                         Command="{Binding lectureSixViewCommand, UpdateSourceTrigger=PropertyChanged}" Click="lecture_Click"/>
                             <RadioButton Content="Lekcia 7"
                                          x:Name="lecture7"
-                                         Visibility="Hidden"
                                          Height="45" Width="160"
                                          FontSize="14"
                                          Style="{StaticResource MenuButtonTheme}" 
                                          Foreground="#FF424242" 
                                          IsChecked="False"
                                          Margin="-6"
-                                         Command="{Binding lectureSevenViewCommand, UpdateSourceTrigger=PropertyChanged}"/>
+                                         IsEnabled="{Binding IsEnabled, UpdateSourceTrigger=PropertyChanged}"
+                                         Command="{Binding lectureSevenViewCommand, UpdateSourceTrigger=PropertyChanged}" Click="lecture_Click"/>
                             <RadioButton Content="Lekcia 8"
                                          x:Name="lecture8"
-                                         Visibility="Hidden"
                                          Height="45" Width="160"
                                          FontSize="14"
                                          Style="{StaticResource MenuButtonTheme}" 
                                          Foreground="#FF424242" 
                                          IsChecked="False"
                                          Margin="-6"
-                                         Command="{Binding lectureEightViewCommand, UpdateSourceTrigger=PropertyChanged}"/>
+                                         IsEnabled="{Binding IsEnabled, UpdateSourceTrigger=PropertyChanged}"
+                                         Command="{Binding lectureEightViewCommand, UpdateSourceTrigger=PropertyChanged}" Click="lecture_Click"/>
                         </ListView>
                     </Expander>
 
@@ -182,7 +183,7 @@
             </Button>-->
 
             <TextBlock Grid.Column="1"
-                   Text="{Binding CurrentUserAccount.UserName}"
+                   Text="{Binding CurrentUserAccount.Email}"
                    Foreground="DarkGray"
                    FontSize="16"
                    TextWrapping="Wrap"

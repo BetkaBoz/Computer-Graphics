@@ -9,6 +9,7 @@ namespace ComputerGraphics.MVVM.Model
     public class UserAccountModel
     {
         public string UserName { get; set; }
+        public string Email { get; set; }
         public string Lecture { get; set; }
     }
 }

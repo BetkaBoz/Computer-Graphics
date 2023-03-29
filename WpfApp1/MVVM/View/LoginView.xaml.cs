@@ -38,6 +38,7 @@ namespace ComputerGraphics.MVVM.View
                 case "registerText":
                     loginUser.Visibility = Visibility.Hidden;
                     registerUser.Visibility = Visibility.Visible;
+                    errorMessage.Visibility = Visibility.Hidden;
                     break;
                 case "loginText":
                     registerUser.Visibility = Visibility.Hidden;
@@ -58,14 +59,9 @@ namespace ComputerGraphics.MVVM.View
             Application.Current.Shutdown();
         }
 
-        private void Register(object sender, RoutedEventArgs e)
+        private void btnLogin_Click(object sender, RoutedEventArgs e)
         {
-             
-        }
-
-        private void Login(object sender, RoutedEventArgs e)
-        {
-
+            errorMessage.Visibility = Visibility.Hidden;
         }
     }
 }

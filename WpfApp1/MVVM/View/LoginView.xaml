@@ -73,31 +73,32 @@
 
             <!-- LOGIN -->
             <StackPanel x:Name="loginUser"
-                    Width="220"
+                    Width="250"
                     Grid.Row="1" Grid.ColumnSpan="2"
                     Orientation="Vertical"
                     Margin="0,35,0,0"
                     Visibility="Visible">
                 <TextBlock Text="PRIHLÁSENIE"
                                Foreground="#FF424242"
-                               FontSize="25"
+                               FontSize="30"
                                FontWeight="Medium"
-                               HorizontalAlignment="Center"/>
+                               HorizontalAlignment="Center"
+                           Margin="0,0,0,20"/>
                 <TextBlock Text="Prihláste sa pre vstup do systému zameraný na výučbu predmetu Počítačová grafika"
                                Foreground="#FF424242"
-                               FontSize="12"
+                               FontSize="16"
                                FontWeight="Medium"
                                TextWrapping="Wrap"
                                TextAlignment="Center"
                                Margin="0,5,0,0"/>
                 <TextBlock Text="Email"
                                Foreground="#FF424242"
-                               FontSize="12"
+                               FontSize="14"
                                FontWeight="Medium"                           
                                Margin="0,35,0,0"/>
                 <TextBox x:Name="txtUser"
                          Text="{Binding UserName, UpdateSourceTrigger=PropertyChanged}"
-                             FontSize="13"
+                             FontSize="16"
                              FontWeight="Medium"                          
                              Foreground="#FF424242"
                              CaretBrush="#FF424242"
@@ -110,7 +111,7 @@
 
                 <TextBlock Text="Heslo"
                        Foreground="#FF424242"
-                       FontSize="12"
+                       FontSize="14"
                        FontWeight="Medium"                          
                        Margin="0,15,0,0"/>
 
@@ -119,9 +120,10 @@
                                                  Margin="0,5,0,0" />
 
                 <TextBlock Text="{Binding ErrorMessage}"
-                       Foreground="#FF424242"
-                       FontSize="12"
-                       FontWeight="Medium"                          
+                           x:Name="errorMessage"
+                       FontSize="13"
+                       FontWeight="Medium"  
+                       Foreground="Red"
                        Margin="0,10,0,0"
                        TextWrapping="Wrap"/>
 
@@ -130,15 +132,16 @@
                     BorderThickness="0"
                     Content="PRIHLÁSIŤ"
                     Foreground="#FF222222"
-                    FontSize="12"
+                    FontSize="13"
                     Cursor="Hand"                           
                     Margin="0,30,0,0"
-                    Command="{Binding LoginCommand}">
+                    Command="{Binding LoginCommand}"
+                    Click="btnLogin_Click">
 
                     <Button.Background>
                         <LinearGradientBrush EndPoint="0.9,1" StartPoint="0.4,0">
                             <GradientStop Color="#FF82B2FF"/>
-                            <GradientStop Color="#FFD48DFF" Offset="1"/>
+                            <GradientStop Color="#FF9491FF" Offset="1"/>
                         </LinearGradientBrush>
                     </Button.Background>
 
@@ -149,12 +152,12 @@
                                 Margin="0,15,0,0">
                     <TextBlock Text="Nemáte účet?"
                                Foreground="#FF424242"
-                               FontSize="12"
+                               FontSize="14"
                                FontWeight="Medium"/>
                     <TextBlock  x:Name="registerText"
                             Text="Zaregistrujete sa"
                                Foreground="Black"
-                               FontSize="12"
+                               FontSize="14"
                                FontWeight="Medium"
                                Cursor="Hand"
                                Margin="8,0,0,0" 
@@ -164,24 +167,25 @@
 
             <!-- REGISTER -->
             <StackPanel x:Name="registerUser"
-                        Width="220"
+                        Width="250"
                         Grid.Row="1" Grid.ColumnSpan="2"
                         Orientation="Vertical"
                         Margin="0,35,0,0"
                     Visibility="Hidden">
                 <TextBlock Text="REGISTRÁCIA"
                                Foreground="#FF424242"
-                               FontSize="25"
+                               FontSize="30"
                                FontWeight="Medium"
-                               HorizontalAlignment="Center"/>
+                               HorizontalAlignment="Center"
+                           Margin="0,0,0,50"/>
                 <TextBlock Text="Meno"
                                Foreground="#FF424242"
-                               FontSize="12"
+                               FontSize="14"
                                FontWeight="Medium"                           
                                Margin="0,35,0,0"/>
                 <TextBox x:Name="txtName"
-                         Text="{Binding UserName, UpdateSourceTrigger=PropertyChanged}"
-                             FontSize="13"
+                         Text="{Binding Email, UpdateSourceTrigger=PropertyChanged}"
+                             FontSize="16"
                              FontWeight="Medium"                          
                              Foreground="#FF424242"
                              CaretBrush="#FF424242"
@@ -194,12 +198,12 @@
                 </TextBox>
                 <TextBlock Text="Email"
                                Foreground="#FF424242"
-                               FontSize="12"
+                               FontSize="14"
                                FontWeight="Medium"                           
                                Margin="0,15,0,0"/>
                 <TextBox x:Name="txtEmail"
-                         Text="{Binding Email, UpdateSourceTrigger=PropertyChanged}"
-                             FontSize="13"
+                         Text="{Binding UserName, UpdateSourceTrigger=PropertyChanged}"
+                             FontSize="16"
                              FontWeight="Medium"                          
                              Foreground="#FF424242"
                              CaretBrush="#FF424242"
@@ -212,7 +216,7 @@
                 </TextBox>
                 <TextBlock Text="Heslo"
                                Foreground="#FF424242"
-                               FontSize="12"
+                               FontSize="14"
                                FontWeight="Medium"                          
                                Margin="0,15,0,0"/>
                 <customcontrols:BindsablePasswordBox Password="{Binding Password, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
@@ -223,15 +227,15 @@
                     Width="150" Height="35" 
                             BorderThickness="0"
                             Content="REGISTROVAŤ"
-                            Foreground="#FF424242"
-                            FontSize="12"
+                            Foreground="#FF222222"
+                            FontSize="13"
                             Cursor="Hand"                           
                             Margin="0,50,0,0"
                             Command="{Binding RegisterCommand}">
                     <Button.Background>
                         <LinearGradientBrush EndPoint="0.9,1" StartPoint="0.4,0">
                             <GradientStop Color="#FF82B2FF"/>
-                            <GradientStop Color="#FFD48DFF" Offset="1"/>
+                            <GradientStop Color="#FF9491FF" Offset="1"/>
                         </LinearGradientBrush>
                     </Button.Background>
                 </Button>
@@ -241,12 +245,12 @@
                                 Margin="0,15,0,0">
                     <TextBlock Text="Už máte účet?"
                                Foreground="#FF424242"
-                               FontSize="12"
+                               FontSize="14"
                                FontWeight="Medium"/>
                     <TextBlock  x:Name="loginText"
                             Text="Prihláste sa"
                                Foreground="Black"
-                               FontSize="12"
+                               FontSize="14"
                                FontWeight="Medium"
                                Cursor="Hand"
                                Margin="8,0,0,0"

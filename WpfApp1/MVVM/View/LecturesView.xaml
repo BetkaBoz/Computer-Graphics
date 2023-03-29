@@ -14,8 +14,7 @@
 
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="400"/>
-            <ColumnDefinition Width="400"/>
+            <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
 
         <Grid.RowDefinitions>
@@ -37,276 +36,268 @@
 
                     <!-- Vektorova a Rastrova grafika -->
                     <Expander IsExpanded="False" 
-                  Grid.Row="0" Grid.Column="0"
-                  Grid.RowSpan="2" Grid.ColumnSpan="2" 
-                  Background="Transparent" Header="VEKTOROVÁ A RASTROVÁ GRAFIKA"
-                  Foreground="#FF424242" FontSize="12" FontWeight="Bold"
-                  Cursor="Hand">
-                        <!--<Button Content="LEKCIA 1"
-                                Width="70" Height="25" BorderBrush="Transparent"
-                                VerticalAlignment="Bottom" HorizontalAlignment="Right"
-                                Margin="10"
-                                Foreground="#FF424242"
-                                FontWeight="Normal"
-                                FontSize="10"
-                                Command="{Binding lectureOneViewCommand}">
-                        <Button.Background>
-                            <LinearGradientBrush EndPoint="0.9,1" StartPoint="0.4,0">
-                                <GradientStop Color="#FF82B2FF"/>
-                                <GradientStop Color="#FFD48DFF" Offset="1"/>
-                            </LinearGradientBrush>
-                        </Button.Background>
-                    </Button>-->
+                              Grid.Row="0" Grid.Column="0" Grid.RowSpan="2"
+                                Background="Transparent" 
+                                Cursor="Hand">
+                        <Expander.Header>
+                            <BulletDecorator>
+                                <BulletDecorator.Bullet>
+                                    <Image x:Name="check_1"
+                                           Margin="5"
+                                           Width="30"
+                                           Visibility="Hidden">
+                                        <Image.Source>
+                                            <BitmapImage DecodePixelWidth="300" 
+                                                        UriSource="/Images/check.png"/>
+                                        </Image.Source>
+                                    </Image>
+                                </BulletDecorator.Bullet>
+                                <TextBlock Foreground="#FF424242" FontSize="16" FontWeight="Bold"
+                                    VerticalAlignment="Center" Padding="10">VEKTOROVÁ A RASTROVÁ GRAFIKA</TextBlock>
+                            </BulletDecorator>
+                        </Expander.Header>
+                        <StackPanel>
+                            <TextBlock HorizontalAlignment="Left" 
+                                   Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2"
+                                   Margin="30,0,30,0"
+                                   TextWrapping="Wrap"
+                                   FontSize="14" Foreground="#FF424242"
+                                   Text="V danej lekcii sa dozviete význam pojmov rastrová (diskrétna) a vektorová (spojitá) grafika. Aké je ich použitie 
+a ako sa realizuje prevod medzi nimi, ako aj ich rozdiel a výhody a nevýhody medzi nimi.
+&#x0a;Na príkladoch z si budete môcť porovnať veľkosti a kvalitu súborov uložených v rôznych reprezentáciách a grafických formátoch." Width="723"/>
+                        </StackPanel>
                     </Expander>
-
+                    
                     <!-- Spracovanie Farieb -->
                     <Expander IsExpanded="False" 
-                  Grid.Row="0" Grid.Column="0"
-                  Grid.RowSpan="2" Grid.ColumnSpan="2" 
-                  Background="Transparent" Header="SPRACOVANIE FARIEB"
-                  Foreground="#FF424242" FontSize="12" FontWeight="Bold"
-                  Cursor="Hand">
-                        <!--<Button Content="LEKCIA 2"
-                                Width="70" Height="25" BorderBrush="Transparent"
-                                VerticalAlignment="Bottom" HorizontalAlignment="Right"
-                                Margin="10"
-                                Foreground="#FF424242"
-                                FontWeight="Normal"
-                                FontSize="10" 
-                                Command="{Binding lectureTwoViewCommand}">
-                        <Button.Background>
-                            <LinearGradientBrush EndPoint="0.9,1" StartPoint="0.4,0">
-                                <GradientStop Color="#FF82B2FF"/>
-                                <GradientStop Color="#FFD48DFF" Offset="1"/>
-                            </LinearGradientBrush>
-                        </Button.Background>
-                    </Button>-->
+                                Grid.Row="0" Grid.Column="0" Grid.RowSpan="2" Grid.ColumnSpan="2" 
+                                Background="Transparent" 
+                                Cursor="Hand">
+                        <Expander.Header>
+                            <BulletDecorator>
+                                <BulletDecorator.Bullet>
+                                    <Image x:Name="check_2"
+                                           Margin="5"
+                                           Width="30"
+                                           Visibility="Hidden">
+                                        <Image.Source>
+                                            <BitmapImage DecodePixelWidth="300" 
+                                                        UriSource="/Images/check.png"/>
+                                        </Image.Source>
+                                    </Image>
+                                </BulletDecorator.Bullet>
+                                <TextBlock Foreground="#FF424242" FontSize="16" FontWeight="Bold"
+                                    VerticalAlignment="Center" Padding="10">SPRACOVANIE FARIEB</TextBlock>
+                            </BulletDecorator>
+                        </Expander.Header>
+                        <StackPanel>
+                            <TextBlock HorizontalAlignment="Left" 
+                                   Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2"
+                                   Margin="30,0,30,0"
+                                   TextWrapping="Wrap"
+                                   FontSize="14" Foreground="#FF424242"
+                                   Text="V danej lekcii si budete môcť namiešať základné, doplnkové a ďalšie farby s využitím farebných modelov. Taktiež bude vysvetlené, ako je potrebné zadávať parametre
+farieb v grafických programoch a prakticky si vyskúšate prácu s farbami." Width="723"/>
+                        </StackPanel>
                     </Expander>
-
+                    
                     <!-- Dvojrozmerne Transformacie -->
                     <Expander IsExpanded="False" 
-                  Grid.Row="0" Grid.Column="0"
-                  Grid.RowSpan="2" Grid.ColumnSpan="2" 
-                  Background="Transparent" Header="DVOJROZMENRÉ TRANSFORMÁCIE"
-                  Foreground="#FF424242" FontSize="12" FontWeight="Bold"
-                  Cursor="Hand">
-                        <!--<Button Content="LEKCIA 3"
-                                Width="70" Height="25" BorderBrush="Transparent"
-                                VerticalAlignment="Bottom" HorizontalAlignment="Right"
-                                Margin="10"
-                                Foreground="#FF424242"
-                                FontWeight="Normal"
-                                FontSize="10" 
-                                Command="{Binding lectureThreeViewCommand}">
-                        <Button.Background>
-                            <LinearGradientBrush EndPoint="0.9,1" StartPoint="0.4,0">
-                                <GradientStop Color="#FF82B2FF"/>
-                                <GradientStop Color="#FFD48DFF" Offset="1"/>
-                            </LinearGradientBrush>
-                        </Button.Background>
-                    </Button>-->
+                                Grid.Row="0" Grid.Column="0" Grid.RowSpan="2" Grid.ColumnSpan="2" 
+                                Background="Transparent" 
+                                Cursor="Hand">
+                        <Expander.Header>
+                            <BulletDecorator>
+                                <BulletDecorator.Bullet>
+                                    <Image x:Name="check_3"
+                                           Margin="5"
+                                           Width="30"
+                                           Visibility="Hidden">
+                                        <Image.Source>
+                                            <BitmapImage DecodePixelWidth="300" 
+                                                        UriSource="/Images/check.png"/>
+                                        </Image.Source>
+                                    </Image>
+                                </BulletDecorator.Bullet>
+                                <TextBlock Foreground="#FF424242" FontSize="16" FontWeight="Bold"
+                                    VerticalAlignment="Center" Padding="10">DVOJROZMENRÉ TRANSFORMÁCIE</TextBlock>
+                            </BulletDecorator>
+                        </Expander.Header>
+                        <StackPanel>
+                            <TextBlock HorizontalAlignment="Left" 
+                                   Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2"
+                                   Margin="30,0,30,0"
+                                   TextWrapping="Wrap"
+                                   FontSize="14" Foreground="#FF424242"
+                                   Text="V danej lekcii vám bude vysvetlené, ako sa vybrané transformácie realizujú v praxi. Na základe dostupných vzorcov  a matíc sa vypočítavajú súradnice 
+bodov transformovaného mnohouholníka." Width="723"/>
+                        </StackPanel>
                     </Expander>
 
                     <!-- Rasterizacia Usecky -->
                     <Expander IsExpanded="False" 
-                      Grid.Row="0" Grid.Column="0"
-                      Grid.RowSpan="2" Grid.ColumnSpan="2" 
-                      Background="Transparent" Header="RASTERIZÁCIA ÚSEČKY"
-                      Foreground="#FF424242" FontSize="12" FontWeight="Bold"
-                      Cursor="Hand">
-                        <!--<Button Content="LEKCIA 4"
-                                    Width="70" Height="25" BorderBrush="Transparent"
-                                    VerticalAlignment="Bottom" HorizontalAlignment="Right"
-                                    Margin="10"
-                                    Foreground="#FF424242"
-                                    FontWeight="Normal"
-                                    FontSize="10" 
-                            Command="{Binding lectureFourViewCommand}">
-                        <Button.Background>
-                            <LinearGradientBrush EndPoint="0.9,1" StartPoint="0.4,0">
-                                <GradientStop Color="#FF82B2FF"/>
-                                <GradientStop Color="#FFD48DFF" Offset="1"/>
-                            </LinearGradientBrush>
-                        </Button.Background>
-                    </Button>-->
+                                Grid.Row="0" Grid.Column="0" Grid.RowSpan="2" Grid.ColumnSpan="2" 
+                                Background="Transparent" 
+                                Cursor="Hand">
+                        <Expander.Header>
+                            <BulletDecorator>
+                                <BulletDecorator.Bullet>
+                                    <Image x:Name="check_4"
+                                           Margin="5"
+                                           Width="30"
+                                           Visibility="Hidden">
+                                        <Image.Source>
+                                            <BitmapImage DecodePixelWidth="300" 
+                                                        UriSource="/Images/check.png"/>
+                                        </Image.Source>
+                                    </Image>
+                                </BulletDecorator.Bullet>
+                                <TextBlock Foreground="#FF424242" FontSize="16" FontWeight="Bold"
+                                    VerticalAlignment="Center" Padding="10">RASTERIZÁCIA ÚSEČKY</TextBlock>
+                            </BulletDecorator>
+                        </Expander.Header>
+                        <StackPanel>
+                            <TextBlock HorizontalAlignment="Left" 
+                                   Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2"
+                                   Margin="30,0,30,0"
+                                   TextWrapping="Wrap"
+                                   FontSize="14" Foreground="#FF424242"
+                                   Text="V danej lekcii sa naučíte princíp práce algoritmov na vykresľovanie úsečky v rastrovej grafike, akými sú: Algoritmus na vykreslenie úsečky z rovnice priamky, na ktorej úsečka leží, DDA a Bresenhamov algoritmus.
+                                       Rovnako si vyskúšate aj prácu týchto algoritmov v praxi." Width="723"/>
+                        </StackPanel>
                     </Expander>
 
                     <!-- Rasterizacia Kruznice -->
                     <Expander IsExpanded="False" 
-                  Grid.Row="0" Grid.Column="0"
-                  Grid.RowSpan="2" Grid.ColumnSpan="2" 
-                  Background="Transparent" Header="RASTERIZÁCIA KRUŽNICE"
-                  Foreground="#FF424242" FontSize="12" FontWeight="Bold"
-                  Cursor="Hand">
-                        <!--<Button Content="LEKCIA 5"
-                                Width="70" Height="25" BorderBrush="Transparent"
-                                VerticalAlignment="Bottom" HorizontalAlignment="Right"
-                                Margin="10"
-                                Foreground="#FF424242"
-                                FontWeight="Normal"
-                                FontSize="10"
-                                Command="{Binding lectureFiveViewCommand}">
-                        <Button.Background>
-                            <LinearGradientBrush EndPoint="0.9,1" StartPoint="0.4,0">
-                                <GradientStop Color="#FF82B2FF"/>
-                                <GradientStop Color="#FFD48DFF" Offset="1"/>
-                            </LinearGradientBrush>
-                        </Button.Background>
-                    </Button>-->
+                                Grid.Row="0" Grid.Column="0" Grid.RowSpan="2" Grid.ColumnSpan="2" 
+                                Background="Transparent" 
+                                Cursor="Hand">
+                        <Expander.Header>
+                            <BulletDecorator>
+                                <BulletDecorator.Bullet>
+                                    <Image x:Name="check_5"
+                                           Margin="5"
+                                           Width="30"
+                                           Visibility="Hidden">
+                                        <Image.Source>
+                                            <BitmapImage DecodePixelWidth="300" 
+                                                        UriSource="/Images/check.png"/>
+                                        </Image.Source>
+                                    </Image>
+                                </BulletDecorator.Bullet>
+                                <TextBlock Foreground="#FF424242" FontSize="16" FontWeight="Bold"
+                                    VerticalAlignment="Center" Padding="10">RASTERIZÁCIA KRUŽNICE</TextBlock>
+                            </BulletDecorator>
+                        </Expander.Header>
+                        <StackPanel>
+                            <TextBlock HorizontalAlignment="Left" 
+                                   Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2"
+                                   Margin="30,0,30,0"
+                                   TextWrapping="Wrap"
+                                   FontSize="14" Foreground="#FF424242"
+                                   Text="V danej lekcii sa naučíte princíp práce algoritmov na vykresľovanie kružnice v rastrovej grafike, akými sú: Algoritmus z rovnice kružnice v karteziánskych súradniciach, Algoritmus z rovnice kružnice v polárnych súradniciach
+                                       a Bresenhamov algoritmus. Rovnako si vyskúšate aj prácu týchto algoritmov v praxi." Width="723"/>
+                        </StackPanel>
                     </Expander>
 
                     <!-- Orezavanie usecky a textu -->
                     <Expander IsExpanded="False" 
-                  Grid.Row="0" Grid.Column="0"
-                  Grid.RowSpan="2" Grid.ColumnSpan="2" 
-                  Background="Transparent" Header="OREZÁVANIE ÚSEČKY A TEXTU"
-                  Foreground="#FF424242" FontSize="12" FontWeight="Bold"
-                  Cursor="Hand">
-                        <!--<Button Content="LEKCIA 6"
-                                Width="70" Height="25" BorderBrush="Transparent"
-                                VerticalAlignment="Bottom" HorizontalAlignment="Right"
-                                Margin="10"
-                                Foreground="#FF424242"
-                                FontWeight="Normal"
-                                FontSize="10" 
-                                Command="{Binding lectureSixViewCommand}">
-                        <Button.Background>
-                            <LinearGradientBrush EndPoint="0.9,1" StartPoint="0.4,0">
-                                <GradientStop Color="#FF82B2FF"/>
-                                <GradientStop Color="#FFD48DFF" Offset="1"/>
-                            </LinearGradientBrush>
-                        </Button.Background>
-                    </Button>-->
+                                Grid.Row="0" Grid.Column="0" Grid.RowSpan="2" Grid.ColumnSpan="2" 
+                                Background="Transparent" 
+                                Cursor="Hand">
+                        <Expander.Header>
+                            <BulletDecorator>
+                                <BulletDecorator.Bullet>
+                                    <Image x:Name="check_6"
+                                           Margin="5"
+                                           Width="30"
+                                           Visibility="Hidden">
+                                        <Image.Source>
+                                            <BitmapImage DecodePixelWidth="300" 
+                                                        UriSource="/Images/check.png"/>
+                                        </Image.Source>
+                                    </Image>
+                                </BulletDecorator.Bullet>
+                                <TextBlock Foreground="#FF424242" FontSize="16" FontWeight="Bold"
+                                    VerticalAlignment="Center" Padding="10">OREZÁVANIE ÚSEČKY A TEXTU</TextBlock>
+                            </BulletDecorator>
+                        </Expander.Header>
+                        <StackPanel>
+                            <TextBlock HorizontalAlignment="Left" 
+                                   Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2"
+                                   Margin="30,0,30,0"
+                                   TextWrapping="Wrap"
+                                   FontSize="14" Foreground="#FF424242"
+                                   Text="V danej lekcii bude vysvetlené ako sa realizuje orezávanie úsečky pomocou algoritmu orezávania Cohena – Sutherlanda a algoritmu postupného delenia." Width="723"/>
+                        </StackPanel>
                     </Expander>
 
                     <!-- Vyplnanie rovinnych oblasti -->
                     <Expander IsExpanded="False" 
-                  Grid.Row="0" Grid.Column="0"
-                  Grid.RowSpan="2" Grid.ColumnSpan="2" 
-                  Background="Transparent" Header="VYPĹŇANIE ROVINNÝCH OBLASTÍ"
-                  Foreground="#FF424242" FontSize="12" FontWeight="Bold"
-                  Cursor="Hand">
-                        <!--<Button Content="LEKCIA 7"
-                                Width="70" Height="25" BorderBrush="Transparent"
-                                VerticalAlignment="Bottom" HorizontalAlignment="Right"
-                                Margin="10"
-                                Foreground="#FF424242"
-                                FontWeight="Normal"
-                                FontSize="10" 
-                                Command="{Binding lectureSevenViewCommand}">
-                        <Button.Background>
-                            <LinearGradientBrush EndPoint="0.9,1" StartPoint="0.4,0">
-                                <GradientStop Color="#FF82B2FF"/>
-                                <GradientStop Color="#FFD48DFF" Offset="1"/>
-                            </LinearGradientBrush>
-                        </Button.Background>
-                    </Button>-->
+                                Grid.Row="0" Grid.Column="0" Grid.RowSpan="2" Grid.ColumnSpan="2" 
+                                Background="Transparent" 
+                                Cursor="Hand">
+                        <Expander.Header>
+                            <BulletDecorator>
+                                <BulletDecorator.Bullet>
+                                    <Image x:Name="check_7"
+                                           Margin="5"
+                                           Width="30"
+                                           Visibility="Hidden">
+                                        <Image.Source>
+                                            <BitmapImage DecodePixelWidth="300" 
+                                                        UriSource="/Images/check.png"/>
+                                        </Image.Source>
+                                    </Image>
+                                </BulletDecorator.Bullet>
+                                <TextBlock Foreground="#FF424242" FontSize="16" FontWeight="Bold"
+                                    VerticalAlignment="Center" Padding="10">VYPĹŇANIE ROVINNÝCH OBLASTÍ</TextBlock>
+                            </BulletDecorator>
+                        </Expander.Header>
+                        <StackPanel>
+                            <TextBlock HorizontalAlignment="Left" 
+                                   Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2"
+                                   Margin="30,0,30,0"
+                                   TextWrapping="Wrap"
+                                   FontSize="14" Foreground="#FF424242"
+                                   Text="V danej lekcii sa dozviete ktoré rekurzívne a nerekurzívne algoritmy slúžia na vypĺňanie oblastí ako aj princím činnosti týchto algoritmov." Width="723"/>
+                        </StackPanel>
                     </Expander>
 
                     <!-- Modelovanie kriviek a ploch -->
                     <Expander IsExpanded="False" 
-                  Grid.Row="0" Grid.Column="0"
-                  Grid.RowSpan="2" Grid.ColumnSpan="2" 
-                  Background="Transparent" Header="MODELOVANIE KRIVIEK A PLÔCH"
-                  Foreground="#FF424242" FontSize="12" FontWeight="Bold"
-                  Cursor="Hand">
-                        <!--<Button Content="LEKCIA 8"
-                                Width="70" Height="25" BorderBrush="Transparent"
-                                VerticalAlignment="Bottom" HorizontalAlignment="Right"
-                                Margin="10"
-                                Foreground="#FF424242"
-                                FontWeight="Normal"
-                                FontSize="10"
-                                Command="{Binding lectureEightViewCommand}">
-                        <Button.Background>
-                            <LinearGradientBrush EndPoint="0.9,1" StartPoint="0.4,0">
-                                <GradientStop Color="#FF82B2FF"/>
-                                <GradientStop Color="#FFD48DFF" Offset="1"/>
-                            </LinearGradientBrush>
-                        </Button.Background>
-                    </Button>-->
+                                Grid.Row="0" Grid.Column="0" Grid.RowSpan="2" Grid.ColumnSpan="2" 
+                                Background="Transparent" 
+                                Cursor="Hand">
+                        <Expander.Header>
+                            <BulletDecorator>
+                                <BulletDecorator.Bullet>
+                                    <Image x:Name="check_8"
+                                           Margin="5"
+                                           Width="30"
+                                           Visibility="Hidden">
+                                        <Image.Source>
+                                            <BitmapImage DecodePixelWidth="300" 
+                                                        UriSource="/Images/check.png"/>
+                                        </Image.Source>
+                                    </Image>
+                                </BulletDecorator.Bullet>
+                                <TextBlock Foreground="#FF424242" FontSize="16" FontWeight="Bold"
+                                    VerticalAlignment="Center" Padding="10">MODELOVANIE KRIVIEK A PLÔCH</TextBlock>
+                            </BulletDecorator>
+                        </Expander.Header>
+                        <StackPanel>
+                            <TextBlock HorizontalAlignment="Left" 
+                                   Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2"
+                                   Margin="30,0,30,0"
+                                   TextWrapping="Wrap"
+                                   FontSize="14" Foreground="#FF424242"
+                                   Text="V danej lekcii bude vysvetlený spôsob vyjadrenia a zadania kriviek ako aj ich spojitosť a hladkosť. Medzi kubikami, ktorým sa v tejto lekcii budeme venovať, sú Bézierova, Fergusonova a Coonsova kubika.
+Následne si budete môcť skúsiť ich vytváranie v praxi." Width="723"/>
+                        </StackPanel>
                     </Expander>
                 </StackPanel>
-
-                <StackPanel>
-                    <Image x:Name="check_1"
-                       Grid.Column="1" Grid.Row="0"
-                       Width="30" Margin="0,10,0,0" Visibility="Hidden">
-                        <Image.Source>
-                            <BitmapImage DecodePixelWidth="300" 
-                                     UriSource="/Images/check.png"/>
-                        </Image.Source>
-                    </Image>
-
-                    <Image x:Name="check_2"
-                       Grid.Column="1" Grid.Row="0"
-                       Width="30" Margin="0,20,0,0" Visibility="Hidden">
-                        <Image.Source>
-                            <BitmapImage DecodePixelWidth="300" 
-                                     UriSource="/Images/check.png"/>
-                        </Image.Source>
-                    </Image>
-
-                    <Image x:Name="check_3" 
-                       Grid.Column="1" Grid.Row="0"
-                           Width="30" Margin="0,20,0,0" Visibility="Hidden">
-                        <Image.Source>
-                            <BitmapImage DecodePixelWidth="300" 
-                                     UriSource="/Images/check.png"/>
-                        </Image.Source>
-                    </Image>
-
-                    <Image x:Name="check_4"
-                       Grid.Column="1" Grid.Row="0"
-                       Width="30" Margin="0,15,0,0" Visibility="Hidden">
-                        <Image.Source>
-                            <BitmapImage DecodePixelWidth="300" 
-                                     UriSource="/Images/check.png"/>
-                        </Image.Source>
-                    </Image>
-
-                    <Image x:Name="check_5"
-                       Grid.Column="1" Grid.Row="0"
-                       Width="30" Margin="0,20,0,0" Visibility="Hidden">
-                        <Image.Source>
-                            <BitmapImage DecodePixelWidth="300" 
-                                     UriSource="/Images/check.png"/>
-                        </Image.Source>
-                    </Image>
-
-                    <Image x:Name="check_6"
-                       Grid.Column="1" Grid.Row="0"
-                       Width="30" Margin="0,15,0,0" Visibility="Hidden">
-                        <Image.Source>
-                            <BitmapImage DecodePixelWidth="300" 
-                                     UriSource="/Images/check.png"/>
-                        </Image.Source>
-                    </Image>
-
-                    <Image x:Name="check_7"
-                       Grid.Column="1" Grid.Row="0"
-                       Width="30" Margin="0,15,0,0" Visibility="Hidden">
-                        <Image.Source>
-                            <BitmapImage DecodePixelWidth="300" 
-                                     UriSource="/Images/check.png"/>
-                        </Image.Source>
-                    </Image>
-
-                    <Image x:Name="check_8"
-                       Grid.Column="1" Grid.Row="0"
-                       Width="30" Margin="0,15,0,0" Visibility="Hidden">
-                        <Image.Source>
-                            <BitmapImage DecodePixelWidth="300" 
-                                     UriSource="/Images/check.png"/>
-                        </Image.Source>
-                    </Image>
-                </StackPanel>
-
             </StackPanel>
-
-
         </ScrollViewer>
-
-
     </Grid>
 </UserControl>
