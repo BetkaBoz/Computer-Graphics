@@ -26,6 +26,8 @@ namespace WpfApp1
     public partial class MainWindow : Window
     {
         MainViewModel viewModel = new();
+        SolidColorBrush disableColor = new(Colors.LightGray);
+        SolidColorBrush enableColor = (SolidColorBrush)new BrushConverter().ConvertFrom("#FF424242");
 
         public List<RadioButton> lectureButtons = new();
         public MainWindow()
@@ -52,13 +54,13 @@ namespace WpfApp1
             lecture7.IsEnabled = false;
             lecture8.IsEnabled = false;
 
-            //lecture2.Visibility = Visibility.Hidden;
-            //lecture3.Visibility = Visibility.Hidden;
-            //lecture4.Visibility = Visibility.Hidden;
-            //lecture5.Visibility = Visibility.Hidden;
-            //lecture6.Visibility = Visibility.Hidden;
-            //lecture7.Visibility = Visibility.Hidden;
-            //lecture8.Visibility = Visibility.Hidden;
+            lecture2.Foreground = disableColor;
+            lecture3.Foreground = disableColor;
+            lecture4.Foreground = disableColor;
+            lecture5.Foreground = disableColor; 
+            lecture6.Foreground = disableColor;
+            lecture7.Foreground = disableColor;
+            lecture8.Foreground = disableColor;
 
             SetUpLectures();
 
@@ -74,31 +76,35 @@ namespace WpfApp1
                         break;
                     case "2":
                     lecture2.IsEnabled = true;
-                    //lecture2.Visibility = Visibility.Visible;
+
+                    lecture2.Foreground = enableColor;
                     break;
                     case "3":
                     lecture2.IsEnabled = true;
                     lecture3.IsEnabled = true;
-                    //lecture2.Visibility = Visibility.Visible;
-                    //lecture3.Visibility = Visibility.Visible;
+
+                    lecture2.Foreground = enableColor;
+                    lecture3.Foreground = enableColor;
                     break;
                     case "4":
                     lecture2.IsEnabled = true;
                     lecture3.IsEnabled = true;
                     lecture4.IsEnabled = true;
-                    //lecture2.Visibility = Visibility.Visible;
-                    //lecture3.Visibility = Visibility.Visible;
-                    //lecture4.Visibility = Visibility.Visible;
+
+                    lecture2.Foreground = enableColor;
+                    lecture3.Foreground = enableColor;
+                    lecture4.Foreground = enableColor;
                     break;
                     case "5":
                     lecture2.IsEnabled = true;
                     lecture3.IsEnabled = true;
                     lecture4.IsEnabled = true;
                     lecture5.IsEnabled = true;
-                    //lecture2.Visibility = Visibility.Visible;
-                    //    lecture3.Visibility = Visibility.Visible;
-                    //    lecture4.Visibility = Visibility.Visible;
-                    //    lecture5.Visibility = Visibility.Visible;
+
+                    lecture2.Foreground = enableColor;
+                    lecture3.Foreground = enableColor;
+                    lecture4.Foreground = enableColor;
+                    lecture5.Foreground = enableColor;
                     break;
                     case "6":
                     lecture2.IsEnabled = true;
@@ -106,12 +112,13 @@ namespace WpfApp1
                     lecture4.IsEnabled = true;
                     lecture5.IsEnabled = true;
                     lecture6.IsEnabled = true;
-                    //lecture2.Visibility = Visibility.Visible;
-                    //    lecture3.Visibility = Visibility.Visible;
-                    //    lecture4.Visibility = Visibility.Visible;
-                    //    lecture5.Visibility = Visibility.Visible;
-                    //    lecture6.Visibility = Visibility.Visible;
-                        break;
+
+                    lecture2.Foreground = enableColor;
+                    lecture3.Foreground = enableColor;
+                    lecture4.Foreground = enableColor;
+                    lecture5.Foreground = enableColor;
+                    lecture6.Foreground = enableColor;
+                    break;
                     case "7":
                     lecture2.IsEnabled = true;
                     lecture3.IsEnabled = true;
@@ -119,12 +126,13 @@ namespace WpfApp1
                     lecture5.IsEnabled = true;
                     lecture6.IsEnabled = true;
                     lecture7.IsEnabled = true;
-                    //lecture2.Visibility = Visibility.Visible;
-                    //    lecture3.Visibility = Visibility.Visible;
-                    //    lecture4.Visibility = Visibility.Visible;
-                    //    lecture5.Visibility = Visibility.Visible;
-                    //    lecture6.Visibility = Visibility.Visible;
-                    //    lecture7.Visibility = Visibility.Visible;
+
+                    lecture2.Foreground = enableColor;
+                    lecture3.Foreground = enableColor;
+                    lecture4.Foreground = enableColor;
+                    lecture5.Foreground = enableColor;
+                    lecture6.Foreground = enableColor;
+                    lecture7.Foreground = enableColor;
                     break;
                     case "8":
                     lecture2.IsEnabled = true;
@@ -134,13 +142,14 @@ namespace WpfApp1
                     lecture6.IsEnabled = true;
                     lecture7.IsEnabled = true;
                     lecture8.IsEnabled = true;
-                    //lecture2.Visibility = Visibility.Visible;
-                    //    lecture3.Visibility = Visibility.Visible;
-                    //    lecture4.Visibility = Visibility.Visible;
-                    //    lecture5.Visibility = Visibility.Visible;
-                    //    lecture6.Visibility = Visibility.Visible;
-                    //    lecture7.Visibility = Visibility.Visible;
-                    //    lecture8.Visibility = Visibility.Visible;
+
+                    lecture2.Foreground = enableColor;
+                    lecture3.Foreground = enableColor;
+                    lecture4.Foreground = enableColor;
+                    lecture5.Foreground = enableColor;
+                    lecture6.Foreground = enableColor;
+                    lecture7.Foreground = enableColor;
+                    lecture8.Foreground = enableColor;
                     break;
                     case "9":
                     lecture2.IsEnabled = true;
@@ -150,12 +159,14 @@ namespace WpfApp1
                     lecture6.IsEnabled = true;
                     lecture7.IsEnabled = true;
                     lecture8.IsEnabled = true;
-                    //lecture3.Visibility = Visibility.Visible;
-                    //lecture4.Visibility = Visibility.Visible;
-                    //lecture5.Visibility = Visibility.Visible;
-                    //lecture6.Visibility = Visibility.Visible;
-                    //lecture7.Visibility = Visibility.Visible;
-                    //lecture8.Visibility = Visibility.Visible;
+
+                    lecture2.Foreground = enableColor;
+                    lecture3.Foreground = enableColor;
+                    lecture4.Foreground = enableColor;
+                    lecture5.Foreground = enableColor;
+                    lecture6.Foreground = enableColor;
+                    lecture7.Foreground = enableColor;
+                    lecture8.Foreground = enableColor;
                     break;
                 }
         }
@@ -174,14 +185,6 @@ namespace WpfApp1
         private void Window_MouseDown(object sender, MouseButtonEventArgs e)
         {
             if (e.LeftButton == MouseButtonState.Pressed) DragMove();
-        }
-
-        private void lecture_Click(object sender, RoutedEventArgs e)
-        {
-            RadioButton button = sender as RadioButton;
-
-            Debug.WriteLine($"is button enavled: {button.IsEnabled}");
-
         }
     }
 }

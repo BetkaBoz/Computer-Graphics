@@ -17,8 +17,20 @@
         <viewModel:MainViewModel/>
     </Window.DataContext>
 
-    <Border Background="#FFF1F1F1">
-        <Grid>
+    <Border CornerRadius="7"                    
+            BorderThickness="2"
+            Opacity="0.95">
+
+        <Border.BorderBrush>
+            <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                <GradientStop Color="#462AD8" Offset="0"/>
+                <GradientStop Color="#DA34AE" Offset="0.75"/>
+                <GradientStop Color="#8A16C1" Offset="1"/>
+            </LinearGradientBrush>
+        </Border.BorderBrush>
+        
+        <Grid Background="#FFF1F1F1"
+            MouseDown="Window_MouseDown">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="160"/>
                 <ColumnDefinition/>
@@ -36,8 +48,7 @@
                        FontSize="18"/>
 
             <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Visible" Height="470"
-                          VerticalAlignment="Top" HorizontalAlignment="Left"
-                          >
+                          VerticalAlignment="Top" HorizontalAlignment="Left">
 
                 <StackPanel >
 
@@ -70,7 +81,7 @@
                                          IsChecked="False"
                                          Margin="-6"
                                          IsEnabled="true"
-                                         Command="{Binding lectureOneViewCommand}" Click="lecture_Click"/>
+                                         Command="{Binding lectureOneViewCommand}"/>
                             <RadioButton Content="Lekcia 2"
                                          x:Name="lecture2"
                                          Height="45" Width="160"
@@ -80,7 +91,7 @@
                                          IsChecked="False"
                                          Margin="-6"
                                          IsEnabled="{Binding IsEnabled, UpdateSourceTrigger=PropertyChanged}"
-                                         Command="{Binding lectureTwoViewCommand, UpdateSourceTrigger=PropertyChanged}" Click="lecture_Click"/>
+                                         Command="{Binding lectureTwoViewCommand, UpdateSourceTrigger=PropertyChanged}"/>
                             <RadioButton Content="Lekcia 3"
                                          x:Name="lecture3"
                                          Height="45" Width="160"
@@ -90,7 +101,7 @@
                                          IsChecked="False"
                                          Margin="-6"
                                          IsEnabled="{Binding IsEnabled, UpdateSourceTrigger=PropertyChanged}"
-                                         Command="{Binding lectureThreeViewCommand, UpdateSourceTrigger=PropertyChanged}" Click="lecture_Click"/>
+                                         Command="{Binding lectureThreeViewCommand, UpdateSourceTrigger=PropertyChanged}"/>
                             <RadioButton Content="Lekcia 4"
                                          x:Name="lecture4"
                                          Height="45" Width="160"
@@ -100,7 +111,7 @@
                                          IsChecked="False"
                                          Margin="-6"
                                          IsEnabled="{Binding IsEnabled, UpdateSourceTrigger=PropertyChanged}"
-                                         Command="{Binding lectureFourViewCommand, UpdateSourceTrigger=PropertyChanged}" Click="lecture_Click"/>
+                                         Command="{Binding lectureFourViewCommand, UpdateSourceTrigger=PropertyChanged}"/>
                             <RadioButton Content="Lekcia 5"
                                          x:Name="lecture5"
                                          Height="45" Width="160"
@@ -110,7 +121,7 @@
                                          IsChecked="False"
                                          Margin="-6"
                                          IsEnabled="{Binding IsEnabled, UpdateSourceTrigger=PropertyChanged}"
-                                         Command="{Binding lectureFiveViewCommand, UpdateSourceTrigger=PropertyChanged}" Click="lecture_Click"/>
+                                         Command="{Binding lectureFiveViewCommand, UpdateSourceTrigger=PropertyChanged}"/>
                             <RadioButton Content="Lekcia 6"
                                          x:Name="lecture6"
                                          Height="45" Width="160"
@@ -120,7 +131,7 @@
                                          IsChecked="False"
                                          Margin="-6"
                                          IsEnabled="{Binding IsEnabled, UpdateSourceTrigger=PropertyChanged}"
-                                         Command="{Binding lectureSixViewCommand, UpdateSourceTrigger=PropertyChanged}" Click="lecture_Click"/>
+                                         Command="{Binding lectureSixViewCommand, UpdateSourceTrigger=PropertyChanged}"/>
                             <RadioButton Content="Lekcia 7"
                                          x:Name="lecture7"
                                          Height="45" Width="160"
@@ -130,7 +141,7 @@
                                          IsChecked="False"
                                          Margin="-6"
                                          IsEnabled="{Binding IsEnabled, UpdateSourceTrigger=PropertyChanged}"
-                                         Command="{Binding lectureSevenViewCommand, UpdateSourceTrigger=PropertyChanged}" Click="lecture_Click"/>
+                                         Command="{Binding lectureSevenViewCommand, UpdateSourceTrigger=PropertyChanged}"/>
                             <RadioButton Content="Lekcia 8"
                                          x:Name="lecture8"
                                          Height="45" Width="160"
@@ -140,7 +151,7 @@
                                          IsChecked="False"
                                          Margin="-6"
                                          IsEnabled="{Binding IsEnabled, UpdateSourceTrigger=PropertyChanged}"
-                                         Command="{Binding lectureEightViewCommand, UpdateSourceTrigger=PropertyChanged}" Click="lecture_Click"/>
+                                         Command="{Binding lectureEightViewCommand, UpdateSourceTrigger=PropertyChanged}"/>
                         </ListView>
                     </Expander>
 
@@ -163,40 +174,21 @@
                 </Button>
             </StackPanel>
 
-            <!--<TextBox Width="250"
-                       Height="40"
-                       VerticalAlignment="Center"
-                       HorizontalAlignment="Left"
-                       Margin="5"
-                       Grid.Column="1"
-                       Style="{StaticResource ResourceKey=ModernTextbox}" />-->
-
-            <!--<Button VerticalAlignment="Center"
-                        HorizontalAlignment="Right"
-                        Grid.Column="1"
-                        Background="Transparent" BorderBrush="Transparent"
-                        Foreground="#FF424242" 
-                        Width="110" Height="100"
-                        Margin="0,0,0,0"
-                        Content="Prihlásiť sa"
-                        Command="{Binding loginViewCommand}">
-            </Button>-->
-
-            <TextBlock Grid.Column="1"
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Grid.Column="1">
+                <Image Width="35" Margin="0,0,5,0">
+                    <Image.Source>
+                        <BitmapImage DecodePixelWidth="50" UriSource="/Images/login.png"/>
+                    </Image.Source>
+                </Image>
+                <TextBlock
                    Text="{Binding CurrentUserAccount.Email}"
-                   Foreground="DarkGray"
+                   Foreground="#FF424242"
                    FontSize="16"
                    TextWrapping="Wrap"
-                   VerticalAlignment="Center" HorizontalAlignment="Right"/>
-
-            <Image Width="35" 
-                   Grid.Column="1"
-                   VerticalAlignment="Center" HorizontalAlignment="Right">
-                <Image.Source>
-                    <BitmapImage DecodePixelWidth="50" UriSource="/Images/login.png"/>
-                </Image.Source>
-            </Image>
-
+                    VerticalAlignment="Center"
+                    Margin="0,0,-80,0"/>
+            </StackPanel>
+            
             <ContentControl Grid.Row="1" Grid.Column="1" Margin="10"
                             Content="{Binding CurrentView}"/>
 
