@@ -13,12 +13,15 @@
     <None Remove="Images\check-black.png" />
     <None Remove="Images\check.png" />
     <None Remove="Images\cohenalg.png" />
+    <None Remove="Images\coherent.png" />
+    <None Remove="Images\coherent2.png" />
     <None Remove="Images\dog.png" />
     <None Remove="Images\login.png" />
     <None Remove="Images\logout.png" />
     <None Remove="Images\next.png" />
     <None Remove="Images\pozadie.png" />
     <None Remove="Images\return.png" />
+    <None Remove="Images\scanner.png" />
     <None Remove="Images\switch.png" />
   </ItemGroup>
 
@@ -35,6 +38,8 @@
     </Resource>
     <Resource Include="Images\check.png" />
     <Resource Include="Images\cohenalg.png" />
+    <Resource Include="Images\coherent.png" />
+    <Resource Include="Images\coherent2.png" />
     <Resource Include="Images\dog.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
@@ -49,6 +54,7 @@
     <Resource Include="Images\return.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
+    <Resource Include="Images\scanner.png" />
     <Resource Include="Images\switch.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>

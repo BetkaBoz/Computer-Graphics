@@ -109,7 +109,6 @@ namespace ComputerGraphics.MVVM.View
             }
         }
 
-
         private void RefreshCanvas(object sender, MouseButtonEventArgs e)
         {
             Refresh();
@@ -124,12 +123,16 @@ namespace ComputerGraphics.MVVM.View
             _rectangles.Clear();
             _rects.Clear();
             LineRasterization.newPoints.Clear();
+            calculationsBlock.Visibility = Visibility.Hidden;
 
             DrawPixelsOnCanvas();
         }
 
         private void RasterizeLine(object sender, RoutedEventArgs e)
         {
+            drawButton.Visibility = Visibility.Hidden;
+            calculationsBlock.Visibility = Visibility.Visible;
+
             switch (algorithmName)
             {
                 case "baseline":

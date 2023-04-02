@@ -80,20 +80,20 @@ sa nazývajú vnútorne vypĺňajúce algoritmy.
 predpísanú hodnotu. Algoritmy, ktoré pracujú s takýmito oblasťami, sa nazývajú hranične 
 vypĺňajúce algoritmy."
                    TextWrapping="Wrap"
-                   FontSize="12" Foreground="#FF424242"/>
+                   FontSize="14" Foreground="#FF424242"/>
 
                 <!-- FLOOD FILL -->
                 <Expander IsExpanded="False" 
                   Grid.Row="0" Grid.Column="0"
                   Grid.RowSpan="2"
                   Background="Transparent" Header="FLOOD FILL"
-                  Foreground="#FF424242" FontSize="12" FontWeight="Bold"
+                  Foreground="#FF424242" FontSize="16" FontWeight="Bold"
                   Cursor="Hand">
                     <StackPanel>
                         <TextBlock  TextWrapping="Wrap"
                             FontWeight="Normal"
                             Foreground="#FF424242"
-                            FontSize="12"
+                            FontSize="14"
                             Text="Ide o rekurzívny algoritmus a pracuje tak , že priradí bodom 4 - súvislej vnútorne definovanej oblasti hodnotu new value.
 &#x0a;&#x0a;Vstup: old_value, new_value, súradnice (x, y) vnútorného bodu oblasti, od ktorého sa má 
 začať vypĺňať. 
@@ -105,12 +105,12 @@ musí mať hodnotu old_value). Ak je to tak, hodnota sa zmení, a potom sa vyše
                         
                         <Button Content="Výpočet"
                                 x:Name="floodFill"
-                                Width="70" Height="25" BorderBrush="Transparent"
+                                Width="80" Height="30" BorderBrush="Transparent"
                                 VerticalAlignment="Bottom" HorizontalAlignment="Right"
                                 Margin="10"
                                 Foreground="#FF424242"
                                 FontWeight="Normal"
-                                FontSize="10"
+                                FontSize="12"
                                 Click="ShowCanvas">
                             <Button.Background>
                                 <LinearGradientBrush EndPoint="0.9,1" StartPoint="0.4,0">
@@ -127,13 +127,13 @@ musí mať hodnotu old_value). Ak je to tak, hodnota sa zmení, a potom sa vyše
                   Grid.Row="0" Grid.Column="0"
                   Grid.RowSpan="2"
                   Background="Transparent" Header="SEED FILL"
-                  Foreground="#FF424242" FontSize="12" FontWeight="Bold"
+                  Foreground="#FF424242" FontSize="16" FontWeight="Bold"
                   Cursor="Hand">
                     <StackPanel>
                         <TextBlock  TextWrapping="Wrap"
                             FontWeight="Normal"
                             Foreground="#FF424242"
-                            FontSize="12"
+                            FontSize="14"
                             Cursor="Arrow"
                             Text="Tento algoritmus vyplňuje rekurzívnym spôsobom. Bod, od ktorého sa začína vyplňovať, sa 
 volá semienko. Ak semienko neleží na hranici a nebolo doteraz zafarbené, potom je zafarbené 
@@ -141,19 +141,19 @@ a vyšetrujú sa ďalej jeho 4 - susedia.
 &#x0a;&#x0a;Je to rekurzívne riešenie – neefektívne. Každý vnútorný pixel je testovaný niekoľkokrát 
 potom, ako už bol zafarbený. Pomer počtu rekurzívnych volaní k počtu skutočných zafarbení 
 je 4:1. Každé vyvolanie procedúry je spojené s operáciou čítania z obrazovej pamäti. 
-&#x0a;&#x0a;Vstup: vypln_farba, hran_farba, súradnice (x, y) vnútorného bodu oblasti, od ktorého sa má 
+&#x0a;&#x0a;Vstup:&#x0a;vypln_farba, hran_farba, súradnice (x, y) vnútorného bodu oblasti, od ktorého sa má 
 začať vypĺňať. 
-&#x0a;&#x0a;Postup: Začína sa s bodom (x, y) a pre susedné body sa zisťuje, či majú farbu hranice. Ak nie, 
+&#x0a;&#x0a;Postup:&#x0a;Začína sa s bodom (x, y) a pre susedné body sa zisťuje, či majú farbu hranice. Ak nie, 
 potom sú zafarbené farbou výplne. Takto sa spracujú všetky body oblasti až po hranicu. 
 "/>
                         <Button Content="Výpočet"
                                 x:Name="seedFill"
-                                Width="70" Height="25" BorderBrush="Transparent"
+                                Width="80" Height="30" BorderBrush="Transparent"
                                 VerticalAlignment="Bottom" HorizontalAlignment="Right"
                                 Margin="10"
                                 Foreground="#FF424242"
                                 FontWeight="Normal"
-                                FontSize="10" 
+                                FontSize="12" 
                                 Click="ShowCanvas">
                             <Button.Background>
                                 <LinearGradientBrush EndPoint="0.9,1" StartPoint="0.4,0">
@@ -170,14 +170,14 @@ potom sú zafarbené farbou výplne. Takto sa spracujú všetky body oblasti až
                 <Expander IsExpanded="False" 
                   Grid.Row="0" Grid.Column="0"
                   Grid.RowSpan="2"
-                  Background="Transparent" Header="SEED LINE FILL"
-                  Foreground="#FF424242" FontSize="12" FontWeight="Bold"
+                  Background="Transparent" Header="SCAN-LINE SEED FILL"
+                  Foreground="#FF424242" FontSize="16" FontWeight="Bold"
                   Cursor="Hand">
                     <StackPanel>
                         <TextBlock  TextWrapping="Wrap"
                             FontWeight="Normal"
                             Foreground="#FF424242"
-                            FontSize="12"
+                            FontSize="14"
                             Cursor="Arrow"
                             Text="Metóda, ktorá znižuje počet prístupov do obrazovej pamäti, sa volá riadkové semienkové 
 vypĺňanie - SEED_LINE_FILL. Namiesto rekurzie sa použije malý zásobník, do ktorého sa 
@@ -189,12 +189,12 @@ a doprava až k hranici oblasti. Potom je možné vynechať v algoritme krok 2b 
 čítaní z obrazovej pamäti. "/>
                        <Button Content="Výpočet"
                                 x:Name="seedLineFill"
-                                Width="70" Height="25" BorderBrush="Transparent"
+                                Width="80" Height="30" BorderBrush="Transparent"
                                 VerticalAlignment="Bottom" HorizontalAlignment="Right"
                                 Margin="10"
                                 Foreground="#FF424242"
                                 FontWeight="Normal"
-                                FontSize="10" 
+                                FontSize="12" 
                                 Click="ShowCanvas">
                             <Button.Background>
                                 <LinearGradientBrush EndPoint="0.9,1" StartPoint="0.4,0">
@@ -212,13 +212,13 @@ a doprava až k hranici oblasti. Potom je možné vynechať v algoritme krok 2b 
                   Grid.Row="0" Grid.Column="0"
                   Grid.RowSpan="2"
                   Background="Transparent" Header="SKENOVACÍ ALGORITMUS"
-                  Foreground="#FF424242" FontSize="12" FontWeight="Bold"
+                  Foreground="#FF424242" FontSize="16" FontWeight="Bold"
                   Cursor="Hand">
                     <StackPanel>
                         <TextBlock  TextWrapping="Wrap"
                             FontWeight="Normal"
                             Foreground="#FF424242"
-                            FontSize="12"
+                            FontSize="14"
                             Cursor="Arrow"
                             Text="Algoritmus rozkladu odstraňuje mnohú ťažkosti doterajších postupov.
 &#x0a;&#x0a;Máme zobrazený mnohouholník s jedným skenovacím riadkom. Potrebujeme určiť, ktoré obrazové body sa nachádzajú vo vnútri mnohouholníka pre tento skenovací riadok a definovať im
@@ -230,13 +230,13 @@ príslušnú hodnotu vnútra oblasti. Tento proces opakujeme pre každý skenova
 usporiadaných priesečníkov."/>
                         <Button Content="Ukážka"
                                 x:Name="scanner"
-                                Width="70" Height="25" BorderBrush="Transparent"
+                                Width="80" Height="30" BorderBrush="Transparent"
                                 VerticalAlignment="Bottom" HorizontalAlignment="Right"
                                 Margin="10"
                                 Foreground="#FF424242"
                                 FontWeight="Normal"
-                                FontSize="10" 
-                                Click="ShowCanvas">
+                                FontSize="12" 
+                                Click="ShowScanner">
                             <Button.Background>
                                 <LinearGradientBrush EndPoint="0.9,1" StartPoint="0.4,0">
                                     <GradientStop Color="#FF82B2FF"/>
@@ -252,14 +252,14 @@ usporiadaných priesečníkov."/>
                 <Expander IsExpanded="False" 
                   Grid.Row="0" Grid.Column="0"
                   Grid.RowSpan="2"
-                  Background="Transparent" Header="KOHERENTNOSŤ STRÁN A SKENOVACÍ ALGORITMUS"
-                  Foreground="#FF424242" FontSize="12" FontWeight="Bold"
+                  Background="Transparent" Header="KOHERENTNOSŤ STRÁN"
+                  Foreground="#FF424242" FontSize="16" FontWeight="Bold"
                   Cursor="Hand">
                     <StackPanel>
                         <TextBlock  TextWrapping="Wrap"
                             FontWeight="Normal"
                             Foreground="#FF424242"
-                            FontSize="12"
+                            FontSize="14"
                             Cursor="Arrow"
                             Text="V predchádzajúcom algoritme sa najprv nájdu priesečníky skenovacej priamky so všetkými 
 stranami mnohouholníka. Tento výpočet je pomalý, pretože treba každú stranu porovnať so 
@@ -272,29 +272,29 @@ súradnicu priesečníka so skenovacím riadkom takto: &#x0a;"/>
                             FontWeight="Normal"
                             FontStyle="Italic"
                             Foreground="#FF424242"
-                            FontSize="12"
+                            FontSize="14"
                             Text="x ( i + 1) = x ( i ) + 1 / m,"/>
                         <TextBlock  TextWrapping="Wrap"
                             FontWeight="Normal"
                             Foreground="#FF424242"
-                            FontSize="12"
+                            FontSize="14"
                             Text="kde m je tangens uhla strany s osou x – smernica priamky, na 
 ktorej úsečka leží&#x0a;"/>
                         <TextBlock  TextWrapping="Wrap"
                             FontWeight="Normal"
                             FontStyle="Italic"
                             Foreground="#FF424242"
-                            FontSize="12"
+                            FontSize="14"
                             Text="m = dy / dx, dy = 1, m = 1 / dx, potom dx = 1 / m&#x0a;"/>
                         <Button Content="Ukážka"
                                 x:Name="coherent"
-                                Width="70" Height="25" BorderBrush="Transparent"
+                                Width="80" Height="30" BorderBrush="Transparent"
                                 VerticalAlignment="Bottom" HorizontalAlignment="Right"
                                 Margin="10"
                                 Foreground="#FF424242"
                                 FontWeight="Normal"
-                                FontSize="10" 
-                                Click="ShowCanvas">
+                                FontSize="12" 
+                                Click="ShowScanner">
                             <Button.Background>
                                 <LinearGradientBrush EndPoint="0.9,1" StartPoint="0.4,0">
                                     <GradientStop Color="#FF82B2FF"/>
@@ -331,9 +331,10 @@ ktorej úsečka leží&#x0a;"/>
                    x:Name="textAddPixel"
                    Visibility="Hidden"
                    VerticalAlignment="Center" HorizontalAlignment="Center"
-                   Text="Spustite vzpĺňanie tlačidlom"
+                   Text="Spustite vypĺňanie"
                    Foreground="#FF424242"
                    FontWeight="Normal"
+                   FontSize="14"
                    Margin="0,270,0,0"
                    Padding="0,10,0,0"/>
 
@@ -344,7 +345,8 @@ ktorej úsečka leží&#x0a;"/>
                 VerticalAlignment="Bottom"
                 Foreground="#FF424242"
                 FontWeight="Normal"
-                Margin="0,0,0,20" 
+                FontSize="14"
+                Margin="0,0,0,40" 
                 Visibility="Hidden"
                 Click="ScannerCalculation">
             <Button.Background>
@@ -354,5 +356,42 @@ ktorej úsečka leží&#x0a;"/>
                 </LinearGradientBrush>
             </Button.Background>
         </Button>
+
+        <Image Grid.Column="1" Grid.Row="1" Width="300"
+               x:Name="coherentImg1"
+               Visibility="Hidden">
+            <Image.Source>
+                <BitmapImage DecodePixelWidth="500"
+                             UriSource="/Images/coherent.png"/>
+            </Image.Source>
+        </Image>
+
+        <Image Grid.Column="1" Grid.Row="1" Width="300"
+               x:Name="coherentImg2"
+               Visibility="Hidden">
+            <Image.Source>
+                <BitmapImage DecodePixelWidth="500"
+                             UriSource="/Images/coherent2.png"/>
+            </Image.Source>
+        </Image>
+
+        <Image Source="/Images/next.png" 
+               x:Name="nextImage"
+               Visibility="Hidden"
+               Grid.Column="1" Grid.Row="1"
+               Height="30"
+               VerticalAlignment="Bottom" HorizontalAlignment="Center"
+               Margin="0,0,0,40"
+               MouseDown="NextImage" />
+
+        <Image Grid.Column="1" Grid.Row="1" Width="250"
+               x:Name="scannerImg"
+               Visibility="Hidden">
+            <Image.Source>
+                <BitmapImage DecodePixelWidth="500"
+                             UriSource="/Images/scanner.png"/>
+            </Image.Source>
+        </Image>
+
     </Grid>
 </UserControl>

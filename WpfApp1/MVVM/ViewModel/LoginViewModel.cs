@@ -9,6 +9,7 @@ using ComputerGraphics.HelperScripts;
 using System.Diagnostics;
 using System;
 using System.Data.SqlClient;
+using System.Text.RegularExpressions;
 
 namespace ComputerGraphics.MVVM.ViewModel
 {
@@ -83,6 +84,7 @@ namespace ComputerGraphics.MVVM.ViewModel
         private void ExecuteRegisterCommand(object obj)
         {
             Debug.WriteLine("Prebieha registrácia");
+            
 
             using (SqlConnection connection = new SqlConnection("Server=laptop-7ukrdo46\\SQLExpress01; Database=CGDatabase; Integrated Security=true"))
             {

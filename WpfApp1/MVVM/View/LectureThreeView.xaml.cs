@@ -218,7 +218,12 @@ namespace ComputerGraphics.MVVM.View
                     break;
                 case "mirror":
                     int _valueMirror = int.Parse(axis.Text);
-                    Transformations.CalculateMirror(ref point, _valueMirror, canvas);
+                    if (_valueMirror == 0 || _valueMirror == 1)
+                    {
+                        Transformations.CalculateMirror(ref point, _valueMirror, canvas);
+                        textErrorMessage.Visibility = Visibility.Hidden;
+                    }
+                    else textErrorMessage.Visibility = Visibility.Visible;
                     break;
                 case "scold":
                     double _valueSkewX = double.Parse(shearX.Text);

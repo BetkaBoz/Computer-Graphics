@@ -8,8 +8,7 @@
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="400"/>
-            <ColumnDefinition Width="400"/>
+            <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
 
         <Grid.RowDefinitions>
@@ -20,19 +19,23 @@
         <ScrollViewer Grid.Row="0" Grid.RowSpan="2"
                       Margin="0,0,-30,0" VerticalScrollBarVisibility="Hidden">
 
-            <StackPanel VerticalAlignment="Top" >
+            <StackPanel VerticalAlignment="Top" 
+                        Grid.Row="0" Grid.Column="0"
+                        Grid.RowSpan="2" Grid.ColumnSpan="2"
+                        Width="800">
 
-                <TextBlock HorizontalAlignment="Left" Grid.Row="0" Grid.Column="0"
-                   Text="OREZÁVANIE ÚSEČKY A TEXTU"  FontWeight="Bold" FontSize="20" Foreground="#FF424242"/>
+                <TextBlock HorizontalAlignment="Left"
+                           Text="OREZÁVANIE ÚSEČKY A TEXTU"  FontWeight="Bold" FontSize="20" Foreground="#FF424242"/>
 
-                <TextBlock HorizontalAlignment="Left" Grid.Row="0" Grid.Column="0"
-                   Text="BOD"  FontWeight="Bold"  FontSize="16" Foreground="#FF424242"
+                <TextBlock HorizontalAlignment="Left"
+                           Text="BOD"  FontWeight="Bold"  FontSize="16" Foreground="#FF424242"
                            Margin="25,0,0,-20"/>
 
-                <TextBlock HorizontalAlignment="Left" 
-                   Grid.Row="0" Grid.Column="0"
-                   Margin="10,30,0,0"
-                   Text="Pri orezávaní úsečky potrebujeme viac porovnávaní a výpočtov ako pre bod.
+                <TextBlock HorizontalAlignment="Left"
+                           Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2"
+                           Margin="0,30,0,0"
+                           Padding="10,0,20,0"
+                           Text="Pri orezávaní úsečky potrebujeme viac porovnávaní a výpočtov ako pre bod.
 Niektoré prípady sa dajú ľahko vylúčiť: 
 &#x0a;Ak koncové body úsečky ležia vo vnútri okna, potom sa celá úsečka vykresľuje.
 &#x0a;Ak koncové body úsečky ležia mimo okna, potom je nutné overiť, či sa úsečka pretína
@@ -44,36 +47,39 @@ Vylúčiť z orezávania môžeme aj úsečky:
 &#x0a;2. ak ich koncové body majú y &lt; ymin (úsečka leží pod oknom)
 &#x0a;3. ak ich koncové body majú x &lt; xmin (úsečka leží naľavo od okna)
 &#x0a;4. ak ich koncové body majú x > xmax (úsečka leží napravo od okna)"
-                   TextWrapping="Wrap"
-                   FontSize="12" Foreground="#FF424242"/>
+                        TextWrapping="Wrap"
+                        FontSize="14" Foreground="#FF424242"/>
 
                 <!-- COHEN -->
                 <Expander IsExpanded="False" 
                   Grid.Row="0" Grid.Column="0"
                   Grid.RowSpan="2"
                   Background="Transparent" Header="ALGORITMUS COHENA - SUTHERLANDA"
-                  Foreground="#FF424242" FontSize="12" FontWeight="Bold"
+                  Foreground="#FF424242" FontSize="16" FontWeight="Bold"
                   Cursor="Hand">
-                    <StackPanel>
+                    <StackPanel >
                         <TextBlock  TextWrapping="Wrap"
                             FontWeight="Normal"
                             Foreground="#FF424242"
-                            FontSize="12"
+                            FontSize="14"
                             Cursor="Arrow"
+                            Padding="10,0,20,0"
                             Text="Tento algoritmus rýchlo vylúči predchádzajúce prípady. Preto je zvlášť rýchly v prípade, ak je
 veľké okno a obsahuje veľa úsečiek vo vnútri, alebo ak je malé okno a väčšina úsečiek je
 mimo okna. V týchto prípadoch sa úsečka podľa potreby buď celá zobrazí alebo nezobrazí "/>
                         <TextBlock  TextWrapping="Wrap"
                             FontWeight="Normal"
                             Foreground="#FF424242"
-                            FontSize="12"
+                            FontSize="14"
                             FontStyle="Italic"
                             Cursor="Arrow"
+                            Padding="10,0,20,0"
                             Text="Algoritmus:"/>
                         <TextBlock  TextWrapping="Wrap"
                             FontWeight="Normal"
                             Foreground="#FF424242"
-                            FontSize="12"
+                            Padding="10,0,20,0"
+                            FontSize="14"
                             Cursor="Arrow"
                             Text="&#x0a;Na začiatku algoritmus nastaví 4-bitové hodnoty pre oba koncové body úsečky podľa ich polôh vzhľadom na okno.
 &#x0a;Hodnota bitov sa určuje porovnaním súradníc bodu (x, y) s hranicou okna
@@ -91,7 +97,8 @@ mimo okna. V týchto prípadoch sa úsečka podľa potreby buď celá zobrazí a
                         <TextBlock  TextWrapping="Wrap"
                             FontWeight="Normal"
                             Foreground="#FF424242"
-                            FontSize="12"
+                            Padding="10,0,20,0"
+                            FontSize="14"
                             FontStyle="Italic"
                             Cursor="Arrow"
                             Text="&#x0a;Bod sa nachádza vo vnútri okna, ak jeho kód je rovný 0000.
@@ -112,13 +119,14 @@ s oknom. Tieto úsečky môžu, ale nemusia prechádzať vnútrom okna "/>
                   Grid.Row="0" Grid.Column="0"
                   Grid.RowSpan="2"
                   Background="Transparent" Header="ALGORITMUS POSTUPNÉHO DELENIA"
-                  Foreground="#FF424242" FontSize="12" FontWeight="Bold"
+                  Foreground="#FF424242" FontSize="16" FontWeight="Bold"
                   Cursor="Hand">
-                    <StackPanel>
+                    <StackPanel Margin="0,0,0,20">
                         <TextBlock  TextWrapping="Wrap"
                             FontWeight="Normal"
                             Foreground="#FF424242"
-                            FontSize="12"
+                            FontSize="14"
+                            Padding="10,0,20,0"
                             Cursor="Arrow"
                             Text="Ak nechceme pri hľadaní priesečníkov úsečky s oknom počítať s rovnicami priamok, môžeme použiť algoritmus postupného delenia:
 &#x0a;Pre koncové body úsečky vypočítame ich 4-bitové kódy.
@@ -128,14 +136,16 @@ s oknom. Tieto úsečky môžu, ale nemusia prechádzať vnútrom okna "/>
                         <TextBlock  TextWrapping="Wrap"
                             FontWeight="Normal"
                             Foreground="#FF424242"
-                            FontSize="12"
+                            FontSize="14"
+                            Padding="10,0,20,0"
                             FontStyle="Italic"
                             Cursor="Arrow"
                             Text="(Xs, Ys) = ((X1 + X2) / 2, (Y1 + Y2) / 2)"/>
                         <TextBlock  TextWrapping="Wrap"
                             FontWeight="Normal"
                             Foreground="#FF424242"
-                            FontSize="12"
+                            FontSize="14"
+                            Padding="10,0,20,0"
                             Cursor="Arrow"
                             Text="Pre každú časť úsečky overujeme, či ju nemôžeme vylúčiť z orezávania podľa kritéria, či leží nad alebo pod oknom, vľavo alebo vpravo od okna alebo v okne.
 &#x0a;Ak jednu časť vylúčime, pokračujeme v delení pre tú časť, ktorá sa vylúčiť nedala.
@@ -151,7 +161,8 @@ s oknom. Tieto úsečky môžu, ale nemusia prechádzať vnútrom okna "/>
 
                 <TextBlock HorizontalAlignment="Left" 
                    Grid.Row="0" Grid.Column="0"
-                   Margin="10,30,0,0"
+                   Margin="0,30,10,10"
+                   Padding="10,0,20,0"
                    Text="Text je možné orezávať niekoľkými spôsobmi:
 &#x0a;1. Každé písmeno orezávame podľa úsečiek, ktoré ho vytvárajú. Dostaneme tak presné zobrazenie textu v okne, ale na úkor času. &#x0a;2. Pre každý znak vytvoríme obálku znaku – minimálny obdĺžnik, v ktorom je znak
 obsiahnutý:
@@ -163,7 +174,7 @@ inak znak nevykreslíme
 &#x0a;za kritérium si môžeme vybrať, či stred slova alebo riadku leží v okne alebo nie, alebo
 či celá obálka slova alebo riadku leží v okne alebo nie."
                    TextWrapping="Wrap"
-                   FontSize="12" Foreground="#FF424242"/>
+                   FontSize="14" Foreground="#FF424242"/>
 
             </StackPanel>
         </ScrollViewer>

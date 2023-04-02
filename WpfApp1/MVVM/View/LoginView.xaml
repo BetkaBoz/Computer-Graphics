@@ -204,6 +204,7 @@
                 <TextBox x:Name="txtEmail"
                          Text="{Binding UserName, UpdateSourceTrigger=PropertyChanged}"
                              FontSize="16"
+                             PreviewTextInput="EmailValidation"
                              FontWeight="Medium"                          
                              Foreground="#FF424242"
                              CaretBrush="#FF424242"

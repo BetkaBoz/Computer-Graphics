@@ -7,18 +7,26 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
 
-    <StackPanel VerticalAlignment="Center">
+    <StackPanel VerticalAlignment="Center"
+                Margin="0,0,0,0">
 
-        <Button Content="Začíname"
-                Width="150" Height="45" BorderBrush="#FF82B2FF"
-                CommandParameter="Lectures" Foreground="#FF424242">
-            <Button.Background>
-                <LinearGradientBrush EndPoint="0.9,1" StartPoint="0.4,0">
-                    <GradientStop Color="#FF82B2FF"/>
-                    <GradientStop Color="#FFD48DFF" Offset="1"/>
-                </LinearGradientBrush>
-            </Button.Background>
-        </Button>
+        <TextBlock Text="Vitajte!"
+                   Foreground="#FF424242"
+                   FontSize="30"
+                   FontWeight="Medium"
+                   HorizontalAlignment="Center" 
+                   Margin="0,0,0,10"/>
+        <TextBlock Foreground="#FF424242"
+                   FontSize="16"
+                   TextWrapping="Wrap"
+                   TextAlignment="Center"
+                   Padding="30">
+            Táto aplikácia slúži na výučbu predmetu <Italic><Bold>Počítačová grafika</Bold></Italic>.
+            <LineBreak/><LineBreak/>
+            V navigačnom menu v časti <Italic>Prehľad</Italic> si môžete pozrieť dostupné lekcie, čo sa v nich dozviete, aké algoritmy sa budú ďalej preberať. Taktiež si viete sledovať pokrok v lekciách, ktoré ste už splnili.
+            <LineBreak/><LineBreak/>
+            V navigačnom menu v zozname <Italic>Lekcie</Italic> si môžete vyberať príslušnú lekciu, ktorú máte dostupnú. Ďalšie lekcie sa budú otvárať na základe postupu v preberanom materiály pri znovuotvorení aplikácie.
+        </TextBlock>
 
     </StackPanel>
 

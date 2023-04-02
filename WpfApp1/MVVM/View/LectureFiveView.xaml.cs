@@ -133,6 +133,7 @@ namespace ComputerGraphics.MVVM.View
             CircleRasterization.pointsList.Clear();
 
             refresh.Visibility = Visibility.Hidden;
+            stackPanel.Visibility = Visibility.Hidden;
 
             DrawPixelsOnCanvas();
         }

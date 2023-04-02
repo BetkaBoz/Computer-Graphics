@@ -120,7 +120,7 @@ teda prechádza koncovými bodmi. "/>
                             <Button.Background>
                                 <LinearGradientBrush EndPoint="0.9,1" StartPoint="0.4,0">
                                     <GradientStop Color="#FF82B2FF"/>
-                                    <GradientStop Color="#FFD48DFF" Offset="1"/>
+                                    <GradientStop Color="#FF9491FF" Offset="1"/>
                                 </LinearGradientBrush>
                             </Button.Background>
                         </Button>
@@ -175,7 +175,7 @@ teda prechádza koncovými bodmi. "/>
                             <Button.Background>
                                 <LinearGradientBrush EndPoint="0.9,1" StartPoint="0.4,0">
                                     <GradientStop Color="#FF82B2FF"/>
-                                    <GradientStop Color="#FFD48DFF" Offset="1"/>
+                                    <GradientStop Color="#FF9491FF" Offset="1"/>
                                 </LinearGradientBrush>
                             </Button.Background>
                         </Button>
@@ -230,7 +230,7 @@ teda prechádza koncovými bodmi. "/>
                             <Button.Background>
                                 <LinearGradientBrush EndPoint="0.9,1" StartPoint="0.4,0">
                                     <GradientStop Color="#FF82B2FF"/>
-                                    <GradientStop Color="#FFD48DFF" Offset="1"/>
+                                    <GradientStop Color="#FF9491FF" Offset="1"/>
                                 </LinearGradientBrush>
                             </Button.Background>
                         </Button>
@@ -284,7 +284,7 @@ teda prechádza koncovými bodmi. "/>
             <Button.Background>
                 <LinearGradientBrush EndPoint="0.9,1" StartPoint="0.4,0">
                     <GradientStop Color="#FF82B2FF"/>
-                    <GradientStop Color="#FFD48DFF" Offset="1"/>
+                    <GradientStop Color="#FF9491FF" Offset="1"/>
                 </LinearGradientBrush>
             </Button.Background>
         </Button>

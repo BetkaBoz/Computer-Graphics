@@ -14,7 +14,7 @@
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </UserControl.Resources>
-    
+
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="20"/>
@@ -36,10 +36,9 @@
         </Grid.RowDefinitions>
         <TextBlock Grid.Column="0" Grid.Row="0"
                    Grid.ColumnSpan="3"
-                   HorizontalAlignment="Left"  
+                   HorizontalAlignment="Center"  
                    Text="RASTROVÁ A VEKTOROVÁ GRAFIKA" TextWrapping="Wrap" 
-                   FontWeight="Bold" FontSize="20" Cursor="None"/>
-
+                   FontWeight="Bold" FontSize="20" Cursor="None" Margin="0,0,0,279" Grid.RowSpan="4"/>
         <Canvas Grid.Row="3" Grid.Column="2"
                 x:Name="canvasRaster"
                 Width="250" Height="250" 
@@ -49,7 +48,7 @@
                     Width="250" Height="250" Background="White" BorderBrush="DarkGray" BorderThickness="1">
                 <Image x:Name="raster" >
                     <Image.Source>
-                        <BitmapImage DecodePixelWidth="300" 
+                        <BitmapImage DecodePixelWidth="500" 
                                      UriSource="/Images/dog.png"/>
                     </Image.Source>
                 </Image>
@@ -68,10 +67,10 @@
             </Border>
 
         </Canvas>
-        
+
         <TextBlock Grid.Row="6" Grid.ColumnSpan="5" 
                    TextWrapping="Wrap"
-                   FontSize="12"
+                   FontSize="14"
                    Foreground="#FF424242" 
                    Margin="20,20,40,0"
                    Text="Existujú dve metódy ukladania obrazu. Rastrovej metóde sa obraz rozloží do jednotlivých bodov a informácie o ich individuálnych vlastnostiach sa zapíšu do grafického súboru. Skladá sa zo základných obrazových prvkov, čiže pixelov.&#x0a;Pri vektorových formátoch nie sú opísané jednotlivé body, ale určité plochy (množiny bodov) so zhodnými vlastnosťami. Každá takáto plocha je ohraničená (ľubovolne vytvarovanou) krivkou. 

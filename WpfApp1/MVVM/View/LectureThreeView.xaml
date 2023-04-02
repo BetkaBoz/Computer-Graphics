@@ -58,49 +58,49 @@
                 <TextBlock HorizontalAlignment="Left" 
                    Grid.Row="0" Grid.Column="0"
                    Margin="10,30,0,0"
-                   Text="Geometrické transformácie sú procesy, pri ktorých sa vypočítavajú nové &#x0a;súradnice týchto bodov podľa požadovanej zmeny veľkosti a orientácie objektov."
+                   Text="Geometrické transformácie sú procesy, pri ktorých sa vypočítavajú nové súradnice týchto bodov podľa požadovanej zmeny veľkosti a orientácie objektov."
                    TextWrapping="Wrap"
-                   FontSize="12" Foreground="#FF424242"/>
+                   FontSize="14" Foreground="#FF424242"/>
 
                 <!-- Move -->
                 <Expander IsExpanded="False" 
                   Grid.Row="0" Grid.Column="0"
                   Grid.RowSpan="2"
                   Background="Transparent" Header="POSUNUTIE"
-                  Foreground="#FF424242" FontSize="12" FontWeight="Bold"
+                  Foreground="#FF424242" FontSize="16" FontWeight="Bold"
                   Cursor="Hand">
                     <StackPanel>
                         <TextBlock  TextWrapping="Wrap"
                             FontWeight="Normal"
                             Foreground="#FF424242"
-                            FontSize="12"
+                            FontSize="14"
                             Text="Posunutie je premiestnenie objektu z jednej pozície do druhej. Bod so súradnicami (x, y) je posunutý do bodu (x', y') pripočítaním dĺžok posunutí Tx a Ty k pôvodným súradniciam."/>
                         <TextBlock TextWrapping="Wrap"
                             FontWeight="Normal"
                             Foreground="#FF424242"
                             FontStyle="Italic"
-                            FontSize="12"
+                            FontSize="14"
                             Text="x'= Tx + x              (Tx ,Ty ) je vektor posunutia, Tx ,Ty ∈ R 
                                   y'= Ty + y "/>
                         <TextBlock TextWrapping="Wrap"
                             FontWeight="Normal"
                             Foreground="#FF424242"
-                            FontSize="12"
+                            FontSize="14"
                             Text="Pri zmene polohy kružnice alebo elipsy posunieme súradnice stredu a prekreslíme objekt v novej polohe."/>
 
                         <Button Content="Výpočet"
                                 x:Name="move"
-                                Width="70" Height="25" BorderBrush="Transparent"
+                                Width="80" Height="30" BorderBrush="Transparent"
                                 VerticalAlignment="Bottom" HorizontalAlignment="Right"
                                 Margin="10"
                                 Foreground="#FF424242"
                                 FontWeight="Normal"
-                                FontSize="10"
+                                FontSize="12"
                                 Click="Transform">
                             <Button.Background>
                                 <LinearGradientBrush EndPoint="0.9,1" StartPoint="0.4,0">
                                     <GradientStop Color="#FF82B2FF"/>
-                                    <GradientStop Color="#FF887DDA" Offset="1"/>
+                                    <GradientStop Color="#FF9491FF" Offset="1"/>
                                 </LinearGradientBrush>
                             </Button.Background>
                         </Button>
@@ -112,32 +112,32 @@
                   Grid.Row="0" Grid.Column="0"
                   Grid.RowSpan="2"
                   Background="Transparent" Header="OTOČENIE"
-                  Foreground="#FF424242" FontSize="12" FontWeight="Bold"
+                  Foreground="#FF424242" FontSize="16" FontWeight="Bold"
                   Cursor="Hand">
                     <StackPanel>
                         <TextBlock  TextWrapping="Wrap"
                             FontWeight="Normal"
                             Foreground="#FF424242"
-                            FontSize="12"
+                            FontSize="14"
                             Cursor="Arrow"
                             Text="Otočenie je transformácia objektu po kruhovej dráhe. Je určené uhlom otočenia a stredom otočenia. Rovnice pre otočenie okolo začiatku sústavy súradníc o uhol β vyjadríme:"/>
                         <TextBlock  TextWrapping="Wrap"
                             FontWeight="Normal"
                             Foreground="#FF424242"
-                            FontSize="12"
+                            FontSize="14"
                             FontStyle="Italic"
                             Cursor="Arrow"
-                            Text="x = r cos α       x'= r cos (α + β )     sin(α + β) = sin α cos β + cos α sin β&#x0a;y = r sin α        y'= r sin (α + β )     cos(α + β) = cos α cos β - sin α sin β"/>
+                            Text="x = r cos α    x'= r cos (α + β )     sin(α + β) = sin α cos β + cos α sin β&#x0a;y = r sin α    y'= r sin (α + β )      cos(α + β) = cos α cos β - sin α sin β"/>
                         <TextBlock  TextWrapping="Wrap"
                             FontWeight="Normal"
                             Foreground="#FF424242"
-                            FontSize="12"
+                            FontSize="14"
                             Cursor="Arrow"
                             Text="&#x0a;Pomocou vzorcov pre cos a sin súčtu uhlov rovnice upravíme"/>
                         <TextBlock  TextWrapping="Wrap"
                             FontWeight="Normal"
                             Foreground="#FF424242"
-                            FontSize="12"
+                            FontSize="14"
                             FontStyle="Italic"
                             Cursor="Arrow"
                             Text="x'= r cos (α + β) = r cos α cos β - r sin α sin β
@@ -147,23 +147,23 @@
                         <TextBlock  TextWrapping="Wrap"
                             FontWeight="Normal"
                             Foreground="#FF424242"
-                            FontSize="12"
+                            FontSize="14"
                             Cursor="Arrow"
                             Text="&#x0a;Kladné hodnoty β určujú otočenie proti smeru hodinových ručičiek, záporné hodnoty β určujú otočenie v smere hodinových ručičiek."/>
 
                         <Button Content="Výpočet"
                                 x:Name="rotate"
-                                Width="70" Height="25" BorderBrush="Transparent"
+                                Width="80" Height="30" BorderBrush="Transparent"
                                 VerticalAlignment="Bottom" HorizontalAlignment="Right"
                                 Margin="10"
                                 Foreground="#FF424242"
                                 FontWeight="Normal"
-                                FontSize="10"
+                                FontSize="12"
                                 Click="Transform">
                             <Button.Background>
                                 <LinearGradientBrush EndPoint="0.9,1" StartPoint="0.4,0">
                                     <GradientStop Color="#FF82B2FF"/>
-                                    <GradientStop Color="#FF887DDA" Offset="1"/>
+                                    <GradientStop Color="#FF9491FF" Offset="1"/>
                                 </LinearGradientBrush>
                             </Button.Background>
                         </Button>
@@ -176,32 +176,32 @@
                   Grid.Row="0" Grid.Column="0"
                   Grid.RowSpan="2"
                   Background="Transparent" Header="ŠKÁLOVANIE"
-                  Foreground="#FF424242" FontSize="12" FontWeight="Bold"
+                  Foreground="#FF424242" FontSize="16" FontWeight="Bold"
                   Cursor="Hand">
                     <StackPanel>
                         <TextBlock  TextWrapping="Wrap"
                             FontWeight="Normal"
                             Foreground="#FF424242"
-                            FontSize="12"
+                            FontSize="14"
                             Cursor="Arrow"
                             Text="Škálovanie je transformácia, pomocou ktorej môžeme zmeniť veľkosť objektu."/>
                         <TextBlock  TextWrapping="Wrap"
                             FontWeight="Normal"
                             Foreground="#FF424242"
-                            FontSize="12"
+                            FontSize="14"
                             FontStyle="Italic"
                             Cursor="Arrow"
                             Text="x'= Sx . x        Sx mení rozmery objektu v smere osi x&#x0a;y'= Sy . y       Sy mení rozmery objektu v smere osi y "/>
                         <TextBlock  TextWrapping="Wrap"
                             FontWeight="Normal"
                             Foreground="#FF424242"
-                            FontSize="12"
+                            FontSize="14"
                             Cursor="Arrow"
                             Text="&#x0a;Sx , Sy sú ľubovolné kladné čísla&#x0a;"/>
                         <TextBlock  TextWrapping="Wrap"
                             FontWeight="Normal"
                             Foreground="#FF424242"
-                            FontSize="12"
+                            FontSize="14"
                             Cursor="Arrow"
                             Text="Hodnoty Sx , Sy menšie ako 1 zmenšujú veľkosť objektu, hodnoty väčšie ako 1 zväčšujú veľkosť objektu .&#x0a;
                                &#x0a;Ak Sx = Sy = 1, veľkosť objektu sa nezmení. 
@@ -211,17 +211,17 @@
 
                         <Button Content="Výpočet"
                                 x:Name="scale"
-                                Width="70" Height="25" BorderBrush="Transparent"
+                                Width="80" Height="30" BorderBrush="Transparent"
                                 VerticalAlignment="Bottom" HorizontalAlignment="Right"
                                 Margin="10"
                                 Foreground="#FF424242"
                                 FontWeight="Normal"
-                                FontSize="10"
+                                FontSize="12"
                                 Click="Transform">
                             <Button.Background>
                                 <LinearGradientBrush EndPoint="0.9,1" StartPoint="0.4,0">
                                     <GradientStop Color="#FF82B2FF"/>
-                                    <GradientStop Color="#FF887DDA" Offset="1"/>
+                                    <GradientStop Color="#FF9491FF" Offset="1"/>
                                 </LinearGradientBrush>
                             </Button.Background>
                         </Button>
@@ -234,29 +234,29 @@
                   Grid.Row="0" Grid.Column="0"
                   Grid.RowSpan="2"
                   Background="Transparent" Header="ZRKADLENIE"
-                  Foreground="#FF424242" FontSize="12" FontWeight="Bold"
+                  Foreground="#FF424242" FontSize="16" FontWeight="Bold"
                   Cursor="Hand">
                     <StackPanel>
                         <TextBlock  TextWrapping="Wrap"
                             FontWeight="Normal"
                             Foreground="#FF424242"
-                            FontSize="12"
+                            FontSize="14"
                             Cursor="Arrow"
                             Text="Zrkadlenie je transformácia, ktorá vytvára zrkadlový obraz objektu vzhľadom k osi zrkadlenia. Pre zrkadlenie objektu podľa osi x ako aj y sa použijú transformačné rovnice škálovania.
                                 &#x0a;&#x0a;Táto transformácia mení orientáciu objektu, pretože Zx &lt; 0."/>
                         <Button Content="Výpočet"
                                 x:Name="mirror"
-                                Width="70" Height="25" BorderBrush="Transparent"
+                                Width="80" Height="30" BorderBrush="Transparent"
                                 VerticalAlignment="Bottom" HorizontalAlignment="Right"
                                 Margin="10"
                                 Foreground="#FF424242"
                                 FontWeight="Normal"
-                                FontSize="10"
+                                FontSize="12"
                                 Click="Transform">
                             <Button.Background>
                                 <LinearGradientBrush EndPoint="0.9,1" StartPoint="0.4,0">
                                     <GradientStop Color="#FF82B2FF"/>
-                                    <GradientStop Color="#FF887DDA" Offset="1"/>
+                                    <GradientStop Color="#FF9491FF" Offset="1"/>
                                 </LinearGradientBrush>
                             </Button.Background>
                         </Button>
@@ -269,29 +269,29 @@
                   Grid.Row="0" Grid.Column="0"
                   Grid.RowSpan="2"
                   Background="Transparent" Header="SKOSENIE"
-                  Foreground="#FF424242" FontSize="12" FontWeight="Bold"
+                  Foreground="#FF424242" FontSize="16" FontWeight="Bold"
                   Cursor="Hand">
                     <StackPanel>
                         <TextBlock  TextWrapping="Wrap"
                             FontWeight="Normal"
                             Foreground="#FF424242"
-                            FontSize="12"
+                            FontSize="14"
                             Cursor="Arrow"
                             Text="Skosenie spôsobuje deformácie tvarov. Výsledok transformácie vyvoláva dojem, že objekt je zložený z mnohých vrstiev, ktoré sú po sebe posúvané."/>
 
                         <Button Content="Výpočet"
                                 x:Name="scold"
-                                Width="70" Height="25" BorderBrush="Transparent"
+                                Width="80" Height="30" BorderBrush="Transparent"
                                 VerticalAlignment="Bottom" HorizontalAlignment="Right"
                                 Margin="10"
                                 Foreground="#FF424242"
                                 FontWeight="Normal"
-                                FontSize="10"
+                                FontSize="12"
                                 Click="Transform">
                             <Button.Background>
                                 <LinearGradientBrush EndPoint="0.9,1" StartPoint="0.4,0">
                                     <GradientStop Color="#FF82B2FF"/>
-                                    <GradientStop Color="#FF887DDA" Offset="1"/>
+                                    <GradientStop Color="#FF9491FF" Offset="1"/>
                                 </LinearGradientBrush>
                             </Button.Background>
                         </Button>
@@ -344,6 +344,7 @@
                    Text="Na canvase vyznačte mnohouholník"
                    Foreground="#FF424242"
                    FontWeight="Normal"
+                   FontSize="14"
                    Margin="0,270,0,0"
                    Padding="0,10,0,0"/>
 
@@ -354,6 +355,7 @@
                    Text="Chýba zadaná hodnota"
                    Foreground="#FFE84141"
                    FontWeight="Normal"
+                   FontSize="14"
                    Margin="0,310,0,0"/>
 
         <Button Content="Spoj"
@@ -369,7 +371,7 @@
             <Button.Background>
                 <LinearGradientBrush EndPoint="0.9,1" StartPoint="0.4,0">
                     <GradientStop Color="#FF82B2FF"/>
-                    <GradientStop Color="#FFD48DFF" Offset="1"/>
+                    <GradientStop Color="#FF9491FF" Offset="1"/>
                 </LinearGradientBrush>
             </Button.Background>
         </Button>
@@ -384,12 +386,14 @@
                    Text="Zadaj vektor posunutia x' a y' ( "
                    Foreground="#FF424242"
                    FontWeight="Normal"
+                   FontSize="14"
                    Padding="0,10,0,0"/>
 
                 <TextBox x:Name="vectorX"
                  Width="20"
                  Foreground="#FF424242"
                  FontWeight="Normal"
+                 FontSize="14"
                  Margin="0,0,0,20"
                  Padding="0,8,0,0"
                  TextAlignment="Center"
@@ -400,12 +404,14 @@
                    Text=" , "
                    Foreground="#FF424242"
                    FontWeight="Normal"
+                   FontSize="14"
                    Padding="0,10,0,0"/>
 
                 <TextBox x:Name="vectorY"
                  Width="20"
                  Foreground="#FF424242"
                  FontWeight="Normal"
+                 FontSize="14"
                  Margin="0,0,0,20"
                  Padding="0,8,0,0"
                  TextAlignment="Center"
@@ -417,6 +423,7 @@
                    Text=" )"
                    Foreground="#FF424242"
                    FontWeight="Normal"
+                   FontSize="14"
                    Padding="0,10,0,0"/>
 
             </StackPanel>
@@ -439,12 +446,14 @@
                    Text="Zadaj uhol rotácie: "
                    Foreground="#FF424242"
                    FontWeight="Normal"
+                   FontSize="14"
                    Padding="0,10,0,0"/>
 
                 <TextBox x:Name="angle"
                  Width="20"
                  Foreground="#FF424242"
                  FontWeight="Normal"
+                 FontSize="14"
                  Margin="0,0,0,20"
                  Padding="0,8,0,0"
                  TextAlignment="Center"
@@ -454,6 +463,7 @@
                    Text="°"
                    Foreground="#FF424242"
                    FontWeight="Normal"
+                   FontSize="14"
                    Padding="0,10,0,0"/>
 
             </StackPanel>
@@ -476,12 +486,14 @@
                    Text="Zadaj koeficient škálovania v intervale &lt;0, 1> : "
                    Foreground="#FF424242"
                    FontWeight="Normal"
+                   FontSize="14"
                    Padding="0,10,0,0"/>
 
                 <TextBox x:Name="coeficient"
                  Width="20"
                  Foreground="#FF424242"
                  FontWeight="Normal"
+                 FontSize="14"
                  Margin="0,0,0,20"
                  Padding="0,8,0,0"
                  TextAlignment="Center"
@@ -505,13 +517,16 @@
                 <TextBlock 
                    Text="Zadajte smer zrkadlenia vzľadom k osi X=0 alebo Y=1: "
                    Foreground="#FF424242"
+                    TextWrapping="Wrap"
                    FontWeight="Normal"
+                   FontSize="14"
                    Padding="0,10,0,0"/>
 
                 <TextBox x:Name="axis"
                  Width="20"
                  Foreground="#FF424242"
                  FontWeight="Normal"
+                 FontSize="14"
                  Margin="0,0,0,20"
                  Padding="0,8,0,0"
                  TextAlignment="Center"
@@ -537,12 +552,14 @@
                    Text="Zadaj smer skosenia v X-ovej osi "
                    Foreground="#FF424242"
                    FontWeight="Normal"
+                   FontSize="14"
                    Padding="0,10,0,0"/>
 
                 <TextBox x:Name="shearX"
                  Width="20"
                  Foreground="#FF424242"
                  FontWeight="Normal"
+                 FontSize="14"
                  Margin="0,0,0,20"
                  Padding="0,8,0,0"
                  TextAlignment="Center"
@@ -552,6 +569,7 @@
                    Text=" a Y-ovej osi "
                    Foreground="#FF424242"
                    FontWeight="Normal"
+                   FontSize="14"
                    Padding="0,10,0,0"/>
 
                 <TextBox x:Name="shearY"
@@ -561,22 +579,23 @@
                  Margin="0,0,0,20"
                  Padding="0,8,0,0"
                  TextAlignment="Center"
+                 FontSize="14"
                  PreviewTextInput="PreviewTextInput">
                 </TextBox>
 
-                <TextBlock 
-                   Text=" ) v intervale &lt;0, 1>"
+            </StackPanel>
+            <TextBlock HorizontalAlignment="Center"
+                   Text="v intervale &lt;0, 1>"
                    Foreground="#FF424242"
                    FontWeight="Normal"
-                   Padding="0,10,0,0"/>
-
-            </StackPanel>
+                   Margin="0,-10,0,20"
+                   FontSize="14"/>
 
             <Image Source="/Images/next.png" 
                Grid.Column="1" Grid.Row="1"
                Height="30"
                VerticalAlignment="Bottom" HorizontalAlignment="Center"
-               Margin="0,0,0,50"
+               Margin="0,0,0,30"
                MouseDown="CalculateStep" />
         </StackPanel>
 

@@ -21,11 +21,8 @@ namespace ComputerGraphics.MVVM.View
     public partial class LectureSevenView : UserControl
     {
         string? algorithmName;
-        int x, y;
         bool check;
 
-        Rectangle rectangle;
-        Rect rect;
         List<Point> pointsList = new();
         List<Rectangle> fillRectangle = new();
 
@@ -45,7 +42,7 @@ namespace ComputerGraphics.MVVM.View
             Refresh();
 
             canvas.Visibility = Visibility.Visible;
-            textAddPixel.Visibility = Visibility.Hidden;
+            textAddPixel.Visibility = Visibility.Visible;
             fillButton.Visibility = Visibility.Visible;
             refresh.Visibility = Visibility.Visible;
 
@@ -197,9 +194,48 @@ namespace ComputerGraphics.MVVM.View
             }
         }
 
-        private void ShowScanner()
+        private void ShowScanner(object sender, RoutedEventArgs e)
         {
+            Button button = sender as Button;
+            algorithmName = button.Name;
 
+            Refresh();
+            canvas.Visibility = Visibility.Hidden;
+            textAddPixel.Visibility = Visibility.Hidden;
+            fillButton.Visibility = Visibility.Hidden;
+            refresh.Visibility = Visibility.Hidden;
+
+            ShowImages(algorithmName);
+        }
+
+        private void ShowImages(string name)
+        {
+            switch (name)
+            {
+                case "coherent":
+                    coherentImg1.Visibility = Visibility.Visible;
+                    nextImage.Visibility = Visibility.Visible;
+                    scannerImg.Visibility = Visibility.Hidden;
+                    break;
+                case "scanner":
+                    scannerImg.Visibility = Visibility.Visible;
+                    coherentImg1.Visibility = Visibility.Hidden;
+                    nextImage.Visibility = Visibility.Hidden;
+                    break;
+            }
+        }
+        private void NextImage(object sender, MouseButtonEventArgs e)
+        {
+            if(coherentImg1.Visibility == Visibility.Visible)
+            {
+                coherentImg1.Visibility = Visibility.Hidden;
+                coherentImg2.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                coherentImg1.Visibility = Visibility.Visible;
+                coherentImg2.Visibility = Visibility.Hidden;
+            }
         }
 
         private void Refresh()
@@ -215,7 +251,7 @@ namespace ComputerGraphics.MVVM.View
 
             if (algorithmName == "floodFill" || algorithmName == "seedFill") FillResursivePixels();
             else if (algorithmName == "seedLineFill") FillNonRecurzivePixels();
-            else if (algorithmName == "scanner" || algorithmName == "cohren") ShowScanner();
+            else if (algorithmName == "scanner" || algorithmName == "coherent") ShowImages(algorithmName);
         }
 
         private void RefreshCanvas(object sender, MouseButtonEventArgs e)

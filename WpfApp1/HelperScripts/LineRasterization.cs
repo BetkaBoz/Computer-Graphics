@@ -9,14 +9,17 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Media;
 using System.Windows.Shapes;
+using System.Windows.Threading;
 
 namespace ComputerGraphics.HelperScripts
 {
     public static class LineRasterization
     {
         public static List<Point> newPoints = new();
+        public static string? output;
+        public static LectureFourView view = new();
 
-        public static void BaseLine(List<Point> pointsList)
+        public static async void BaseLine(List<Point> pointsList)
         {
             newPoints.Clear();
 
@@ -45,12 +48,15 @@ namespace ComputerGraphics.HelperScripts
                     newPoints.Add(new Point(x, y));
                     decison += 2 * pointY;
                 }
+                output = $"X: {pointX}, Y: {pointY}";
+                
             }
-
-            FindPoint();
+            await WriteOutput(output);
+            await FindPoint();
+            
         }
 
-        public static void DDALine(List<Point> pointsList)
+        public static async void DDALine(List<Point> pointsList)
         {
             newPoints.Clear();
 
@@ -76,10 +82,10 @@ namespace ComputerGraphics.HelperScripts
 
                 newPoints.Add(new Point(x, y));
             }
-            FindPoint();
+            await FindPoint();
         }
 
-        public static void BersenhamLine(List<Point> pointsList, int pointX, int pointY, int decide)
+        public static async void BersenhamLine(List<Point> pointsList, int pointX, int pointY, int decide)
         {
             newPoints.Clear();
 
@@ -116,11 +122,18 @@ namespace ComputerGraphics.HelperScripts
                 }
             }
 
-            FindPoint();
+            await FindPoint();
         }
 
-        public static void FindPoint()
+        public static async Task WriteOutput(string writeLine)
         {
+            view.textCalculations.Text = $"{writeLine}&#x0a;";
+        }
+
+        public static async Task FindPoint()
+        {
+            await Task.Delay(150);
+
             Point point;
             Rectangle rectangle;
 
@@ -134,6 +147,8 @@ namespace ComputerGraphics.HelperScripts
 
                      if (rec.Contains(point))
                      {
+                        Application.Current.Dispatcher.Invoke(() => { }, DispatcherPriority.Background);
+
                         rectangle = LectureFourView._rectangles[indexOfRect];
                         rectangle.Fill = new SolidColorBrush(Colors.DarkGray);
                      }

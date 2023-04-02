@@ -18,8 +18,7 @@
     </Window.DataContext>
 
     <Border CornerRadius="7"                    
-            BorderThickness="2"
-            Opacity="0.95">
+            BorderThickness="2">
 
         <Border.BorderBrush>
             <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
@@ -28,9 +27,11 @@
                 <GradientStop Color="#8A16C1" Offset="1"/>
             </LinearGradientBrush>
         </Border.BorderBrush>
-        
-        <Grid Background="#FFF1F1F1"
-            MouseDown="Window_MouseDown">
+
+
+        <!--MouseDown="Window_MouseDown"-->
+
+        <Grid Background="#FFF1F1F1">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="160"/>
                 <ColumnDefinition/>

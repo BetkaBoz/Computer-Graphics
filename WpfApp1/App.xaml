@@ -52,14 +52,10 @@
             <DataTemplate DataType="{x:Type viewModel:LectureSevenViewModel}">
                 <view:LectureSevenView/>
             </DataTemplate>
-            
+
             <DataTemplate DataType="{x:Type viewModel:LectureEightViewModel}">
                 <view:LectureEightView/>
             </DataTemplate>
-
-            <!--<DataTemplate DataType="{x:Type viewModel:LoginViewModel}">
-                <view:LoginView/>
-            </DataTemplate>-->
 
         </ResourceDictionary>
     </Application.Resources>

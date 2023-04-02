@@ -120,14 +120,17 @@
         <TextBlock x:Name="yellowNum" Grid.Row="4" Grid.Column="5" HorizontalAlignment="Right" VerticalAlignment="Bottom" Text="0" Margin="0,0,0,12"/>
 
         <!-- THEORY -->
-        <TextBlock Grid.Row="5" Grid.Column="2" Grid.ColumnSpan="5" 
+        <ScrollViewer Grid.Row="5" Grid.Column="2" Grid.ColumnSpan="5"
+                      VerticalScrollBarVisibility="Disabled">
+            <TextBlock 
                    TextWrapping="Wrap"
-                   Margin="0,20,0,0"
+                   Margin="0,20,0,10"
                    Text="Model RGB je súčtovým modelom, ktorého základom je aditívne skladanie  farieb červenej, zelenej a modrej. Každá farba je na obrazovke reprezentovaná hodnotou intenzity 0 - 255. Celkovo je teda 2563 kombinácií.&#x0a;
 &#x0a;Bielu farbu dostaneme nastavením hodnôt RGB na maximum (R = 255, G = 255, B = 255).
 &#x0a;&#x0a;Čiernu farbu zase nastaveným hodnôt RGB na minimum (R = 0; G = 0, B = 0).
 &#x0a;&#x0a;Ak hodnoty jednotlivých farieb budú rovnaké a intenzitu meníme od 0 po 255, tak dostaneme postupne 256 odtieňov šedej."
-                   FontSize="12"
-                   Cursor="None" Foreground="#FF424242"/>
+                   FontSize="14" Foreground="#FF424242"/>
+        </ScrollViewer>
+        
     </Grid>
 </UserControl>

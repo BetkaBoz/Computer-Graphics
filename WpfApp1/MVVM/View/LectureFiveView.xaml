@@ -77,43 +77,43 @@
                   Grid.Row="0" Grid.Column="0"
                   Grid.RowSpan="2"
                   Background="Transparent" Header="ALGORITMUS Z ROVNICE KRUŽNICE  &#x0a;V KARTEZÁNSKYCH SÚRADNICIACH"
-                  Foreground="#FF424242" FontSize="12" FontWeight="Bold"
+                  Foreground="#FF424242" FontSize="16" FontWeight="Bold"
                   Cursor="Hand">
                     <StackPanel>
                         <TextBlock  TextWrapping="Wrap"
                             FontWeight="Normal"
                             Foreground="#FF424242"
-                            FontSize="12"
+                            FontSize="14"
                             Text="Kružnica je najčastejšie definovaná pomocou stredu a polomer a jej rovnicu môžeme napísať v karteziánskych súradniciach:"/>
                         <TextBlock  TextWrapping="Wrap"
                             FontWeight="Normal"
                             FontStyle="Italic"
                             Foreground="#FF424242"
-                            FontSize="12"
+                            FontSize="14"
                             Text="(x – xc)^2 + (y – yc)^2 = r^2  &#x0a;"/>
                         <TextBlock  TextWrapping="Wrap"
                             FontWeight="Normal"
                             Foreground="#FF424242"
-                            FontSize="12"
+                            FontSize="14"
                             Text="Táto rovnica sa dá použiť na vykreslenie kružnice postupnou zmenou súradnice x o jednotku od xc – r do xc + r a výpočtom zodpovedajúcich hodnôt y pre každé x."/>
                         <TextBlock  TextWrapping="Wrap"
                             FontWeight="Normal"
                             FontStyle="Italic"
                             Foreground="#FF424242"
-                            FontSize="12"
+                            FontSize="14"
                             Text="y = yc ± √r^2 - (x - xc)^2 &#x0a;"/>
                         <TextBlock  TextWrapping="Wrap"
                             FontWeight="Normal"
                             Foreground="#FF424242"
-                            FontSize="12"
+                            FontSize="14"
                             Text="Tento postup vyžaduje zložité výpočty v každom kroku. &#x0a;Tozmiestnenie bodov na kružnici nie je pravidelné – môžeme ho odstrániť
 zámenou x a y – postupne budeme meniť súradnicu y o jednotku a vypočítavaťzodpovedajúce x."/>
                         
                         <Button Content="Výpočet"
                                 x:Name="kartezian"
-                                Width="70" Height="25" BorderBrush="Transparent"
+                                Width="80" Height="30" BorderBrush="Transparent"
                                 VerticalAlignment="Bottom" HorizontalAlignment="Right"
-                                Margin="10"
+                                Margin="12"
                                 Foreground="#FF424242"
                                 FontWeight="Normal"
                                 FontSize="10"
@@ -121,7 +121,7 @@ zámenou x a y – postupne budeme meniť súradnicu y o jednotku a vypočítava
                             <Button.Background>
                                 <LinearGradientBrush EndPoint="0.9,1" StartPoint="0.4,0">
                                     <GradientStop Color="#FF82B2FF"/>
-                                    <GradientStop Color="#FFD48DFF" Offset="1"/>
+                                    <GradientStop Color="#FF9491FF" Offset="1"/>
                                 </LinearGradientBrush>
                             </Button.Background>
                         </Button>
@@ -133,25 +133,25 @@ zámenou x a y – postupne budeme meniť súradnicu y o jednotku a vypočítava
                   Grid.Row="0" Grid.Column="0"
                   Grid.RowSpan="2"
                   Background="Transparent" Header="ALGORITMUS Z ROVNICE KRUŽNICE&#x0a;V POLÁRNYCH SÚRADNICIACH"
-                  Foreground="#FF424242" FontSize="12" FontWeight="Bold"
+                  Foreground="#FF424242" FontSize="16" FontWeight="Bold"
                   Cursor="Hand">
                     <StackPanel>
                         <TextBlock  TextWrapping="Wrap"
                             FontWeight="Normal"
                             Foreground="#FF424242"
-                            FontSize="12"
+                            FontSize="14"
                             Cursor="Arrow"
                             Text="Ďalším spôsobom odstránenia nerovnomerného rozloženia bodov je výpočet ich pozícií pomocou polárnych súradníc:"/>
                         <TextBlock  TextWrapping="Wrap"
                             FontWeight="Normal"
                             FontStyle="Italic"
                             Foreground="#FF424242"
-                            FontSize="12"
+                            FontSize="14"
                             Text="x = xc + r cos α   &#x0a;x = xc + r cos α                   α ∈ 〈 0 , 2π〉  &#x0a;"/>
                         <TextBlock  TextWrapping="Wrap"
                             FontWeight="Normal"
                             Foreground="#FF424242"
-                            FontSize="12"
+                            FontSize="14"
                             Cursor="Arrow"
                             Text="Pri zmene α o konštantnú veľkosť budú body na kružnici vykreslené v pravidelných vzdialenostiach.&#x0a;Prírastok α závisí od aplikácie. 
                                   &#x0a;Najčastejšie sa volí 1/r, vtedy sú generované body so súradnicami približne vo vzdialenosti 1 pixel túto metódu môžeme vylepšiť použitím symetrie kružnice.
@@ -161,17 +161,17 @@ a ostatné body odvodíme použitím symetrie kružnice. &#x0a;
                         
                         <Button Content="Výpočet"
                                 x:Name="polar"
-                                Width="70" Height="25" BorderBrush="Transparent"
+                                Width="80" Height="30" BorderBrush="Transparent"
                                 VerticalAlignment="Bottom" HorizontalAlignment="Right"
                                 Margin="10"
                                 Foreground="#FF424242"
                                 FontWeight="Normal"
-                                FontSize="10" 
+                                FontSize="12" 
                                 Click="ShowCanvas">
                             <Button.Background>
                                 <LinearGradientBrush EndPoint="0.9,1" StartPoint="0.4,0">
                                     <GradientStop Color="#FF82B2FF"/>
-                                    <GradientStop Color="#FFD48DFF" Offset="1"/>
+                                    <GradientStop Color="#FF9491FF" Offset="1"/>
                                 </LinearGradientBrush>
                             </Button.Background>
                         </Button>
@@ -184,13 +184,13 @@ a ostatné body odvodíme použitím symetrie kružnice. &#x0a;
                   Grid.Row="0" Grid.Column="0"
                   Grid.RowSpan="2"
                   Background="Transparent" Header="BERSENHAMOV ALGORITMUS"
-                  Foreground="#FF424242" FontSize="12" FontWeight="Bold"
+                  Foreground="#FF424242" FontSize="16" FontWeight="Bold"
                   Cursor="Hand">
                     <StackPanel>
                         <TextBlock  TextWrapping="Wrap"
                             FontWeight="Normal"
                             Foreground="#FF424242"
-                            FontSize="12"
+                            FontSize="14"
                             Cursor="Arrow"
                             Text="Podobne ako v algoritme na vykreslenie úsečky, aj pri kružnici sa dajú určiť celočíselné súradnice pixlov tak, že v každom kroku porovnáme, ktorý z dvoch pixlov leží bližšie ku 
 skutočnej kružnici. &#x0a;Uvažujme najprv o kružnici so stredom v začiatku sústavy súradníc &#x0a;(xc = 0 , yc = 0). Budeme počítať súradnice bodov v 1/8 kružnice a pomocou súmernosti vykreslíme jej 
@@ -200,33 +200,33 @@ zvyšok.&#x0a;Začneme s x = 0, konštantné prírastky budeme pridávať v smer
                             FontWeight="Normal"
                             FontStyle="Italic"
                             Foreground="#FF424242"
-                            FontSize="12"
+                            FontSize="14"
                             Text="x^2 + y^2 = r^2 &#x0a;"/>
                         <TextBlock  TextWrapping="Wrap"
                             FontWeight="Normal"
                             Foreground="#FF424242"
-                            FontSize="12"
+                            FontSize="14"
                             Text="označíme ju funkciou:"/>
                         <TextBlock  TextWrapping="Wrap"
                             FontWeight="Normal"
                             FontStyle="Italic"
                             Foreground="#FF424242"
-                            FontSize="12"
+                            FontSize="14"
                             Text=" F (x , y) = x^2 + y^2 - r^2 &#x0a;"/>
                        
                         <Button Content="Výpočet"
                                 x:Name="bersenham"
-                                Width="70" Height="25" BorderBrush="Transparent"
+                                Width="80" Height="30" BorderBrush="Transparent"
                                 VerticalAlignment="Bottom" HorizontalAlignment="Right"
                                 Margin="10"
                                 Foreground="#FF424242"
                                 FontWeight="Normal"
-                                FontSize="10" 
+                                FontSize="12" 
                                 Click="ShowCanvas">
                             <Button.Background>
                                 <LinearGradientBrush EndPoint="0.9,1" StartPoint="0.4,0">
                                     <GradientStop Color="#FF82B2FF"/>
-                                    <GradientStop Color="#FFD48DFF" Offset="1"/>
+                                    <GradientStop Color="#FF9491FF" Offset="1"/>
                                 </LinearGradientBrush>
                             </Button.Background>
                         </Button>
@@ -261,6 +261,7 @@ zvyšok.&#x0a;Začneme s x = 0, konštantné prírastky budeme pridávať v smer
                    Text="Na štvorcovej sieti vyznačte stred kružnice"
                    Foreground="#FF424242"
                    FontWeight="Normal"
+                   FontSize="14"
                    Margin="0,270,0,0"
                    Padding="0,10,0,0"/>
 
@@ -273,12 +274,14 @@ zvyšok.&#x0a;Začneme s x = 0, konštantné prírastky budeme pridávať v smer
                    Text="Zadaj polomer kružnice (viac ako 100): "
                    Foreground="#FF424242"
                    FontWeight="Normal"
+                    FontSize="14"
                    Padding="0,10,0,0"/>
 
                 <TextBox x:Name="radius"
                  Width="20"
                  Foreground="#FF424242"
                  FontWeight="Normal"
+                 FontSize="14"
                  Margin="0,0,0,20"
                  Padding="0,8,0,0"
                  TextAlignment="Center"
@@ -297,7 +300,7 @@ zvyšok.&#x0a;Začneme s x = 0, konštantné prírastky budeme pridávať v smer
                 <Button.Background>
                     <LinearGradientBrush EndPoint="0.9,1" StartPoint="0.4,0">
                         <GradientStop Color="#FF82B2FF"/>
-                        <GradientStop Color="#FFD48DFF" Offset="1"/>
+                        <GradientStop Color="#FF9491FF" Offset="1"/>
                     </LinearGradientBrush>
                 </Button.Background>
             </Button>

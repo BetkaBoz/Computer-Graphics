@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -62,6 +63,12 @@ namespace ComputerGraphics.MVVM.View
         private void btnLogin_Click(object sender, RoutedEventArgs e)
         {
             errorMessage.Visibility = Visibility.Hidden;
+        }
+
+        private void EmailValidation(object sender, TextCompositionEventArgs e)
+        {
+            Regex regex = new Regex(@"^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$");
+            e.Handled = regex.IsMatch(e.Text);
         }
     }
 }
