@@ -59,20 +59,20 @@
                    Text="S krivkami sa stretávame pri modelovaní v trojrozmernom alebo dvojrozmernom priestore, pri definícii fontov, pri určovaní dráhy pohybujúcich sa objektov v počítačovej animácii a pod. Na
 rôzne účely sa používa rôzne vyjadrenie kriviek: explicitné, implicitné a parametrické. Parametrické vyjadrenie sa v počítačovej grafike používa najčastejšie."
                    TextWrapping="Wrap"
-                   FontSize="12" Foreground="#FF424242"/>
+                   FontSize="14" Foreground="#FF424242"/>
 
                 <!-- FERGUS -->
                 <Expander IsExpanded="False" 
                   Grid.Row="0" Grid.Column="0"
                   Grid.RowSpan="2"
                   Background="Transparent" Header="FERGUSONOVE KUBIKY"
-                  Foreground="#FF424242" FontSize="12" FontWeight="Bold"
+                  Foreground="#FF424242" FontSize="16" FontWeight="Bold"
                   Cursor="Hand">
                     <StackPanel>
                         <TextBlock  TextWrapping="Wrap"
                             FontWeight="Normal"
                             Foreground="#FF424242"
-                            FontSize="12"
+                            FontSize="14"
                             Cursor="Arrow"
                             Text="Koncové body sú významné pre položenie krivky
 (krivka nimi prechádza). Vektory potom určujú mieru vyklenutia krivky. Čím je veľkosť
@@ -82,20 +82,20 @@ a vektormi 0 1 P′, P′ . Rovnica výslednej krivky má tvar:
                         <TextBlock  TextWrapping="Wrap"
                             FontWeight="Normal"
                             Foreground="#FF424242"
-                            FontSize="12"
+                            FontSize="14"
                             FontStyle="Italic"
                             Cursor="Arrow"
                             Text="P(t) = P0F1(t) + P1F2(t) + P'0F3(t) + P'1F4(t)"/>
                         <TextBlock  TextWrapping="Wrap"
                             FontWeight="Normal"
                             Foreground="#FF424242"
-                            FontSize="12"
+                            FontSize="14"
                             Cursor="Arrow"
                             Text="&#x0a;kde F1, F2, F3, F4 sú kubické Hermitovské polynómy tvaru: "/>
                         <TextBlock  TextWrapping="Wrap"
                             FontWeight="Normal"
                             Foreground="#FF424242"
-                            FontSize="12"
+                            FontSize="14"
                             FontStyle="Italic"
                             Cursor="Arrow"
                             Text="F1(t) = 2t3 - 3t2 + 1,&#x0a;F2(t) = -2t3 + 3t2,&#x0a;F3(t) = t3 - 2t2 + t, 
@@ -103,19 +103,19 @@ a vektormi 0 1 P′, P′ . Rovnica výslednej krivky má tvar:
                         <TextBlock  TextWrapping="Wrap"
                             FontWeight="Normal"
                             Foreground="#FF424242"
-                            FontSize="12"
+                            FontSize="14"
                             Cursor="Arrow"
                             Text="&#x0a; Ak položíme t = 0 je P (0 ) = P0. Analogicky pre t = 1 je P (1 ) = P1. Krivka
 teda prechádza koncovými bodmi. "/>
 
                         <Button Content="Výpočet"
                                 x:Name="ferguson"
-                                Width="70" Height="25" BorderBrush="Transparent"
+                                Width="80" Height="30" BorderBrush="Transparent"
                                 VerticalAlignment="Bottom" HorizontalAlignment="Right"
                                 Margin="10"
                                 Foreground="#FF424242"
                                 FontWeight="Normal"
-                                FontSize="10"
+                                FontSize="12"
                                 Click="Transform">
                             <Button.Background>
                                 <LinearGradientBrush EndPoint="0.9,1" StartPoint="0.4,0">
@@ -133,44 +133,44 @@ teda prechádza koncovými bodmi. "/>
                   Grid.Row="0" Grid.Column="0"
                   Grid.RowSpan="2"
                   Background="Transparent" Header="BÉZIEROVE KUBIKY"
-                  Foreground="#FF424242" FontSize="12" FontWeight="Bold"
+                  Foreground="#FF424242" FontSize="16" FontWeight="Bold"
                   Cursor="Hand">
                     <StackPanel>
                         <TextBlock  TextWrapping="Wrap"
                             FontWeight="Normal"
                             Foreground="#FF424242"
-                            FontSize="12"
+                            FontSize="14"
                             Cursor="Arrow"
                             Text="Bézierova kubika je zadaná štyrmi bodmi P0, P1, P2 a P3. Vychádza z prvého bodu P0 a končí v poslednom bode P3. Vyklenutie je riadené bodmi P1 a P2.
                                   Bézierova kubika je určená vzťahom:"/>
                         <TextBlock  TextWrapping="Wrap"
                             FontWeight="Normal"
                             Foreground="#FF424242"
-                            FontSize="12"
+                            FontSize="14"
                             FontStyle="Italic"
                             Cursor="Arrow"
                             Text="P(t) = P0B0(t) + P1B1(t) + P2B2(t) + P3B3(t)"/>
                         <TextBlock  TextWrapping="Wrap"
                             FontWeight="Normal"
                             Foreground="#FF424242"
-                            FontSize="12"
+                            FontSize="14"
                             Cursor="Arrow"
                             Text="&#x0a;kde t je 〈0,1〉 a B0, B1, B2, B3 sú kubické polynómy tvaru: "/>
                         <TextBlock  TextWrapping="Wrap"
                             FontWeight="Normal"
                             Foreground="#FF424242"
-                            FontSize="12"
+                            FontSize="14"
                             Cursor="Arrow"
                             Text="B0(t) = (1 - t)^3, &#x0a;B1(t) = 3t(1 - t)^2, &#x0a;B2(t) = 3t^2(1 - t), &#x0a;B3(t) = t^3"/>
 
                         <Button Content="Výpočet"
                                 x:Name="bezier"
-                                Width="70" Height="25" BorderBrush="Transparent"
+                                Width="80" Height="30" BorderBrush="Transparent"
                                 VerticalAlignment="Bottom" HorizontalAlignment="Right"
                                 Margin="10"
                                 Foreground="#FF424242"
                                 FontWeight="Normal"
-                                FontSize="10"
+                                FontSize="12"
                                 Click="Transform">
                             <Button.Background>
                                 <LinearGradientBrush EndPoint="0.9,1" StartPoint="0.4,0">
@@ -188,44 +188,44 @@ teda prechádza koncovými bodmi. "/>
                   Grid.Row="0" Grid.Column="0"
                   Grid.RowSpan="2"
                   Background="Transparent" Header="COONSOVE KUBIKY"
-                  Foreground="#FF424242" FontSize="12" FontWeight="Bold"
+                  Foreground="#FF424242" FontSize="16" FontWeight="Bold"
                   Cursor="Hand">
                     <StackPanel>
                         <TextBlock  TextWrapping="Wrap"
                             FontWeight="Normal"
                             Foreground="#FF424242"
-                            FontSize="12"
+                            FontSize="14"
                             Cursor="Arrow"
                             Text="Coonsova kubika sa vypočíta zo vzťahu:"/>
                         <TextBlock  TextWrapping="Wrap"
                             FontWeight="Normal"
                             Foreground="#FF424242"
-                            FontSize="12"
+                            FontSize="14"
                             FontStyle="Italic"
                             Cursor="Arrow"
                             Text="P(t) = 1/3[P1C(t) + P2C2(t) + P3C3(t) + P4C4(t)"/>
                         <TextBlock  TextWrapping="Wrap"
                             FontWeight="Normal"
                             Foreground="#FF424242"
-                            FontSize="12"
+                            FontSize="14"
                             Cursor="Arrow"
                             Text="&#x0a;kde t je 〈0,1〉 a C1, C2, C3, C4 sú kubické polynómy tvaru: "/>
                         <TextBlock  TextWrapping="Wrap"
                             FontWeight="Normal"
                             Foreground="#FF424242"
-                            FontSize="12"
+                            FontSize="14"
                             FontStyle="Italic"
                             Cursor="Arrow"
                             Text="C1(t) = (1 - t)^3, &#x0a;C2(t) = 3t^3 - 6t^2 + 4, &#x0a;C3(t) = -3t^3 + 3t^2 + 3t +1, &#x0a;C4(t) = t"/>
 
                         <Button Content="Výpočet"
                                 x:Name="coons"
-                                Width="70" Height="25" BorderBrush="Transparent"
+                                Width="80" Height="30" BorderBrush="Transparent"
                                 VerticalAlignment="Bottom" HorizontalAlignment="Right"
                                 Margin="10"
                                 Foreground="#FF424242"
                                 FontWeight="Normal"
-                                FontSize="10"
+                                FontSize="12"
                                 Click="Transform">
                             <Button.Background>
                                 <LinearGradientBrush EndPoint="0.9,1" StartPoint="0.4,0">
@@ -268,6 +268,7 @@ teda prechádza koncovými bodmi. "/>
                    Text="Na canvase vyznačte štyri body"
                    Foreground="#FF424242"
                    FontWeight="Normal"
+                   FontSize="14"
                    Margin="0,270,0,0"
                    Padding="0,10,0,0"/>
 
@@ -278,6 +279,7 @@ teda prechádza koncovými bodmi. "/>
                 VerticalAlignment="Bottom"
                 Foreground="#FF424242"
                 FontWeight="Normal"
+                FontSize="14"
                 Margin="0,0,0,90" 
                 Visibility="Hidden"
                 Click="ConnectDots">

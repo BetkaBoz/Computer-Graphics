@@ -6,7 +6,7 @@
         xmlns:viewModel="clr-namespace:ComputerGraphics.MVVM.ViewModel"
         xmlns:views="clr-namespace:ComputerGraphics.MVVM.View" 
         mc:Ignorable="d" 
-        Height="600" Width="960" 
+        Height="620" Width="980" 
         WindowStyle="None"
         ResizeMode="NoResize"
         Background="Transparent"

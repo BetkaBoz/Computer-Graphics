@@ -23,7 +23,7 @@ namespace ComputerGraphics.MVVM.ViewModel
 
         public LectureFourViewModel()
         {
-            LineRasterization.output = Output;
+            Output = LineRasterization.output;
         }
     }
 }

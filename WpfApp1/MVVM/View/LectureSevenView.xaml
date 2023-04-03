@@ -357,18 +357,20 @@ ktorej úsečka leží&#x0a;"/>
             </Button.Background>
         </Button>
 
-        <Image Grid.Column="1" Grid.Row="1" Width="300"
+        <Image Grid.Column="1" Grid.Row="1" Width="370"
                x:Name="coherentImg1"
-               Visibility="Hidden">
+               Visibility="Hidden"
+               Margin="30,0,0,0">
             <Image.Source>
                 <BitmapImage DecodePixelWidth="500"
                              UriSource="/Images/coherent.png"/>
             </Image.Source>
         </Image>
 
-        <Image Grid.Column="1" Grid.Row="1" Width="300"
+        <Image Grid.Column="1" Grid.Row="1" Width="360"
                x:Name="coherentImg2"
-               Visibility="Hidden">
+               Visibility="Hidden"
+               Margin="30,0,0,0">
             <Image.Source>
                 <BitmapImage DecodePixelWidth="500"
                              UriSource="/Images/coherent2.png"/>
@@ -384,11 +386,11 @@ ktorej úsečka leží&#x0a;"/>
                Margin="0,0,0,40"
                MouseDown="NextImage" />
 
-        <Image Grid.Column="1" Grid.Row="1" Width="250"
+        <Image Grid.Column="1" Grid.Row="1" Width="300"
                x:Name="scannerImg"
                Visibility="Hidden">
             <Image.Source>
-                <BitmapImage DecodePixelWidth="500"
+                <BitmapImage DecodePixelWidth="1000"
                              UriSource="/Images/scanner.png"/>
             </Image.Source>
         </Image>

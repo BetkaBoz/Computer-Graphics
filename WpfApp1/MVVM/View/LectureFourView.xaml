@@ -376,19 +376,21 @@ vypočítame rozdiel pi+1 - pi a z neho vyjadríme pi+1 pomocou pi &#x0a;"/>
             </Button.Background>
         </Button>
 
-        <ScrollViewer x:Name="calculationsBlock"
-                      Grid.Column="1" Grid.Row="1"
+        <ScrollViewer x:Name="calculationsBlock" VerticalScrollBarVisibility="Visible"
                       VerticalAlignment="Bottom" HorizontalAlignment="Left"
+                      Grid.Column="1" Grid.Row="1"
                       Width="320" Height="120"
                       Background="White"
-                      Margin="40,0,0,0"
+                      Margin="40,0,0,20"
                       Visibility="Hidden">
-            <TextBlock  x:Name="textCalculations"
-                        Text="{Binding Output, UpdateSourceTrigger=PropertyChanged}"
+            <Canvas x:Name="outputCanvas"
+                    Height="500">
+                <TextBlock  x:Name="textCalculations"
                    FontSize="14"
                    Foreground="#FF424242" 
                    FontWeight="Normal"
                    Padding="10"/>
+            </Canvas>
         </ScrollViewer>
         
     </Grid>

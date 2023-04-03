@@ -2,6 +2,7 @@
 using ComputerGraphics.MVVM.ViewModel;
 using System;
 using System.Collections.Generic;
+using System.IO.Packaging;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
@@ -22,9 +23,11 @@ namespace ComputerGraphics.MVVM.View
         Point currentPoint;
         List<Point> pointsList = new();
 
+        TextBlock block = new();
+
         public static List<Rectangle> _rectangles = new();
         public static List<Rect> _rects = new();
-       
+
         public LectureFourView()
         {
             InitializeComponent();
@@ -45,14 +48,14 @@ namespace ComputerGraphics.MVVM.View
 
         private void DrawPixelsOnCanvas()
         {
-            for(int i = 0; i < 320; i += 10)
+            for (int i = 0; i < 320; i += 10)
             {
                 for (int j = 0; j < 320; j += 10)
                 {
                     //create Rectangle
-                    rectangle = new(); 
-                    rectangle.StrokeThickness = 1;  
-                    rectangle.Stroke = new SolidColorBrush(Colors.LightGray); 
+                    rectangle = new();
+                    rectangle.StrokeThickness = 1;
+                    rectangle.Stroke = new SolidColorBrush(Colors.LightGray);
                     rectangle.Fill = new SolidColorBrush(Colors.White);
                     rectangle.Width = 10;
                     rectangle.Height = 10;
@@ -86,13 +89,13 @@ namespace ComputerGraphics.MVVM.View
 
             var mouseWasDownOn = e.Source as FrameworkElement;
 
-            if (mouseWasDownOn != null && pointsList.Count() < 2) 
+            if (mouseWasDownOn != null && pointsList.Count() < 2)
             {
                 string pixelName = mouseWasDownOn.Name;
 
-                foreach(var rec in _rectangles)
+                foreach (var rec in _rectangles)
                 {
-                    if (rec.Name == pixelName)rec.Fill = new SolidColorBrush(Colors.DarkGray);
+                    if (rec.Name == pixelName) rec.Fill = new SolidColorBrush(Colors.DarkGray);
                 }
                 pointsList.Add(currentPoint);
             }
@@ -133,13 +136,17 @@ namespace ComputerGraphics.MVVM.View
             drawButton.Visibility = Visibility.Hidden;
             calculationsBlock.Visibility = Visibility.Visible;
 
+            outputCanvas.Children.Clear();
+
             switch (algorithmName)
             {
                 case "baseline":
                     LineRasterization.BaseLine(pointsList);
+                    WriteOutput();
                     break;
                 case "dda":
                     LineRasterization.DDALine(pointsList);
+                    WriteOutput();
                     break;
                 case "bersenham":
                     int pointX = (int)Math.Abs(pointsList[1].X - pointsList[0].X);
@@ -147,10 +154,17 @@ namespace ComputerGraphics.MVVM.View
 
                     if (pointX > pointY) LineRasterization.BersenhamLine(pointsList, pointX, pointY, 0);
                     else LineRasterization.BersenhamLine(pointsList, pointX, pointY, 1);
+                    WriteOutput();
                     break;
                 default:
                     break;
             }
+        }
+
+        private void WriteOutput()
+        {
+            block.Text = $"{string.Join("\n", LineRasterization.outputStrings)}";
+            outputCanvas.Children.Add(block);
         }
     }
 }

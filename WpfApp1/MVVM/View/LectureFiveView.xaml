@@ -306,7 +306,22 @@ zvyšok.&#x0a;Začneme s x = 0, konštantné prírastky budeme pridávať v smer
             </Button>
         </StackPanel>
 
-        
+        <ScrollViewer x:Name="calculationsBlock" VerticalScrollBarVisibility="Visible"
+                      VerticalAlignment="Bottom" HorizontalAlignment="Left"
+                      Grid.Column="1" Grid.Row="1"
+                      Width="320" Height="120"
+                      Background="White"
+                      Margin="40,0,0,20"
+                      Visibility="Hidden">
+            <Canvas x:Name="outputCanvas"
+                    Height="500">
+                <TextBlock  x:Name="textCalculations"
+                   FontSize="14"
+                   Foreground="#FF424242" 
+                   FontWeight="Normal"
+                   Padding="10"/>
+            </Canvas>
+        </ScrollViewer>
 
     </Grid>
 

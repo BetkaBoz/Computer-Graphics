@@ -16,6 +16,8 @@ namespace ComputerGraphics.HelperScripts
     public static class CircleRasterization
     {
         public static List<Point> pointsList = new();
+        public static string? output;
+        public static List<string> outputStrings = new();
 
         public static void KartezianCoordinates(Point center, Canvas canvas, int radius)
         {
@@ -23,17 +25,33 @@ namespace ComputerGraphics.HelperScripts
             for (x = (int)center.X - radius; x <= center.X + radius; x++)
             {
                 int _y = (int)center.Y + (int)Math.Round(Math.Sqrt(radius * radius - (x - center.X) * (x - center.X)));
+
+                output = $"  y = {(int)center.Y} + ({radius * radius} - {x - center.X} * {x - center.X})^2";
+                outputStrings.Add(output);
+
                 SetPoint(x, _y);
 
                 _y = (int)center.Y - (int)Math.Round(Math.Sqrt(radius * radius - (x - center.X) * (x - center.X)));
+
+                output = $"  y = {(int)center.Y} - ({radius * radius} - {x - center.X} * {x - center.X})^2";
+                outputStrings.Add(output);
+
                 SetPoint(x, _y);
             }
             for (y = (int)center.Y - radius; y <= center.Y + radius; y++)
             {
                 int _x = (int)center.X + (int)Math.Round(Math.Sqrt(radius * radius - (y - center.Y) * (y - center.Y)));
+
+                output = $"  x = {(int)center.X} + ({radius * radius} - {y - center.Y} * {y - center.Y})^2";
+                outputStrings.Add(output);
+
                 SetPoint(_x, y);
 
                 _x = (int)center.X - (int)Math.Round(Math.Sqrt(radius * radius - (y - center.Y) * (y - center.Y)));
+
+                output = $"  x = {(int)center.X} - ({radius * radius} - {y - center.Y} * {y - center.Y})^2";
+                outputStrings.Add(output);
+
                 SetPoint(x, y);
             }
             SetPixel(canvas);
@@ -47,7 +65,8 @@ namespace ComputerGraphics.HelperScripts
                 int x = (int)(center.X + (radius * Math.Cos(radians)));
                 int y = (int)(center.Y + (radius * Math.Sin(radians)));
 
-                Debug.WriteLine($"x: {x} , y: {y}");
+                output = $"  X: {x}, Y: {y}";
+                outputStrings.Add(output);
 
                 SetPoint(x, y);
             }
@@ -71,7 +90,8 @@ namespace ComputerGraphics.HelperScripts
                 SetPoint(x + center.X, -y + center.Y);
                 SetPoint(y + center.X, -x + center.Y);
 
-                Debug.WriteLine($"stredový bod: {center.X}, {center.Y}, x: {x} , y: {y}");
+                output = $"  Stredový bod: ({center.X}, {center.Y}), X: {x} , Y: {y}";
+                outputStrings.Add(output);
 
                 if (d < 0) d = d + 4 * (x - y) + 6;
                 else

@@ -29,6 +29,8 @@ namespace ComputerGraphics.MVVM.View
         Point currentPoint;
         List<Point> pointsList = new();
 
+        TextBlock block = new();
+
         public static List<Rectangle> _rectangles = new();
         public static List<Rect> _rects = new();
 
@@ -44,6 +46,7 @@ namespace ComputerGraphics.MVVM.View
 
             canvas.Visibility = Visibility.Visible;
             textAddNodes.Visibility = Visibility.Visible;
+            drawButton.Visibility = Visibility.Visible;
 
             Refresh();
 
@@ -134,6 +137,7 @@ namespace ComputerGraphics.MVVM.View
 
             refresh.Visibility = Visibility.Hidden;
             stackPanel.Visibility = Visibility.Hidden;
+            calculationsBlock.Visibility = Visibility.Hidden;
 
             DrawPixelsOnCanvas();
         }
@@ -146,22 +150,38 @@ namespace ComputerGraphics.MVVM.View
 
         private void RasterizeCircle(object sender, RoutedEventArgs e)
         {
-            int _radius = int.Parse(radius.Text);   //convert text to int
+            drawButton.Visibility = Visibility.Hidden;
+            calculationsBlock.Visibility = Visibility.Visible;
+
+            outputCanvas.Children.Clear();
+
+            int _radius;
+            if (radius.Text != null) _radius = int.Parse(radius.Text);
+            else return;
 
             switch (algorithmName)
             {
                 case "kartezian":
                     CircleRasterization.KartezianCoordinates(currentPoint, canvas, _radius);
+                    WriteOutput();
                     break;
                 case "polar":
                     CircleRasterization.PolarCoordinates(currentPoint, canvas, _radius);
+                    WriteOutput();
                     break;
                 case "bersenham":
                     CircleRasterization.BersenhamCircle(currentPoint, canvas, _radius);
+                    WriteOutput();
                     break;
                 default:
                     break;
             }
+        }
+
+        private void WriteOutput()
+        {
+            block.Text = $"{string.Join("\n", CircleRasterization.outputStrings)}";
+            outputCanvas.Children.Add(block);
         }
     }
 }

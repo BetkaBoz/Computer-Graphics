@@ -233,7 +233,7 @@
                 <Expander IsExpanded="False" 
                   Grid.Row="0" Grid.Column="0"
                   Grid.RowSpan="2"
-                  Background="Transparent" Header="ZRKADLENIE"
+                  Background="Transparent" Header="SÚMERNOSŤ"
                   Foreground="#FF424242" FontSize="16" FontWeight="Bold"
                   Cursor="Hand">
                     <StackPanel>

@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Controls;
 using System.Windows.Media;
 using System.Windows.Shapes;
 using System.Windows.Threading;
@@ -17,11 +18,12 @@ namespace ComputerGraphics.HelperScripts
     {
         public static List<Point> newPoints = new();
         public static string? output;
-        public static LectureFourView view = new();
+        public static List<string> outputStrings = new();
 
         public static async void BaseLine(List<Point> pointsList)
         {
             newPoints.Clear();
+            outputStrings.Clear();
 
             int x1 = (int)pointsList[0].X;
             int x2 = (int)pointsList[1].X;
@@ -48,17 +50,16 @@ namespace ComputerGraphics.HelperScripts
                     newPoints.Add(new Point(x, y));
                     decison += 2 * pointY;
                 }
-                output = $"X: {pointX}, Y: {pointY}";
-                
+                output = $"  X: {x}, Y: {y}";
+                outputStrings.Add(output);
             }
-            await WriteOutput(output);
             await FindPoint();
-            
         }
 
         public static async void DDALine(List<Point> pointsList)
         {
             newPoints.Clear();
+            outputStrings.Clear();
 
             double pointX = pointsList[1].X - pointsList[0].X;
             double pointY = pointsList[1].Y - pointsList[0].Y;
@@ -81,6 +82,8 @@ namespace ComputerGraphics.HelperScripts
                 y += yIncrement;
 
                 newPoints.Add(new Point(x, y));
+                output = $"  X: {x}, Y: {y}";
+                outputStrings.Add(output);
             }
             await FindPoint();
         }
@@ -88,6 +91,7 @@ namespace ComputerGraphics.HelperScripts
         public static async void BersenhamLine(List<Point> pointsList, int pointX, int pointY, int decide)
         {
             newPoints.Clear();
+            outputStrings.Clear();
 
             int x1 = (int)pointsList[0].X;
             int x2 = (int)pointsList[1].X;
@@ -106,6 +110,8 @@ namespace ComputerGraphics.HelperScripts
             while (x1 != x2 || y1 != y2)
             {
                 newPoints.Add(new Point(x1, y1));
+                output = $"  X: {x1}, Y: {y1}";
+                outputStrings.Add(output);
 
                 int e2 = 2 * err;
 
@@ -123,11 +129,6 @@ namespace ComputerGraphics.HelperScripts
             }
 
             await FindPoint();
-        }
-
-        public static async Task WriteOutput(string writeLine)
-        {
-            view.textCalculations.Text = $"{writeLine}&#x0a;";
         }
 
         public static async Task FindPoint()

@@ -68,12 +68,12 @@
 
         </Canvas>
 
-        <TextBlock Grid.Row="6" Grid.ColumnSpan="5" 
+        <TextBlock Grid.Row="6" Grid.ColumnSpan="6" 
                    TextWrapping="Wrap"
                    FontSize="14"
                    Foreground="#FF424242" 
                    Margin="20,20,40,0"
-                   Text="Existujú dve metódy ukladania obrazu. Rastrovej metóde sa obraz rozloží do jednotlivých bodov a informácie o ich individuálnych vlastnostiach sa zapíšu do grafického súboru. Skladá sa zo základných obrazových prvkov, čiže pixelov.&#x0a;Pri vektorových formátoch nie sú opísané jednotlivé body, ale určité plochy (množiny bodov) so zhodnými vlastnosťami. Každá takáto plocha je ohraničená (ľubovolne vytvarovanou) krivkou. 
+                   Text="Existujú dve metódy ukladania obrazu. Rastrovej metóde sa obraz rozloží do jednotlivých bodov a informácie o ich individuálnych vlastnostiach sa zapíšu do grafického súboru. Skladá sa zo základných obrazových prvkov, čiže pixelov.&#x0a;&#x0a;Pri vektorových formátoch nie sú opísané jednotlivé body, ale určité plochy (množiny bodov) so zhodnými vlastnosťami. Každá takáto plocha je ohraničená (ľubovolne vytvarovanou) krivkou. 
 Čiže tomu rozumieme, že ide o uloženie informácií o objektoch prítomných v obraze tak, aby bola zachovaná spojitá reprezentácia obrazu."/>
     </Grid>
 </UserControl>

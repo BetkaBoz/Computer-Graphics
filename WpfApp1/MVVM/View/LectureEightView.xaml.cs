@@ -45,6 +45,9 @@ namespace ComputerGraphics.MVVM.View
             canvas.Visibility = Visibility.Visible;
             textAddNodes.Visibility = Visibility.Visible;
 
+            pointsList.Clear();
+            pointsQueue.Clear();
+
             check = true;
             ProgressWatch.IsProgress(check, 9);
         }
@@ -84,7 +87,7 @@ namespace ComputerGraphics.MVVM.View
 
             var draw = DrawPoint(currentPoint);
 
-            // nakleslenie bodu s textom na canvas
+            // draw node and text on canvas
             if (lastPoint != currentPoint && pointCount < 4)
             {
                 canvas.Children.Add(draw.ellipse);
@@ -95,7 +98,7 @@ namespace ComputerGraphics.MVVM.View
                 pointCount++;
             }
 
-            // skrytie/zobrazenie buttonov a textov
+            // hide/show buttons and text
             if (pointCount == 1) refresh.Visibility = Visibility.Visible;
             if (pointCount > 3)
             {
