@@ -15,6 +15,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Xml.Serialization;
 
 namespace ComputerGraphics.MVVM.View
 {
@@ -43,7 +44,10 @@ namespace ComputerGraphics.MVVM.View
             Refresh();
 
             canvas.Visibility = Visibility.Visible;
-            textAddNodes.Visibility = Visibility.Visible;
+
+            // if chosen cubic isn't general bezier curve then show 4-point TextBlock, else do opposite
+            if (!(cubicsName.Equals("generalBezier"))) textAddNodes.Visibility = Visibility.Visible;
+            else textAddNodesBezier.Visibility = Visibility.Visible;
 
             pointsList.Clear();
             pointsQueue.Clear();
@@ -75,7 +79,14 @@ namespace ComputerGraphics.MVVM.View
             Canvas.SetLeft(text, point.X);
             Canvas.SetTop(text, point.Y);
 
-            if (pointCount == 4) return (null, null);
+            if (!(cubicsName.Equals("generalBezier"))) 
+            {
+                if (pointCount == 4) return (null, null);
+            }
+            else
+            {
+                if (pointCount == 11) return (null, null);
+            }
 
             return (ellipse, text);
         }
@@ -85,27 +96,43 @@ namespace ComputerGraphics.MVVM.View
             currentPoint = new Point();
             if (e.ButtonState == MouseButtonState.Pressed) currentPoint = e.GetPosition(canvas);
 
-            var draw = DrawPoint(currentPoint);
-
             // draw node and text on canvas
-            if (lastPoint != currentPoint && pointCount < 4)
+            if (lastPoint != currentPoint)
             {
-                canvas.Children.Add(draw.ellipse);
-                canvas.Children.Add(draw.text);
-
-                pointsList.Add(currentPoint);
-
-                pointCount++;
+                if (!(cubicsName.Equals("generalBezier")))
+                {
+                    if (pointCount < 4) AddOnCanvas();
+                }
+                else if (cubicsName.Equals("generalBezier"))
+                {
+                    if (pointCount < 10) AddOnCanvas();
+                }
             }
 
             // hide/show buttons and text
             if (pointCount == 1) refresh.Visibility = Visibility.Visible;
-            if (pointCount > 3)
+            if (pointCount > 3) textAddNodes.Visibility = Visibility.Hidden;
+
+            if (!(cubicsName.Equals("generalBezier")))
             {
-                connect.Visibility = Visibility.Visible;
-                textAddNodes.Visibility = Visibility.Hidden;
+                if (pointCount == 4) connect.Visibility = Visibility.Visible;
             }
-            if (pointCount == 4) connect.Visibility = Visibility.Visible;
+            else
+            {
+                if (pointCount == 10) connect.Visibility = Visibility.Visible;
+            }
+        }
+
+        private void AddOnCanvas()
+        {
+            var draw = DrawPoint(currentPoint);
+
+            canvas.Children.Add(draw.ellipse);
+            canvas.Children.Add(draw.text);
+
+            pointsList.Add(currentPoint);
+
+            pointCount++;
         }
 
         private void RefreshCanvas(object sender, MouseButtonEventArgs e)
@@ -115,11 +142,7 @@ namespace ComputerGraphics.MVVM.View
 
         private void Refresh()
         {
-            for (int i = canvas.Children.Count - 1; i >= 0; i--)
-            {
-                var child = canvas.Children[i];
-                if (child is not Line) canvas.Children.RemoveAt(i);
-            }
+            canvas.Children.Clear();
 
             pointsList.Clear();
             pointsListNew.Clear();
@@ -145,14 +168,13 @@ namespace ComputerGraphics.MVVM.View
 
         public void ConnectDots(object sender, RoutedEventArgs e)
         {
-
             if (pointsList.Count == 0) return;
 
             Connection(pointsList);
 
             connect.Visibility = Visibility.Hidden;
-
-            Debug.WriteLine(cubicsName);
+            textAddNodes.Visibility = Visibility.Hidden;
+            textAddNodesBezier.Visibility = Visibility.Hidden;
 
             switch (cubicsName)
             {
@@ -161,6 +183,9 @@ namespace ComputerGraphics.MVVM.View
                     break;
                 case "bezier":
                     Cubics.Bezier(canvas, pointsList);
+                    break;
+                case "generalBezier":
+                    Cubics.GeneralBezier(canvas, pointsList);
                     break;
                 case "coons":
                     Cubics.Coons(canvas, pointsList);

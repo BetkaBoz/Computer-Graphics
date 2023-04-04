@@ -20,7 +20,10 @@ namespace ComputerGraphics.HelperScripts
 
         public static void Ferguson(Canvas canvas, List<Point> pointsList)
         {
-            path.Stroke = Brushes.Purple;
+            pathFigure.Segments.Clear();
+            path.Data = pathGeometry;
+
+            path.Stroke = Brushes.DeepSkyBlue;
             path.StrokeThickness = 2;
 
             FergusonCubicCurve fergusonCubic = new(pointsList);
@@ -41,7 +44,10 @@ namespace ComputerGraphics.HelperScripts
 
         public static void Bezier(Canvas canvas, List<Point> pointsList)
         {
-            path.Stroke = Brushes.Purple;
+            pathFigure.Segments.Clear();
+            path.Data = pathGeometry;
+
+            path.Stroke = Brushes.DeepSkyBlue;
             path.StrokeThickness = 2;
 
             pathFigure.StartPoint = pointsList[0];
@@ -57,9 +63,39 @@ namespace ComputerGraphics.HelperScripts
             canvas.Children.Add(path);
         }
 
+        public static void GeneralBezier(Canvas canvas, List<Point> pointsList)
+        {
+            pathFigure.Segments.Clear();
+            path.Data = pathGeometry;
+
+            path.Stroke = Brushes.DeepSkyBlue;
+            path.StrokeThickness = 2;
+
+            pathFigure.StartPoint = pointsList[0];
+
+            PointCollection points = new();
+            for(int i = 1; i <= 9; i++)
+            {
+                points.Add(pointsList[i]);
+            }
+            
+            PolyBezierSegment polyBezier = new();
+            polyBezier.Points = points;
+
+            pathFigure.Segments.Add(polyBezier);
+
+            pathGeometry.Figures.Add(pathFigure);
+            path.Data = pathGeometry;
+
+            canvas.Children.Add(path);
+        }
+
         public static void Coons(Canvas canvas, List<Point> pointsList)
         {
-            path.Stroke = Brushes.Purple;
+            pathFigure.Segments.Clear();
+            path.Data = pathGeometry;
+
+            path.Stroke = Brushes.DeepSkyBlue;
             path.StrokeThickness = 2;
 
             pathFigure.StartPoint = pointsList[0];
