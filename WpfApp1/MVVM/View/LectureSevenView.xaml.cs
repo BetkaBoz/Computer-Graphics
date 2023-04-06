@@ -265,6 +265,9 @@ namespace ComputerGraphics.MVVM.View
 
         private void ScannerCalculation(object sender, RoutedEventArgs e)
         {
+            textAddPixel.Visibility = Visibility.Hidden;
+            fillButton.Visibility = Visibility.Hidden;
+
             Rectangle rect = _rectangles.FirstOrDefault(r => Grid.GetColumn(r) == 6 && Grid.GetRow(r) == 10);
             switch (algorithmName)
             {

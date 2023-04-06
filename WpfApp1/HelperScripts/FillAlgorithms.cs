@@ -66,21 +66,63 @@ namespace ComputerGraphics.HelperScripts
 
         public static async void SeedLineFill(List<Rectangle> rectangles, int x, int y, SolidColorBrush replacementColor, SolidColorBrush targetColor)
         {
+            int previousY = y-1;
             Queue<int> yQueue = new();
+            Queue<int> yUpperQueue = new();
             yQueue.Enqueue(y);
+            HashSet<int> visited = new HashSet<int>();
+
             while (yQueue.Count > 0)
             {
-                y = yQueue.Dequeue();
+                var currentY = yQueue.Dequeue();
+
+                if (currentY < previousY)
+                {
+                    yUpperQueue.Enqueue(currentY);
+                    continue;
+                }
 
                 Application.Current.Dispatcher.Invoke(() => { }, DispatcherPriority.Background);
 
-                await FillRow(rectangles, x, y, replacementColor, targetColor);
+                await FillRow(rectangles, x, currentY, replacementColor, targetColor);
 
-                var colorUp = GetPixelColor(rectangles, x, y + 1);
-                var colorDown = GetPixelColor(rectangles, x, y - 1);
+                var colorUp = GetPixelColor(rectangles, x, currentY - 1);
+                var colorDown = GetPixelColor(rectangles, x, currentY + 1);
 
-                if (colorUp != replacementColor.Color && colorUp != borderColor.Color) yQueue.Enqueue(y + 1);
-                if (colorDown != replacementColor.Color && colorDown != borderColor.Color) yQueue.Enqueue(y - 1);
+                if (!visited.Contains(currentY))
+                {
+                    visited.Add(currentY);
+                    //lower row
+                    if (colorDown != replacementColor.Color && colorDown != borderColor.Color)
+                    {
+                        yQueue.Enqueue(currentY + 1);
+                    }
+                    //upper row
+                    if (colorUp != replacementColor.Color && colorUp != borderColor.Color)
+                    {
+                        yUpperQueue.Enqueue(currentY - 1);
+                    }
+                }
+                previousY = currentY;
+
+                if(yQueue.Count <= 0 && yUpperQueue.Count > 0)
+                {
+                    while(yUpperQueue.Count > 0)
+                        {
+                            var newCurrentY = yUpperQueue.Dequeue();
+                            Application.Current.Dispatcher.Invoke(() => { }, DispatcherPriority.Background);
+
+                            await FillRow(rectangles, x, newCurrentY, replacementColor, targetColor);
+
+                            var colorUpp = GetPixelColor(rectangles, x, newCurrentY - 1);
+
+                        //upper row
+                            if (colorUpp != replacementColor.Color && colorUpp != borderColor.Color)
+                            {
+                                yUpperQueue.Enqueue(newCurrentY - 1);
+                            }
+                        }
+                }
             }
         }
 

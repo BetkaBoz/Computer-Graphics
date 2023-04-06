@@ -30,6 +30,7 @@ namespace ComputerGraphics.MVVM.View
         int _valueVectorY;
         bool check;
         string? transformName;
+        string? oldTransformName;
         bool allowAddNodes;
 
         Point currentPoint;
@@ -137,7 +138,11 @@ namespace ComputerGraphics.MVVM.View
             refresh.Visibility = Visibility.Hidden;
             connect.Visibility = Visibility.Hidden;
 
-            SwitchName(Visibility.Hidden);
+            moveStackPanel.Visibility = Visibility.Hidden;
+            rotateStackPanel.Visibility = Visibility.Hidden;
+            scaleStackPanel.Visibility = Visibility.Hidden;
+            mirrorStackPanel.Visibility = Visibility.Hidden;
+            shearStackPanel.Visibility = Visibility.Hidden;
 
             allowAddNodes = true;
         }
@@ -168,7 +173,6 @@ namespace ComputerGraphics.MVVM.View
             SwitchName(Visibility.Visible);
 
             pointsQueue = new(pointsList);
-
             pointCount = 0;
 
             allowAddNodes = false;
