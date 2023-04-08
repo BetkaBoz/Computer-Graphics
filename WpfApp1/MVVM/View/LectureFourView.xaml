@@ -352,8 +352,10 @@ vypočítame rozdiel pi+1 - pi a z neho vyjadríme pi+1 pomocou pi &#x0a;"/>
                    x:Name="textAddNodes"
                    Visibility="Hidden"
                    VerticalAlignment="Center" HorizontalAlignment="Center"
-                   Text="Na canvase vyznačte mnohouholník"
+                   Text="Na canvase vyznačte dva body tak, aby platilo, &#x0a;že x1 &lt; x2 a y1 > y2"
                    Foreground="#FF424242"
+                   TextAlignment="Center"
+                   FontSize="13"
                    FontWeight="Normal"
                    Margin="0,270,0,0"
                    Padding="0,10,0,0"/>
@@ -384,11 +386,14 @@ vypočítame rozdiel pi+1 - pi a z neho vyjadríme pi+1 pomocou pi &#x0a;"/>
                       Margin="40,0,0,20"
                       Visibility="Hidden">
             <Canvas x:Name="outputCanvas"
-                    Height="500">
+                    Cursor="Arrow"
+                    >
                 <TextBlock  x:Name="textCalculations"
                    FontSize="14"
                    Foreground="#FF424242" 
                    FontWeight="Normal"
+                   TextWrapping="Wrap"
+                            TextAlignment="Left"
                    Padding="10"/>
             </Canvas>
         </ScrollViewer>

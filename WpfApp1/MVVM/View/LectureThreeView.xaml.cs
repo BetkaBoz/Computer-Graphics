@@ -53,6 +53,7 @@ namespace ComputerGraphics.MVVM.View
             Refresh();
 
             canvas.Visibility = Visibility.Visible;
+            textAddNodes.Visibility = Visibility.Visible;
 
             check = true;
             ProgressWatch.IsProgress(check, 4);
@@ -112,6 +113,7 @@ namespace ComputerGraphics.MVVM.View
                     connect.Visibility = Visibility.Visible;
                     textAddNodes.Visibility = Visibility.Hidden;
                 }
+                else return;
             }
             else return;
         }
@@ -134,7 +136,7 @@ namespace ComputerGraphics.MVVM.View
             pointsQueue.Clear();
             pointCount = 0;
 
-            textAddNodes.Visibility = Visibility.Visible;
+            textAddNodes.Visibility = Visibility.Hidden;
             refresh.Visibility = Visibility.Hidden;
             connect.Visibility = Visibility.Hidden;
 

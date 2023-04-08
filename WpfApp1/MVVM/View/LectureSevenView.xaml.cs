@@ -218,12 +218,14 @@ namespace ComputerGraphics.MVVM.View
             {
                 case "coherent":
                     coherentImg1.Visibility = Visibility.Visible;
+                    coherentImg2.Visibility = Visibility.Hidden;
                     nextImage.Visibility = Visibility.Visible;
                     scannerImg.Visibility = Visibility.Hidden;
                     break;
                 case "scanner":
                     scannerImg.Visibility = Visibility.Visible;
                     coherentImg1.Visibility = Visibility.Hidden;
+                    coherentImg2.Visibility = Visibility.Hidden;
                     nextImage.Visibility = Visibility.Hidden;
                     break;
             }

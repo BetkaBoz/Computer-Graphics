@@ -64,22 +64,20 @@ namespace ComputerGraphics.HelperScripts
             double pointX = pointsList[1].X - pointsList[0].X;
             double pointY = pointsList[1].Y - pointsList[0].Y;
 
-            // determine the number of steps required to draw the line
+            // calculate the step size for x and y
             double steps = Math.Max(Math.Abs(pointX), Math.Abs(pointY));
+            double stepX = pointX / steps;
+            double stepY = pointY / steps;
 
-            // calculate the increment values for x and y
-            int xIncrement = (int)(pointX / steps);
-            int yIncrement = (int)(pointY / steps);
+            // starting coordinates
+            double x = pointsList[0].X;
+            double y = pointsList[0].Y;
 
-            // set the starting coordinates
-            int x = (int)pointsList[0].X;
-            int y = (int)pointsList[0].Y;
-
-            // draw the points line
+            // draw the line
             for (int i = 0; i < steps; i++)
             {
-                x += xIncrement;
-                y += yIncrement;
+                x += stepX;
+                y += stepY * (pointY / pointX);
 
                 newPoints.Add(new Point(x, y));
                 output = $"  X: {x}, Y: {y}";

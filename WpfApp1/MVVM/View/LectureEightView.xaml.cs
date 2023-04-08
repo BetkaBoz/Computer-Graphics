@@ -101,29 +101,39 @@ namespace ComputerGraphics.MVVM.View
             {
                 if (!(cubicsName.Equals("generalBezier")))
                 {
-                    if (pointCount < 4) AddOnCanvas();
+                    if (pointCount < 4)
+                    {
+                        DrawPointOnCanvas();
+                    }
+                    else return;
+                    
                 }
                 else if (cubicsName.Equals("generalBezier"))
                 {
-                    if (pointCount < 10) AddOnCanvas();
+                    if (pointCount < 10)
+                    {
+                        DrawPointOnCanvas();
+                    }
+                    else return;
                 }
             }
 
             // hide/show buttons and text
             if (pointCount == 1) refresh.Visibility = Visibility.Visible;
-            if (pointCount > 3) textAddNodes.Visibility = Visibility.Hidden;
 
             if (!(cubicsName.Equals("generalBezier")))
             {
+                if (pointCount > 3) textAddNodes.Visibility = Visibility.Hidden;
                 if (pointCount == 4) connect.Visibility = Visibility.Visible;
             }
             else
             {
+                if (pointCount > 9) textAddNodesBezier.Visibility = Visibility.Hidden;
                 if (pointCount == 10) connect.Visibility = Visibility.Visible;
             }
         }
 
-        private void AddOnCanvas()
+        private void DrawPointOnCanvas()
         {
             var draw = DrawPoint(currentPoint);
 
@@ -151,6 +161,8 @@ namespace ComputerGraphics.MVVM.View
 
             refresh.Visibility = Visibility.Hidden;
             connect.Visibility = Visibility.Hidden;
+            textAddNodes.Visibility = Visibility.Hidden;
+            textAddNodesBezier.Visibility = Visibility.Hidden;
         }
 
         private void Connection(List<Point> pointsList)

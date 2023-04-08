@@ -44,11 +44,9 @@ namespace ComputerGraphics.MVVM.View
             Button button = sender as Button;
             algorithmName = button.Name;
 
-            canvas.Visibility = Visibility.Visible;
-            textAddNodes.Visibility = Visibility.Visible;
-            drawButton.Visibility = Visibility.Visible;
-
             Refresh();
+
+            canvas.Visibility = Visibility.Visible;
 
             check = true;
             ProgressWatch.IsProgress(check, 6);
@@ -116,8 +114,10 @@ namespace ComputerGraphics.MVVM.View
                 textAddNodes.Visibility = Visibility.Hidden;
                 stackPanel.Visibility = Visibility.Visible;
                 refresh.Visibility = Visibility.Visible;
+                drawButton.Visibility = Visibility.Visible;
             }
-            else stackPanel.Visibility = Visibility.Hidden;
+            else return;
+            if (pointsList.Count() > 1) stackPanel.Visibility = Visibility.Hidden;
         }
 
         private void RefreshCanvas(object sender, MouseButtonEventArgs e)
@@ -135,6 +135,7 @@ namespace ComputerGraphics.MVVM.View
             _rects.Clear();
             CircleRasterization.pointsList.Clear();
 
+            textAddNodes.Visibility = Visibility.Visible;
             refresh.Visibility = Visibility.Hidden;
             stackPanel.Visibility = Visibility.Hidden;
             calculationsBlock.Visibility = Visibility.Hidden;
@@ -181,7 +182,15 @@ namespace ComputerGraphics.MVVM.View
         private void WriteOutput()
         {
             block.Text = $"{string.Join("\n", CircleRasterization.outputStrings)}";
+            block.Measure(new Size(double.PositiveInfinity, double.PositiveInfinity));
+            double blockHeight = block.DesiredSize.Height;
+            double blockWidth = block.DesiredSize.Width;
+            outputCanvas.Height = blockHeight;
+            outputCanvas.Width = blockWidth;
+
             outputCanvas.Children.Add(block);
+
+            calculationsBlock.Content = outputCanvas;
         }
     }
 }

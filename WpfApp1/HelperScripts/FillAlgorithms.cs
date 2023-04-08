@@ -17,9 +17,9 @@ namespace ComputerGraphics.HelperScripts
         public static async Task FloodFill(List<Rectangle> rectangles, int x, int y, SolidColorBrush replacementColor, SolidColorBrush targetColor)
         {
             await Task.Delay(100);
-                Rectangle rect = rectangles.FirstOrDefault(r => Grid.GetColumn(r) == x && Grid.GetRow(r) == y);
+                Rectangle? rect = rectangles.FirstOrDefault(r => Grid.GetColumn(r) == x && Grid.GetRow(r) == y);
 
-                SolidColorBrush rectColor = (SolidColorBrush)rect.Fill;
+                SolidColorBrush? rectColor = (SolidColorBrush)rect.Fill;
 
                 if (rect == null || rectColor.Color == replacementColor.Color) return;
 

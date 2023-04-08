@@ -38,9 +38,11 @@ namespace ComputerGraphics.MVVM.View
             Button button = sender as Button;
             algorithmName = button.Name;
 
-            canvas.Visibility = Visibility.Visible;
-
             Refresh();
+
+            canvas.Visibility = Visibility.Visible;
+            textAddNodes.Visibility = Visibility.Visible;
+            drawButton.Visibility = Visibility.Hidden;
 
             check = true;
             ProgressWatch.IsProgress(check, 5);
@@ -104,8 +106,10 @@ namespace ComputerGraphics.MVVM.View
             {
                 drawButton.Visibility = Visibility.Visible;
                 refresh.Visibility = Visibility.Visible;
+                textAddNodes.Visibility = Visibility.Hidden;
             }
-            else
+            else return;
+            if (pointsList.Count() > 2)
             {
                 drawButton.Visibility = Visibility.Hidden;
                 refresh.Visibility = Visibility.Hidden;
@@ -126,7 +130,10 @@ namespace ComputerGraphics.MVVM.View
             _rectangles.Clear();
             _rects.Clear();
             LineRasterization.newPoints.Clear();
+
+            textAddNodes.Visibility = Visibility.Visible;
             calculationsBlock.Visibility = Visibility.Hidden;
+            drawButton.Visibility = Visibility.Hidden;
 
             DrawPixelsOnCanvas();
         }
@@ -164,7 +171,19 @@ namespace ComputerGraphics.MVVM.View
         private void WriteOutput()
         {
             block.Text = $"{string.Join("\n", LineRasterization.outputStrings)}";
+
+            block.Measure(new Size(double.PositiveInfinity, double.PositiveInfinity));
+            double blockHeight = block.DesiredSize.Height;
+            double blockWidth = block.DesiredSize.Width;
+            outputCanvas.Height = blockHeight;
+            outputCanvas.Width = blockWidth;
+
+            Canvas.SetTop(block, 0);
+            Canvas.SetLeft(block, 0);
+
             outputCanvas.Children.Add(block);
+
+            calculationsBlock.Content = outputCanvas;
         }
     }
 }
