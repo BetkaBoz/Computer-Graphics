@@ -93,15 +93,9 @@ namespace ComputerGraphics.HelperScripts
                 {
                     visited.Add(currentY);
                     //lower row
-                    if (colorDown != replacementColor.Color && colorDown != borderColor.Color)
-                    {
-                        yQueue.Enqueue(currentY + 1);
-                    }
+                    if (colorDown != replacementColor.Color && colorDown != borderColor.Color) yQueue.Enqueue(currentY + 1);
                     //upper row
-                    if (colorUp != replacementColor.Color && colorUp != borderColor.Color)
-                    {
-                        yUpperQueue.Enqueue(currentY - 1);
-                    }
+                    if (colorUp != replacementColor.Color && colorUp != borderColor.Color) yUpperQueue.Enqueue(currentY - 1);
                 }
                 previousY = currentY;
 
@@ -115,13 +109,11 @@ namespace ComputerGraphics.HelperScripts
                             await FillRow(rectangles, x, newCurrentY, replacementColor, targetColor);
 
                             var colorUpp = GetPixelColor(rectangles, x, newCurrentY - 1);
+                            var colorDownn = GetPixelColor(rectangles, x, currentY + 1);
 
-                        //upper row
-                            if (colorUpp != replacementColor.Color && colorUpp != borderColor.Color)
-                            {
-                                yUpperQueue.Enqueue(newCurrentY - 1);
-                            }
-                        }
+                            if (colorUpp != replacementColor.Color && colorUpp != borderColor.Color) yUpperQueue.Enqueue(newCurrentY - 1);
+                            if (colorDownn != replacementColor.Color && colorDownn != borderColor.Color) yUpperQueue.Enqueue(newCurrentY + 1);
+                    }
                 }
             }
         }
