@@ -21,54 +21,108 @@ namespace ComputerGraphics.HelperScripts
 
         public static void KartezianCoordinates(Point center, Canvas canvas, int radius)
         {
-            int x, y;
-            for (x = (int)center.X - radius; x <= center.X + radius; x++)
+            int x = 0;
+            int y = radius;
+            int d = 1 - radius;
+
+            DrawSymetricalCircle(center, x, y);
+
+            while (y > x)
             {
-                int _y = (int)center.Y + (int)Math.Round(Math.Sqrt(radius * radius - (x - center.X) * (x - center.X)));
+                if (d < 0)
+                {
+                    d += 2 * x + 3;
+                }
+                else
+                {
+                    d += 2 * (x - y) + 5;
+                    y--;
+                }
+                x++;
+                DrawSymetricalCircle(center, x, y);
 
                 output = $"  y = {(int)center.Y} + ({radius * radius} - {x - center.X} * {x - center.X})^2";
                 outputStrings.Add(output);
 
-                SetPoint(x, _y);
-
-                _y = (int)center.Y - (int)Math.Round(Math.Sqrt(radius * radius - (x - center.X) * (x - center.X)));
-
                 output = $"  y = {(int)center.Y} - ({radius * radius} - {x - center.X} * {x - center.X})^2";
                 outputStrings.Add(output);
-
-                SetPoint(x, _y);
             }
-            for (y = (int)center.Y - radius; y <= center.Y + radius; y++)
-            {
-                int _x = (int)center.X + (int)Math.Round(Math.Sqrt(radius * radius - (y - center.Y) * (y - center.Y)));
 
-                output = $"  x = {(int)center.X} + ({radius * radius} - {y - center.Y} * {y - center.Y})^2";
-                outputStrings.Add(output);
 
-                SetPoint(_x, y);
+            //int x, y;
+            //for (x = (int)center.X - radius; x <= center.X + radius; x++)
+            //{
+            //    int _y = (int)center.Y + (int)Math.Round(Math.Sqrt(radius * radius - (x - center.X) * (x - center.X)));
 
-                _x = (int)center.X - (int)Math.Round(Math.Sqrt(radius * radius - (y - center.Y) * (y - center.Y)));
+            //    output = $"  y = {(int)center.Y} + ({radius * radius} - {x - center.X} * {x - center.X})^2";
+            //    outputStrings.Add(output);
 
-                output = $"  x = {(int)center.X} - ({radius * radius} - {y - center.Y} * {y - center.Y})^2";
-                outputStrings.Add(output);
+            //    SetPoint(x, _y);
 
-                SetPoint(x, y);
-            }
+            //    _y = (int)center.Y - (int)Math.Round(Math.Sqrt(radius * radius - (x - center.X) * (x - center.X)));
+
+            //    output = $"  y = {(int)center.Y} - ({radius * radius} - {x - center.X} * {x - center.X})^2";
+            //    outputStrings.Add(output);
+
+            //    SetPoint(x, _y);
+            //}
+            //for (y = (int)center.Y - radius; y <= center.Y + radius; y++)
+            //{
+            //    int _x = (int)center.X + (int)Math.Round(Math.Sqrt(radius * radius - (y - center.Y) * (y - center.Y)));
+
+            //    output = $"  x = {(int)center.X} + ({radius * radius} - {y - center.Y} * {y - center.Y})^2";
+            //    outputStrings.Add(output);
+
+            //    SetPoint(_x, y);
+
+            //    _x = (int)center.X - (int)Math.Round(Math.Sqrt(radius * radius - (y - center.Y) * (y - center.Y)));
+
+            //    output = $"  x = {(int)center.X} - ({radius * radius} - {y - center.Y} * {y - center.Y})^2";
+            //    outputStrings.Add(output);
+
+            //    SetPoint(x, y);
+            //}
             SetPixel(canvas);
+        }
+        private static void DrawSymetricalCircle(Point center, int x, int y)
+        {
+            SetPoint(center.X + x, center.Y + y);
+            SetPoint(center.X - x, center.Y + y);
+            SetPoint(center.X + x, center.Y - y);
+            SetPoint(center.X - x, center.Y - y);
+            SetPoint(center.X + y, center.Y + x);
+            SetPoint(center.X - y, center.Y + x);
+            SetPoint(center.X + y, center.Y - x);
+            SetPoint(center.X - y, center.Y - x);
+            
+            if (x == y)
+            {
+                SetPoint(center.X + x, center.Y + y - 1);
+                SetPoint(center.X - x, center.Y + y - 1);
+                SetPoint(center.X + x, center.Y - y + 1);
+                SetPoint(center.X - x, center.Y - y + 1);
+                SetPoint(center.X + y - 1, center.Y + x);
+                SetPoint(center.X - y + 1, center.Y + x);
+                SetPoint(center.X + y - 1, center.Y - x);
+                SetPoint(center.X - y + 1 , center.Y - x);
+            }
         }
 
         public static void PolarCoordinates(Point center, Canvas canvas, int radius)
         {
-            for (int i = 0; i < 360; i++)
+            for (int x = (int)center.X - radius; x <= center.X + radius; x++)
             {
-                double radians = i * Math.PI / 180.0;
-                int x = (int)(center.X + (radius * Math.Cos(radians)));
-                int y = (int)(center.Y + (radius * Math.Sin(radians)));
+                double y = center.Y + Math.Sqrt(radius * radius - (x - center.X) * (x - center.X));
+                SetPoint(x, y);
 
                 output = $"  X: {x}, Y: {y}";
                 outputStrings.Add(output);
 
+                y = center.Y - Math.Sqrt(radius * radius - (x - center.X) * (x - center.X));
                 SetPoint(x, y);
+
+                output = $"  X: {x}, Y: {y}";
+                outputStrings.Add(output);
             }
             SetPixel(canvas);
         }
