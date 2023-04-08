@@ -36,7 +36,7 @@ namespace WpfApp1
 
             DataContext = viewModel;
 
-            viewModel.LoadCurrentUserData();
+            //viewModel.LoadCurrentUserData();
 
             lectureButtons.Add(lecture2);
             lectureButtons.Add(lecture3);
@@ -46,23 +46,31 @@ namespace WpfApp1
             lectureButtons.Add(lecture7);
             lectureButtons.Add(lecture8);
 
-            lecture2.IsEnabled = false;
-            lecture3.IsEnabled = false;
-            lecture4.IsEnabled = false;
-            lecture5.IsEnabled = false;
-            lecture6.IsEnabled = false;
-            lecture7.IsEnabled = false;
-            lecture8.IsEnabled = false;
+            //lecture2.IsEnabled = false;
+            //lecture3.IsEnabled = false;
+            //lecture4.IsEnabled = false;
+            //lecture5.IsEnabled = false;
+            //lecture6.IsEnabled = false;
+            //lecture7.IsEnabled = false;
+            //lecture8.IsEnabled = false;
 
-            lecture2.Foreground = disableColor;
-            lecture3.Foreground = disableColor;
-            lecture4.Foreground = disableColor;
-            lecture5.Foreground = disableColor; 
-            lecture6.Foreground = disableColor;
-            lecture7.Foreground = disableColor;
-            lecture8.Foreground = disableColor;
+            lecture2.IsEnabled = true;
+            lecture3.IsEnabled = true;
+            lecture4.IsEnabled = true;
+            lecture5.IsEnabled = true;
+            lecture6.IsEnabled = true;
+            lecture7.IsEnabled = true;
+            lecture8.IsEnabled = true;
 
-            SetUpLectures();
+            //lecture2.Foreground = disableColor;
+            //lecture3.Foreground = disableColor;
+            //lecture4.Foreground = disableColor;
+            //lecture5.Foreground = disableColor; 
+            //lecture6.Foreground = disableColor;
+            //lecture7.Foreground = disableColor;
+            //lecture8.Foreground = disableColor;
+
+            //SetUpLectures();
 
             Loaded += MainWindow_Loaded;
         }

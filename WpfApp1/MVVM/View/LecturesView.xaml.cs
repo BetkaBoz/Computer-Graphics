@@ -27,9 +27,9 @@ namespace ComputerGraphics.MVVM.View
 
             DataContext = viewModel;
 
-            viewModel.LoadCurrentUserData();
+            //viewModel.LoadCurrentUserData();
 
-            SetUpChecks();
+            //SetUpChecks();
         }
 
         private void SetUpUserLectures()

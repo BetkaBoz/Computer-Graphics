@@ -138,7 +138,7 @@ namespace ComputerGraphics.MVVM.ViewModel
             userRepository = new UserRepository();
             CurrentUserAccount = new UserAccountModel();
 
-            LoadCurrentUserData();
+            //LoadCurrentUserData();
 
             homeViewModel = new HomeViewModel();
             lecturesViewModel = new LecturesViewModel();
