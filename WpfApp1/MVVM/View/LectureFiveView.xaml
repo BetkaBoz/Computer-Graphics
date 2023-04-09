@@ -271,7 +271,7 @@ zvyšok.&#x0a;Začneme s x = 0, konštantné prírastky budeme pridávať v smer
                     VerticalAlignment="Bottom" HorizontalAlignment="Center">
             <StackPanel Orientation="Horizontal">
                 <TextBlock 
-                   Text="Zadaj polomer kružnice (viac ako 100): "
+                   Text="Zadaj polomer kružnice (viac ako 9): "
                    Foreground="#FF424242"
                    FontWeight="Normal"
                     FontSize="14"

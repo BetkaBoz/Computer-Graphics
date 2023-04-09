@@ -160,6 +160,8 @@ namespace ComputerGraphics.MVVM.View
             if (radius.Text != null) _radius = int.Parse(radius.Text);
             else return;
 
+            _radius *= 10; 
+
             switch (algorithmName)
             {
                 case "kartezian":

@@ -47,43 +47,9 @@ namespace ComputerGraphics.HelperScripts
                 output = $"  y = {(int)center.Y} - ({radius * radius} - {x - center.X} * {x - center.X})^2";
                 outputStrings.Add(output);
             }
-
-
-            //int x, y;
-            //for (x = (int)center.X - radius; x <= center.X + radius; x++)
-            //{
-            //    int _y = (int)center.Y + (int)Math.Round(Math.Sqrt(radius * radius - (x - center.X) * (x - center.X)));
-
-            //    output = $"  y = {(int)center.Y} + ({radius * radius} - {x - center.X} * {x - center.X})^2";
-            //    outputStrings.Add(output);
-
-            //    SetPoint(x, _y);
-
-            //    _y = (int)center.Y - (int)Math.Round(Math.Sqrt(radius * radius - (x - center.X) * (x - center.X)));
-
-            //    output = $"  y = {(int)center.Y} - ({radius * radius} - {x - center.X} * {x - center.X})^2";
-            //    outputStrings.Add(output);
-
-            //    SetPoint(x, _y);
-            //}
-            //for (y = (int)center.Y - radius; y <= center.Y + radius; y++)
-            //{
-            //    int _x = (int)center.X + (int)Math.Round(Math.Sqrt(radius * radius - (y - center.Y) * (y - center.Y)));
-
-            //    output = $"  x = {(int)center.X} + ({radius * radius} - {y - center.Y} * {y - center.Y})^2";
-            //    outputStrings.Add(output);
-
-            //    SetPoint(_x, y);
-
-            //    _x = (int)center.X - (int)Math.Round(Math.Sqrt(radius * radius - (y - center.Y) * (y - center.Y)));
-
-            //    output = $"  x = {(int)center.X} - ({radius * radius} - {y - center.Y} * {y - center.Y})^2";
-            //    outputStrings.Add(output);
-
-            //    SetPoint(x, y);
-            //}
             SetPixel(canvas);
         }
+
         private static void DrawSymetricalCircle(Point center, int x, int y)
         {
             SetPoint(center.X + x, center.Y + y);
@@ -136,23 +102,31 @@ namespace ComputerGraphics.HelperScripts
             while (x <= y)
             {
                 SetPoint(x + center.X, y + center.Y);
-                SetPoint(y + center.X, x + center.Y);
                 SetPoint(-x + center.X, y + center.Y);
-                SetPoint(-y + center.X, x + center.Y);
-                SetPoint(-x + center.X, -y + center.Y);
-                SetPoint(-y + center.X, -x + center.Y);
                 SetPoint(x + center.X, -y + center.Y);
+                SetPoint(-x + center.X, -y + center.Y);
+                SetPoint(y + center.X, x + center.Y);
+                SetPoint(-y + center.X, x + center.Y);
                 SetPoint(y + center.X, -x + center.Y);
+                SetPoint(y + center.X, -x + center.Y);
+
+                SetPoint(x + center.X, y + center.Y);
+                SetPoint(-x + center.X, y + center.Y);
+                SetPoint(x + center.X, -y + center.Y);
+                SetPoint(-x + center.X, -y + center.Y);
+                SetPoint(y + center.X, x + center.Y);
+                SetPoint(-y + center.X, x + center.Y);
+                SetPoint(y + center.X, -x + center.Y);
+                SetPoint(-y + center.X, -x + center.Y);
 
                 output = $"  Stredový bod: ({center.X}, {center.Y}), X: {x} , Y: {y}";
                 outputStrings.Add(output);
 
-                if (d < 0) d = d + 4 * (x - y) + 6;
+                if (d < 0) d += 4 * x + 6;
                 else
                 {
-                    d = d + 4 * (x - y) + 10;
+                    d += 4 * (x - y) + 10;
                     y--;
-                    
                 }
                 x++;
             }

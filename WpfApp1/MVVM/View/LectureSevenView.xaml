@@ -327,6 +327,26 @@ ktorej úsečka leží&#x0a;"/>
             <Grid x:Name="grid"/>
         </Canvas>
 
+        <Border Grid.Column="1" Grid.Row="1" VerticalAlignment="Bottom" HorizontalAlignment="Center" 
+                Margin="0,0,0,90"
+                BorderThickness="2"
+                BorderBrush="LightGray"
+                Visibility="Hidden">
+            <Canvas 
+                x:Name="canvasQueue"
+                Visibility="Visible"
+                Height="30" Width="200"
+                Background="White">
+                <TextBlock  x:Name="textStack"
+                   FontSize="14"
+                   Foreground="#FF424242" 
+                   FontWeight="Normal"
+                   TextWrapping="Wrap"
+                   TextAlignment="Left"
+                   Padding="5"/>
+            </Canvas>
+        </Border>
+        
         <TextBlock Grid.Column="1" Grid.Row="1"
                    x:Name="textAddPixel"
                    Visibility="Hidden"

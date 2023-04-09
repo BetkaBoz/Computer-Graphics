@@ -255,9 +255,25 @@ namespace ComputerGraphics.MVVM.View
 
             DrawPixelsOnCanvas();
 
-            if (algorithmName == "floodFill" || algorithmName == "seedFill") FillResursivePixels();
-            else if (algorithmName == "seedLineFill") FillNonRecurzivePixels();
-            else if (algorithmName == "scanner" || algorithmName == "coherent") ShowImages(algorithmName);
+            switch(algorithmName)
+            {
+                case "floodFill":
+                    FillResursivePixels();
+                    FillAlgorithms.FloodArea(_rectangles, 6, 10, new SolidColorBrush(Colors.LightGray), new SolidColorBrush(Colors.White));
+                    break;
+                case "seedFill":
+                    FillResursivePixels();
+                    break;
+                case "seedLineFill":
+                    FillNonRecurzivePixels();
+                    break;
+                case "scanner":
+                    ShowImages(algorithmName);
+                    break;
+                case "coherent":
+                    ShowImages(algorithmName);
+                    break;
+            }
         }
 
         private void RefreshCanvas(object sender, MouseButtonEventArgs e)
@@ -274,13 +290,13 @@ namespace ComputerGraphics.MVVM.View
             switch (algorithmName)
             {
                 case "floodFill":
-                    FillAlgorithms.FloodFill(_rectangles, 6, 10, new SolidColorBrush(Colors.LightSkyBlue), new SolidColorBrush(Colors.White));
+                    FillAlgorithms.FloodFill(_rectangles, 6, 10, new SolidColorBrush(Colors.LightSkyBlue), new SolidColorBrush(Colors.LightGray));
                     break;
                 case "seedFill":
                     FillAlgorithms.SeedFill(_rectangles, rect, new SolidColorBrush(Colors.LightSkyBlue), new SolidColorBrush(Colors.White)); 
                     break;
                 case "seedLineFill":
-                    FillAlgorithms.SeedLineFill(_rectangles, 3, 10, new SolidColorBrush(Colors.LightSkyBlue), new SolidColorBrush(Colors.White));
+                    FillAlgorithms.SeedLineFill(_rectangles, 3, 10, new SolidColorBrush(Colors.LightSkyBlue), new SolidColorBrush(Colors.White), canvasQueue, textStack);
                     break;
                 default:
                     break;

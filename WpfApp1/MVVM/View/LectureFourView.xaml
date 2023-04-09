@@ -386,14 +386,13 @@ vypočítame rozdiel pi+1 - pi a z neho vyjadríme pi+1 pomocou pi &#x0a;"/>
                       Margin="40,0,0,20"
                       Visibility="Hidden">
             <Canvas x:Name="outputCanvas"
-                    Cursor="Arrow"
-                    >
+                    Cursor="Arrow">
                 <TextBlock  x:Name="textCalculations"
                    FontSize="14"
                    Foreground="#FF424242" 
                    FontWeight="Normal"
                    TextWrapping="Wrap"
-                            TextAlignment="Left"
+                   TextAlignment="Left"
                    Padding="10"/>
             </Canvas>
         </ScrollViewer>
