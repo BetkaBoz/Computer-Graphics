@@ -332,7 +332,7 @@ ktorej úsečka leží&#x0a;"/>
                 Margin="0,0,0,90"
                 BorderThickness="2"
                 BorderBrush="LightGray"
-                Visibility="Visible">
+                Visibility="Hidden">
             <Canvas 
                 x:Name="canvasQueue"
                 Height="30" Width="200"

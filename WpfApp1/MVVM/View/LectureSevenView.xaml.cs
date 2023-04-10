@@ -230,6 +230,7 @@ namespace ComputerGraphics.MVVM.View
                     break;
             }
         }
+
         private void NextImage(object sender, MouseButtonEventArgs e)
         {
             if(coherentImg1.Visibility == Visibility.Visible)
