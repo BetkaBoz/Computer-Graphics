@@ -219,8 +219,9 @@ namespace ComputerGraphics.MVVM.View
                     double rotation = double.Parse(angle.Text);
                     break;
                 case "scale":
-                    double _valueScale = double.Parse(coeficient.Text);
-                    Transformations.CalculateScale(ref point, _valueScale);
+                    double _valueScaleX = double.Parse(coeficientX.Text);
+                    double _valueScaleY = double.Parse(coeficientY.Text);
+                    Transformations.CalculateScale(ref point, _valueScaleX, _valueScaleY);
                     break;
                 case "mirror":
                     int _valueMirror = int.Parse(axis.Text);

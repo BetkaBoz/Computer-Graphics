@@ -1,11 +1,13 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.IO.Packaging;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Controls;
 using System.Windows.Media;
 using System.Windows.Threading;
+using static System.Net.Mime.MediaTypeNames;
 using Application = System.Windows.Application;
 using Color = System.Windows.Media.Color;
 using Rectangle = System.Windows.Shapes.Rectangle;
@@ -15,7 +17,10 @@ namespace ComputerGraphics.HelperScripts
     public static class FillAlgorithms
     {
         static SolidColorBrush borderColor = new(Colors.LightGray);
-        //static Canvas canvas = new();
+        static SolidColorBrush backgroundColor = new(Colors.White);
+        static List<string> stringsUp = new List<string>();
+        static List<string> stringsDown = new List<string>();
+
         public static void FloodArea(List<Rectangle> rectangles, int x, int y, SolidColorBrush replacementColor, SolidColorBrush targetColor)
         {
             Rectangle? rect = rectangles.FirstOrDefault(r => Grid.GetColumn(r) == x && Grid.GetRow(r) == y);
@@ -69,14 +74,14 @@ namespace ComputerGraphics.HelperScripts
                 {
                     rect.Fill = replacementColor;
 
-                    //get the neighboring cells of starting rectangle
+                    // get the neighboring cells of starting rectangle
                     List<Rectangle> neighbors = rectangles.FindAll(r =>
                         (Grid.GetColumn(r) == Grid.GetColumn(rect) && Grid.GetRow(r) == Grid.GetRow(rect) - 1) ||
                         (Grid.GetColumn(r) == Grid.GetColumn(rect) && Grid.GetRow(r) == Grid.GetRow(rect) + 1) ||
                         (Grid.GetColumn(r) == Grid.GetColumn(rect) - 1 && Grid.GetRow(r) == Grid.GetRow(rect)) ||
                         (Grid.GetColumn(r) == Grid.GetColumn(rect) + 1 && Grid.GetRow(r) == Grid.GetRow(rect)));
 
-                    //call seed fill algorithm recursively on the neighboring cells with the same color
+                    // call seed fill algorithm recursively on the neighboring cells with the same color
                     foreach (Rectangle neighbor in neighbors)
                     {
                         SolidColorBrush neighborColor = (SolidColorBrush)neighbor.Fill;
@@ -86,7 +91,7 @@ namespace ComputerGraphics.HelperScripts
                 }
         }
 
-        public static async void SeedLineFill(List<Rectangle> rectangles, int x, int y, SolidColorBrush replacementColor, SolidColorBrush targetColor, Canvas canvas, TextBlock textBlock)
+        public static async void SeedLineFill(List<Rectangle> rectangles, int x, int y, SolidColorBrush replacementColor, SolidColorBrush targetColor, Canvas canvas)
         {
             int previousY = y-1;
             Queue<int> yQueue = new();
@@ -98,12 +103,12 @@ namespace ComputerGraphics.HelperScripts
             while (yQueue.Count > 0)
             {
                 var currentY = yQueue.Dequeue();
-                await RowNumberStack(canvas, yQueue, textBlock);
+                stringsDown.Remove($"{currentY}");
 
+                // if current row is upper, save it to the queue and continue
                 if (currentY < previousY)
                 {
                     yUpperQueue.Enqueue(currentY);
-                    await RowNumberStack(canvas, yUpperQueue, textBlock);
                     continue;
                 }
 
@@ -119,27 +124,34 @@ namespace ComputerGraphics.HelperScripts
                 if (!visited.Contains(currentY))
                 {
                     visited.Add(currentY);
-                    //lower row
-                    if (colorDown != replacementColor.Color && colorDown != borderColor.Color)
+                    // check upper row
+                    if (colorUp != replacementColor.Color && colorUp != borderColor.Color) yUpperQueue.Enqueue(currentY - 1);
+
+                    // check lower row
+                    if (colorDown != replacementColor.Color && colorDown != borderColor.Color) yQueue.Enqueue(currentY + 1);
+
+                    // add items from Queues to lists
+                    foreach (var item in yQueue)
                     {
-                        yQueue.Enqueue(currentY + 1);
-                        await RowNumberStack(canvas, yQueue, textBlock);
+                        stringsDown.Add(item.ToString());
                     }
-                    //upper row
-                    if (colorUp != replacementColor.Color && colorUp != borderColor.Color)
+                    foreach (var item in yUpperQueue)
                     {
-                        yUpperQueue.Enqueue(currentY - 1);
-                        await RowNumberStack(canvas, yUpperQueue, textBlock);
+                        if(!stringsUp.Contains(item.ToString())) stringsUp.Add(item.ToString());
                     }
+                    // and draw them on canvas
+                    await RowNumberStack(canvas, stringsUp, stringsDown);
                 }
                 previousY = currentY;
 
+                // fill upper rows
                 if(yQueue.Count <= 0 && yUpperQueue.Count > 0)
                 {
                     while(yUpperQueue.Count > 0)
                     {
                             var newCurrentY = yUpperQueue.Dequeue();
-                            await RowNumberStack(canvas, yUpperQueue, textBlock);
+                            stringsUp.Remove($"{newCurrentY}");
+
                             Application.Current.Dispatcher.Invoke(() => { }, DispatcherPriority.Background);
 
                             await FillRow(rectangles, x, newCurrentY, replacementColor, targetColor);
@@ -147,47 +159,51 @@ namespace ComputerGraphics.HelperScripts
                             var colorUpp = GetPixelColor(rectangles, x, newCurrentY - 1);
                             var colorDownn = GetPixelColor(rectangles, x, currentY + 1);
 
-                            if (colorUpp != replacementColor.Color && colorUpp != borderColor.Color)
-                            {
-                                yUpperQueue.Enqueue(newCurrentY - 1);
-                                await RowNumberStack(canvas, yUpperQueue, textBlock);
-                            }
-                            if (colorDownn != replacementColor.Color && colorDownn != borderColor.Color)
-                            {
-                                yUpperQueue.Enqueue(newCurrentY + 1);
-                                await RowNumberStack(canvas, yUpperQueue, textBlock);
-                            }
+                            if (colorUpp != replacementColor.Color && colorUpp != borderColor.Color) yUpperQueue.Enqueue(newCurrentY - 1);
+                            if (colorDownn != replacementColor.Color && colorDownn != borderColor.Color) yUpperQueue.Enqueue(newCurrentY + 1);
+
+                        foreach (var item in yUpperQueue)
+                        {
+                            stringsUp.Add(item.ToString());
+                        }
+                        await RowNumberStack(canvas, stringsUp, null);
                     }
                 }
             }
+            yQueue.Clear();
+            yUpperQueue.Clear();
         }
 
-        private static async Task RowNumberStack( Canvas mainCanvas, Queue<int> queueItems, TextBlock text)
+        private static async Task RowNumberStack( Canvas mainCanvas, List<string> stringsListUp, List<string>? stringsListDown)
         {
-            //Canvas canvas = new();
+            Canvas canvas = new();
             List<string> strings = new List<string>();
 
-            //canvas.Children.Clear();
-            mainCanvas.Children.Clear();
-
-            int i = 0;
-
-            if (queueItems.Count == 0) return;
+            if (stringsListUp.Count == 0) return;
 
             Application.Current.Dispatcher.Invoke(() => { }, DispatcherPriority.Background);
 
-            foreach (var item in queueItems)
-            {
-                //strings.Add(item.ToString());
-                //string text = $"{string.Join(" | ", strings)}";
-                text.Text = $"{string.Join(" | ", item.ToString())}";
+            // add textblock1
+            TextBlock text = new();
+            text.FontSize = 14;
+            text.Text = $"{string.Join("  |  ", stringsListUp)} | ";
+            Canvas.SetLeft(text, 10);
+            Canvas.SetTop(text, 5);
+             
+            // add textblock2
+            TextBlock text2 = new();
+            text2.FontSize = 14;
 
-                //canvas.Children.Add(textBlock);
-                mainCanvas.Children.Add(text);
+            if (stringsListDown != null) text2.Text = $"{string.Join("  |  ", stringsListDown)} | ";
 
-                i++;
-            }
-           // mainCanvas.Children.Add(canvas);
+            Canvas.SetLeft(text2, 25);
+            Canvas.SetTop(text2, 5);
+
+            //set canvas
+            mainCanvas.Background = backgroundColor;
+            mainCanvas.Children.Clear();
+            mainCanvas.Children.Add(text);
+            mainCanvas.Children.Add(text2);
         }
 
         private static Color GetPixelColor(List<Rectangle> rectangles, int x, int y)
@@ -214,6 +230,7 @@ namespace ComputerGraphics.HelperScripts
 
                 Application.Current.Dispatcher.Invoke(() => { }, DispatcherPriority.Background);
                 
+                // fill row recursively
                 await FillRow(rectangles, x + 1, y, replacementColor, targetColor);
                 await FillRow(rectangles, 11 - 1, y, replacementColor, targetColor);
                 await FillRow(rectangles, 12 - 1, y, replacementColor, targetColor);

@@ -22,10 +22,10 @@ namespace ComputerGraphics.HelperScripts
             point.Y = (x * Math.Sin(rotation)) + (y * Math.Cos(rotation));
         }
 
-        public static void CalculateScale(ref Point point, double scale)
+        public static void CalculateScale(ref Point point, double scaleX, double scaleY)
         {
-            point.X *= scale;
-            point.Y *= scale;
+            point.X *= scaleX;
+            point.Y *= scaleY;
         }
 
         public static void CalculateMirror(ref Point point, int axis, Canvas canvas)

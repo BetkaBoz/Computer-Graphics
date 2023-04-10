@@ -328,22 +328,15 @@ ktorej úsečka leží&#x0a;"/>
         </Canvas>
 
         <Border Grid.Column="1" Grid.Row="1" VerticalAlignment="Bottom" HorizontalAlignment="Center" 
+                x:Name="showStack"
                 Margin="0,0,0,90"
                 BorderThickness="2"
                 BorderBrush="LightGray"
-                Visibility="Hidden">
+                Visibility="Visible">
             <Canvas 
                 x:Name="canvasQueue"
-                Visibility="Visible"
                 Height="30" Width="200"
                 Background="White">
-                <TextBlock  x:Name="textStack"
-                   FontSize="14"
-                   Foreground="#FF424242" 
-                   FontWeight="Normal"
-                   TextWrapping="Wrap"
-                   TextAlignment="Left"
-                   Padding="5"/>
             </Canvas>
         </Border>
         

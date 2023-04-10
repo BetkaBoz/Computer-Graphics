@@ -252,6 +252,7 @@ namespace ComputerGraphics.MVVM.View
             fillRectangle.Clear();
 
             refresh.Visibility = Visibility.Hidden;
+            showStack.Visibility = Visibility.Hidden;
 
             DrawPixelsOnCanvas();
 
@@ -290,13 +291,14 @@ namespace ComputerGraphics.MVVM.View
             switch (algorithmName)
             {
                 case "floodFill":
+                    showStack.Visibility = Visibility.Visible;
                     FillAlgorithms.FloodFill(_rectangles, 6, 10, new SolidColorBrush(Colors.LightSkyBlue), new SolidColorBrush(Colors.LightGray));
                     break;
                 case "seedFill":
                     FillAlgorithms.SeedFill(_rectangles, rect, new SolidColorBrush(Colors.LightSkyBlue), new SolidColorBrush(Colors.White)); 
                     break;
                 case "seedLineFill":
-                    FillAlgorithms.SeedLineFill(_rectangles, 3, 10, new SolidColorBrush(Colors.LightSkyBlue), new SolidColorBrush(Colors.White), canvasQueue, textStack);
+                    FillAlgorithms.SeedLineFill(_rectangles, 3, 10, new SolidColorBrush(Colors.LightSkyBlue), new SolidColorBrush(Colors.White), canvasQueue);
                     break;
                 default:
                     break;

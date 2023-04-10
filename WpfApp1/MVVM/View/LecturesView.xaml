@@ -53,7 +53,7 @@
                                     </Image>
                                 </BulletDecorator.Bullet>
                                 <TextBlock Foreground="#FF424242" FontSize="16" FontWeight="Bold"
-                                    VerticalAlignment="Center" Padding="10">VEKTOROVÁ A RASTROVÁ GRAFIKA</TextBlock>
+                                    VerticalAlignment="Center" Padding="10">RASTROVÁ A VEKTOROVÁ GRAFIKA</TextBlock>
                             </BulletDecorator>
                         </Expander.Header>
                         <StackPanel>

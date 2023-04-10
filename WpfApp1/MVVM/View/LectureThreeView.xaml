@@ -53,7 +53,7 @@
                     VerticalAlignment="Top" >
 
                 <TextBlock HorizontalAlignment="Left" Grid.Row="0" Grid.Column="0"
-                   Text="TRANSFORMÁCIE" FontWeight="Bold" FontSize="20" Foreground="#FF424242"/>
+                   Text="DVOJROZMENRÉ TRANSFORMÁCIE" FontWeight="Bold" FontSize="20" Foreground="#FF424242"/>
 
                 <TextBlock HorizontalAlignment="Left" 
                    Grid.Row="0" Grid.Column="0"
@@ -481,15 +481,38 @@
                     Grid.Column="1" Grid.Row="1"
                     Visibility="Hidden"
                     VerticalAlignment="Bottom" HorizontalAlignment="Center">
-            <StackPanel Orientation="Horizontal">
+            <TextBlock 
+                   Text="Zadaj koeficienty škálovania v intervale &lt;0, 1>"
+                   Foreground="#FF424242"
+                   FontWeight="Normal"
+                   FontSize="14"
+                   Padding="0,10,0,0"/>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
                 <TextBlock 
-                   Text="Zadaj koeficient škálovania v intervale &lt;0, 1> : "
+                   Text=" pre X: "
                    Foreground="#FF424242"
                    FontWeight="Normal"
                    FontSize="14"
                    Padding="0,10,0,0"/>
 
-                <TextBox x:Name="coeficient"
+                <TextBox x:Name="coeficientX"
+                 Width="20"
+                 Foreground="#FF424242"
+                 FontWeight="Normal"
+                 FontSize="14"
+                 Margin="0,0,0,20"
+                 Padding="0,8,0,0"
+                 TextAlignment="Center"
+                 PreviewTextInput="PreviewTextInput"/>
+
+                <TextBlock 
+                   Text=" a Y: "
+                   Foreground="#FF424242"
+                   FontWeight="Normal"
+                   FontSize="14"
+                   Padding="0,10,0,0"/>
+
+                <TextBox x:Name="coeficientY"
                  Width="20"
                  Foreground="#FF424242"
                  FontWeight="Normal"

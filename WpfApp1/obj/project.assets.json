@@ -227,6 +227,69 @@
             "rid": "win"
           }
         }
+      },
+      "tinyspline/0.6.0.1": {
+        "type": "package",
+        "compile": {
+          "lib/netstandard2.0/TinySpline.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/TinySpline.dll": {}
+        },
+        "runtimeTargets": {
+          "runtimes/android-arm/native/libtinysplinecsharp.so": {
+            "assetType": "native",
+            "rid": "android-arm"
+          },
+          "runtimes/android-arm64/native/libtinysplinecsharp.so": {
+            "assetType": "native",
+            "rid": "android-arm64"
+          },
+          "runtimes/android-x64/native/libtinysplinecsharp.so": {
+            "assetType": "native",
+            "rid": "android-x64"
+          },
+          "runtimes/android-x86/native/libtinysplinecsharp.so": {
+            "assetType": "native",
+            "rid": "android-x86"
+          },
+          "runtimes/linux-x64/native/libtinysplinecsharp.so": {
+            "assetType": "native",
+            "rid": "linux-x64"
+          },
+          "runtimes/osx-arm64/native/libtinysplinecsharp.dylib": {
+            "assetType": "native",
+            "rid": "osx-arm64"
+          },
+          "runtimes/osx-universal2/native/libtinysplinecsharp.dylib": {
+            "assetType": "native",
+            "rid": "osx-universal2"
+          },
+          "runtimes/osx-x64/native/libtinysplinecsharp.dylib": {
+            "assetType": "native",
+            "rid": "osx-x64"
+          },
+          "runtimes/win-x64/native/libgcc_s_seh-1.dll": {
+            "assetType": "native",
+            "rid": "win-x64"
+          },
+          "runtimes/win-x64/native/libstdc++-6.dll": {
+            "assetType": "native",
+            "rid": "win-x64"
+          },
+          "runtimes/win-x64/native/libtinysplinecsharp.dll": {
+            "assetType": "native",
+            "rid": "win-x64"
+          },
+          "runtimes/win10-arm/native/libtinysplinecsharp.dll": {
+            "assetType": "native",
+            "rid": "win10-arm"
+          },
+          "runtimes/win10-arm64/native/libtinysplinecsharp.dll": {
+            "assetType": "native",
+            "rid": "win10-arm64"
+          }
+        }
       }
     }
   },
@@ -670,6 +733,33 @@
         "useSharedDesignerContext.txt",
         "version.txt"
       ]
+    },
+    "tinyspline/0.6.0.1": {
+      "sha512": "i/RsyjGz665PS0jLRitoZd7jNAEwB1hU9zO6gUfiSGI/kyYqDJdxPS5wF9PDHLDsAQkIJZknJgEUEbZNNCTD7g==",
+      "type": "package",
+      "path": "tinyspline/0.6.0.1",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "lib/net20/TinySpline.dll",
+        "lib/net45/TinySpline.dll",
+        "lib/netstandard2.0/TinySpline.dll",
+        "runtimes/android-arm/native/libtinysplinecsharp.so",
+        "runtimes/android-arm64/native/libtinysplinecsharp.so",
+        "runtimes/android-x64/native/libtinysplinecsharp.so",
+        "runtimes/android-x86/native/libtinysplinecsharp.so",
+        "runtimes/linux-x64/native/libtinysplinecsharp.so",
+        "runtimes/osx-arm64/native/libtinysplinecsharp.dylib",
+        "runtimes/osx-universal2/native/libtinysplinecsharp.dylib",
+        "runtimes/osx-x64/native/libtinysplinecsharp.dylib",
+        "runtimes/win-x64/native/libgcc_s_seh-1.dll",
+        "runtimes/win-x64/native/libstdc++-6.dll",
+        "runtimes/win-x64/native/libtinysplinecsharp.dll",
+        "runtimes/win10-arm/native/libtinysplinecsharp.dll",
+        "runtimes/win10-arm64/native/libtinysplinecsharp.dll",
+        "tinyspline.0.6.0.1.nupkg.sha512",
+        "tinyspline.nuspec"
+      ]
     }
   },
   "projectFileDependencyGroups": {
@@ -678,7 +768,8 @@
       "MaterialDesignThemes >= 4.6.1",
       "Microsoft.Xaml.Behaviors.Wpf >= 1.1.39",
       "Rulyotano.Math.Interpolation.Bezier >= 2.0.0",
-      "System.Data.SqlClient >= 4.8.5"
+      "System.Data.SqlClient >= 4.8.5",
+      "tinyspline >= 0.6.0.1"
     ]
   },
   "packageFolders": {
@@ -744,6 +835,10 @@
           "System.Data.SqlClient": {
             "target": "Package",
             "version": "[4.8.5, )"
+          },
+          "tinyspline": {
+            "target": "Package",
+            "version": "[0.6.0.1, )"
           }
         },
         "imports": [

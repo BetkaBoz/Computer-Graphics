@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "JVQXbppFXSt8TPFttK/t7qo6GN1NIumyvdvlvPXblQFY9C27h5LbuoV60k+F3AfAMYRBg1D8RVJlVnXYnuL9Kg==",
+  "dgSpecHash": "8bzJWIp1XAK3scrj7GDEBdVjcPXBXgyVrNYuQzcwuU/YckRYbZYlS7RXcqUGggDfLugd9g4ssqd15GfMgI8BCA==",
   "success": true,
   "projectFilePath": "D:\\School Stuffs\\DIPLOMOVKA\\Computer Graphics\\WpfApp1\\ComputerGraphics.csproj",
   "expectedPackageFiles": [
@@ -18,7 +18,8 @@
     "C:\\Users\\Elly\\.nuget\\packages\\runtime.win-x86.runtime.native.system.data.sqlclient.sni\\4.4.0\\runtime.win-x86.runtime.native.system.data.sqlclient.sni.4.4.0.nupkg.sha512",
     "C:\\Users\\Elly\\.nuget\\packages\\system.data.sqlclient\\4.8.5\\system.data.sqlclient.4.8.5.nupkg.sha512",
     "C:\\Users\\Elly\\.nuget\\packages\\system.security.accesscontrol\\4.7.0\\system.security.accesscontrol.4.7.0.nupkg.sha512",
-    "C:\\Users\\Elly\\.nuget\\packages\\system.security.principal.windows\\4.7.0\\system.security.principal.windows.4.7.0.nupkg.sha512"
+    "C:\\Users\\Elly\\.nuget\\packages\\system.security.principal.windows\\4.7.0\\system.security.principal.windows.4.7.0.nupkg.sha512",
+    "C:\\Users\\Elly\\.nuget\\packages\\tinyspline\\0.6.0.1\\tinyspline.0.6.0.1.nupkg.sha512"
   ],
   "logs": []
 }
