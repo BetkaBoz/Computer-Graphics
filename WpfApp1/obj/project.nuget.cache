@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "8bzJWIp1XAK3scrj7GDEBdVjcPXBXgyVrNYuQzcwuU/YckRYbZYlS7RXcqUGggDfLugd9g4ssqd15GfMgI8BCA==",
+  "dgSpecHash": "CgMjWFYybcCN1XNBRWoyDFVgqd6gzaGnw/P7pIuaMnRjw9m+25mcnynpkDXJhJuiq2hjbW7NXITsjSYxf1PseQ==",
   "success": true,
   "projectFilePath": "D:\\School Stuffs\\DIPLOMOVKA\\Computer Graphics\\WpfApp1\\ComputerGraphics.csproj",
   "expectedPackageFiles": [
@@ -8,6 +8,7 @@
     "C:\\Users\\Elly\\.nuget\\packages\\materialdesignthemes\\4.6.1\\materialdesignthemes.4.6.1.nupkg.sha512",
     "C:\\Users\\Elly\\.nuget\\packages\\microsoft.netcore.platforms\\3.1.0\\microsoft.netcore.platforms.3.1.0.nupkg.sha512",
     "C:\\Users\\Elly\\.nuget\\packages\\microsoft.win32.registry\\4.7.0\\microsoft.win32.registry.4.7.0.nupkg.sha512",
+    "C:\\Users\\Elly\\.nuget\\packages\\microsoft.win32.systemevents\\7.0.0\\microsoft.win32.systemevents.7.0.0.nupkg.sha512",
     "C:\\Users\\Elly\\.nuget\\packages\\microsoft.xaml.behaviors.wpf\\1.1.39\\microsoft.xaml.behaviors.wpf.1.1.39.nupkg.sha512",
     "C:\\Users\\Elly\\.nuget\\packages\\rulyotano.math\\2.0.0\\rulyotano.math.2.0.0.nupkg.sha512",
     "C:\\Users\\Elly\\.nuget\\packages\\rulyotano.math.geometry\\2.0.0\\rulyotano.math.geometry.2.0.0.nupkg.sha512",
@@ -17,6 +18,7 @@
     "C:\\Users\\Elly\\.nuget\\packages\\runtime.win-x64.runtime.native.system.data.sqlclient.sni\\4.4.0\\runtime.win-x64.runtime.native.system.data.sqlclient.sni.4.4.0.nupkg.sha512",
     "C:\\Users\\Elly\\.nuget\\packages\\runtime.win-x86.runtime.native.system.data.sqlclient.sni\\4.4.0\\runtime.win-x86.runtime.native.system.data.sqlclient.sni.4.4.0.nupkg.sha512",
     "C:\\Users\\Elly\\.nuget\\packages\\system.data.sqlclient\\4.8.5\\system.data.sqlclient.4.8.5.nupkg.sha512",
+    "C:\\Users\\Elly\\.nuget\\packages\\system.drawing.common\\7.0.0\\system.drawing.common.7.0.0.nupkg.sha512",
     "C:\\Users\\Elly\\.nuget\\packages\\system.security.accesscontrol\\4.7.0\\system.security.accesscontrol.4.7.0.nupkg.sha512",
     "C:\\Users\\Elly\\.nuget\\packages\\system.security.principal.windows\\4.7.0\\system.security.principal.windows.4.7.0.nupkg.sha512",
     "C:\\Users\\Elly\\.nuget\\packages\\tinyspline\\0.6.0.1\\tinyspline.0.6.0.1.nupkg.sha512"

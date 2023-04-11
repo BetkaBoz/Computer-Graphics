@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Drawing;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
@@ -81,6 +82,8 @@ namespace ComputerGraphics.HelperScripts
                 double y = center.Y + Math.Sqrt(radius * radius - (x - center.X) * (x - center.X));
                 SetPoint(x, y);
 
+                
+
                 output = $"  X: {x}, Y: {y}";
                 outputStrings.Add(output);
 
@@ -133,8 +136,10 @@ namespace ComputerGraphics.HelperScripts
             SetPixel(canvas);
         }
 
-        private static void SetPixel(Canvas canvas)
+        public static async Task SetPixel(Canvas canvas)
         {
+            await Task.Delay(100);
+
             Point point;
             Rectangle rectangle;
 

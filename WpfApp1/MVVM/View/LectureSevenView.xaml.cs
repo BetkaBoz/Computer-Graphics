@@ -292,13 +292,13 @@ namespace ComputerGraphics.MVVM.View
             switch (algorithmName)
             {
                 case "floodFill":
-                    showStack.Visibility = Visibility.Visible;
                     FillAlgorithms.FloodFill(_rectangles, 6, 10, new SolidColorBrush(Colors.LightSkyBlue), new SolidColorBrush(Colors.LightGray));
                     break;
                 case "seedFill":
                     FillAlgorithms.SeedFill(_rectangles, rect, new SolidColorBrush(Colors.LightSkyBlue), new SolidColorBrush(Colors.White)); 
                     break;
                 case "seedLineFill":
+                    showStack.Visibility = Visibility.Visible;
                     FillAlgorithms.SeedLineFill(_rectangles, 3, 10, new SolidColorBrush(Colors.LightSkyBlue), new SolidColorBrush(Colors.White), canvasQueue);
                     break;
                 default:

@@ -93,6 +93,8 @@ namespace ComputerGraphics.HelperScripts
 
         public static async void SeedLineFill(List<Rectangle> rectangles, int x, int y, SolidColorBrush replacementColor, SolidColorBrush targetColor, Canvas canvas)
         {
+            canvas.Children.Clear();
+
             int previousY = y-1;
             Queue<int> yQueue = new();
             Queue<int> yUpperQueue = new();

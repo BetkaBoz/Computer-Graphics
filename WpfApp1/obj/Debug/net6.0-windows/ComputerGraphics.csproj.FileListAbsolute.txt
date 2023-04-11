@@ -132,3 +132,7 @@ D:\School Stuffs\DIPLOMOVKA\Computer Graphics\WpfApp1\bin\Debug\net6.0-windows\r
 D:\School Stuffs\DIPLOMOVKA\Computer Graphics\WpfApp1\bin\Debug\net6.0-windows\runtimes\win-x64\native\libtinysplinecsharp.dll
 D:\School Stuffs\DIPLOMOVKA\Computer Graphics\WpfApp1\bin\Debug\net6.0-windows\runtimes\win10-arm\native\libtinysplinecsharp.dll
 D:\School Stuffs\DIPLOMOVKA\Computer Graphics\WpfApp1\bin\Debug\net6.0-windows\runtimes\win10-arm64\native\libtinysplinecsharp.dll
+D:\School Stuffs\DIPLOMOVKA\Computer Graphics\WpfApp1\bin\Debug\net6.0-windows\Microsoft.Win32.SystemEvents.dll
+D:\School Stuffs\DIPLOMOVKA\Computer Graphics\WpfApp1\bin\Debug\net6.0-windows\System.Drawing.Common.dll
+D:\School Stuffs\DIPLOMOVKA\Computer Graphics\WpfApp1\bin\Debug\net6.0-windows\runtimes\win\lib\net6.0\Microsoft.Win32.SystemEvents.dll
+D:\School Stuffs\DIPLOMOVKA\Computer Graphics\WpfApp1\bin\Debug\net6.0-windows\runtimes\win\lib\net6.0\System.Drawing.Common.dll
