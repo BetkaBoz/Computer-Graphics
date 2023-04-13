@@ -120,7 +120,7 @@ farieb v grafických programoch a prakticky si vyskúšate prácu s farbami." Wi
                                     </Image>
                                 </BulletDecorator.Bullet>
                                 <TextBlock Foreground="#FF424242" FontSize="16" FontWeight="Bold"
-                                    VerticalAlignment="Center" Padding="10">DVOJROZMENRÉ TRANSFORMÁCIE</TextBlock>
+                                    VerticalAlignment="Center" Padding="10">DVOJROZMERNÉ TRANSFORMÁCIE</TextBlock>
                             </BulletDecorator>
                         </Expander.Header>
                         <StackPanel>

@@ -5,6 +5,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Diagnostics;
+using System.Globalization;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Text;
@@ -26,8 +27,6 @@ namespace ComputerGraphics.MVVM.View
     public partial class LectureThreeView : UserControl
     {
         int pointCount = 0;
-        int _valueVectorX;
-        int _valueVectorY;
         bool check;
         string? transformName;
         string? oldTransformName;
@@ -137,6 +136,7 @@ namespace ComputerGraphics.MVVM.View
             pointCount = 0;
 
             textAddNodes.Visibility = Visibility.Hidden;
+            textErrorMessage.Visibility = Visibility.Hidden;
             refresh.Visibility = Visibility.Hidden;
             connect.Visibility = Visibility.Hidden;
 
@@ -197,12 +197,14 @@ namespace ComputerGraphics.MVVM.View
         private void PreviewTextInput(object sender, TextCompositionEventArgs e)
         {
             // input is only numerical so if there is string or other non allowed input, e.Handler will return false
-            Regex regex = new Regex("[^0-9(.+)]+");
+            Regex regex = new Regex("[^0-9(.)]+");
             e.Handled = regex.IsMatch(e.Text);
         }
 
         public void CalculateStep(object sender, MouseButtonEventArgs e)
         {
+            textErrorMessage.Visibility = Visibility.Hidden;
+
             if (pointsQueue.Count == 0) return;
 
             var point = pointsQueue.Dequeue();
@@ -210,32 +212,65 @@ namespace ComputerGraphics.MVVM.View
             switch (transformName)
             {
                 case "move":
-                    _valueVectorX = int.Parse(vectorX.Text);
-                    _valueVectorY = int.Parse(vectorY.Text);
 
-                    Transformations.CalculateMove(ref point, _valueVectorX, _valueVectorY);
+                    if (vectorX.Text != "" || vectorY.Text != "")
+                    {
+                        int _valueVectorX = int.Parse(vectorX.Text, CultureInfo.InvariantCulture);
+                        int _valueVectorY = int.Parse(vectorY.Text, CultureInfo.InvariantCulture);
+
+                        Transformations.CalculateMove(ref point, _valueVectorX, _valueVectorY);
+                    }
+                    else
+                    {
+                        textErrorMessage.Visibility = Visibility.Visible;
+                        return;
+                    }
                     break;
                 case "rotate":
                     double rotation = double.Parse(angle.Text);
                     break;
                 case "scale":
-                    double _valueScaleX = double.Parse(coeficientX.Text);
-                    double _valueScaleY = double.Parse(coeficientY.Text);
-                    Transformations.CalculateScale(ref point, _valueScaleX, _valueScaleY);
+                    if (coeficientX.Text != "" || coeficientY.Text != "")
+                    {
+                        double _valueScaleX = double.Parse(coeficientX.Text, CultureInfo.InvariantCulture);
+                        double _valueScaleY = double.Parse(coeficientY.Text, CultureInfo.InvariantCulture);
+                        Transformations.CalculateScale(ref point, _valueScaleX, _valueScaleY);
+                    }
+                    else
+                    {
+                        textErrorMessage.Visibility = Visibility.Visible;
+                        return;
+                    }
                     break;
                 case "mirror":
-                    int _valueMirror = int.Parse(axis.Text);
-                    if (_valueMirror == 0 || _valueMirror == 1)
+                    if(axis.Text != "")
                     {
-                        Transformations.CalculateMirror(ref point, _valueMirror, canvas);
-                        textErrorMessage.Visibility = Visibility.Hidden;
+                        int _valueMirror = int.Parse(axis.Text);
+                        if (_valueMirror == 0 || _valueMirror == 1)
+                        {
+                            Transformations.CalculateMirror(ref point, _valueMirror, canvas);
+                            textErrorMessage.Visibility = Visibility.Hidden;
+                        }
+                        else textErrorMessage.Visibility = Visibility.Visible;
                     }
-                    else textErrorMessage.Visibility = Visibility.Visible;
+                    else
+                    {
+                        textErrorMessage.Visibility = Visibility.Visible;
+                        return;
+                    }
                     break;
                 case "scold":
-                    double _valueSkewX = double.Parse(shearX.Text);
-                    double _valueSkewY = double.Parse(shearY.Text);
-                    Transformations.CalculateSkew(ref point, _valueSkewX, _valueSkewY);
+                    if (shearX.Text != "" || shearY.Text != "")
+                    {
+                        double _valueSkewX = double.Parse(shearX.Text, CultureInfo.InvariantCulture);
+                        double _valueSkewY = double.Parse(shearY.Text, CultureInfo.InvariantCulture);
+                        Transformations.CalculateSkew(ref point, _valueSkewX, _valueSkewY);
+                    }
+                    else
+                    {
+                        textErrorMessage.Visibility = Visibility.Visible;
+                        return;
+                    }
                     break;
                 default:
                     break;
@@ -256,16 +291,23 @@ namespace ComputerGraphics.MVVM.View
         {
             if (pointsQueue.Count == 0) return;
 
-            double _valueRotation = double.Parse(angle.Text);
-
             var point = pointsQueue.Dequeue();
 
-            double x = point.X;
-            double y = point.Y;
+            if (angle.Text != "")
+            {
+                double _valueRotation = double.Parse(angle.Text, CultureInfo.InvariantCulture);
 
-            point.X = (x * Math.Cos(_valueRotation)) - (y * Math.Sin(_valueRotation)) + 200;
-            point.Y = (x * Math.Sin(_valueRotation)) + (y * Math.Cos(_valueRotation)) - 20;
+                double x = point.X;
+                double y = point.Y;
 
+                point.X = (x * Math.Cos(_valueRotation)) - (y * Math.Sin(_valueRotation)) + 200;
+                point.Y = (x * Math.Sin(_valueRotation)) + (y * Math.Cos(_valueRotation)) - 20;
+            }
+            else
+            {
+                textErrorMessage.Visibility = Visibility.Visible;
+                return;
+            }
             var draw = DrawPoint(point);
 
             canvas.Children.Add(draw.ellipse);

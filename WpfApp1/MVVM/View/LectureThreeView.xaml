@@ -356,7 +356,7 @@
                    Foreground="#FFE84141"
                    FontWeight="Normal"
                    FontSize="14"
-                   Margin="0,310,0,0"/>
+                   Margin="0,325,0,0"/>
 
         <Button Content="Spoj"
                 x:Name="connect"
@@ -538,7 +538,7 @@
                     VerticalAlignment="Bottom" HorizontalAlignment="Center">
             <StackPanel Orientation="Horizontal">
                 <TextBlock 
-                   Text="Zadajte smer zrkadlenia vzľadom k osi X=0 alebo Y=1: "
+                   Text="Zadajte smer zrkadlenia vzľadom k osi X(0) alebo Y(1): "
                    Foreground="#FF424242"
                     TextWrapping="Wrap"
                    FontWeight="Normal"
