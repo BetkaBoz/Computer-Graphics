@@ -18,7 +18,6 @@ namespace ComputerGraphics.MVVM.View
 {
     public partial class IntroView : UserControl
     {
-        LectureEightView eightView = new();
         MainViewModel viewModel = new();
 
         public IntroView()
@@ -27,24 +26,14 @@ namespace ComputerGraphics.MVVM.View
 
             DataContext = viewModel;
 
-            //viewModel.LoadCurrentUserData();
+            viewModel.LoadCurrentUserData();
 
-            //SetUpChecks();
-        }
-
-        private void SetUpUserLectures()
-        {
-
+            SetUpChecks();
         }
 
         private void SetUpChecks()
         {
             string lectureNum = viewModel.Lectures;
-
-            //for(int i = 1; i <= Int32.Parse(lectureNum); i++)
-            //{
-
-            //}
 
             switch (lectureNum)
             {

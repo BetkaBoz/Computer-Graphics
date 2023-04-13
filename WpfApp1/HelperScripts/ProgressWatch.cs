@@ -15,16 +15,16 @@ namespace ComputerGraphics.HelperScripts
 
         public static bool IsProgress(bool check, int progressNumb)
         {
-            //int userLecture = Int32.Parse(viewModel.Lectures);
+            int userLecture = Int32.Parse(viewModel.Lectures);
 
-            //if (check == true && userLecture < progressNumb)
-            //{
-            //    string lectures = $"{progressNumb}";
-            //    viewModel.SetLectures(lectures);
+            if (check == true && userLecture < progressNumb)
+            {
+                string lectures = $"{progressNumb}";
+                viewModel.SetLectures(lectures);
 
-            //    return true;
-            //}
-            //else return false;
+                return true;
+            }
+            else return false;
             return true;
         }
     }

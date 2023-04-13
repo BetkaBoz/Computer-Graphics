@@ -4,8 +4,8 @@
              xmlns:local="clr-namespace:WpfApp1"
              xmlns:viewModel="clr-namespace:ComputerGraphics.MVVM.ViewModel"
              xmlns:view="clr-namespace:ComputerGraphics.MVVM.View"
-             StartupUri="MainWindow.xaml">
-    <!--Startup="ApplicationStart"-->
+             Startup="ApplicationStart">
+    <!---->
     
     <Application.Resources>
         <ResourceDictionary>
